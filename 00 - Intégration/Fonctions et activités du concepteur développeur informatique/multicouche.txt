@@ -1,0 +1,48 @@
+CDA : 
+Conçoit, développe ou améliore des applications.
+
+
+Concevoir et développer une application multicouche répartie en intégrant les recommandations de sécurité
+Sous ce nom barbare, c'est quoi concrétement ?
+Multicouche ou N-tiers c'est diviser l'application en plusieurs couches, en générale 3
+
+-Presentation (web)
+->couche web
+
+-middle tier (couche métier)
+->communication entre les 2 autre couches
+
+-data tier (couche données)
+->bdd
+
+avantages : 
+
+isolation des composants
+sécuritée 
+flexible
+possiblité de monter en charge facilement
+
+FICHE CP 11 développer des composants métier: 
+développer et tester les composants de la couche métier
+(pour intéragir avec la bdd par exemple)
+
+FICHE CP 12 construire une application organisée en couches:
+
+FICHE CP 13 développer une application mobile:
+maquetter, coder, documenter, tester une application mobile
+
+FICHE CP 14 préparer et exécuter les plans de tests d'une application:
+
+Faire des tests sur l'application sur des résultats attendus pour répondre au cahier des charges.
+Tester l'application dans le cas de changement de version.
+
+(source https://tp2-cdi.labo-ve.fr/formation/competences/developper-application-n-tiers/preparer-executer-plans-tests-application/)
+
+FICHE CP 15 préparer et exécuter le déploiement d'une application
+élaborer un diagrame de déploiement
+(vue statique qui sert à représenter l'utilisation de l'infrastructure)
+déployer l'executable après l'assemblage des composants de l'application
+
+source https://en-07.fr/competences/preparer-et-executer-le-deploiement-dune-application/
+
+

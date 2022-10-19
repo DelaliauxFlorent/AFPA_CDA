@@ -1,0 +1,9 @@
+Recherche de doc
+Création powerpoint
+
+Objectifs de la formation
+- Concevoir et développer des composants d'interface utilisateur en intégrant les recommandations de sécurité
+
+- Concevoir et développer la persistance des données en intégrant les recommandations de sécurité
+
+- Concevoir et developper une application multicouche répartie en intégrant les recommandations de sécurité.
