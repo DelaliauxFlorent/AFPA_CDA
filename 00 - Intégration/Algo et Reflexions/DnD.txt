@@ -1,0 +1,64 @@
+Il y a 5 maisons alignées dans une rue. Chaque maison est habitée. L'une par un elfe, l'autre par un guerrier, une autre par un vieil orque, une par un riche marchand et une par un hobbit qui aime bien faire la fête.
+
+Le guerrier habite la maison en bois du milieu. L'elfe possède un chien de garde qui aboie souvent la nuit. L'habitant de la maison à deux étages boit souvent de l'hydromel. L'orque monte à cheval et adore boire de la liqueur.
+La maison à deux étages est située à droite de la maison couleur ivoire. Celui qui se bat à l'aide d'un gourdin possède un aigle apprivoisé. L'habitant de la maison en pierre se bat à l'aide d'un bâton. Celui qui ne boit que du lait de chèvre habite dans la maison du milieu. Le marchand habite dans la première maison, à côté de la maison sans fenêtres. La personne qui utilise la dague en combattant habite à droite de la maison où il y a un hibou. Alors que celle qui se bat avec un bâton habite à gauche de la maison du propriétaire du cheval. Quand il va à l'auberge, celui qui porte une épée longue sur lui commande souvent une tisane d'herbes séchées. Ce n'est pas le hobbit car lui il se bat à l'aide d'une sarbacane.
+
+Pourriez-vous me dire quelle est la personne qui ne boit que de l'eau ?
+Enfin, sauriez-vous m'indiquer celle qui possède un Bébé Dragon chez elle ?
+
+Bonne chance !
+
+
+5 maison => 1 à 5
+type maison => bois, 2étages, ivoire, pierre, windowless
+Habitants => Elf, Warrior, Orc, Marchand, Halfling
+Boissons => hydromel, liqueur, lait de chèvre, tisane, eau
+Animaux => chien, cheval, aigle, hibou, dragon
+Armes => gourdin, baton, dague, épée longue, sarbacane
+
+	1 - Le guerrier habite la maison en bois du milieu.
+	2 - L'elfe possède un chien de garde qui aboie souvent la nuit. 
+	3 - L'habitant de la maison à deux étages boit souvent de l'hydromel. 
+	4 - L'orque monte à cheval et adore boire de la liqueur.
+	5 - La maison à deux étages est située à droite de la maison couleur ivoire. 
+	6 - Celui qui se bat à l'aide d'un gourdin possède un aigle apprivoisé. 
+	7 - L'habitant de la maison en pierre se bat à l'aide d'un bâton. 
+	8 - Celui qui ne boit que du lait de chèvre habite dans la maison du milieu. 
+	9 - Le marchand habite dans la première maison, à côté de la maison sans fenêtres. 
+	10 - La personne qui utilise la dague en combattant habite à droite de la maison où il y a un hibou. 
+	11 - Alors que celle qui se bat avec un bâton habite à gauche de la maison du propriétaire du cheval. 
+	12 - Quand il va à l'auberge, celui qui porte une épée longue sur lui commande souvent une tisane d'herbes séchées. 
+	13 - Ce n'est pas le hobbit car lui il se bat à l'aide d'une sarbacane.
+	
+1 => W et bois en 3
+2 => chien pas en 3
+4=> cheval et liq pas en 3
+5 => 2e pas en 1 ni 4, Ivo pas en 2 ni 5
+7 => baton pas en 3
+8 => Lait en 3 => W boit lait
+9 => M en 1 et Wl en 2
+10 => dague pas en 1, hibou pas en 5
+11=> baton pas en 5, cheval pas en 1
+5 et 9 => iv en 4, 2e en 5 donc reste pierre en 1
+2=> chien pas en 1
+(5&9)+3 => 2e en 5 donc hydromel en 5
+prec+4 => Ni Orc, ni cheval en 5
+(5&9)+7 => baton en 1
+prec+11 => cheval en 2
+prec+2 => elf pas en 2
++4 => orc et liqueur en 2
+6 => aigle pas en 1
+12=> epée longue pas en 3
+13=> sarb pas en 3( reste gour ou dag)
+6 => gour pas en 2
+12=> tisane pas en 1 donc en 4; ls en 4
+13 => half pas en 4 donc en 5 d'ou elf en 4; sarb en 5
+2 => chien en 4
+10=>dague en 2, hibou en 1
+6 => aigle en 3
+reste dragon en 5
+
+Le marchand ne bois que de l'eau
+Le hobbit possède un dragon
+
+ 
