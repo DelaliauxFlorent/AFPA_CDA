@@ -26,8 +26,9 @@ if($age>=25){
 if($permis>=2){
     $poid++;
 }
-if ($accid<=2){
-    $poid-=$accid;
+$poid-=$accid;
+if ($accid<=2 && $poid>=0){
+    
     $ancien=readline("Depuis combien d'année êtes-vous chez nous? ");
     if($ancien>=1){
         $poid++;
@@ -46,10 +47,45 @@ if ($accid<=2){
         case 0:
             echo "Tarif Rouge";
             break;
-        default:
-            echo "Refusé";
-            break;
     }
 }else{
     echo "Refusé";
 }
+
+/* Correction
+$age = readLine('Age : ');
+$permis = readLine('Années de permis : ');
+$accident = readLine('Nombre d\'accidents : ');
+$gold = readLine('Client depuis plus d\'un an ? : ');
+
+$score = 0;
+
+$couleur = ['rouge', 'orange', 'verte', 'bleue'];
+
+if($accident<3){
+
+    if($age>25){
+        $score ++;
+    }
+
+    if($permis>2){
+        $score ++;
+    }
+
+    $score -= $accident;
+
+    if($gold && $score >= 0){
+        $score ++;
+    }
+
+    if($score >= 0){
+        echo 'Vous avez droit à l\'assurance de couleur '.$couleur[$score];
+    }
+    else{
+        echo 'Vous ne pouvez pas souscrire à une assurance';
+    }
+}
+else{
+    echo 'Vous ne pouvez pas souscrire à une assurance';
+}
+*/
