@@ -1,5 +1,5 @@
 <?php
-    $regex='/^(-?|\+?)[0-9]\d*((,|\.)\d+)?$/';
+    $regex='/^(-?|\+?)\d+((,|\.)\d+)?$/';
 
     do{
         $nbre1=readline("Veuillez entrer le 1er nombre: ");

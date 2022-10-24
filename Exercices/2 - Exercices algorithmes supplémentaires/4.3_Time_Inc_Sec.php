@@ -56,6 +56,7 @@ foreach($time as $key => $value){
     }while(!preg_match($regex,$time[$key]));
 }
 
+/*
 if($time['secondes']!=59){
     $time['secondes']++;
 }elseif($time['minutes']!=59){
@@ -69,6 +70,19 @@ if($time['secondes']!=59){
     $time['secondes']=0;
     $time['minutes']=0;
     $time['heures']=0;
+}*/
+
+$time['secondes']++;
+if($time['secondes']==60){
+    $time['secondes']=0;
+    $time['minutes']++;
+    if($time['minutes']==60){
+        $time['minutes']=0;
+        $time['heures']++;
+        if($time['heures']==24){
+            $time['heures']=0;
+        }
+    }
 }
 
 echo "Dans une seconde, il sera ".$time['heures']." heure(s), ".$time['minutes']." minute(s) et ".$time['secondes']." seconde(s)";

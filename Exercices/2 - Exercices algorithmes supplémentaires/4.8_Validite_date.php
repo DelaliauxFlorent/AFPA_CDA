@@ -10,7 +10,7 @@ do{
     }elseif($day>31){
         echo "Erreur, aucun mois ne contient plus de 31 jours!\n";
     }
-}while(!preg_match($regex1,$day) || $day>31);
+}while(!preg_match($regex1,$day) || ($day>31&&$day<0));
 do{
     $month=readline("Veuillez indiquer le numéro du mois: ");
     if(!preg_match($regex1,$month)){
@@ -18,7 +18,7 @@ do{
     }elseif($month>12){
         echo "Erreur, aucune année ne contient plus de 12 mois!\n";
     }
-}while(!preg_match($regex1,$month) || $month>12);
+}while(!preg_match($regex1,$month) || ($month>12&&$month<0));
 do{
     $year=readline("Veuillez indiquer le numéro de l'année: ");
     if(!preg_match($regex2,$year)){

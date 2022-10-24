@@ -16,7 +16,7 @@ do{
 }while(!preg_match($regex,$min));
 
 echo "Dans une minute, il sera ";
-
+/*
 if($min!=59){
     echo $hour." heure(s) ".$min+1;
     echo ".";
@@ -25,4 +25,14 @@ if($min!=59){
     echo " heure(s) 00.";
 }else{
     echo "minuit.";
+}*/
+$min++;
+if($min==60){
+    $min=0;
+    $hour++;
+    if($hour==24){
+        $hour=0;
+    }
 }
+
+echo $hour." heure(s) et ".$min." minute(s).";
