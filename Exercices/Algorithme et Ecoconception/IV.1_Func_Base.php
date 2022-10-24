@@ -22,8 +22,7 @@ function SaisieTabUn($sizeArray, $invite){
 // 2.	Saisir les valeurs d’un tableau jusqu’à ce que l’utilisateur saisisse 0.
 
 function SaisieTabDyna(){
-    $regex= '/^(-?|\+?)[0-9]+$/';
-    $retour2[0]=null;
+    $regex= '/^(-|\+)?[0-9]+$/';
     do{
         do{
             $val=readline("Entrez une valeur entière: ");
@@ -32,7 +31,7 @@ function SaisieTabDyna(){
             }
         }while(!preg_match($regex,$val));
         $retour2[]=(int)$val;
-    }while((int)$val!=0);
+    }while($val!=0);
     array_pop($retour2);
     return $retour2;
 }
@@ -40,9 +39,75 @@ function SaisieTabDyna(){
 //3.	Trier un tableau 
 
 function TrierTableau($tableau){
-    return sort($tableau, SORT_NATURAL | SORT_FLAG_CASE); // Retourne tableau classé par ordre alpha/croissant
-    /* Ret
+    sort($tableau, SORT_NATURAL | SORT_FLAG_CASE); // Retourne booléen et le tableau classé par ordre alpha/croissant et réassignement keys
+    return $tableau;
+}
 
+//4.	Afficher un tableau
+
+function Afficher_Tab($tableau){
+    foreach($tableau as $value){
+        echo " | ".$value;
+    }
+    echo " |";
+}
+
+// 5.	Saisir un tableau à 2 dimensions de X valeurs par Y (X et Y passer en paramètre)
+
+function SaisieTableau2D($largeur, $hauteur){
+    for($i=0; $i<$hauteur;$i++){
+        $lignes[$i]= SaisieTabUn($largeur, "Veuillez entrer un nombre entier: ");
+    }
+    return $lignes;
+}
+
+//6.	Afficher un tableau à 2 dimensions sous forme de plateau de jeu ; c’est-à-dire avec les traits de ligne et colonnes, les entêtes de colonnes seront des lettres, chiffres pour les lignes
+
+function AfficherTab2D($tableau2D){
+    $hauteur=count($tableau2D);
+    $largeur=count($tableau2D[0]);
+    $tirret="----";
+
+    echo "\t \t";
+    for($i=0;$i<$largeur;$i++){
+        echo "|\t".mb_chr(65+$i)."\t";
+        $tirret.=
+    }
+    
+    foreach($tableau2D as $ligne=>$array){
+        echo "\n ---------------";
+        foreach($array as $key=> $value){
+            echo "|---------------";
+        }
+        echo "\n\t".$ligne+1;
+        echo "\t";
+        foreach($array as $key=> $value){
+            echo "|\t".$value."\t";
+        }
+    }
+}
+
+//7.	Rechercher une valeur dans un tableau
+
+function rechercheTab($value, $tableau){
+    $found=false;
+    $i=0;
+    do{
+        if($tableau[$i]==$value){
+            $found=true;
+        }
+        $i++;
+    }while($i<count($tableau) && $found==false);
+    return $found;
+}
+
+// Génération d'un tableau de taille voullu rempli de valeurs aléatoire pour test
+
+function tableauRandom($taille){
+    for($i=0; $i<$taille; $i++){
+        $tableau[$i]=random_int(0,100);
+    }
+    return $tableau;
 }
 
 /////////////////////////////////////////
@@ -51,17 +116,42 @@ function TrierTableau($tableau){
 $testFonction=readline("Quelle fonction tester? ");
 switch($testFonction){
     case 1:
-        $test1=SaisieTabUn(5, "Entrez une valeur: ");
-        $test2=SaisieTabUn(3, "Entrez un prix: ");
+        $test1_1=SaisieTabUn(5, "Entrez une valeur: ");
+        print_r($test1_1);
+        $test1_2=SaisieTabUn(3, "Entrez un prix: ");
+        print_r($test1_2);
         break;
     case 2:
-        $test3=SaisieTabDyna();
-        print_r($test3);
+        $test2=SaisieTabDyna();
+        print_r($test2);
         break;
     case 3:
+        $test3=SaisieTabDyna();
+        $test3=TrierTableau($test3);
+        print_r($test3);
+        break;
     case 4:
+        $test4=SaisieTabDyna();
+        Afficher_Tab($test4);
+        break;
     case 5:
+        $test5=SaisieTableau2D(5,3);
+        print_r($test5);
+        break;
     case 6:
+        $test6=SaisieTableau2D(5,3);
+        AfficherTab2D($test6);
+        break;
     case 7:
+        $test7=tableauRandom(10);
+        print_r($test7);
+        $needle=readline("Recherche: ");
+        if(rechercheTab($needle, $test7)){
+            echo "Trouvé!";
+        }else{
+            echo "Absent!";
+        }
+        break;
     default:
-        break
+        break;
+}
