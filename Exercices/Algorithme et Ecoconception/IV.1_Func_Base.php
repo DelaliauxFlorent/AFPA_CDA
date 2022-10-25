@@ -66,25 +66,24 @@ function SaisieTableau2D($largeur, $hauteur){
 function AfficherTab2D($tableau2D){
     $hauteur=count($tableau2D);
     $largeur=count($tableau2D[0]);
-    $tirret="----";
+    $tirret="-----------------";
 
     echo "\t \t";
     for($i=0;$i<$largeur;$i++){
         echo "|\t".mb_chr(65+$i)."\t";
-        $tirret.=
+        $tirret.="----------------";
     }
+    echo "|";
     
     foreach($tableau2D as $ligne=>$array){
-        echo "\n ---------------";
-        foreach($array as $key=> $value){
-            echo "|---------------";
-        }
-        echo "\n\t".$ligne+1;
-        echo "\t";
-        foreach($array as $key=> $value){
+        echo "\n".$tirret;
+        echo "\n|\t".($ligne+1)."\t";
+        foreach($array as $value){
             echo "|\t".$value."\t";
         }
+        echo "|";
     }
+    echo "\n".$tirret;
 }
 
 //7.	Rechercher une valeur dans un tableau
@@ -139,7 +138,7 @@ switch($testFonction){
         print_r($test5);
         break;
     case 6:
-        $test6=SaisieTableau2D(5,3);
+        $test6=[[0,2,4,6,8],[10,12,14,16,18],[20,22,24,26,28]];
         AfficherTab2D($test6);
         break;
     case 7:
