@@ -3,6 +3,7 @@
 //1. Ecrire un algorithme qui demande un nombre de départ, et qui calcule sa factorielle.
 
 function factorial($value){
+    //Ordre décroissant
     
     if($value!=1){
         echo $value." * ";
@@ -11,6 +12,10 @@ function factorial($value){
         echo "1 = ";
         return 1;
     }
+
+    //ordre croissant
+
+
 }
 
 //2.	Epeler - Ecrire une fonction qui épèle le mot passé en paramètre
@@ -24,11 +29,10 @@ function epeler($mot, $pos){
 }*/
 
 function epeler($mot){
-    $length=strlen($mot);
-    if($length==1){
-        echo "'".$mot[0]."'.";
-    }else{
-        echo "'".$mot[0]."', ";
+    //affiche le premier charactère de la chaine
+    echo "'".$mot[0]."'";
+    if(strlen($mot)>1){
+        echo ", ";
         epeler(substr($mot,1));
     }
 }
