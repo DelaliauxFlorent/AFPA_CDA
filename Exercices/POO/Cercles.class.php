@@ -4,7 +4,7 @@ class Cercles{
     ////////////////////////////////////
     // Attributs
 
-    protected $_diametre;
+    private $_diametre;
 
     ////////////////////////////////////
     // Accesseurs

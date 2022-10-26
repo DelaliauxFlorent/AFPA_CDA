@@ -36,7 +36,7 @@ class Paves extends Rectangles{
     
     public function perimetre()
     {
-        return parent::perimetre();
+        return ((2*parent::perimetre())+(4*$this->_profondeur));
     }
 
     public function volume()
@@ -44,9 +44,9 @@ class Paves extends Rectangles{
         return $this->perimetre()*$this->_profondeur;
     }
 
-    public function AfficherPave()
+    public function afficherPave()
     {
-        echo "Périmètre: ".$this->perimetre()."\t- Volume: ".$this->volume();
+        echo "Périmètre: ".$this->perimetre()."\t- Volume: ".$this->volume()."\n";
     }
 
     /**
@@ -56,7 +56,7 @@ class Paves extends Rectangles{
     */
     public function __toString()
     {
-        return $this->AfficherPave();
+        return "Périmètre: ".$this->perimetre()."\t- Volume: ".$this->volume()."\n";
     }
     
 }

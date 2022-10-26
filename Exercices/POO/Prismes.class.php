@@ -1,4 +1,5 @@
 <?php
+
 class Prismes extends Triangles{
     ////////////////////////////////////
     // Attributs
@@ -39,32 +40,27 @@ class Prismes extends Triangles{
     */
     public function __toString()
     {
-        return "";
+        return "Périmètre: ".$this->perimetre()."\t- Volume: ".$this->volume()."\n";
     }
 
     /**
-    * Renvoi vrai si l'objet en paramètre est égal à l'objet appelant
-    *
-    * @param [type] $obj
-    * @return bool
-    */
-    public function equalsTo($obj)
+     * Undocumented function
+     *
+     * @return void
+     */
+    public function perimetre()
     {
-        return true;
+        
+        return parent::perimetre()*2+$this->getProfondeur()*3;
     }
 
-    /**
-    * Compare 2 objets
-    * Renvoi 1 si le 1er est >
-    *        0 si ils sont égaux
-    *        -1 si le 1er est <
-    *
-    * @param [type] $obj1
-    * @param [type] $obj2
-    * @return void
-    */
-    public static function compareTo($obj1, $obj2)
+    public function volume()
     {
-        return 0;
+        return parent::aire()*$this->_profondeur;
+    }
+
+    public function afficherPrisme()
+    {
+        echo "Périmètre: ".$this->perimetre()."\t- Volume: ".$this->volume()."\n";
     }
 }

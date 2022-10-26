@@ -26,7 +26,7 @@
 			"\t// Attributs\n",
 			"\tprivate $$_$2;\n",
 			"\t////////////////////////////////////",
-			"\t// Accesseurs\n\n\n",			
+			"\t#region Accesseurs\n\n\n#endregion Accesseurs",			
 			"\t////////////////////////////////////",
 			"\t// Constructeur\n",
 			"\tpublic function __construct(array $$options = [])",

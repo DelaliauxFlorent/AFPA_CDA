@@ -3,8 +3,8 @@ class Triangles{
     ////////////////////////////////////
     // Attributs
 
-    protected $_base;
-    protected $_hauteur;
+    private $_base;
+    private $_hauteur;
 
     ////////////////////////////////////
     // Accesseurs
@@ -55,10 +55,24 @@ class Triangles{
     ////////////////////////////////////
     // Autres méthodes
 
+    /**
+     * function hypothenuse
+     *
+     * @return float
+     */
+    public function hypothenuse()
+    {
+        return sqrt(pow($this->getBase(),2)+pow($this->getHauteur(),2));
+    }
+
+    /**
+     * function perimetre
+     *
+     * @return float
+     */
     public function perimetre()
     {
-        $hypot=sqrt(pow($this->getBase(),2)+pow($this->getHauteur(),2));
-        return ($this->getHauteur()+$this->getBase()+$hypot);
+        return ($this->getHauteur()+$this->getBase()+$this->hypothenuse());
     }
     
     public function aire()
