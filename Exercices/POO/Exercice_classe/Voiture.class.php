@@ -54,11 +54,14 @@ class Voiture{
     }
 
 
-
     ///////////////////////////////////////////////////////////
     // Autres méthodes
 
     public function description(){
         echo "Cette voiture est un ".$this->_modele." de la marque ".$this->_marque.", de la couleur ".$this->_couleur.", de motorisation ".$this->_motorisation.", avec ".$this->_nbKm." Kilomètres.";
+    }
+
+    public function rouler(int $km){
+        $this->set_nbKm($this->get_nbKm()+$km);
     }
 }
