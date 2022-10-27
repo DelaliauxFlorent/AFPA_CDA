@@ -73,29 +73,37 @@ class Affichages{
      */
     public static function demandePosition($Plateau)
     {
+        
         do{
             do{
                 $posX=readline("Indiquez la colonne: ");
                 if(!is_numeric($posX)){
-                    echo "Erreur, entrée invalide!\n";
+                    echo "Erreur: Entrée invalide!\n";
                 }elseif(!ctype_digit($posX)){
-                    echo "Erreur, entrez un entier!\n";
+                    echo "Erreur: Entrez un entier!\n";
+                }elseif($Plateau->caseExiste([0, $posX])){
+                    echo "Erreur: Cette colonne n'existe pas!";
                 }
-            }while($posX<0||$posX>=$Plateau->getDimX);
+            }while($Plateau->caseExiste([0, $posX]));
             do{
                 $posY=readline("Indiquez la ligne: ");
                 if(!is_numeric($posY)){
-                    echo "Erreur, entrée invalide!\n";
+                    echo "Erreur: entrée invalide!\n";
                 }elseif(!ctype_digit($posY)){
-                    echo "Erreur, entrez un entier!\n";
+                    echo "Erreur: entrez un entier!\n";
+                }elseif($Plateau->caseExiste([$posY, 0])){
+                    echo "Erreur: Cette ligne n'existe pas!";
                 }
-            }while($posY<0||$posY>=$Plateau->getDimY);
-            $caseTeste=new Cases(["posX"=>$posY,"posY"=>$posX]);
+            }while($Plateau->caseExiste([$posY, 0]));
+            $position=array("posX"=>$posX,"posY"=>$posY);
+            $caseTeste=new Cases($position);
             if(!$caseTeste->estVide()){
                 echo "Erreur, cette case n'est pas vide";
             }
+            
         }while(!$caseTeste->estVide());
-        return array("posX"=>$posX,"posY"=>$posY);
+        
+        return $position;
     }
 
     public static function demandeInfoJoueur()

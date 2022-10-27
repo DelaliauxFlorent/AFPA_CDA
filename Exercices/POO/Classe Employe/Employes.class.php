@@ -11,6 +11,8 @@ class Employes{
     private $_salaire;
     private $_service;
 
+    private Agences $agence;
+
     ////////////////////////////////////
     #region Accesseurs
 
@@ -73,6 +75,17 @@ class Employes{
     {
         $this->_service = $service;
     }
+
+    public function getAgence()
+    {
+        return $this->_agence;
+    }
+
+    public function setAgence($agence)
+    {
+        $this->_agence = $agence;
+    }
+
     #endregion Accesseurs
 
     ////////////////////////////////////
@@ -108,7 +121,7 @@ class Employes{
     */
     public function __toString()
     {
-        return "";
+        return "Employé:\n\t- Nom: \t\t".$this->getNom()."\n\t- Prénom: \t".$this->getPrenom()."\n\t- Embauché le: \t".date_format($this->getDateEmbauche(),"d/m/Y")."\n\t- Fonction: \t".$this->getPoste()."\n\t- Salaire: \t".number_format($this->getSalaire()*1000,2,",", " ")."€\n\t- Service: \t".$this->getService()."\n".$this->getAgence();
     }
 
     /**
@@ -130,11 +143,34 @@ class Employes{
     *
     * @param [type] $obj1
     * @param [type] $obj2
-    * @return void
+    * @return int
     */
-    public static function compareTo($obj1, $obj2)
+    public static function compareToNP($obj1, $obj2)
     {
-        return 0;
+        if(strcmp($obj1->getNom(),$obj2->getNom())=="0"){
+            return strcmp($obj1->getPrenom(),$obj2->getPrenom()); //S'occupe du prénom SSI Noms identiques
+        }else{
+            return strcmp($obj1->getNom(),$obj2->getNom());            
+        }
+    }
+
+    /**
+    * Compare 2 objets
+    * Renvoi 1 si le 1er est >
+    *        0 si ils sont égaux
+    *        -1 si le 1er est <
+    *
+    * @param [type] $obj1
+    * @param [type] $obj2
+    * @return int
+    */
+    public static function compareToSNP($obj1, $obj2)
+    {
+        if(strcmp($obj1->getService(),$obj2->getService())==0){
+            return self::compareToNP($obj1, $obj2);
+        }else{
+            return strcmp($obj1->getService(),$obj2->getService());
+        }
     }
 
     /**
@@ -162,13 +198,20 @@ class Employes{
 
     public function payerPrime()
     {
-        $datePayPrime=new DateTime("2021-10-27"); //Date du jour de payment de la prime
+        $datePayPrime=new DateTime("2021-10-26"); //Date du jour de payment de la prime
         $today=new DateTime();
         $diffDate=date_diff($datePayPrime, $today);
        // var_dump($datePayPrime); echo"\n"; var_dump($today);echo"\n"; var_dump($diffDate);
         if(intval($diffDate->format("%m"))==0 && intval($diffDate->format("%d"))==0){
-            echo "Une prime de ".number_format($this->calculPrime()*1000, )." euros vient de lui être payé.";
+            echo "Une prime de ".number_format($this->calculPrime()*1000,2,",", " ")." euros vient de lui être payé.\n";
+        }else{
+            echo "Une prime de ".number_format($this->calculPrime()*1000,2,",", " ")." euros lui a été payé il y a ".$diffDate->format("%m")." mois et ".$diffDate->format("%d")." jour(s).\n";
         }
     }
     
+    public function CalcMassSal()
+    {
+        return $this->getSalaire()+$this->calculPrime();
+    }
+
 }
