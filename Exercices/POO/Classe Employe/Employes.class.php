@@ -162,9 +162,13 @@ class Employes{
 
     public function payerPrime()
     {
-        $datePayPrime=new DateTime("2022-10-26"); //Date du jour de payment de la prime
+        $datePayPrime=new DateTime("2021-10-27"); //Date du jour de payment de la prime
         $today=new DateTime();
-
+        $diffDate=date_diff($datePayPrime, $today);
+       // var_dump($datePayPrime); echo"\n"; var_dump($today);echo"\n"; var_dump($diffDate);
+        if(intval($diffDate->format("%m"))==0 && intval($diffDate->format("%d"))==0){
+            echo "Une prime de ".number_format($this->calculPrime()*1000, )." euros vient de lui être payé.";
+        }
     }
     
 }
