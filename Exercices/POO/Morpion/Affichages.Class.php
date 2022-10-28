@@ -125,7 +125,7 @@ class Affichages
                 }
             }while($errorY);
             $position=array("posX"=>$posX,"posY"=>$posY);
-            $caseTeste=new Cases($position);
+            $caseTeste=$plateau->getTableau()[$posX][$posY];
             if(!$caseTeste->estVide()){
                 echo "\tErreur: Cette case n'est pas vide!\n";
             }
