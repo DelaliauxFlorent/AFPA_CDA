@@ -1,80 +1,69 @@
 <?php
-
-class Affichages
-{
-
-    /*****************Attributs***************** */
-
-    private static $_listeCouleur = array(
-        "Gris Foncé"=>"1;30", 
-        "Rouge"=>"0;31", 
-        "Rose"=>"1;31", 
-        "Vert"=>"0;32", 
-        "Vert Clair"=>"1;32",
-        "Marron"=>"0;33",
-        "Jaune"=>"1;33",
-        "Bleu"=>"0;34",
-        "Bleu Ciel"=>"1;34",
-        "Violet"=>"0;35",
-        "Violet Clair"=>"1;35",
-        "Cyan"=>"0;36",
-        "Cyan Clair"=>"1;36",
-        "Gris Clair"=>"1;37");
+class Affichages{
     
-    /*****************Accesseurs***************** */
-    
-    /*****************Constructeur***************** */
+    ////////////////////////////////////
+    // Constructeur
 
-    /*****************Autres Méthodes***************** */
-
-    /**
-     * Fonction d'affichage du tableau
-     * @param Plateaux $plateau
-     */
-    
-    public static function afficheTableau(Plateaux $plateau){
-        $tirret = "+---";
-
-        for ($i = 1; $i < $plateau->getDimX(); $i++){
-            $tirret .= "+---";
+    public function __construct(array $options = [])
+    {
+        if (!empty($options)) // empty : renvoi vrai si le tableau est vide
+        {
+            $this->hydrate($options);
         }
+    }
 
-        echo $tirret."+"."\n";
-
-        foreach ($plateau->getTableau() as $numCol => $colonne) {
-            echo "|";
-            foreach ($colonne as $case ) {
-                if ($case->getContenu() == null){
-                    echo "   |";
-                }
-                else{
-                    echo " ".$case->getContenu()." |";
-                } 
+    public function hydrate($data)
+    {
+        foreach ($data as $key => $value)
+        {
+            $methode = "set" . ucfirst($key); //ucfirst met la 1ere lettre en majuscule
+            if (is_callable(([$this, $methode]))) // is_callable verifie que la methode existe
+            {
+                $this->$methode($value);
             }
-            echo "\n".$tirret."+"."\n";
         }
     }
 
+    ////////////////////////////////////
+    // Autres méthodes
+
     /**
-     *  Affiche le nom du joueur
-     * @param Joueurs $joueur
-     */
-    public static function afficheInviteJoueur(Joueurs $joueur){
-        echo "C'est à " . $joueur->getNom() . " de jouer !";
+    * Transforme l'objet en chaine de caractères
+    *
+    * @return String
+    */
+    public function __toString()
+    {
+        return "";
     }
 
     /**
-     * Affiche qui a gagné la partie
-     * @param Joueurs $joueur
-     */
-    public static function afficheResultat(Joueurs $joueur){
-        echo "Le joueur " . $joueur->getNom() . "a gagné";
+    * Renvoi vrai si l'objet en paramètre est égal à l'objet appelant
+    *
+    * @param [type] $obj
+    * @return bool
+    */
+    public function equalsTo($obj)
+    {
+        return true;
     }
 
-    //////////
-    #region test en cour Florent
+    /**
+    * Compare 2 objets
+    * Renvoi 1 si le 1er est >
+    *        0 si ils sont égaux
+    *        -1 si le 1er est <
+    *
+    * @param [type] $obj1
+    * @param [type] $obj2
+    * @return void
+    */
+    public static function compareTo($obj1, $obj2)
+    {
+        return 0;
+    }
 
-    //Manque méthode PlateaucaseExiste pour test
+
     /**
      * [Demande au joueur la case où il veut insérer son signe]
      *
@@ -82,7 +71,7 @@ class Affichages
      *
      * @return  array     [retourne un tableau assoc contenant "posX" et "posY"]
      */
-    public static function demandePosition(Plateaux $plateau)
+    public static function demandePosition(Plateaux $Plateau)
     {
         
         do{
@@ -95,13 +84,13 @@ class Affichages
                     echo "Erreur: Entrée invalide!\n";
                     $errorX=true;
                 }elseif(!ctype_digit($posX)){
-                    echo "Erreur: Entrez un entier positif!\n";
+                    echo "Erreur: Entrez un entier!\n";
                     $errorX=true;
                 }
                 //
                 //////////////////////////////////////////////////////
-                elseif(!$plateau->caseExiste(0, $posX)){
-                    echo "Erreur: Cette colonne n'existe pas!\n";
+                elseif(!$Plateau->caseExiste([0, $posX])){
+                    echo "Erreur: Cette colonne n'existe pas!";
                     $errorX=true;
                 }
             }while($errorX);
@@ -114,20 +103,20 @@ class Affichages
                     echo "Erreur: entrée invalide!\n";
                     $errorY=true;
                 }elseif(!ctype_digit($posY)){
-                    echo "Erreur: entrez un entier positif!\n";
+                    echo "Erreur: entrez un entier!\n";
                     $errorY=true;
                 }
                 //
                 //////////////////////////////////////////////////////
-                elseif(!$plateau->caseExiste($posY, 0)){
-                    echo "Erreur: Cette ligne n'existe pas!\n";
+                elseif(!$Plateau->caseExiste([$posY, 0])){
+                    echo "Erreur: Cette ligne n'existe pas!";
                     $errorY=true;
                 }
             }while($errorY);
             $position=array("posX"=>$posX,"posY"=>$posY);
             $caseTeste=new Cases($position);
             if(!$caseTeste->estVide()){
-                echo "\tErreur: Cette case n'est pas vide!\n";
+                echo "\tErreur: Cette case n'est pas vide";
             }
             
         }while(!$caseTeste->estVide());
@@ -155,6 +144,4 @@ class Affichages
         }while(Joueurs::signeExiste($signe)||in_array($signe, $caractInterdit));
         return array("nom"=>$nomJoueur, "signe"=>$signe);
     }
-    #endregion
-    ///////////////
 }

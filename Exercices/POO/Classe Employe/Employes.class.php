@@ -81,7 +81,7 @@ class Employes{
         return $this->_agence;
     }
 
-    public function setAgence($agence)
+    public function setAgence(Agences $agence)
     {
         $this->_agence = $agence;
     }
