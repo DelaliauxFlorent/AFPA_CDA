@@ -138,10 +138,10 @@ class Resolver {
         editor.edit(function (edit) {
             edit.replace(new vscode.Position(insertLine.lineNumber, 0), template);
         }).then(success => {
-            if (resolver.isRedirectEnabled() && success) {
-                const redirector = new Redirector_1.default(editor);
-                redirector.goToLine(this.closingClassLine().lineNumber - 1);
-            }
+            //if (resolver.isRedirectEnabled() && success) {
+            //    const redirector = new Redirector_1.default(editor);
+            //    redirector.goToLine(this.closingClassLine().lineNumber - 1);
+            //}
         }, error => {
             this.showErrorMessage(`Error generating functions: ` + error);
         });

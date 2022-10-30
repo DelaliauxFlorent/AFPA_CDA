@@ -48,6 +48,7 @@ class Plateaux
         if (!empty($options)) // empty : renvoi vrai si le tableau est vide
         {
             $this->hydrate($options);
+            $this->creerTableau();//////////////////////////////////////////////////////////////////////////////////////////////?
         }
     }
 
@@ -127,7 +128,7 @@ class Plateaux
         //     return ($y > $this->getDimY() || $x > $this->getDimX()) ? 0 : 1;
         // }
         // else return 0;
-        return ($x >= 0 && $y >= 0 && $y <= $this->getDimY() && $x <= $this->getDimX());
+        return ($x >= 0 && $y >= 0 && $y < $this->getDimY() && $x < $this->getDimX());/// Strictement inférieur à dimX et dimY!!!!!!!!!!!!!!!!!!!!!!!
     }
 
     public function estPlein()

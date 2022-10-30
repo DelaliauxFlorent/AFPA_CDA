@@ -22,6 +22,17 @@ class Affichages
         "Gris Clair"=>"1;37");
     
     /*****************Accesseurs***************** */
+
+    
+    public static function getListeCouleur()
+    {
+        return self::$_listeCouleur;
+    }
+
+    public static function setListeCouleur($listeCouleur)
+    {
+        self::$_listeCouleur = $listeCouleur;
+    }
     
     /*****************Constructeur***************** */
 
@@ -144,17 +155,50 @@ class Affichages
     {
         $caractInterdit=array(""," ");
         $nomJoueur=readline("Quel est votre nom? ");
+        $charactError=false;
         do{
             $signe=readline("Quel caractère voulez-vous utiliser? ");
             if(in_array($signe, $caractInterdit)){
+                $charactError=true;
                 echo "\tErreur: Caractère invalide.";
-            }
-            if(Joueurs::signeExiste($signe)){
+            }elseif(Joueurs::signeExiste($signe)){
+                $charactError=true;
                 echo "\tErreur: Ce caractère est déjà utilisé par un autre joueur.\n";
+            }elseif(strlen($signe)>1){
+                $charactError=true;
+                echo "\tErreur: Veuillez n'entrer qu'un seul caractère.\n";
             }
-        }while(Joueurs::signeExiste($signe)||in_array($signe, $caractInterdit));
-        return array("nom"=>$nomJoueur, "signe"=>$signe);
+            ///////////////////////////////////////
+            // A commenter si chiffres autorisés
+            elseif(is_numeric($signe)){
+                $charactError=true;
+                echo "\tErreur: Vous ne pouvez pas choisir un chiffre en tant que caractère.\n";
+            }
+        }while($charactError);
+        $listeCouleurs="Les couleurs autorisées sont: ";
+        foreach(self::getListeCouleur() as $coul=>$value){
+            $listeCouleurs.=$coul.", ";
+        }
+        $listeCouleurs=substr($listeCouleurs,0,-2);
+        $listeCouleurs.=".\n";
+
+        do{
+            echo $listeCouleurs;
+            $couleur=readline("Quel couleur voulez-vous utiliser? ");
+            if(!array_key_exists(strtolower($couleur), array_change_key_case(self::getListeCouleur()))){
+                echo "Erreur: Couleur inconnue. Vérifiez l'othographe. Vous aviez tapé: ".$couleur."\n";
+            }
+        }while(!array_key_exists(strtolower($couleur), array_change_key_case(self::getListeCouleur())));
+
+        ///////////////////////////////////////
+        // Retourne valeur couleur en string
+        //return array("nom"=>$nomJoueur, "signe"=>$signe, "Couleur"=>ucwords(strtolower($couleur)));
+
+        ///////////////////////////////////////
+        // Retourne valeur couleur avec code 
+        return array("nom"=>$nomJoueur, "signe"=>$signe, "Couleur"=>self::getListeCouleur()[ucwords(strtolower($couleur))]);
     }
     #endregion
     ///////////////
+
 }
