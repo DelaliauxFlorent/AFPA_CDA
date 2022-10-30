@@ -88,6 +88,7 @@ class MonstresFacile{
     {
         $dice=new Dices(6);
         $bouclier=$dice->lanceLeDe();
+        echo "***\t\t\tbouclier ".$bouclier."\n";
         if($bouclier>$shield){
             return true;
         }
@@ -105,10 +106,13 @@ class MonstresFacile{
         $dice=new Dices(6);
         $lanceMonst=$dice->lanceLeDe();
         $lancePC=$dice->lanceLeDe();
-        
+        echo "Monstre attaque : ".$lanceMonst."\tMonHeros  : ".$lancePC."\n";
         if($lanceMonst>$lancePC){
            if($this->gestionBouclier(Joueurs::getShield())){
                 $joueur->subitDegats($this->getPuissanceAttaque());
+                echo "\e[91m***\t\t\théros subit des dégats ".$this->getPuissanceAttaque()."\treste : ".$joueur->getHealth()."\e[39m\n";
+           }else{
+                echo "\e[91m***\t\t\théros subit des dégats 0\treste : ".$joueur->getHealth()."\e[39m\n";
            }
         }
     }

@@ -5,6 +5,8 @@ class MonstresDifficile extends MonstresFacile{
     // Attributs
 
     private $_puissanceSort; // Si l'on veut pouvoir corser les choses plus tard
+    
+    private static $_ptsValue;
 
     ////////////////////////////////////
     #region Accesseurs
@@ -14,6 +16,11 @@ class MonstresDifficile extends MonstresFacile{
         return $this->_puissanceSort;
     }
 
+    public static function getPtsValue()
+    {
+        return self::$_ptsValue;
+    }
+
     #endregion Accesseurs
     ////////////////////////////////////
     // Constructeur
@@ -21,7 +28,7 @@ class MonstresDifficile extends MonstresFacile{
     public function __construct()
     {
         $this->_puissanceSort=5;
-        $this->_ptsValue=2;
+        self::$_ptsValue=2;
     }
 
     ////////////////////////////////////
@@ -67,6 +74,7 @@ class MonstresDifficile extends MonstresFacile{
     {
         $dice=new Dices(6);
         $magicRole=$dice->lanceLeDe();
+        echo "***\t\t\tsort magique ".$magicRole."\n";
         $degatsMag=0;
         if($magicRole!=6){
             $degatsMag=$magicRole*$this->getPuissanceSort();
@@ -82,7 +90,16 @@ class MonstresDifficile extends MonstresFacile{
     public function attaque(Joueurs $joueur)
     {
         parent::attaque($joueur);
-        $joueur->subitDegats($this->lancerSort());
+        //////////////////////////////////
+        // No need to overkill...
+        if($joueur->estVivant()){
+            $degatsMag=$this->lancerSort();
+            if($degatsMag!=0){
+                $joueur->subitDegats($degatsMag);
+                echo "\e[91m***\t\t\théros subit des dégats ".$degatsMag."\treste : ".$joueur->getHealth()."\e[39m\n";
+            }
+        }
+        
     }
 
 

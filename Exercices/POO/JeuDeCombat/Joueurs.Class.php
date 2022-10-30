@@ -90,9 +90,11 @@ class Joueurs{
         $dice=new Dices(6);
         $lancePC=$dice->lanceLeDe();
         $lanceMonst=$dice->lanceLeDe();
+        echo "MonHeros attaque: ".$lancePC."\tle Monstre : ".$lanceMonst."\n";
         if($lancePC>=$lanceMonst){
             $monstre->setEstVivant(false);
             $this->memory($monstre);    //Le joueur se souvient avoir tuer autant de monstres
+            echo "\e[92m***\t\t\théros gagne\e[39m\n";
         }
     }
 
