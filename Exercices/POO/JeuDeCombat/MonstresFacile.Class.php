@@ -78,23 +78,6 @@ class MonstresFacile{
     {
         return 0;
     }
-
-    /**
-     * Gestion de la défense au bouclier
-     * @param int $shield Valeur à battre pour blesser joueur
-     * @return bool Passé outre le bouclier 
-     */
-    protected function gestionBouclier($shield)
-    {
-        $dice=new Dices(6);
-        $bouclier=$dice->lanceLeDe();
-        echo "***\t\t\tbouclier ".$bouclier."\n";
-        if($bouclier>$shield){
-            return true;
-        }
-        return false;
-    }
-
     
     /**
      * Attaque du monstre faible
@@ -106,9 +89,9 @@ class MonstresFacile{
         $dice=new Dices(6);
         $lanceMonst=$dice->lanceLeDe();
         $lancePC=$dice->lanceLeDe();
-        echo "Monstre attaque : ".$lanceMonst."\tMonHeros  : ".$lancePC."\n";
+        echo "Monstre attaque : ".$lanceMonst."\tMonHeros:\t".$lancePC."\n";
         if($lanceMonst>$lancePC){
-           if($this->gestionBouclier(Joueurs::getShield())){
+           if($joueur->gestionBouclier()){
                 $joueur->subitDegats($this->getPuissanceAttaque());
                 echo "\e[91m***\t\t\théros subit des dégats ".$this->getPuissanceAttaque()."\treste : ".$joueur->getHealth()."\e[39m\n";
            }else{

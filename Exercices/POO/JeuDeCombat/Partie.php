@@ -16,6 +16,7 @@ do{
         $type="Difficile";
     }
     do{
+        $joueur->afficheHPBar();
         $joueur->attaque($monstre);
         if($monstre->getEstVivant()){
             echo "\e[93mCest un Monstre ".$type."\e[39m\n";

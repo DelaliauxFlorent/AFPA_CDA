@@ -90,12 +90,28 @@ class Joueurs{
         $dice=new Dices(6);
         $lancePC=$dice->lanceLeDe();
         $lanceMonst=$dice->lanceLeDe();
-        echo "MonHeros attaque: ".$lancePC."\tle Monstre : ".$lanceMonst."\n";
+        echo "MonHeros attaque: ".$lancePC."\tle Monstre:\t".$lanceMonst."\n";
         if($lancePC>=$lanceMonst){
             $monstre->setEstVivant(false);
             $this->memory($monstre);    //Le joueur se souvient avoir tuer autant de monstres
             echo "\e[92m***\t\t\théros gagne\e[39m\n";
         }
+    }
+    
+    /**
+     * Gestion de la défense au bouclier
+     * @param int $shield Valeur à battre pour blesser joueur
+     * @return bool Passé outre le bouclier 
+     */
+    public function gestionBouclier()
+    {
+        $dice=new Dices(6);
+        $bouclier=$dice->lanceLeDe();
+        echo "***\t\t\tbouclier:\t".$bouclier."\n";
+        if($bouclier>self::$_shield){
+            return true;
+        }
+        return false;
     }
 
     public function subitDegats($degatsSubit)
@@ -115,6 +131,22 @@ class Joueurs{
 
     private function calcScore(){
         return $this->getExploits()["easy"]*MonstresFacile::getPtsValue()+$this->getExploits()["hard"]*MonstresDifficile::getPtsValue();
+    }
+
+    public function afficheHPBar()
+    {
+        $upper="╔════════════════╗";
+        $side ="║";
+        $lower="╚════════════════╝";
+        $jauge="██████████████████████████████████████████████████";
+        echo $upper."\n".$side;
+        if($this->estVivant()){
+            echo "\e[92m".substr($jauge, 0, $this->getHealth());
+            if($this->getHealth()!=50){
+                echo "\e[91m".substr($jauge, -(50-$this->getHealth()));
+            }
+            echo "\e[39m".$side."\n".$lower."\n";
+        }
     }
 
     public function affMsgMort()

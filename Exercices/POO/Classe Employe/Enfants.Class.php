@@ -7,6 +7,8 @@ class Enfants{
     private $_prenom;   // Prénom de l'enfant => nom identique au parent
     private $_dOB;      // Date de naissance
 
+    private $_chequeNoel=0;
+
     ////////////////////////////////////
     #region Accesseurs    
 
@@ -28,6 +30,11 @@ class Enfants{
     public function setDOB($dOB)
     {
         $this->_dOB = $dOB;
+    }    
+
+    public function getChequeNoel()
+    {
+        return $this->_chequeNoel;
     }
 
     #endregion Accesseurs
@@ -39,6 +46,16 @@ class Enfants{
         if (!empty($options)) // empty : renvoi vrai si le tableau est vide
         {
             $this->hydrate($options);
+            if($this->getAge()<=10)
+            {
+                $this->_chequeNoel=20;
+            }elseif($this->getAge()<=15)
+            {
+                $this->_chequeNoel=30;
+            }elseif($this->getAge()<=18)
+            {
+                $this->_chequeNoel=50;
+            }
         }
     }
 
@@ -100,4 +117,6 @@ class Enfants{
         $annee = $interval->format('%y') * 1; // on *1 pour avoir un int
         return $annee;
     }
+
+
 }

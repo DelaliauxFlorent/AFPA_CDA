@@ -74,7 +74,7 @@ class MonstresDifficile extends MonstresFacile{
     {
         $dice=new Dices(6);
         $magicRole=$dice->lanceLeDe();
-        echo "***\t\t\tsort magique ".$magicRole."\n";
+        echo "***\t\t\tsort magique:\t".$magicRole."\n";
         $degatsMag=0;
         if($magicRole!=6){
             $degatsMag=$magicRole*$this->getPuissanceSort();

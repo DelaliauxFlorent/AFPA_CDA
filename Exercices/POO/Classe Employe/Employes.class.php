@@ -11,7 +11,8 @@ class Employes{
     private $_salaire;
     private $_service;
 
-    private Agences $agence;
+    private Agences $_agence;
+    private $_listeEnfants=null;
 
     ////////////////////////////////////
     #region Accesseurs
@@ -84,6 +85,16 @@ class Employes{
     public function setAgence(Agences $agence)
     {
         $this->_agence = $agence;
+    }
+
+    public function getListeEnfants()
+    {
+        return $this->_listeEnfants;
+    }
+
+    public function setListeEnfants($listeEnfants)
+    {
+        $this->_listeEnfants = $listeEnfants;
     }
 
     #endregion Accesseurs
@@ -223,4 +234,14 @@ class Employes{
         }
     }
 
+    public function getTotalChequeNoel()
+    {
+        $total=0;
+        if($this->getListeEnfants()!=""){
+            foreach ($this->getListeEnfants() as $enfant) {
+                $total+=$enfant->getChequeNoel();
+            }
+        }
+        return $total;
+    }
 }
