@@ -90,11 +90,11 @@ class Joueurs{
         $dice=new Dices(6);
         $lancePC=$dice->lanceLeDe();
         $lanceMonst=$dice->lanceLeDe();
-        echo "MonHeros attaque: ".$lancePC."\tle Monstre:\t".$lanceMonst."\n";
+        echo "MonHeros attaque: ".$lancePC."\t\tle Monstre:\t".$lanceMonst."\n";
         if($lancePC>=$lanceMonst){
             $monstre->setEstVivant(false);
             $this->memory($monstre);    //Le joueur se souvient avoir tuer autant de monstres
-            echo "\e[92m***\t\t\théros gagne\e[39m\n";
+            echo "\e[92m***\t\t\t\théros gagne\e[39m\n";
         }
     }
     
@@ -107,7 +107,7 @@ class Joueurs{
     {
         $dice=new Dices(6);
         $bouclier=$dice->lanceLeDe();
-        echo "***\t\t\tbouclier:\t".$bouclier."\n";
+        echo "***\t\t\t\tbouclier:\t".$bouclier."\n";
         if($bouclier>self::$_shield){
             return true;
         }
@@ -129,31 +129,40 @@ class Joueurs{
         }
     }
 
-    private function calcScore(){
+    public function calcScore(){
         return $this->getExploits()["easy"]*MonstresFacile::getPtsValue()+$this->getExploits()["hard"]*MonstresDifficile::getPtsValue();
     }
 
     public function afficheHPBar()
     {
-        $upper="╔════════════════╗";
+        $upper="╔══════════════════════════════════════════════════╗";
         $side ="║";
-        $lower="╚════════════════╝";
+        $lower="╚══════════════════════════════════════════════════╝";
         $jauge="██████████████████████████████████████████████████";
         echo $upper."\n".$side;
+        
+        $hpActu=$this->getHealth();
+        $hpPerdu=50-$hpActu;
+        echo "\e[92m";
         if($this->estVivant()){
-            echo "\e[92m".substr($jauge, 0, $this->getHealth());
-            if($this->getHealth()!=50){
-                echo "\e[91m".substr($jauge, -(50-$this->getHealth()));
+            for($i=1;$i<=$hpActu;$i++){
+                echo "█";
             }
-            echo "\e[39m".$side."\n".$lower."\n";
+            echo "\e[91m";
+            for($j=1;$j<=$hpPerdu;$j++){
+                echo "█";
+            }
+        }else{
+            echo "\e[91m".$jauge;
         }
+        echo "\e[39m".$side."\t".(($hpActu>0)?"\e[92m":"\e[91m").$hpActu."\e[39m/50\n".$lower."\n";
     }
-
+/*
     public function affMsgMort()
     {
         echo "Domage, vous êtes mort...\n";
         echo "Cela dit, vous avez tué ".$this->getExploits()["easy"]." monstre(s) facile(s) et ".$this->getExploits()["hard"]." monstre(s) difficile(s).\n";
         echo "Vous avez ".$this->calcScore()." points.";
     }
-
+*/
 }

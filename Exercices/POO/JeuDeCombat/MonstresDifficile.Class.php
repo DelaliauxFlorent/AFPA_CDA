@@ -74,7 +74,7 @@ class MonstresDifficile extends MonstresFacile{
     {
         $dice=new Dices(6);
         $magicRole=$dice->lanceLeDe();
-        echo "***\t\t\tsort magique:\t".$magicRole."\n";
+        echo "***\t\t\t\tsort magique:\t".$magicRole."\n";
         $degatsMag=0;
         if($magicRole!=6){
             $degatsMag=$magicRole*$this->getPuissanceSort();
@@ -96,7 +96,7 @@ class MonstresDifficile extends MonstresFacile{
             $degatsMag=$this->lancerSort();
             if($degatsMag!=0){
                 $joueur->subitDegats($degatsMag);
-                echo "\e[91m***\t\t\théros subit des dégats ".$degatsMag."\treste : ".$joueur->getHealth()."\e[39m\n";
+                echo "\e[91m***\t\t\t\théros subit des dégats ".$degatsMag."\treste : ".$joueur->getHealth()."\e[39m\n";
             }
         }
         

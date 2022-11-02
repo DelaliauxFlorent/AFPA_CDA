@@ -89,13 +89,13 @@ class MonstresFacile{
         $dice=new Dices(6);
         $lanceMonst=$dice->lanceLeDe();
         $lancePC=$dice->lanceLeDe();
-        echo "Monstre attaque : ".$lanceMonst."\tMonHeros:\t".$lancePC."\n";
+        echo "Monstre attaque : ".$lanceMonst."\t\tMonHeros:\t".$lancePC."\n";
         if($lanceMonst>$lancePC){
            if($joueur->gestionBouclier()){
                 $joueur->subitDegats($this->getPuissanceAttaque());
-                echo "\e[91m***\t\t\théros subit des dégats ".$this->getPuissanceAttaque()."\treste : ".$joueur->getHealth()."\e[39m\n";
+                echo "\e[91m***\t\t\t\théros subit des dégats ".$this->getPuissanceAttaque()."\treste : ".$joueur->getHealth()."\e[39m\n";
            }else{
-                echo "\e[91m***\t\t\théros subit des dégats 0\treste : ".$joueur->getHealth()."\e[39m\n";
+                echo "\e[91m***\t\t\t\théros subit des dégats 0\treste : ".$joueur->getHealth()."\e[39m\n";
            }
         }
     }
