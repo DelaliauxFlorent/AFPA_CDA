@@ -121,7 +121,7 @@ class Employes{
     */
     public function __toString()
     {
-        return "Employé:\n\t- Nom: \t\t".$this->getNom()."\n\t- Prénom: \t".$this->getPrenom()."\n\t- Embauché le: \t".date_format($this->getDateEmbauche(),"d/m/Y")."\n\t- Fonction: \t".$this->getPoste()."\n\t- Salaire: \t".number_format($this->getSalaire()*1000,2,",", " ")."€\n\t- Service: \t".$this->getService()."\n".$this->getAgence();
+        return "Employé:\n\t- Nom: \t\t".$this->getNom()."\n\t- Prénom: \t".$this->getPrenom()."\n\t- Embauché le: \t".date_format($this->getDateEmbauche(),"d/m/Y")."\n\t- Fonction: \t".$this->getPoste()."\n\t- Salaire: \t".number_format($this->getSalaire()*1000,2,",", " ")."€\n\t- Service: \t".$this->getService()."\n".$this->chequeVacance()."\n".$this->getAgence()."\n";
     }
 
     /**
@@ -180,10 +180,11 @@ class Employes{
      */
     public function anciennete()
     {
-        $today=new DateTime();
-        $anciennete = date_diff($this->getDateEmbauche(), $today);
-        return intval($anciennete->format("%y"));
-    }
+        $auj = new DateTime('now');
+        $interval = $auj->diff($this->getDateEmbauche(), true); //diff renvoi une DateIntervalle, true oblige cet interval a être positif
+        $annee = $interval->format('%y') * 1; // on *1 pour avoir un int
+        return $annee;
+    } 
 
     private function percentBrut($pourcentage)
     {
@@ -212,6 +213,14 @@ class Employes{
     public function CalcMassSal()
     {
         return $this->getSalaire()+$this->calculPrime();
+    }
+
+    private function chequeVacance(){
+        if($this->anciennete()>=1){
+            return "Il peut bénificier de chèques vacances.\n";
+        }else{
+            return "Il ne peut pas bénificier de chèques vacances.\n";
+        }
     }
 
 }

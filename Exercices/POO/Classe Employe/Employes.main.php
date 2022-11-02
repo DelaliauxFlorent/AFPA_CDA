@@ -6,15 +6,16 @@ function ChargerClasse($classe)
 }
 spl_autoload_register("ChargerClasse");
 
-$dateEmbauche=new DateTime("2017-10-05");
-$agence[]=new Agences(["nomAgence"=>"SNCF", "adresse"=>"QQpart en france", "codePostal"=>"93000", "ville"=>"Paris"]);
+$agence[]=new Agences(["nomAgence"=>"SNCF", "adresse"=>"QQpart en france", "codePostal"=>"93000", "ville"=>"Paris", "restau"=>true]);
 $agence[]=new Agences(["nomAgence"=>"EDF", "adresse"=>"QQpart en france", "codePostal"=>"93000", "ville"=>"Paris", "restau"=>false]);
 
-$employe[0]= new Employes(["nom"=>"Doe", "prenom"=>"John", "dateEmbauche"=>$dateEmbauche, "poste"=>"Chef", "salaire"=>12, "service"=>"Cantine", "agence"=> $agence[0]]);
-$employe[1]= new Employes(["nom"=>"Martin", "prenom"=>"Jacques", "dateEmbauche"=>$dateEmbauche, "poste"=>"Chef", "salaire"=>22, "service"=>"Garage", "agence"=> $agence[0]]);
-$employe[2]= new Employes(["nom"=>"Bond", "prenom"=>"James", "dateEmbauche"=>$dateEmbauche, "poste"=>"Chef", "salaire"=>52, "service"=>"Accueil", "agence"=> $agence[0]]);
-$employe[3]= new Employes(["nom"=>"Gear", "prenom"=>"Richard", "dateEmbauche"=>$dateEmbauche, "poste"=>"Chef", "salaire"=>90, "service"=>"Cantine", "agence"=> $agence[0]]);
-$employe[4]= new Employes(["nom"=>"Bond", "prenom"=>"Alfred", "dateEmbauche"=>$dateEmbauche, "poste"=>"Chef", "salaire"=>30, "service"=>"Cantine", "agence"=> $agence[0]]);
+$enfants[]=new Enfants(["prenom"=>"Damien", ]);
+
+$employe[]= new Employes(["nom"=>"Doe", "prenom"=>"John", "dateEmbauche"=>new DateTime("2017-10-05"), "poste"=>"Chef", "salaire"=>12, "service"=>"Cantine", "agence"=> $agence[0]]);
+$employe[]= new Employes(["nom"=>"Martin", "prenom"=>"Jacques", "dateEmbauche"=>new DateTime("2007-11-15"), "poste"=>"Chef", "salaire"=>22, "service"=>"Garage", "agence"=> $agence[1]]);
+$employe[]= new Employes(["nom"=>"Bond", "prenom"=>"James", "dateEmbauche"=>new DateTime("2015-05-05"), "poste"=>"Chef", "salaire"=>52, "service"=>"Accueil", "agence"=> $agence[0]]);
+$employe[]= new Employes(["nom"=>"Gear", "prenom"=>"Richard", "dateEmbauche"=>new DateTime("2022-10-05"), "poste"=>"Chef", "salaire"=>90, "service"=>"Cantine", "agence"=> $agence[1]]);
+$employe[]= new Employes(["nom"=>"Bond", "prenom"=>"Alfred", "dateEmbauche"=>new DateTime("2010-10-05"), "poste"=>"Chef", "salaire"=>30, "service"=>"Cantine", "agence"=> $agence[0]]);
 
 /////////////
 // Modif pour test
