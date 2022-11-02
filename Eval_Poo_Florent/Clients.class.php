@@ -84,33 +84,7 @@ class Clients{
     */
     public function __toString()
     {
-        return $this->getNom()." ".$this->getPrenom()." possède le compte n°".$this->getCompte()->getNumero()." contenant ".$this->getCompte()->getMontant()."€ et le livret n°".$this->getLivret()->getNumero()." contenant ".$this->getLivret()->getMontant();
-    }
-
-    /**
-    * Renvoi vrai si l'objet en paramètre est égal à l'objet appelant
-    *
-    * @param [type] $obj
-    * @return bool
-    */
-    public function equalsTo($obj)
-    {
-        return true;
-    }
-
-    /**
-    * Compare 2 objets
-    * Renvoi 1 si le 1er est >
-    *        0 si ils sont égaux
-    *        -1 si le 1er est <
-    *
-    * @param [type] $obj1
-    * @param [type] $obj2
-    * @return void
-    */
-    public static function compareTo($obj1, $obj2)
-    {
-        return 0;
+        return "Le client ".$this->getNom()." ".$this->getPrenom()." a ".$this->getCompte()->getMontant()."€ sur son compte n°".$this->getCompte()->getNumero()." et ".$this->getLivret()->getMontant()."€ sur son livret n°".$this->getLivret()->getNumero()."\n";
     }
 
     public function recevoir($somme)
@@ -126,7 +100,7 @@ class Clients{
     public function epargner($somme)
     {
         $this->depenser($somme);
-       // $this->getCompte()->
+        $this->getLivret()->crediter($somme);
     }
     
 }
