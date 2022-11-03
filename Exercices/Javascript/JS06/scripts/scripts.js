@@ -1,4 +1,4 @@
-listeCouleursParag=['blue', 'red'];
+listeCouleursParag=['blue', 'black'];
 listeCouleursTitre=['yellow', 'green', 'black'];
 
 lesParagraphes=document.querySelectorAll("p");
