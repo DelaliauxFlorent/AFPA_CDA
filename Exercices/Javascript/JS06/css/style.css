@@ -1,0 +1,17 @@
+h1{
+    text-align: center;
+    text-decoration: underline overline;
+}
+
+h2{
+    text-decoration: underline;
+}
+
+h3{
+    text-decoration: underline dotted;
+    text-indent: 100px;
+}
+
+p{
+    text-indent: 50px;
+}

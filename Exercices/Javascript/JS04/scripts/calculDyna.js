@@ -30,3 +30,6 @@ lesPrixUnit = document.querySelectorAll("[data-prixUnit]");
 lesPrixUnit.forEach(element => {
     element.addEventListener("blur", modifTotal);
 });
+
+//////////////////////////////////////////
+// querySelectorAll("[data-quantite], [data-prixUnit]") possible
