@@ -8,14 +8,17 @@ function modifTotal(event) {
             ligne = sortieInput.getAttribute("data-prixUnit");
         }
         document.querySelector("[data-prixTotal=\""+ligne+"\"]").value = document.querySelector("[data-quantite=\"" + ligne + "\"]").value * document.querySelector("[data-prixUnit=\"" + ligne + "\"]").value;
-        lesTotaux = document.querySelectorAll("[data-prixTotal]");
+        calculTotal();
+    }
+}
+
+function calculTotal(){
+    lesTotaux = document.querySelectorAll("[data-prixTotal]");
         totalFin = 0;
         lesTotaux.forEach(element => {
             totalFin += parseFloat(element.value);
-            console.log(totalFin);
         });
         document.getElementById("Total").value = totalFin;
-    }
 }
 
 lesQtes = document.querySelectorAll("[data-quantite]");

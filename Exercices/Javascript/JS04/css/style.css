@@ -8,6 +8,10 @@ body{
     border: 5px solid white;
 }
 
+table tr td{
+    text-align: center;
+}
+
 #resultat{
     border-top: 1px solid black;
 }
