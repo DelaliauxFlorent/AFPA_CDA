@@ -6,23 +6,24 @@ function ajoutLigne(ind){
     temp = document.getElementsByTagName("template")[0]; // on récupère le template
     const element = temp.content.cloneNode(true); // on clone le template
     grille.appendChild(element);    // on ajoute la ligne à la grille
-    console.log(document.querySelectorAll(".qte")[ind].value);
+    //console.log(document.querySelectorAll(".qte")[ind+1].value);
 
-    /*document.querySelectorAll(".qte").lastElementChild.addEventListener("blur",calcul);
-    document.querySelectorAll(".pu").lastElementChild.addEventListener("blur",calcul);
+    document.querySelectorAll(".qte")[ind+1].addEventListener("input",calcul);
+    document.querySelectorAll(".pu")[ind+1].addEventListener("input",calcul);
     lesQuantites = document.querySelectorAll(".qte");
-    lesUnitaires = document.querySelectorAll(".pu");*/
+    lesUnitaires = document.querySelectorAll(".pu");
+    lesPrix = document.querySelectorAll(".prix");
 }
 
 /****************** fin V2 ************************************* */
 lesQuantites = document.querySelectorAll(".qte");
 //lesQuantites = document.getElementsByClassName("qte");
 lesQuantites.forEach(element => {
-    element.addEventListener("blur",calcul);
+    element.addEventListener("input",calcul);
 });
 lesUnitaires = document.querySelectorAll(".pu");
 lesUnitaires.forEach(element => {
-    element.addEventListener("blur",calcul);
+    element.addEventListener("input",calcul);
 });
 
 lesPrix = document.querySelectorAll(".prix");
