@@ -5,8 +5,8 @@ class Clients{
 
     private $_nom;
     private $_prenom;
-    private Comptes $_Compte;
-    private Livrets $_Livret;
+    private Comptes $_compte;
+    private Livrets $_livret;
 
     ////////////////////////////////////
     #region Accesseurs
@@ -32,22 +32,22 @@ class Clients{
     }
     public function getCompte()
     {
-        return $this->_Compte;
+        return $this->_compte;
     }
 
     public function setCompte($Compte)
     {
-        $this->_Compte = $Compte;
+        $this->_compte = $Compte;
     }
 
     public function getLivret()
     {
-        return $this->_Livret;
+        return $this->_livret;
     }
 
     public function setLivret($Livret)
     {
-        $this->_Livret = $Livret;
+        $this->_livret = $Livret;
     }
 
     #endregion Accesseurs
@@ -82,9 +82,9 @@ class Clients{
     *
     * @return String
     */
-    public function __toString()
+    public function affiche()
     {
-        return "Le client ".$this->getNom()." ".$this->getPrenom()." a ".$this->getCompte()->getMontant()."€ sur son compte n°".$this->getCompte()->getNumero()." et ".$this->getLivret()->getMontant()."€ sur son livret n°".$this->getLivret()->getNumero()."\n";
+        echo "Le client ".$this->getNom()." ".$this->getPrenom()." a ".$this->getCompte()->getMontant()."€ sur son compte n°".$this->getCompte()->getNumero()." et ".$this->getLivret()->getMontant()."€ sur son livret n°".$this->getLivret()->getNumero()."\n";
     }
 
     public function recevoir($somme)
