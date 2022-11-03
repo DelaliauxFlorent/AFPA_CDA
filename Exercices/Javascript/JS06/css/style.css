@@ -14,4 +14,21 @@ h3{
 
 p{
     text-indent: 50px;
+    color: black;
+}
+
+.para2{
+    color: blue;
+}
+
+.titleA{
+    color: black;
+}
+
+.titleB{
+    color: red;
+}
+
+.titleC{
+    color: green;
 }
