@@ -6,7 +6,21 @@ function ajouterDessert(){
     listeDesserts=document.getElementById("listeDesserts");
     temp = document.getElementsByTagName("template")[0];
     const element = temp.content.cloneNode(true);
-    element.textcontent=newDessert;
-    //console.info(element);
     listeDesserts.appendChild(element);
+    eltListe=document.querySelectorAll("li");
+    listeLength=eltListe.length-1;
+    eltListe[listeLength].insertAdjacentText('afterbegin',newDessert);
+    eltListe[listeLength].addEventListener("click", effacerElement);
 }
+
+listeLI=document.querySelectorAll("li");
+listeLI.forEach(element => {
+    element.addEventListener("click", effacerElement)
+});
+
+function effacerElement(event) {
+    item=event.target;
+    listeDesserts=document.getElementById("listeDesserts");
+    listeDesserts.removeChild(item);
+}
+
