@@ -1,14 +1,23 @@
-h1{
-    text-align: center;
+h1{    
     text-decoration: underline overline;
+    display: inline-block;
 }
 
 h2{
     text-decoration: underline;
+    display: inline-block;
 }
 
 h3{
     text-decoration: underline dotted;
+    display: inline-block;
+}
+
+.title1{
+    text-align: center;
+}
+
+.title3{    
     text-indent: 100px;
 }
 
