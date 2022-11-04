@@ -1,0 +1,47 @@
+body{
+    background-color: aquamarine;
+    font-size:larger;
+}
+
+#Tableau{
+    background-color: limegreen;
+    border: 5px solid white;
+    border-bottom: 0em;
+}
+#Tableau2{
+    background-color: limegreen;
+    border: 5px solid white;
+    border-top: 0em;
+}
+
+table tr td{
+    text-align: center;
+}
+
+#resultat{
+    border-top: 1px solid black;
+}
+
+.Totaux{
+    border-top: 0.3em solid black;
+}
+
+input[type=number] {
+  appearance: textfield;
+}
+
+.grid6{
+    display: grid;
+    grid-template-columns:0.8fr 1fr 0.8fr 1fr 0.8fr 1fr;
+    row-gap : 0.5em;
+    padding: 0.6em; /* pour Florent et Colin */
+}
+.grid-span6{
+    grid-column: span 6;
+}
+.grid-span4{
+    grid-column: span 4;
+}
+input{
+    width: 80%;
+}
