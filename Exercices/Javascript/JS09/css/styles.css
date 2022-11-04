@@ -1,5 +1,6 @@
 body {
-    background-color: black;
+    background-image: url("../img/background.png");
+    background-repeat: repeat;
     height: 98vh;
 }
 
@@ -48,4 +49,10 @@ body {
     border-bottom: 8px solid darken(grey, 20);
     text-shadow: 0 0 10px white;
     transform: translate(0, 2px);
+}
+
+#character{
+    position: relative;
+    left: 12px;
+    top: 16px;
 }
