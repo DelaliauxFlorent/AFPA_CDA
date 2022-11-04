@@ -1,0 +1,12 @@
+.centered {
+    position: fixed;
+    top: 45%;
+    left: 45%;
+    /* bring your own prefixes */
+    transform: translate(-100%, -100%);   
+    transform: scale(200%);
+}
+
+.centered:hover{
+    cursor: pointer;
+}
