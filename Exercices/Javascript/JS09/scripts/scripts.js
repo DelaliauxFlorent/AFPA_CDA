@@ -6,8 +6,8 @@ lesFleches.forEach(arrow => {
 ///////////////////////////////////////////////////
 // Pour qu'il arrete de prendre une valeur différente toutes les 5 minutes!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-largeurEnDur=24;
-hauteurEnDur=32;
+largeurEnDur = 24;
+hauteurEnDur = 32;
 
 character = document.getElementById("character");
 stepSizeW = largeurEnDur / 2;
@@ -15,13 +15,21 @@ stepSizeH = hauteurEnDur / 2;
 fieldWidth = character.parentNode.scrollWidth;
 fieldHeight = character.parentNode.scrollHeight;
 
+isDown = false;         // gestion onMouseDown
+var mousePosition;      // erreur "undefinied" si on met pas le "var"
+offset = [0,0];
+
+///////////////////////////////////////////////////
+// Gestion "Graphique"
 function choixJoueur(event) {
     arrowCliked = event.target;                             // Get which arrow was clicked
     direction = arrowCliked.classList[0];                   // Get the first class => direction as a string
     moveCharacter(direction);
-    
+
 }
 
+///////////////////////////////////////////////////
+// Mouvement du personnage
 function moveCharacter(directionChoisie) {
     switch (directionChoisie) {
         //////////////////////////////////////////
@@ -60,7 +68,9 @@ function moveCharacter(directionChoisie) {
     }
 }
 
-document.onkeydown=function gestionTouches(event) {        
+///////////////////////////////////////////////////
+// Gestion "Clavier"
+document.onkeydown = function gestionTouches(event) {
     switch (event.key) {
         case "ArrowUp":
             moveCharacter("up");
@@ -79,3 +89,38 @@ document.onkeydown=function gestionTouches(event) {
             break;
     }
 }
+
+///////////////////////////////////////////////////
+// Gestion "Souris"
+character.addEventListener("mousedown", function (e) {
+    isDown = true;
+
+    //empèche le déclenchement du comportement par défaut de l'event
+    //si absent=> besoin de "mouseDown=>mousemove=>mouseup" pour bouger personnage puis un click pour le lacher
+    e.preventDefault();
+    
+    //Get position on the sprite (so we don't default to top left)
+    offset = [
+        character.offsetLeft - e.clientX,
+        character.offsetTop - e.clientY
+    ];
+});
+
+document.addEventListener('mouseup', function () {
+    isDown = false;
+});
+
+document.addEventListener('mousemove', function (event) {
+    event.preventDefault();
+    if (isDown) {
+        // get mouse position
+        mousePosition = {
+            x: event.clientX,
+            y: event.clientY
+        };
+
+        //edit sprite position as to be "current mouse position" relative to "specific position on sprite"
+        character.style.left = (mousePosition.x + offset[0]) + 'px';
+        character.style.top = (mousePosition.y + offset[1]) + 'px';
+    }
+});
