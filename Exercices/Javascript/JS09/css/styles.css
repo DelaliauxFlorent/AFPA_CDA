@@ -1,0 +1,51 @@
+body {
+    background-color: black;
+    height: 98vh;
+}
+
+.keys {
+    text-align: center;
+    width: 23em;
+    height: 4em;
+    margin: auto;
+    position: fixed;
+    bottom: 12em;
+    right: 1em;
+}
+
+.arr {
+    cursor: pointer;
+    width: 2em;
+    height: 2em;
+    text-align: center;
+    line-height: 100px;
+    background: grey;
+    color: white;
+    font-size: 50px;
+    border-style: outset;
+    border-radius: 0.2em;
+    border-right: 0.2em solid darken(grey, 20);
+    border-bottom: 0.2em solid darken(grey, 20);
+    border-left: 0.2em solid darken(grey, 15);
+    border-top: 0.2em solid darken(grey, 10);
+    display: inline-block;
+    margin: 5px;
+    transition: all .05s linear;
+}
+
+.arr:active {
+    border-bottom: 8px solid darken(grey, 20);
+    text-shadow: 0 0 10px white, 0 0 10px white, 0 0 20px white;
+    transform: translate(0, 2px);
+}
+
+.up {
+    position: relative;
+    top: -4px;
+}
+
+.pressed {
+    border-bottom: 8px solid darken(grey, 20);
+    text-shadow: 0 0 10px white;
+    transform: translate(0, 2px);
+}
