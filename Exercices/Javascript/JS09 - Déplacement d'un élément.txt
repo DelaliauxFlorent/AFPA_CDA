@@ -1,0 +1,8 @@
+Afficher un élément à l'écran
+Le faire bouger à l'aide 
+1. de touches dessinées sur l'écran
+2. des touches du clavier
+3. de la souris
+4. avec un obstacle infranchissable
+5. avec des obstacles infranchissables
+6. créer un labyrinthe

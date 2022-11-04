@@ -1,0 +1,2 @@
+Afficher une image à l'écran, la retourner sur click
+la laisser afficher pendant un temps puis réafficher la première image
