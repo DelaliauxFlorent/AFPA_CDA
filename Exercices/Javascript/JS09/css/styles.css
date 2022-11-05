@@ -53,6 +53,77 @@ body {
 
 #character{
     position: relative;
-    left: 12px;
-    top: 16px;
+    margin: 0;
+    padding: 0;
+    z-index: 99;
+}
+
+.blocage{
+    position: absolute;
+    object-fit:cover;
+    /* background-image: url("../img/blocage.png");
+    background-repeat: repeat; */
+}
+
+.bloc1{
+    top:100px;
+    left:300px;    
+    height: 32px;
+    width: 32px;
+}
+
+.bloc2{    
+    top:200px;
+    left:600px;
+    height: 224px;
+    width: 32px;
+}
+
+.bloc3{    
+    top:200px;
+    left:376px;
+    height: 224px;
+    width: 32px;
+}
+
+.bloc4{    
+    top:200px;
+    left:408px;
+    height: 32px;
+    width: 160px;
+}
+
+.bloc5{    
+    top:264px;
+    left:440px;
+    height: 32px;
+    width: 160px;
+}
+
+.bloc6{    
+    top:392px;
+    left:408px;
+    height: 32px;
+    width: 160px;
+}
+
+.bloc7{    
+    top:296px;
+    left:440px;
+    height: 64px;
+    width: 32px;
+}
+
+.bloc8{    
+    top:328px;
+    left:536px;
+    height: 64px;
+    width: 32px;
+}
+
+.bloc9{    
+    top:328px;
+    left:472px;
+    height: 32px;
+    width: 32px;
 }
