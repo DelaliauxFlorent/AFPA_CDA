@@ -1,3 +1,7 @@
+body{
+    background-color: aquamarine;
+}
+
 h1{
     text-align: center;
     text-decoration: overline underline;
@@ -7,11 +11,23 @@ h1{
 form{
     display: grid;
     grid-template-columns: 1fr 4fr;
-    row-gap: 0.5em;
     column-gap: 2em;
     max-width: 60vw;
-    padding: auto;
+    padding: 1em;
     margin: auto;
+    margin-top: 5em;
+    border: 10px solid gray;
+    border-radius: 1em;
+    background-color:lightblue;
+}
+
+.message{
+    grid-column-start: span 2;
+    height: auto;
+    margin: 0.3em;
+    text-align: center;
+    color: red;
+    font-weight:bold;
 }
 
 label{
@@ -20,4 +36,9 @@ label{
 
 input[type=number]{
     appearance: textfield;
+}
+
+.erreur{
+    border: 0.2em solid red;
+    background-color: pink;
 }
