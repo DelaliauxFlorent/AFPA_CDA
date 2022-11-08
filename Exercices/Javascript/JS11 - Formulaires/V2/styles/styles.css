@@ -9,7 +9,7 @@ form{
     grid-template-columns: 1fr 4fr;
     row-gap: 0.5em;
     column-gap: 2em;
-    max-width: 50vw;
+    max-width: 60vw;
     padding: auto;
     margin: auto;
 }

@@ -45,7 +45,10 @@ function gestionErreur(params, typeInput) {
             messageErreur += "Un code postal doit être une suite de 5 chiffres.";
             break;
         case "mail":
-            messageErreur += "Un code postal doit être une suite de 5 chiffres.";
+            messageErreur += "Une adresse mail est formé d'une suite de caractères (séparé ou non par un point), d'un arobase puis d'une autre suite de caractère et se termine par un '.xxx' (où xxx est une suite de 2 à 5 caractères).";
+            break;
+        case "mdp":
+            messageErreur += "Un mot de passe doit mesurer au moins 8 caractères et comporter au moins une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial (+-*/%...).";
             break;
         default:
             break;
