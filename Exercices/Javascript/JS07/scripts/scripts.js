@@ -19,7 +19,7 @@ listeLI.forEach(element => {
 });
 
 function effacerElement(event) {
-    item=event.target;
+    item=event.target;JS07/scripts/scripts.js
     listeDesserts=document.getElementById("listeDesserts");
     listeDesserts.removeChild(item);
 }

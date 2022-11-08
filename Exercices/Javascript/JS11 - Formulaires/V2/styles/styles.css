@@ -1,0 +1,23 @@
+h1{
+    text-align: center;
+    text-decoration: overline underline;
+    font-size: 3em;
+}
+
+form{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    row-gap: 0.5em;
+    column-gap: 2em;
+    max-width: 60vw;
+    padding: auto;
+    margin: auto;
+}
+
+label{
+    min-width:max-content;
+}
+
+input[type=number]{
+    appearance: textfield;
+}

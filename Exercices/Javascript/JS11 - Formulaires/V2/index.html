@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./styles/styles.css">
+    <link rel="icon" type="image/x-icon" href="./img/favicon.ico">
+    <title>JS11 - Formulaires</title>
+</head>
+
+<body>
+    <h1>Formulaires</h1>
+    <form action="#">
+        <label>Nom : </label>
+        <input type="text" data-type="nom" placeholder="Votre nom" pattern="[\p{L} \-]{1,}" />
+        <label>Numero de Téléphone : </label>
+        <input type="tel" data-type="telephone" placeholder="Votre numéro de téléphone"
+            pattern="[0]\d(\.| )?\d{2}(\.| )?\d{2}(\.| )?\d{2}(\.| )?\d{2}" />
+        <label>Code Postal : </label>
+        <input type="number" data-type="cdPost" placeholder="59140" maxlength="5" minlength="5" min="0" max="99999" />
+        <label>Adresse eMail : </label>
+        <input type="email" data-type="mail" placeholder="Votre adresse eMail"
+            pattern="\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+" />
+        <label>Mot de passe : </label>
+        <input type="password" data-type="mdp" placeholder="Mot de passe"
+            pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\W_]).{8,}" />
+        <div></div>
+        <input type="submit" id="envoyer" disabled>
+    </form>
+    <script src="./scripts/scripts.js"></script>
+</body>
+
+</html>
