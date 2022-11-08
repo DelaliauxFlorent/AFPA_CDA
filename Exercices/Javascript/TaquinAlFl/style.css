@@ -1,0 +1,26 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.grid3 {
+  display: grid;
+  width: 40em;
+  height: 40em;
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 1em;
+  column-gap: 1em;
+  padding: 1em;
+
+}
+
+.cellule {
+  font-size: 8em;
+  text-align: center;
+  height: auto;
+  width: auto;
+  border: 5px solid rgb(0, 255, 0);
+}
+
+.vide{
+  border: 0px;
+}
