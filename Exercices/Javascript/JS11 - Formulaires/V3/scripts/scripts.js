@@ -12,7 +12,7 @@ oeilPassword.addEventListener("mouseover", switchTypeMDP);
 oeilPassword.addEventListener("mouseleave", switchTypeMDP);
 var erreur = new Array;
 affErreurMDP = false;
-console.info(entreeRequises);
+
 infoBulle();
 
 
@@ -38,6 +38,9 @@ function verifInput(event) {
         if (erreur.indexOf(element) != "-1") {
             erreur.splice(erreur.indexOf(element), 1)
         }
+        if(typeElem=="mdp"){
+            affErreurMDP=false;
+        }
         vidageMessageErreur = document.querySelector('[data-message="' + typeElem + '"]');
         vidageMessageErreur.innerHTML = "";
         // resetInputClass = document.querySelector('[data-type="' + typeElem + '"]');
@@ -55,10 +58,11 @@ function gestionErreur(elemActu, typeInput) {
         patternMin = new RegExp("[a-z]");
         patternMaj = new RegExp("[A-Z]");
         patternChi = new RegExp("[0-9]");
-        patternSpe = new RegExp("[\W_]");
+        patternSpe = new RegExp("[^a-zA-Z0-9]");
         patternNbr = new RegExp(".{8,}");
 
         console.log("Caractères spéciaux => "+patternSpe.test(elemActu.value));
+        console.log(elemActu.value);
 
 
         presence = [patternMin.test(elemActu.value), patternMaj.test(elemActu.value), patternChi.test(elemActu.value), patternSpe.test(elemActu.value), patternNbr.test(elemActu.value)];
@@ -71,9 +75,6 @@ function gestionErreur(elemActu, typeInput) {
                 if(presenceActu){
                     newDiv.classList.add("okMDP");
                 }
-                else{
-                    newDiv.classList.add("errMDP");
-                }
                 messageFlash.appendChild(newDiv);
             }
             affErreurMDP=true;
@@ -82,7 +83,6 @@ function gestionErreur(elemActu, typeInput) {
             let indexListeDiv=0;console.info(listeDivMDP);
             listeDivMDP.forEach(element => {
                 element.classList.toggle("okMDP", presence[indexListeDiv]);
-                element.classList.toggle("errMDP", !presence[indexListeDiv]);
                 indexListeDiv++;
             });
         }

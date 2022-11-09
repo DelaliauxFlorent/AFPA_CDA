@@ -4,9 +4,9 @@ body{
     justify-items: center;
 }
 
-div{
+/* div{
     border: 1px solid black;
-}
+} */
 
 h1{
     text-align: center;
@@ -99,14 +99,13 @@ input[type=submit]{
 .mdp{
     text-align: left;
     padding-left: 1em;
+    color: red;
 }
 
 .okMDP{
     color: green;
 }
-.errMDP{
-    color: red;
-}
+
 .span5{
     grid-column: 1/6;
     max-width: 30em;
