@@ -26,6 +26,8 @@ function verifInput(event) {
 
     //console.info(regexActu);
 
+
+    // Peut remplacer par if(element.checkValidity())   => vérifie si toutes les conditions définis en html sont OK ou pas
     if (!element.value.match(regexActu)) {              // s'il n'y a pas de correspondance
         element.value = "";                             // on réinitialise l'input
         gestionErreur(typeElem);                        // et on affiche le message d'erreur correspondant

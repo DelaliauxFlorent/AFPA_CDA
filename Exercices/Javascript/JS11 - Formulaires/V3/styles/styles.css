@@ -1,0 +1,85 @@
+body{
+    background-color: aquamarine;
+}
+
+h1{
+    text-align: center;
+    text-decoration: overline underline;
+    font-size: 3em;
+}
+
+form{
+    display: grid;
+    grid-template-columns: 10em 20em 15px 2em auto;
+    align-items: center;
+    column-gap: 0;
+    max-width: 70vw;
+    width: auto;
+    padding: 1em;
+    margin: auto;
+    margin-top: 5em;
+    border: 10px solid gray;
+    border-radius: 1em;
+    background-color:lightblue;
+}
+
+.span5{
+    grid-column: 1/6;
+    height: 1em;
+    text-align: center;
+    color: red;
+}
+/* 
+form div{
+    display: grid;
+    grid-template-columns: 10em 4fr 10px auto auto;
+} */
+
+.message{
+    
+    height: auto;
+    width: auto;
+    margin: 0.3em;
+    text-align: center;
+    color: red;
+    font-weight:bold;
+}
+
+label{
+    min-width:max-content;
+    vertical-align: middle;
+}
+
+input{
+    max-height: fit-content;
+    max-width: 25em;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type=number]{
+    appearance: textfield;
+}
+
+:required+div::before{
+    content:"*";
+    color: red;
+}
+/* 
+.erreur{
+    border: 0.2em solid red;
+    background-color: pink;
+} */
+
+input:required:invalid{
+    border: 0.2em solid red;
+    background-color: pink;
+}
+
+.info{
+    max-width: 2em;
+    vertical-align: middle;
+}
