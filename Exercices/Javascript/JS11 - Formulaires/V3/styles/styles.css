@@ -1,5 +1,11 @@
 body{
     background-color: aquamarine;
+    display: grid;
+    justify-items: center;
+}
+
+div{
+    border: 1px solid black;
 }
 
 h1{
@@ -10,39 +16,30 @@ h1{
 
 form{
     display: grid;
-    grid-template-columns: 10em 20em 15px 2em auto;
-    align-items: center;
+    grid-template-columns: 10em 20em 10px 2em 1fr;
+    /* align-items: center; */
     column-gap: 0;
-    max-width: 70vw;
-    width: auto;
+    row-gap: 1.5em;
+    max-width: 42vw;
+    top: 10em;
+    /* width: auto; */
     padding: 1em;
     margin: auto;
     margin-top: 5em;
     border: 10px solid gray;
     border-radius: 1em;
     background-color:lightblue;
+    position:absolute;
 }
-
-.span5{
-    grid-column: 1/6;
-    height: 1em;
-    text-align: center;
-    color: red;
-}
-/* 
-form div{
-    display: grid;
-    grid-template-columns: 10em 4fr 10px auto auto;
-} */
 
 .message{
-    
+    position: relative;
     height: auto;
-    width: auto;
-    margin: 0.3em;
+    width: 15em;
     text-align: center;
-    color: red;
     font-weight:bold;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 1em;
 }
 
 label{
@@ -51,7 +48,7 @@ label{
 }
 
 input{
-    max-height: fit-content;
+    max-height: 1.1em;
     max-width: 25em;
 }
 
@@ -75,11 +72,42 @@ input[type=number]{
 } */
 
 input:required:invalid{
-    border: 0.2em solid red;
-    background-color: pink;
+    border-bottom: 0.2em solid red;
+}
+
+input:valid{
+    border-bottom: 0.2em solid green;
+}
+
+input[type=submit]{
+    height: 20em;
 }
 
 .info{
-    max-width: 2em;
+    max-width: 1.0em;
     vertical-align: middle;
+}
+
+.afficherMDP{
+    width: 1em;
+    position: relative;
+    left: -1.5em;
+    top: -1em;
+    cursor: pointer;
+}
+
+.mdp{
+    text-align: left;
+    padding-left: 1em;
+}
+
+.okMDP{
+    color: green;
+}
+.errMDP{
+    color: red;
+}
+.span5{
+    grid-column: 1/6;
+    max-width: 30em;
 }

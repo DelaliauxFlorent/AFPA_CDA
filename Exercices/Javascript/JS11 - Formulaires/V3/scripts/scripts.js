@@ -6,8 +6,12 @@ listInputs.forEach(element => {
     element.addEventListener("input", verifInput);
     element.addEventListener("blur", verifSubmit);
 });
-erreur = [];
-entreeRequises=document.querySelectorAll("[required]");
+entreeRequises = document.querySelectorAll("[required]");
+oeilPassword = document.querySelector(".afficherMDP");
+oeilPassword.addEventListener("mouseover", switchTypeMDP);
+oeilPassword.addEventListener("mouseleave", switchTypeMDP);
+var erreur = new Array;
+affErreurMDP = false;
 console.info(entreeRequises);
 infoBulle();
 
@@ -21,7 +25,7 @@ function verifInput(event) {
     typeElem = element.getAttribute("data-type");       // Récupère le type d'Input    
 
     if (!element.checkValidity()) {                     // si l'entrée n'est pas valide
-        
+
         gestionErreur(element, typeElem);                        // et on affiche le message d'erreur correspondant
 
         if (!erreur.includes(element)) {
@@ -43,33 +47,49 @@ function verifInput(event) {
 
 function gestionErreur(elemActu, typeInput) {
     messageFlash = document.querySelector('[data-message="' + typeInput + '"]');
-    //inputFlash = document.querySelector('[data-type="' + typeInput + '"]');
 
     // En fonction du type de donnée sur laquelle l'erreur a été faite
     // on affiche le message correspondant en dessous de l'input conserné
-    messageFlash.innerHTML = element.getAttribute("title");
-    switch (typeInput) {
-        case "nom":
-            messageFlash.innerHTML = element.getAttribute("title");
-            break;
-        case "telephone":
-            messageFlash.innerHTML = "Un numéro de téléphone doit être une suite de chiffres de la forme 0X&nbsp;XX&nbsp;XX&nbsp;XX&nbsp;XX ou +33X&nbsp;XX&nbsp;XX&nbsp;XX&nbsp;XX (les espaces pouvant être remplacés par des points ou même enlevés).";
-            break;
-        case "cdPost":
-            messageFlash.innerHTML = "Un code postal doit être une suite de 5 chiffres.";
-            break;
-        case "mail":
-            messageFlash.innerHTML = "Une adresse mail est formé d'une suite de caractères (séparé ou non par un point), d'un arobase puis d'une autre suite de caractère et se termine par un '.xxx' (où xxx est une suite de 2 à 5 caractères).";
-            break;
-        case "mdp":
-            messageFlash.innerHTML = "Un mot de passe doit mesurer au moins 8 caractères et comporter au moins une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial (+-*/%...).";
-            break;
-        default:
-            break;
+    
+    if (typeInput == "mdp") {
+        patternMin = new RegExp("[a-z]");
+        patternMaj = new RegExp("[A-Z]");
+        patternChi = new RegExp("[0-9]");
+        patternSpe = new RegExp("[\W_]");
+        patternNbr = new RegExp(".{8,}");
+
+        console.log("Caractères spéciaux => "+patternSpe.test(elemActu.value));
+
+
+        presence = [patternMin.test(elemActu.value), patternMaj.test(elemActu.value), patternChi.test(elemActu.value), patternSpe.test(elemActu.value), patternNbr.test(elemActu.value)];
+        presenceNom = ["- 1 minuscule", "- 1 Majuscule", "- 1 Chiffre", "- 1 Caractère spéciale (+-*/%@...)", "- Au moins 8 caractères"];
+        if (!affErreurMDP) {
+            for (let index = 0; index < presence.length; index++) {
+                const presenceActu = presence[index];
+                newDiv = document.createElement("div");
+                newDiv.innerHTML = presenceNom[index];
+                if(presenceActu){
+                    newDiv.classList.add("okMDP");
+                }
+                else{
+                    newDiv.classList.add("errMDP");
+                }
+                messageFlash.appendChild(newDiv);
+            }
+            affErreurMDP=true;
+        }else{
+            listeDivMDP=messageFlash.querySelectorAll("div");
+            let indexListeDiv=0;console.info(listeDivMDP);
+            listeDivMDP.forEach(element => {
+                element.classList.toggle("okMDP", presence[indexListeDiv]);
+                element.classList.toggle("errMDP", !presence[indexListeDiv]);
+                indexListeDiv++;
+            });
+        }
+    } else {
+        messageFlash.innerHTML = elemActu.getAttribute("title");
     }
 
-    // et on change l'apparence de l'input en question pour attirer l'oeil de l'utilisateur
-    //inputFlash.classList.add("erreur");
 }
 
 function verifSubmit() {
@@ -77,23 +97,23 @@ function verifSubmit() {
     entreeRequises.forEach(element => {
         peutEnvoyer &= element.value != "";
     });
-    messageGen="Vous avez des erreurs dans le(s) champ(s) ";
-    msgErreurGen=document.querySelector(".span5");
-    if(erreur.isArray && erreur.lenght>0){
-        erreur.forEach(elementErreur => {
-            messageGen+=elementErreur.labels[0].innerHTML+", ";
-            console.info(elementErreur);
-        });
-        messageGen=messageGen.slice(0, -2)+".";
-        msgErreurGen.innerHTML=messageGen;
-    }
+    messageGen = "Vous avez des erreurs dans le(s) champ(s) ";
+    msgErreurGen = document.querySelector(".span5");
 
-    console.info(erreur);
+    if (Array.isArray(erreur) && erreur.length > 0) {
+        erreur.forEach(elementErreur => {
+            messageGen += elementErreur.labels[0].innerHTML + ", ";
+            //console.info(elementErreur);
+        });
+        messageGen = messageGen.slice(0, -2) + ".";
+        msgErreurGen.innerHTML = messageGen;
+    } else {
+        msgErreurGen.innerHTML = "";
+    }
 
     // si tous les champs sont rempli (possibilité de check seulement ceux avec attribut "required")
     // et qu'aucune erreur n'est détecter lors des saisies
-
-    if (peutEnvoyer && !erreur.lenght>0) {
+    if (peutEnvoyer && Array.isArray(erreur) && (erreur.length < 1)) {
         document.getElementById("envoyer").disabled = false;        // on réactive le bouton submit
     }
     else {
@@ -102,8 +122,18 @@ function verifSubmit() {
 }
 
 function infoBulle() {
-    infoBulle=document.querySelectorAll(".info");
+    infoBulle = document.querySelectorAll(".info");
     infoBulle.forEach(element => {
-        element.setAttribute("title",element.previousElementSibling.previousElementSibling.getAttribute("title"));
+        element.setAttribute("title", element.previousElementSibling.previousElementSibling.getAttribute("title"));
     });
+}
+
+function switchTypeMDP() {
+    inputMDP = document.querySelector("[data-type='mdp']");
+    console.info(inputMDP);
+    if (inputMDP.getAttribute("type") == "text") {
+        inputMDP.setAttribute("type", "password");
+    } else {
+        inputMDP.setAttribute("type", "text");
+    }
 }
