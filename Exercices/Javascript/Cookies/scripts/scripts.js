@@ -24,4 +24,18 @@ function readCookie(name) {
     return null;
 }
 
-compteur=document.
+function eraseCookie(name) {
+    // pour supprimer un cookie, on le périme
+    createCookie(name,"",-1);
+}
+
+compteur=document.querySelector("b");
+if(readCookie("cmptr")!=null){
+    newVal=readCookie("cmptr")++;
+    compteur.innerHTML=newVal;
+}
+else{
+    newval=1;
+}
+createCookie("cmptr",newVal,1);
+compteur.innerHTML=newVal;
