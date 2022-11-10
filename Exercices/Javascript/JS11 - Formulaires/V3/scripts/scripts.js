@@ -58,7 +58,7 @@ function gestionErreur(elemActu, typeInput) {
         patternMin = new RegExp("[a-z]");
         patternMaj = new RegExp("[A-Z]");
         patternChi = new RegExp("[0-9]");
-        patternSpe = new RegExp("[^a-zA-Z0-9]");
+        patternSpe = new RegExp("[\\W_]");
         patternNbr = new RegExp(".{8,}");
 
         console.log("Caractères spéciaux => "+patternSpe.test(elemActu.value));
