@@ -1,0 +1,26 @@
+    "Alpha"     => ["^[a-zA-Z]{2,}$", "Entrer deux lettres minimum"]
+    "AlphaMin"  => ["[a-z]", "Entrer une lettre minuscule"]
+    "AlphaMaj"  => ["[A-Z]", "Entrer une lettre majuscule"]
+    "Num"       => ["[0-9]", "Entrer un chiffre"]
+    "Spec"      => ["[\W_]", "Entrer un caractère spécial (+-*/%...)"]
+    "Telephone" => ["^[0]\d(\.| )?\d{2}(\.| )?\d{2}(\.| )?\d{2}(\.| )?\d{2}$", "10 chiffres, espaces et points autorisés."]
+    "Mail"      => ["^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$", "Une adresse de la forme 'Abc@example.com'."]
+    "Min1Min"   => ["(?=.*[a-z])", "contient 1 minuscule quelque part"]
+    "Min1Maj"   => ["(?=.*[A-Z])", "contient 1 majuscule quelque part"]
+    "Min1Chi"   => ["(?=.*[0-9])", "contient 1 chiffre quelque part"]
+    "Min1Spe"   => ["(?=.*[\W_])", "contient 1 caractère spécial (+-*/%...) quelque part"]
+    "Min8Car"   => [".{8,}", "8 caractères minimum"]
+    "Nom"       => "/^[\p{L}\\ \-]{1,}$/u" || new RegExp("^[\p{L}\\ \-]{1,}$", "u")
+    "CodePostal"=> "/^\d{5}$/"
+
+
+    Rappel: "Min1Min", "Min1Maj", "Min1Chi" et "Min1Spe" doivent être associé à un "." pour fonctionner correctement.
+
+    "^" = appliquer regex à partir du début de la string
+    "$" = la string doit s'arréter là
+    "?"=>0,1
+    "*"=>0,n
+    "+"=>1,n
+    {X}=>exactement X fois
+    {X,Y}=>entre X et Y fois
+    {X,}=>au moins X fois
