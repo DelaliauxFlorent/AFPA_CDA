@@ -12,6 +12,7 @@ input {
 label {
     flex: 2;
     align-items: center;
+    text-align: center;
 }
 
 body {
@@ -28,6 +29,8 @@ img {
     width: 100%;
 }
 
+
+/* used only for the aideMDP */
 .gauche {
     justify-content: start;
     padding-left: 1vw;
@@ -60,7 +63,6 @@ form input {
     transition: transform 0.3s, box-shadow 0.3s;
     outline: none;
     margin: 0vh 1vw;
-    /* width: 100%; */
     flex:2;
 }
 
@@ -72,8 +74,10 @@ form input {
     border-radius: 2vh;
     background-color: rgba(0, 0, 0, 0.5);
     align-items: center;
+    text-align: center;
     padding: 0.5vh;
     opacity: 0;
+    font-size: 0.6em;
     transition: opacity 0.3s;
 }
 
@@ -101,7 +105,6 @@ input[required]+div::before {
     color: red;
 }
 
-
 .info {
     position: relative;
 }
@@ -113,6 +116,7 @@ input[required]+div::before {
 
 .texteInfoBulle {
     position: absolute;
+    text-align: center;
     top: 0;
     left: 4vh;
     font-size: 0.8em;
@@ -145,10 +149,7 @@ input[required]+div::before {
     border-radius: 2vh;
     background-color: rgba(24, 24, 24, 1);
     padding: 1vh;
-}
-
-li {
-    list-style-type: none;
+    width: 15em;
 }
 
 .mini {
@@ -176,4 +177,24 @@ input::-webkit-inner-spin-button {
 
 input[type=number]{
     appearance: textfield;
+}
+
+.displayBlock{
+    display: block;
+}
+
+.displayFlex{
+    display: flex;
+}
+
+.noDisplay{
+    display: none;
+}
+
+.basVert{
+    border-bottom-color: rgb(50,200,50);
+}
+
+.basRouge{
+    border-bottom-color: rgb(200,50,50);
 }
