@@ -3,7 +3,7 @@
     "AlphaMaj"  => ["[A-Z]", "Entrer une lettre majuscule"]
     "Num"       => ["[0-9]", "Entrer un chiffre"]
     "Spec"      => ["[\W_]", "Entrer un caractère spécial (+-*/%...)"]
-    "Telephone" => ["^[0]\d(\.| )?\d{2}(\.| )?\d{2}(\.| )?\d{2}(\.| )?\d{2}$", "10 chiffres, espaces et points autorisés."]
+    "Telephone" => ["^(+33|0)\d((\.| )?\d{2}){4}$", "10 chiffres, espaces, tirets et points autorisés. +33"]
     "Mail"      => ["^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$", "Une adresse de la forme 'Abc@example.com'."]
     "Min1Min"   => ["(?=.*[a-z])", "contient 1 minuscule quelque part"]
     "Min1Maj"   => ["(?=.*[A-Z])", "contient 1 majuscule quelque part"]

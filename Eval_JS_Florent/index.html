@@ -18,18 +18,18 @@
                 pattern="^[a-zA-Z]{2,}$">
             <h3><div class="message"></div></h3>
         </div>
-        <!-- <div class="ligne">
+        <div class="ligne">
             <fieldset>
                 <legend>Genre: </legend>
                 <label for="M">M.</label>
-                <input type="radio" id="M" name="genre" value="M" checked>
+                <input type="radio" id="M" name="genre" value="M" checked><h3><div class="message"></div></h3>
                 <label for="Mme">Mme</label>
-                <input type="radio" id="Mme" name="genre" value="Mme">
+                <input type="radio" id="Mme" name="genre" value="Mme"><h3><div class="message"></div></h3>
                 <label for="Mlle">Mlle</label>
-                <input type="radio" id="Mlle" name="genre" value="Mlle">
+                <input type="radio" id="Mlle" name="genre" value="Mlle"><h3><div class="message"></div></h3>
             </fieldset>
-            <h3><div class="message"></div></h3>
-        </div> -->
+            
+        </div>
 
         <div class="ligne">
             <label for="genre">Genre</label>
@@ -40,8 +40,8 @@
         <div class="ligne">
             <label for="telephone">Numero de téléphone</label>
             <input class="checkValidity" type="tel" id="telephone" placeholder="Votre numéro de téléphone"
-                pattern="^[0|(+33)?]\d(\.| )?\d{2}(\.| )?\d{2}(\.| )?\d{2}(\.| )?\d{2}$"
-                title="10 chiffres (séparé ou pas en séries de 2 par un . ou un espace), +33 accepté." />
+                pattern="^(+33|0)\d((\.| )?\d{2}){4}$"
+                title="10 chiffres (séparés des ' ', '.' ou '-'), +33 accepté." />
             <h3><div class="message"></div></h3>
         </div>
         <div class="ligne">

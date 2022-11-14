@@ -1,0 +1,11 @@
+1 E1 R _, _ E2
+		<-
+Une occurence de l'entitée 1 Relationne _ à _ occurence(s) de l'entité 2
+
+0,1
+1,1
+0,N
+1,N
+N,N
+
+historique => mettre date dans relation et 0,N dans les deux sens
