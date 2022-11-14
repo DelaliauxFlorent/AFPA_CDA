@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./styles/styles.css">
+    <title>Formulaire</title>
+</head>
+
+<body>
+    <h1>Formulaire</h1>
+    <form action="#" method="post">
+        <div class="ligne">
+            <label for="nom">Nom</label>
+            <input required class="checkValidity" type="text" name="nom" id="nom" placeholder="Votre nom" title="Uniqement des caratères"
+                pattern="^[a-zA-Z]{2,}$">
+            <h3><div class="message"></div></h3>
+        </div>
+        <!-- <div class="ligne">
+            <fieldset>
+                <legend>Genre: </legend>
+                <label for="M">M.</label>
+                <input type="radio" id="M" name="genre" value="M" checked>
+                <label for="Mme">Mme</label>
+                <input type="radio" id="Mme" name="genre" value="Mme">
+                <label for="Mlle">Mlle</label>
+                <input type="radio" id="Mlle" name="genre" value="Mlle">
+            </fieldset>
+            <h3><div class="message"></div></h3>
+        </div> -->
+
+        <div class="ligne">
+            <label for="genre">Genre</label>
+            <input type="text" class="checkValidity" placeholder="M, Mme ou Mlle" pattern="^M(me|lle)?$" title="M, Mme ou Mlle">
+            <h3><div class="message"></div></h3>
+        </div>
+
+        <div class="ligne">
+            <label for="telephone">Numero de téléphone</label>
+            <input class="checkValidity" type="tel" id="telephone" placeholder="Votre numéro de téléphone"
+                pattern="^[0|(+33)?]\d(\.| )?\d{2}(\.| )?\d{2}(\.| )?\d{2}(\.| )?\d{2}$"
+                title="10 chiffres (séparé ou pas en séries de 2 par un . ou un espace), +33 accepté." />
+            <h3><div class="message"></div></h3>
+        </div>
+        <div class="ligne">
+            <label for="mail">Mail</label>
+            <input class="checkValidity" type="email" id="mail" placeholder="Votre adresse eMail"
+                pattern="\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+"
+                title="Une adresse de la forme 'Abc@example.com'." />
+            <h3><div class="message"></div></h3>
+        </div>
+        <div class="ligne">
+            <label for="cdPost">Code Postal</label>
+            <input class="checkValidity" type="number" id="cdPost" placeholder="59140" min="1000" max="99999"
+                title="Un nombre entre 01000 et 99999." />
+            <h3><div class="message"></div></h3>
+        </div>
+        <div class="ligne">
+            <label for="date">Date</label>
+            <input class="checkValidity" type="date" id="date" title="Une date." />
+            <h3><div class="message"></div></h3>
+        </div>
+        <div class="ligne">
+            <label for="mdp">Mot de passe</label>
+            <input class="checkValidity" type="password" id="mdp" name="mdp" value="" required
+                pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,30}"
+                title="1 minuscule, 1 majuscule, 1 caractère spécial (+-*/%...), entre 8 et 30 caractères" />
+            <h3><div class="message"></div></h3>
+        </div>
+        <div class="ligne">
+            <label for="confirmPW">Confirmation</label>
+            <input class="checkValidity" type="password" id="confirmPW" name="confirmPW" value="" required disabled
+                pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,30}"
+                title="1 minuscule, 1 majuscule, 1 caractère spécial (+-*/%...), entre 8 et 30 caractères" />
+            <h3><div class="message"></div></h3>
+        </div>
+        <div class="ligne">
+            <input type="submit" id="envoyer" value="En attente de formulaire complet" disabled>
+        </div>
+
+    </form>
+
+
+    <script src="./scripts/scripts.js"></script>
+</body>
+
+</html>

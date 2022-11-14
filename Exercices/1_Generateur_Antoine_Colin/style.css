@@ -1,0 +1,54 @@
+html,
+body
+{
+    padding: 0;
+    margin: 0;
+}
+
+html,
+head,
+header,
+body,
+div,
+p,
+a,
+h1,
+h2,
+h3
+{
+    display: flex;
+    justify-content: center;
+}
+
+form{
+    border: 5px solid black;
+    border-radius: 15px;
+    padding: 2em;
+    padding-left: 4em;
+    padding-right: 4em;
+    margin-top: 5em;
+    background-color: rgb(242, 202, 242);
+    width: 60vw;
+}
+label{
+    margin-right: auto;
+}
+form >*{
+    margin-bottom: 1em;
+    justify-content: right;
+}
+
+form >* input{
+    margin-left: 1em;
+    width: 30vw;
+    height: 1.5em;
+    border-radius: 5px;
+}
+
+.valide{
+    background-color: rgb(65, 175, 65);
+}
+
+.pasValide{
+    background-color: rgb(255, 180, 180);
+}

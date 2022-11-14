@@ -4,6 +4,7 @@
 
 function QuelNavigateur() {
     var ua = navigator.userAgent;
+    console.log(ua);
     var x = ua.indexOf("MSIE");
     var navig = "MSIE";
     if (x == -1) {
@@ -72,26 +73,6 @@ function eraseCookie(name) {
 }
 
 /////////////////////////////////////////////////////////////////
-// Set "compteur" to either 1 (if no Cookie) or 
-// if the cookie already existe, its increamented value
-// then update/create the cookie
-/////////////////////////////////////////////////////////////////
-
-function gestionCookie(name) {
-    compteur = document.querySelector("b");
-    cookieValue = readCookie(name);
-    if (cookieValue != null) {
-        newVal = parseInt(cookieValue);
-        newVal++;
-    }
-    else {
-        newVal = 1;
-    }
-    createCookie(name, newVal, 1);
-    compteur.innerHTML = newVal;
-}
-
-/////////////////////////////////////////////////////////////////
 // Reinitialise the Cookie
 /////////////////////////////////////////////////////////////////
 
@@ -101,11 +82,47 @@ function reInitCookie(name) {
 }
 
 /////////////////////////////////////////////////////////////////
+// Applique le css du thème voulu
+/////////////////////////////////////////////////////////////////
+
+function switchTheme(name) {
+    cookieValue = readCookie(name);
+    if (cookieValue == "light") {
+        newVal = "dark";
+    }
+    else {
+        newVal = "light";
+    }
+    createCookie(name, newVal, 1);
+    setTheme("LightOrDark");
+}
+
+function setTheme(name) {
+
+    cookieValue = readCookie(name);
+
+    if(cookieValue==null){
+        createCookie(name, "light", 1);
+    }
+
+    fond = document.querySelector("body");
+    darkTheme = (cookieValue == "dark");
+    fond.classList.toggle("dark", darkTheme);
+    fond.classList.toggle("light", !darkTheme);
+    console.log(fond.classList.contains(darkTheme));
+
+    listeParagraphes = document.querySelectorAll("p");
+    listeParagraphes.forEach(paragraphe => {
+        paragraphe.classList.toggle("dark", darkTheme);
+        paragraphe.classList.toggle("light", !darkTheme);
+    });
+}
+/////////////////////////////////////////////////////////////////
 // Functions' calls, setting eventListener, etc...
 /////////////////////////////////////////////////////////////////
 
-separateur = QuelNavigateur()=="firefox"?",":";";
-gestionCookie("compteurVisite");
+separateur = QuelNavigateur() == "firefox" ? "," : ";";
 
-boutonReset=document.querySelector("button");
-boutonReset.addEventListener("click",()=>{reInitCookie("compteurVisite");});
+setTheme("LightOrDark");
+boutonSwitch = document.querySelector("#switch");
+boutonSwitch.addEventListener("click", () => { switchTheme("LightOrDark"); });
