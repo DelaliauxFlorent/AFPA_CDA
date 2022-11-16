@@ -122,13 +122,9 @@ function checkAllValidity() {
     if (pasErreur) {
         submit.disabled = false;
         submit.value="Valider";
-        submit.style.color = "white";
-        submit.style.borderBottom = "4px solid white";
     } else {
         submit.disabled = true;
         submit.value="En attente de formulaire complet";
-        submit.style.color = "#666666";
-        submit.style.borderBottom = "4px solid #666666";
     }
 }
 
