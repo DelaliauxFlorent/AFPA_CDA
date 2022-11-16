@@ -202,12 +202,8 @@ function checkAllValidity() {
     }
     if (pasErreur) {
         submit.disabled = false;
-        submit.style.color = "white";
-        submit.style.borderBottom = "4px solid white";
     } else {
         submit.disabled = true;
-        submit.style.color = "#666666";
-        submit.style.borderBottom = "4px solid #666666";
     }
 }
 
