@@ -1,0 +1,22 @@
+1667978557376	Sync.LogManager	DEBUG	Flushing file log
+1667978557380	Sync.LogManager	DEBUG	Log cleanup threshold time: 1667114557380
+1667978557391	Sync.LogManager	DEBUG	Done deleting files.
+1667978557467	Sync.SyncScheduler	DEBUG	Network link status changed to "down". Offline?: false
+1667978557467	Sync.SyncScheduler	DEBUG	Clearing sync triggers and the global score.
+1667978557467	Sync.SyncScheduler	DEBUG	Clearing sync triggers and the global score.
+1667978559223	Sync.SyncScheduler	DEBUG	Network link status changed to "up". Offline?: false
+1667978559223	Sync.SyncScheduler	DEBUG	Network link looks up. Syncing.
+1667978559224	Sync.SyncScheduler	DEBUG	Clearing sync triggers and the global score.
+1667978559225	Sync.Service	DEBUG	User-Agent: Firefox/89.0.2 (Windows NT 10.0; Win64; x64) FxSync/1.91.0.20210622155641.desktop
+1667978559225	Sync.Service	INFO	Starting sync at 2022-11-09 08:22:39 in browser session G5ioxZZftwEB
+1667978559225	Sync.Service	DEBUG	In sync: should login.
+1667978559225	Sync.Service	INFO	User logged in successfully - verifying login.
+1667978559225	Sync.SyncAuthManager	DEBUG	unlockAndVerifyAuthState has no FxA user
+1667978559225	Sync.Status	DEBUG	Status.login: error.login.reason.no_username => error.login.reason.no_username
+1667978559225	Sync.Status	DEBUG	Status.service: service.client_not_configured => service.client_not_configured
+1667978559225	Sync.Service	DEBUG	Fetching unlocked auth state returned error.login.reason.no_username
+1667978559225	Sync.ErrorHandler	ERROR	Sync encountered a login error
+1667978559225	Sync.SyncScheduler	DEBUG	Clearing sync triggers and the global score.
+1667978559225	Sync.SyncScheduler	DEBUG	Clearing sync triggers and the global score.
+1667978559225	Sync.Service	DEBUG	Exception calling WrappedLock: Error: Login failed: error.login.reason.no_username(resource://services-sync/service.js:1038:15) JS Stack trace: onNotify@service.js:1038:15
+1667978559225	Sync.Service	DEBUG	Not syncing: login returned false.

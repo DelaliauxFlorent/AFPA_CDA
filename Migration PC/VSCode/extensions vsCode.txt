@@ -1,0 +1,13 @@
+Code Runner
+DocBlocker
+Draw.io Integration
+Git Graph
+HTML Snippets
+Live Server
+PHP DocBlocker
+PHP Getters & Setters
+PHP Intelephense
+VS DockBlocker
+
+Installer l'extension phproberto.vscode-php-getters-setters
+Remplacer les fichiers Property.js, extension.js et resolver.js dans C:\Users\59011-14-06\.vscode\extensions\phproberto.vscode-php-getters-setters-1.2.3\out

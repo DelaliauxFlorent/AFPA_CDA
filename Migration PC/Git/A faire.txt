@@ -1,0 +1,9 @@
+- Installer Git
+- Refaire le lien avec GitHub?
+- Remettre les planifications pour l'auto_push
+	-https://www.pcastuces.com/pratique/astuces/5515.htm
+	-Déclencheurs: 	Toutes les semaines | à 12h10 les lundi, mardi, mercredi et jeudi de chaque semaine, à partir de ce jour
+					Toutes les semaines | à 17h10 les lundi, mardi, mercredi et jeudi de chaque semaine, à partir de ce jour
+					Toutes les semaines | à 11h25 les vendredi de chaque semaine, à partir de ce jour
+- Mettre l'auto_pull et ses planifications
+	-Déclencheurs: 	Toutes les semaines | à 8h30 les lundi, mardi, mercredi, jeudi et vendredi de chaque semaine, à partir de ce jour
