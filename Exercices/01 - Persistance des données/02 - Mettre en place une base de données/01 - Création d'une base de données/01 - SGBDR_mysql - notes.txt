@@ -3,3 +3,11 @@
 "Contraintes" -> limites mises en place pour garantir l'intégrité des données
 
 IF EXISTS/IF NOT EXISTS -> sécurisation des "CREATE" et des "DROP"
+
+USERS:
+applications-> seulement "Données"
+Developpeur-> tous sauf GRANT
+
+Sécurité (historisation)
+ALTER TABLE [NomTable] ADD dateCreation DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ADD dateModification DATETIME ON UPDATE CURRENT_TIMESTAMP;
