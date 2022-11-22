@@ -18,3 +18,13 @@ ctrl+direction => aller à la dernière cellule de cette direction possèdant le
 copier tableau=> touche "home" pour revenir en A1, ctrl+Shift+ flèche droite suivit de ctrl+shift+flèche bas
 
 =RECHERCHEV("Cellule concernée"; "Tableau de référence où la première colonne est celle où doit se trouver la valeur (avec les $ pour empécher le déport lors du report)"; "index de la colonne à récupérer dans le tableau de reférence"; FAUX) FAUX pour correspondance exacte, vrai pour première approximation
+
+WAMP Change dossier de sauvegarde
+Click gauche sur icone WAMP, survoler MySQL et ouvrir My.ini
+rechercher datadir et indiquer le nouveau dossier.
+De base: 
+datadir="c:/wamp64/bin/mysql/mysql5.7.36/data"
+Maison:
+datadir="D:/Git/AFPA_CDA/Exercices/98 - Databases"
+AFPA:
+datadir="U:/59011-14-06/Exercices/98 - Databases" <= A VERIFIER au retour en salle
