@@ -11,3 +11,10 @@ Developpeur-> tous sauf GRANT
 Sécurité (historisation)
 ALTER TABLE [NomTable] ADD dateCreation DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 ADD dateModification DATETIME ON UPDATE CURRENT_TIMESTAMP;
+
+Excel:
+ctrl+direction => aller à la dernière cellule de cette direction possèdant le même état (remplit ou vide)
+
+copier tableau=> touche "home" pour revenir en A1, ctrl+Shift+ flèche droite suivit de ctrl+shift+flèche bas
+
+=RECHERCHEV("Cellule concernée"; "Tableau de référence où la première colonne est celle où doit se trouver la valeur (avec les $ pour empécher le déport lors du report)"; "index de la colonne à récupérer dans le tableau de reférence"; FAUX) FAUX pour correspondance exacte, vrai pour première approximation
