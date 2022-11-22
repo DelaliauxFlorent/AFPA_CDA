@@ -19,6 +19,10 @@ copier tableau=> touche "home" pour revenir en A1, ctrl+Shift+ flèche droite su
 
 =RECHERCHEV("Cellule concernée"; "Tableau de référence où la première colonne est celle où doit se trouver la valeur (avec les $ pour empécher le déport lors du report)"; "index de la colonne à récupérer dans le tableau de reférence"; FAUX) FAUX pour correspondance exacte, vrai pour première approximation
 
+Filtres Avancés Pour extraction sans doublons
+
+=TEXTE(Cellule; "aaaa-mm-jj") transforme une date en string
+
 WAMP Change dossier de sauvegarde
 Click gauche sur icone WAMP, survoler MySQL et ouvrir My.ini
 rechercher datadir et indiquer le nouveau dossier.
