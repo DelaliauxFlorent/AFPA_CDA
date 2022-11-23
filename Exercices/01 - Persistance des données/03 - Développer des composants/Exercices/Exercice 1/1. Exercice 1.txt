@@ -5,7 +5,7 @@ a. Affichez la totalité de la table « client ».
 
 b. Affichez les noms de tous les clients.
 
-    SELECT nomClient FROM clients;
+    SELECT DISTINCT nomClient FROM clients;
 
 c. Affichez les différentes dates de commandes sans répétition.
 
@@ -15,9 +15,9 @@ d. Affichez les clients qui se prénomment « sophie ».
 
     SELECT idClient, nomClient, prenomClient, dateEntreeClient FROM clients WHERE prenomClient="sophie";
 
-e. Affichez les numéros des articles et leur quantité commandés par le client1.
+e. Affichez les numéros des articles et leur quantité commandés par le client 2.
 
-    SELECT idArticle, quantiteCommande FROM commandes WHERE idClient=1;
+    SELECT idArticle, quantiteCommande FROM commandes WHERE idClient=2;
 
 f. Affichez les noms des clients en majuscules-.
 
@@ -37,11 +37,12 @@ i. Affichez les noms des clients qui commencent par « t » ou qui ont un « l �
 
 j. Affichez le numéro de client, le numéro de commande, la date de commande et la date de paiement attendue des commandes (=date_cde+15jours).
 
-    SELECT idClient, idCommande, dateCommande, ADDDATE(dateCommande, INTERVAL 15 DAY) as "date de paiement" FROM commandes;
+    SELECT idClient AS "Numero de Client", idCommande AS "Numero de Commande", dateCommande AS "Date de la Commande", ADDDATE(dateCommande, INTERVAL 15 DAY) as "date de paiement attendue" FROM commandes;
 
 k. Affichez la date et l'heure actuelles.
 
     SELECT CURRENT_TIMESTAMP();
+    SELECT DATE_FORMAT(CURRENT_TIMESTAMP(), "Nous sommes le %d/%m/%Y et il est %H:%i:%s") AS "Horloge Parlante";
 
 l. Affichez l'ancienneté des clients.
 
@@ -51,9 +52,9 @@ m. Affichez la quantité maximale achetée par un client.
 
     SELECT MAX(quantiteCommande) as "Max Commande" FROM commandes GROUP BY idClient; 
 
-n. Affichez la quantité totale achetée par le client1.
+n. Affichez la quantité totale achetée par le client 2.
 
-    SELECT SUM(quantiteCommande) AS "Total Commande" FROM commandes WHERE idClient=1;
+    SELECT SUM(quantiteCommande) AS "Total Commande" FROM commandes WHERE idClient=2;
 
 o. Affichez la quantité moyenne achetée par le client 2.
 

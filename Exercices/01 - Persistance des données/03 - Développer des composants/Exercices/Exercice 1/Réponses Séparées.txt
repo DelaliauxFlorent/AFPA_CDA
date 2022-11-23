@@ -1,0 +1,57 @@
+-- a
+SELECT idClient, nomClient, prenomClient, dateEntreeClient FROM clients;
+
+-- b
+SELECT DISTINCT nomClient FROM clients;
+
+-- c
+SELECT DISTINCT dateCommande FROM commandes;
+
+-- d
+SELECT idClient, nomClient, prenomClient, dateEntreeClient FROM clients WHERE prenomClient="sophie";
+
+-- e
+SELECT idArticle, quantiteCommande FROM commandes WHERE idClient=2;
+
+-- f
+SELECT UPPER(nomClient) FROM clients;
+
+-- g
+SELECT CONCAT(UPPER(SUBSTRING(nomClient,1,1)),LOWER(SUBSTRING(nomClient,2))) as Nom FROM clients;
+
+-- h
+SELECT nomClient FROM clients WHERE LENGTH(nomClient)=5;
+
+-- i
+SELECT nomClient FROM clients WHERE nomClient LIKE "t%" OR SUBSTRING(nomClient,3,1)="l";
+-- Autre façon
+SELECT `nomClient` FROM `clients` WHERE `nomClient` like "__l%" or "t%";
+
+-- j
+SELECT idClient AS "Numero de Client", idCommande AS "Numero de Commande", dateCommande AS "Date de la Commande", ADDDATE(dateCommande, INTERVAL 15 DAY) as "date de paiement attendue" FROM commandes;
+
+-- k
+-- Brut
+SELECT CURRENT_TIMESTAMP();
+-- Décoré
+SELECT DATE_FORMAT(CURRENT_TIMESTAMP(), "Nous sommes le %d/%m/%Y et il est %H:%i:%s") AS "Horloge Parlante";
+SELECT DATE_FORMAT(NOW(), "Nous sommes le %d/%m/%Y et il est %H:%i:%s") AS "Horloge Parlante";
+
+-- l
+SELECT YEAR(CURRENT_DATE)-YEAR(`dateEntreeClient`) as anciennete FROM clients;
+SELECT idClient, nomClient, prenomClient, TIMESTAMPDIFF(YEAR, dateEntreeClient, CURRENT_TIMESTAMP) AS Anciennete FROM Clients;
+
+-- m
+SELECT MAX(quantiteCommande) as "Max Commande" FROM commandes GROUP BY idClient;
+
+-- n
+SELECT SUM(quantiteCommande) AS "Total Commande" FROM commandes WHERE idClient=2;
+
+-- o
+SELECT AVG(quantiteCommande) AS "Commande Moyenne" FROM commandes WHERE idClient=2;
+
+-- p
+SELECT idClient, nomClient, prenomClient, dateEntreeClient FROM clients ORDER BY nomClient;
+
+-- q
+SELECT idArticle, descriptionArticle, prixArticle FROM articles ORDER BY prixArticle DESC; 

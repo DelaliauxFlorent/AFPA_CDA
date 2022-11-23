@@ -1,0 +1,50 @@
+-- On a à présent une colonne suplémentaire qui contient en valeur le nombre d'article de cette commande multiplié par le prix unitaire de l'article conserné.
+
+-- A) Afficher le montant le plus élevé de commande
+SELECT ROUND(MAX(cde_total),2) AS "Total Max" FROM commandes; 
+
+-- B) Afficher le montant moyen des commandes.
+SELECT ROUND(AVG(cde_total),2) AS "Total Moyen" FROM commandes;
+
+-- C) Afficher le montant le plus bas de commande.
+SELECT ROUND(MIN(cde_total),2) AS "Total Min" FROM commandes;
+
+-- D) Afficher le nombre de commandes qui ont été passées.
+SELECT COUNT(idCommande) AS "Nombre Commandes" FROM commandes; 
+
+-- E) Afficher le montant moyen de commande par client
+SELECT idClient, ROUND(AVG(cde_total),2) AS "Total Moyen" FROM commandes GROUP BY idClient;
+
+-- F) Afficher le montant le plus élevé de commande par client.
+SELECT idClient, ROUND(MAX(cde_total),2) AS "Total Max" FROM commandes GROUP BY idClient;
+
+-- G) Afficher le nombre de commandes par client.
+SELECT idClient, COUNT(idCommande) AS "Nombre Commandes" FROM commandes GROUP BY idClient;
+
+-- H) Afficher le nombre d 'articles commandés en moyenne par client
+SELECT idClient, ROUND(AVG(quantiteCommande),2) AS "Nbre Moyen d'articles" FROM commandes GROUP BY idClient;
+
+-- I) Afficher le nombre d'articles commandés en moyenne par article.
+SELECT idArticle, ROUND(AVG(quantiteCommande),2) AS "Nbre Moyen d'articles" FROM commandes GROUP BY idArticle;
+
+-- J) Afficher le nombre total d'articles commandés par article.
+SELECT idArticle, COUNT(quantiteCommande) AS "Nbre total commandé" FROM commandes GROUP BY idArticle;
+
+-- K) Afficher le nombre moyen d'articles par client et par date.
+SELECT idClient, dateCommande, ROUND(AVG(quantiteCommande),2) AS "Nbre Moyen d'articles" FROM commandes GROUP BY idClient, dateCommande;
+
+-- L) Afficher le nombre de commandes par jour.
+SELECT dateCommande, COUNT(idCommande) AS "Nbre commandes" FROM commandes GROUP BY dateCommande;
+
+-- M) Afficher le nombre de clients dans la table.
+SELECT COUNT(idClient) AS NbreClient FROM commandes; --?
+SELECT COUNT(idClient) AS NbreClient FROM clients;
+
+-- N) Afficher le nombre de clients différents qui ont passé commande.
+SELECT COUNT(DISTINCT idClient) AS NbreClientsDistinct FROM commandes;
+
+-- O) Afficher le nombre d' articles différents qui ont été commandés.
+SELECT COUNT(DISTINCT idArticle) AS NbreArticlesDif FROM commandes;
+
+-- P) Afficher le nombre de jours différents de commandes
+SELECT COUNT(DISTINCT dateCommande) AS "Dates distinctes" FROM commandes;
