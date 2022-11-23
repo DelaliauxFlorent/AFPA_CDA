@@ -11,6 +11,8 @@ SELECT ROUND(MIN(cde_total),2) AS "Total Min" FROM commandes;
 
 -- D) Afficher le nombre de commandes qui ont été passées.
 SELECT COUNT(idCommande) AS "Nombre Commandes" FROM commandes; 
+-- mieux, plus performant
+SELECT COUNT(*) AS "Nombre Commandes" FROM commandes; 
 
 -- E) Afficher le montant moyen de commande par client
 SELECT idClient, ROUND(AVG(cde_total),2) AS "Total Moyen" FROM commandes GROUP BY idClient;
@@ -20,6 +22,7 @@ SELECT idClient, ROUND(MAX(cde_total),2) AS "Total Max" FROM commandes GROUP BY 
 
 -- G) Afficher le nombre de commandes par client.
 SELECT idClient, COUNT(idCommande) AS "Nombre Commandes" FROM commandes GROUP BY idClient;
+SELECT idClient, COUNT(*) AS "Nombre Commandes" FROM commandes GROUP BY idClient;
 
 -- H) Afficher le nombre d 'articles commandés en moyenne par client
 SELECT idClient, ROUND(AVG(quantiteCommande),2) AS "Nbre Moyen d'articles" FROM commandes GROUP BY idClient;
@@ -28,7 +31,7 @@ SELECT idClient, ROUND(AVG(quantiteCommande),2) AS "Nbre Moyen d'articles" FROM 
 SELECT idArticle, ROUND(AVG(quantiteCommande),2) AS "Nbre Moyen d'articles" FROM commandes GROUP BY idArticle;
 
 -- J) Afficher le nombre total d'articles commandés par article.
-SELECT idArticle, COUNT(quantiteCommande) AS "Nbre total commandé" FROM commandes GROUP BY idArticle;
+SELECT idArticle, SUM(quantiteCommande) AS "Nbre total commandé" FROM commandes GROUP BY idArticle;
 
 -- K) Afficher le nombre moyen d'articles par client et par date.
 SELECT idClient, dateCommande, ROUND(AVG(quantiteCommande),2) AS "Nbre Moyen d'articles" FROM commandes GROUP BY idClient, dateCommande;
@@ -37,8 +40,7 @@ SELECT idClient, dateCommande, ROUND(AVG(quantiteCommande),2) AS "Nbre Moyen d'a
 SELECT dateCommande, COUNT(idCommande) AS "Nbre commandes" FROM commandes GROUP BY dateCommande;
 
 -- M) Afficher le nombre de clients dans la table.
-SELECT COUNT(idClient) AS NbreClient FROM commandes; --?
-SELECT COUNT(idClient) AS NbreClient FROM clients;
+SELECT COUNT(*) AS NbreClient FROM clients;
 
 -- N) Afficher le nombre de clients différents qui ont passé commande.
 SELECT COUNT(DISTINCT idClient) AS NbreClientsDistinct FROM commandes;
