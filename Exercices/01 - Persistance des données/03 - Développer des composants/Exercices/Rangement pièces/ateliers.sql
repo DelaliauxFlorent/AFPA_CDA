@@ -24,7 +24,7 @@ ALTER TABLE TypesPieces ENGINE=InnoB;
 
 CREATE TABLE Pieces(
    idPiece INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-   nomPiece VARCHAR(50)  NOT NULL,
+   numPiece INT,
    idReference INT,
    idMarque INT,
    idTypePiece INT NOT NULL
