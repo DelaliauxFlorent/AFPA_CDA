@@ -283,11 +283,29 @@ VALUES
         idEpreuve = 4
 )
 );
+
 -- Version avec transaction
 START TRANSACTION;
-SELECT @newNote:=ROUND(AVG(note),2)*0.9 FROM Avoir_note WHERE idEpreuve = 4;
-SELECT @newID:=idEtudiant FROM Etudiants WHERE UPPER(nomEtudiant)="DEWA";
-INSERT INTO Avoir_note (idEtudiant, idEpreuve, note) VALUES (@newID, 4, @newNote);
+
+SELECT
+    @newNote := ROUND(AVG(note), 2) * 0.9
+FROM
+    Avoir_note
+WHERE
+    idEpreuve = 4;
+
+SELECT
+    @newID := idEtudiant
+FROM
+    Etudiants
+WHERE
+    UPPER(nomEtudiant) = "DEWA";
+
+INSERT INTO
+    Avoir_note (idEtudiant, idEpreuve, note)
+VALUES
+    (@newID, 4, @newNote);
+
 COMMIT;
 
 -- P) Insérez un nouvel étudiant dont vous ne connaissez que le numéro, le nom, le prénom, le hobby et l'année: 25, 'DARTE','REMY','SCULPTURE',1.
@@ -301,3 +319,89 @@ INSERT INTO
     )
 VALUES
     (25, 'DARTE', 'REMY', 'SCULPTURE', 1);
+
+--
+-- Création de VUES
+--
+-- VUE regroupant etudiants, avoir_note et epreuves quand relation entre elles
+CREATE VIEW VW_Etudiants_Epreuves AS
+SELECT
+    et.idEtudiant,
+    nomEtudiant,
+    prenomEtudiant,
+    adresseEtudiant,
+    villeEtudiant,
+    codePostalEtudiant,
+    telephoneEtudiant,
+    dateEntreeEtudiant,
+    anneeEtudiant,
+    remarqueEtudiant,
+    sexeEtudiant,
+    dateNaissanceEtudiant,
+    hobby,
+    idAvoirNote,
+    note,
+    libelleEpreuve,
+    idEnseignantEpreuve,
+    idMatiereEpreuve,
+    dateEpreuve,
+    CoefficientEpreuve,
+    anneeEpreuve
+FROM
+    etudiants AS et
+    INNER JOIN avoir_note AS av ON av.idEtudiant = et.idEtudiant
+    INNER JOIN epreuves AS ep ON av.idEpreuve = ep.idEpreuve;
+--------------------------------------
+--------------------------------------
+-- #1221 - Incorrect usage of UPDATE and LIMIT?
+--------------------------------------
+--------------------------------------
+
+
+-- VUE regroupant TOUS etudiants, avoir_note et epreuves 
+CREATE VIEW VW_L_Etudiants_L_Epreuves_ AS
+SELECT
+    et.idEtudiant,
+    nomEtudiant,
+    prenomEtudiant,
+    adresseEtudiant,
+    villeEtudiant,
+    codePostalEtudiant,
+    telephoneEtudiant,
+    dateEntreeEtudiant,
+    anneeEtudiant,
+    remarqueEtudiant,
+    sexeEtudiant,
+    dateNaissanceEtudiant,
+    hobby,
+    idAvoirNote,
+    note,
+    libelleEpreuve,
+    idEnseignantEpreuve,
+    idMatiereEpreuve,
+    dateEpreuve,
+    CoefficientEpreuve,
+    anneeEpreuve
+FROM
+    etudiants AS et
+    LEFT JOIN avoir_note AS av ON av.idEtudiant = et.idEtudiant
+    LEFT JOIN epreuves AS ep ON av.idEpreuve = ep.idEpreuve
+ORDER BY
+    et.idEtudiant;
+
+--------------------------------------
+--------------------------------------
+-- #1288 - The target table vw_l_etudiants_l_epreuves_ of the UPDATE is not updatable
+--------------------------------------
+--------------------------------------
+
+-- Retour sur précédent exercices
+-- N
+UPDATE
+    VW_Etudiants_Epreuves
+SET
+    note = note - 3
+WHERE
+    nomEtudiant = "MARKE"
+    AND nomMatiere = "BD";
+    
