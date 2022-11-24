@@ -1,4 +1,4 @@
-"Vues" -> tables virtuelles, limite les risque de problèmes de jointure par les utilisateurs
+"Vues" -> tables virtuelles, crée à partir d'une requète, limite les risque de problèmes de jointure par les utilisateurs
 "Procédures stockées" -> bouts de code stockés sur la BdD
 "Contraintes" -> limites mises en place pour garantir l'intégrité des données
 

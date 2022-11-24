@@ -216,11 +216,12 @@ WHERE
 --    ADD CONSTRAINT `FK_AvoirNote_Etudiants` FOREIGN KEY (`idEtudiant`) REFERENCES `etudiants` (`idEtudiant`);
 -- à
 ALTER TABLE
-    `avoir_note`
+    avoir_note DROP FOREIGN KEY FK_AvoirNote_Epreuves;
+
+ALTER TABLE
+    avoir_note
 ADD
-    CONSTRAINT `FK_AvoirNote_Epreuves` FOREIGN KEY (`idEpreuve`) REFERENCES `epreuves` (`idEpreuve`) ON DELETE CASCADE,
-ADD
-    CONSTRAINT `FK_AvoirNote_Etudiants` FOREIGN KEY (`idEtudiant`) REFERENCES `etudiants` (`idEtudiant`);
+    CONSTRAINT FK_AvoirNote_Epreuves FOREIGN KEY (idEpreuve) REFERENCES epreuves (idEpreuve) ON DELETE CASCADE;
 
 -- N) Changez toutes les notes de MARKE dans la matière « BASES DE DONNEES ». Suite à un mauvais comportement, elles diminuent toutes de 3 points. Attention, la requête doit intégrer le nom de la matière. (et non chercher à repérer le numéro avant de la taper.)
 UPDATE
@@ -233,6 +234,30 @@ SET
 WHERE
     et.nomEtudiant = "MARKE" -- pas de ligne « BASES DE DONNEES » dans matieres, seulement "BD"
     AND ma.nomMatiere = "BD";
+
+-- VERSION moins gourmande
+UPDATE
+    avoir_note
+SET
+    note = note - 3
+WHERE
+    idEpreuve IN (
+        SELECT
+            ep.idEpreuve
+        FROM
+            epreuves AS ep
+            INNER JOIN matieres AS m ON (ep.idMatiereEpreuve = m.idMatiere)
+        WHERE
+            m.nomMatiere = 'BD'
+    )
+    AND idEtudiant = (
+        SELECT
+            idEtudiant
+        FROM
+            etudiants
+        WHERE
+            nomEtudiant = 'marke'
+    );
 
 -- O) DEWA a manqué l'épreuve 4. Vu son niveau, on décide de lui créer une entrée dans AVOIR_NOTE en lui attribuant la moyenne des notes obtenues à cette épreuve par ses collègues*0.9. Attention, la requête doit intégrer le nom de l'étudiant (et non chercher à repérer le numéro avant de la taper.)
 INSERT INTO
@@ -258,6 +283,21 @@ VALUES
         idEpreuve = 4
 )
 );
+-- Version avec transaction
+START TRANSACTION;
+SELECT @newNote:=ROUND(AVG(note),2)*0.9 FROM Avoir_note WHERE idEpreuve = 4;
+SELECT @newID:=idEtudiant FROM Etudiants WHERE UPPER(nomEtudiant)="DEWA";
+INSERT INTO Avoir_note (idEtudiant, idEpreuve, note) VALUES (@newID, 4, @newNote);
+COMMIT;
 
 -- P) Insérez un nouvel étudiant dont vous ne connaissez que le numéro, le nom, le prénom, le hobby et l'année: 25, 'DARTE','REMY','SCULPTURE',1.
-INSERT INTO etudiants (idEtudiant, nomEtudiant, prenomEtudiant, hobby, anneeEtudiant) VALUES (25,'DARTE','REMY','SCULPTURE',1);
+INSERT INTO
+    etudiants (
+        idEtudiant,
+        nomEtudiant,
+        prenomEtudiant,
+        hobby,
+        anneeEtudiant
+    )
+VALUES
+    (25, 'DARTE', 'REMY', 'SCULPTURE', 1);
