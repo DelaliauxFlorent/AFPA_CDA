@@ -327,73 +327,61 @@ VALUES
 CREATE VIEW VW_Etudiants_Epreuves AS
 SELECT
     et.idEtudiant,
-    nomEtudiant,
-    prenomEtudiant,
-    adresseEtudiant,
-    villeEtudiant,
-    codePostalEtudiant,
-    telephoneEtudiant,
-    dateEntreeEtudiant,
-    anneeEtudiant,
-    remarqueEtudiant,
-    sexeEtudiant,
-    dateNaissanceEtudiant,
-    hobby,
-    idAvoirNote,
-    note,
-    libelleEpreuve,
-    idEnseignantEpreuve,
-    idMatiereEpreuve,
-    dateEpreuve,
-    CoefficientEpreuve,
-    anneeEpreuve
+    et.nomEtudiant,
+    et.prenomEtudiant,
+    et.adresseEtudiant,
+    et.villeEtudiant,
+    et.codePostalEtudiant,
+    et.telephoneEtudiant,
+    et.dateEntreeEtudiant,
+    et.anneeEtudiant,
+    et.remarqueEtudiant,
+    et.sexeEtudiant,
+    et.dateNaissanceEtudiant,
+    et.hobby,
+    av.idAvoirNote,
+    av.note,
+    ep.libelleEpreuve,
+    ep.idEnseignantEpreuve,
+    ep.idMatiereEpreuve,
+    ep.dateEpreuve,
+    ep.CoefficientEpreuve,
+    ep.anneeEpreuve
 FROM
-    etudiants AS et
-    INNER JOIN avoir_note AS av ON av.idEtudiant = et.idEtudiant
+    avoir_note AS av
+    INNER JOIN etudiants AS et ON av.idEtudiant = et.idEtudiant
     INNER JOIN epreuves AS ep ON av.idEpreuve = ep.idEpreuve;
---------------------------------------
---------------------------------------
--- #1221 - Incorrect usage of UPDATE and LIMIT?
---------------------------------------
---------------------------------------
-
 
 -- VUE regroupant TOUS etudiants, avoir_note et epreuves 
 CREATE VIEW VW_L_Etudiants_L_Epreuves_ AS
 SELECT
     et.idEtudiant,
-    nomEtudiant,
-    prenomEtudiant,
-    adresseEtudiant,
-    villeEtudiant,
-    codePostalEtudiant,
-    telephoneEtudiant,
-    dateEntreeEtudiant,
-    anneeEtudiant,
-    remarqueEtudiant,
-    sexeEtudiant,
-    dateNaissanceEtudiant,
-    hobby,
-    idAvoirNote,
-    note,
-    libelleEpreuve,
-    idEnseignantEpreuve,
-    idMatiereEpreuve,
-    dateEpreuve,
-    CoefficientEpreuve,
-    anneeEpreuve
+    et.nomEtudiant,
+    et.prenomEtudiant,
+    et.adresseEtudiant,
+    et.villeEtudiant,
+    et.codePostalEtudiant,
+    et.telephoneEtudiant,
+    et.dateEntreeEtudiant,
+    et.anneeEtudiant,
+    et.remarqueEtudiant,
+    et.sexeEtudiant,
+    et.dateNaissanceEtudiant,
+    et.hobby,
+    av.idAvoirNote,
+    av.note,
+    ep.libelleEpreuve,
+    ep.idEnseignantEpreuve,
+    ep.idMatiereEpreuve,
+    ep.dateEpreuve,
+    ep.CoefficientEpreuve,
+    ep.anneeEpreuve
 FROM
     etudiants AS et
     LEFT JOIN avoir_note AS av ON av.idEtudiant = et.idEtudiant
     LEFT JOIN epreuves AS ep ON av.idEpreuve = ep.idEpreuve
 ORDER BY
     et.idEtudiant;
-
---------------------------------------
---------------------------------------
--- #1288 - The target table vw_l_etudiants_l_epreuves_ of the UPDATE is not updatable
---------------------------------------
---------------------------------------
 
 -- Retour sur précédent exercices
 -- N

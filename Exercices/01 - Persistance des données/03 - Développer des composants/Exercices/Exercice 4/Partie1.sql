@@ -50,7 +50,7 @@ FROM
 -- 6 Afficher le nom, le numéro d'employé et le numéro du département des employés dont le titre est «Secrétaire». 
 SELECT
     nom AS "Nom de l'employé",
-    noemp AS "Numéro d'employé'",
+    noemp AS "Numéro d'employé",
     nodep AS "Numéro du département"
 FROM
     employe
@@ -278,6 +278,12 @@ FROM
 -- 29 Afficher les 5 premières lettres du nom des employés.
 SELECT
     SUBSTRING(nom, 1, 5) AS Nom
+FROM
+    employe;
+
+-- OU
+SELECT
+    LEFT(nom, 5)
 FROM
     employe;
 
