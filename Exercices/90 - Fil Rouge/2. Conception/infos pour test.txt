@@ -1,0 +1,11 @@
+Service Commercial
+	Identifiant : Commercial
+	Password	: ComVilGre+2022
+	
+Gestion des Produits
+	Identifiant : Gestion
+	Password	: GesVilGre+2022
+	
+Clients
+	Identifiant : Client
+	Password	: CliVilGre+2022

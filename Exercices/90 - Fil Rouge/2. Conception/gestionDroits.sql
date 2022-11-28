@@ -209,65 +209,136 @@ GRANT ALL PRIVILEGES ON `Client`.* TO 'Client' @'%';
 --
 --  Table `clients`
 --
-REVOKE ALL PRIVILEGES ON `villagegreenv2`.`clients` FROM 'Client' @'%';
-GRANT SELECT ON `villagegreenv2`.`clients` TO 'Client'@'%';
+REVOKE ALL PRIVILEGES ON `villagegreenv2`.`clients`
+FROM
+    'Client' @'%';
+
+GRANT
+SELECT
+    ON `villagegreenv2`.`clients` TO 'Client' @'%';
 
 --
 --  Table `produits`
 --
-REVOKE ALL PRIVILEGES ON `villagegreenv2`.`produits` FROM 'Client' @'%';
-GRANT SELECT ON `villagegreenv2`.`produits` TO 'Client'@'%';
+REVOKE ALL PRIVILEGES ON `villagegreenv2`.`produits`
+FROM
+    'Client' @'%';
+
+GRANT
+SELECT
+    ON `villagegreenv2`.`produits` TO 'Client' @'%';
 
 --
 --  Table `lignescommande`
 --
-REVOKE ALL PRIVILEGES ON `villagegreenv2`.`lignescommande` FROM 'Client' @'%';
-GRANT SELECT, INSERT ON `villagegreenv2`.`lignescommande` TO 'Client'@'%';
+REVOKE ALL PRIVILEGES ON `villagegreenv2`.`lignescommande`
+FROM
+    'Client' @'%';
+
+GRANT
+SELECT
+,
+INSERT
+    ON `villagegreenv2`.`lignescommande` TO 'Client' @'%';
 
 --
 --  Table `villes`
 --
-REVOKE ALL PRIVILEGES ON `villagegreenv2`.`villes` FROM 'Client' @'%';
-GRANT SELECT ON `villagegreenv2`.`villes` TO 'Client'@'%';
+REVOKE ALL PRIVILEGES ON `villagegreenv2`.`villes`
+FROM
+    'Client' @'%';
+
+GRANT
+SELECT
+    ON `villagegreenv2`.`villes` TO 'Client' @'%';
 
 --
 --  Table `commandes`
 --
-REVOKE ALL PRIVILEGES ON `villagegreenv2`.`commandes` FROM 'Client' @'%';
-GRANT SELECT, INSERT ON `villagegreenv2`.`commandes` TO 'Client'@'%';
+REVOKE ALL PRIVILEGES ON `villagegreenv2`.`commandes`
+FROM
+    'Client' @'%';
+
+GRANT
+SELECT
+,
+INSERT
+    ON `villagegreenv2`.`commandes` TO 'Client' @'%';
 
 --
 --  Table `adresses`
 --
-REVOKE ALL PRIVILEGES ON `villagegreenv2`.`adresses` FROM 'Client' @'%';
-GRANT SELECT, UPDATE (idVille, emailAdresse, adresse, telFixe, complementAdresse, telMobile, province) ON `villagegreenv2`.`adresses` TO 'Client'@'%';
+REVOKE ALL PRIVILEGES ON `villagegreenv2`.`adresses`
+FROM
+    'Client' @'%';
+
+GRANT
+SELECT
+,
+UPDATE
+    (
+        idVille,
+        emailAdresse,
+        adresse,
+        telFixe,
+        complementAdresse,
+        telMobile,
+        province
+    ) ON `villagegreenv2`.`adresses` TO 'Client' @'%';
 
 --
 --  Table `rubriques`
 --
-REVOKE ALL PRIVILEGES ON `villagegreenv2`.`rubriques` FROM 'Client' @'%';
-GRANT SELECT ON `villagegreenv2`.`rubriques` TO 'Client'@'%';
+REVOKE ALL PRIVILEGES ON `villagegreenv2`.`rubriques`
+FROM
+    'Client' @'%';
+
+GRANT
+SELECT
+    ON `villagegreenv2`.`rubriques` TO 'Client' @'%';
 
 --
 --  Table `pays`
 --
-REVOKE ALL PRIVILEGES ON `villagegreenv2`.`pays` FROM 'Client' @'%';
-GRANT SELECT, UPDATE (nomPays) ON `villagegreenv2`.`pays` TO 'Client'@'%';
+REVOKE ALL PRIVILEGES ON `villagegreenv2`.`pays`
+FROM
+    'Client' @'%';
+
+GRANT
+SELECT
+,
+UPDATE
+    (nomPays) ON `villagegreenv2`.`pays` TO 'Client' @'%';
 
 --
 --  Table `livraisons`
 --
-REVOKE ALL PRIVILEGES ON `villagegreenv2`.`livraisons` FROM 'Client' @'%';
-GRANT SELECT ON `villagegreenv2`.`livraisons` TO 'Client'@'%';
+REVOKE ALL PRIVILEGES ON `villagegreenv2`.`livraisons`
+FROM
+    'Client' @'%';
+
+GRANT
+SELECT
+    ON `villagegreenv2`.`livraisons` TO 'Client' @'%';
 
 --
 --  Table `etatscommande`
 --
-REVOKE ALL PRIVILEGES ON `villagegreenv2`.`etatscommande` FROM 'Client' @'%';
-GRANT SELECT ON `villagegreenv2`.`etatscommande` TO 'Client'@'%';
+REVOKE ALL PRIVILEGES ON `villagegreenv2`.`etatscommande`
+FROM
+    'Client' @'%';
+
+GRANT
+SELECT
+    ON `villagegreenv2`.`etatscommande` TO 'Client' @'%';
 
 --
 --  Table `histoetatcom`
 --
-REVOKE ALL PRIVILEGES ON `villagegreenv2`.`histoetatcom` FROM 'Client' @'%';
-GRANT SELECT ON `villagegreenv2`.`histoetatcom` TO 'Client'@'%';
+REVOKE ALL PRIVILEGES ON `villagegreenv2`.`histoetatcom`
+FROM
+    'Client' @'%';
+
+GRANT
+SELECT
+    ON `villagegreenv2`.`histoetatcom` TO 'Client' @'%';
