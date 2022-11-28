@@ -1,10 +1,10 @@
-DROP DATABASE IF EXISTS villageGreen;
+DROP DATABASE IF EXISTS villageGreenV1;
 
-CREATE DATABASE villageGreen;
+CREATE DATABASE villageGreenV1;
 
-ALTER DATABASE villageGreen DEFAULT charset = UTF8;
+ALTER DATABASE villageGreenV1 DEFAULT charset = UTF8;
 
-USE villageGreen;
+USE villageGreenV1;
 
 --
 -- Table Rubriques

@@ -1,0 +1,3 @@
+V1 => Création du Dictionnaire des Données à partir du Cahier des Charges et des annexes, création du MCD, puis création du script de création de la base de donnée.
+
+V2 => Après étude du Dictionnaire de Données fournit en corrigé et comparaison avec celui réalisé personnellement pour voir les erreurs et oublis de la V1, création d'un nouveau MCD et script.
