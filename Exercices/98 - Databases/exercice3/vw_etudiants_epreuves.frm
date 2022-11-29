@@ -1,15 +1,0 @@
-TYPE=VIEW
-query=select `et`.`idEtudiant` AS `idEtudiant`,`et`.`nomEtudiant` AS `nomEtudiant`,`et`.`prenomEtudiant` AS `prenomEtudiant`,`et`.`adresseEtudiant` AS `adresseEtudiant`,`et`.`villeEtudiant` AS `villeEtudiant`,`et`.`codePostalEtudiant` AS `codePostalEtudiant`,`et`.`telephoneEtudiant` AS `telephoneEtudiant`,`et`.`dateEntreeEtudiant` AS `dateEntreeEtudiant`,`et`.`anneeEtudiant` AS `anneeEtudiant`,`et`.`remarqueEtudiant` AS `remarqueEtudiant`,`et`.`sexeEtudiant` AS `sexeEtudiant`,`et`.`dateNaissanceEtudiant` AS `dateNaissanceEtudiant`,`et`.`hobby` AS `hobby`,`av`.`idAvoirNote` AS `idAvoirNote`,`av`.`note` AS `note`,`ep`.`libelleEpreuve` AS `libelleEpreuve`,`ep`.`idEnseignantEpreuve` AS `idEnseignantEpreuve`,`ep`.`idMatiereEpreuve` AS `idMatiereEpreuve`,`ep`.`dateEpreuve` AS `dateEpreuve`,`ep`.`CoefficientEpreuve` AS `CoefficientEpreuve`,`ep`.`anneeEpreuve` AS `anneeEpreuve` from ((`exercice3`.`avoir_note` `av` join `exercice3`.`etudiants` `et` on((`av`.`idEtudiant` = `et`.`idEtudiant`))) join `exercice3`.`epreuves` `ep` on((`av`.`idEpreuve` = `ep`.`idEpreuve`)))
-md5=5bd7fff116a64882b07b73d82c800288
-updatable=1
-algorithm=0
-definer_user=root
-definer_host=localhost
-suid=2
-with_check_option=0
-timestamp=2022-11-25 07:28:23
-create-version=1
-source=SELECT\n    et.idEtudiant,\n    et.nomEtudiant,\n    et.prenomEtudiant,\n    et.adresseEtudiant,\n    et.villeEtudiant,\n    et.codePostalEtudiant,\n    et.telephoneEtudiant,\n    et.dateEntreeEtudiant,\n    et.anneeEtudiant,\n    et.remarqueEtudiant,\n    et.sexeEtudiant,\n    et.dateNaissanceEtudiant,\n    et.hobby,\n    av.idAvoirNote,\n    av.note,\n    ep.libelleEpreuve,\n    ep.idEnseignantEpreuve,\n    ep.idMatiereEpreuve,\n    ep.dateEpreuve,\n    ep.CoefficientEpreuve,\n    ep.anneeEpreuve\nFROM\n    avoir_note AS av\n    INNER JOIN etudiants AS et ON av.idEtudiant = et.idEtudiant\n    INNER JOIN epreuves AS ep ON av.idEpreuve = ep.idEpreuve
-client_cs_name=utf8mb4
-connection_cl_name=utf8mb4_unicode_ci
-view_body_utf8=select `et`.`idEtudiant` AS `idEtudiant`,`et`.`nomEtudiant` AS `nomEtudiant`,`et`.`prenomEtudiant` AS `prenomEtudiant`,`et`.`adresseEtudiant` AS `adresseEtudiant`,`et`.`villeEtudiant` AS `villeEtudiant`,`et`.`codePostalEtudiant` AS `codePostalEtudiant`,`et`.`telephoneEtudiant` AS `telephoneEtudiant`,`et`.`dateEntreeEtudiant` AS `dateEntreeEtudiant`,`et`.`anneeEtudiant` AS `anneeEtudiant`,`et`.`remarqueEtudiant` AS `remarqueEtudiant`,`et`.`sexeEtudiant` AS `sexeEtudiant`,`et`.`dateNaissanceEtudiant` AS `dateNaissanceEtudiant`,`et`.`hobby` AS `hobby`,`av`.`idAvoirNote` AS `idAvoirNote`,`av`.`note` AS `note`,`ep`.`libelleEpreuve` AS `libelleEpreuve`,`ep`.`idEnseignantEpreuve` AS `idEnseignantEpreuve`,`ep`.`idMatiereEpreuve` AS `idMatiereEpreuve`,`ep`.`dateEpreuve` AS `dateEpreuve`,`ep`.`CoefficientEpreuve` AS `CoefficientEpreuve`,`ep`.`anneeEpreuve` AS `anneeEpreuve` from ((`exercice3`.`avoir_note` `av` join `exercice3`.`etudiants` `et` on((`av`.`idEtudiant` = `et`.`idEtudiant`))) join `exercice3`.`epreuves` `ep` on((`av`.`idEpreuve` = `ep`.`idEpreuve`)))
