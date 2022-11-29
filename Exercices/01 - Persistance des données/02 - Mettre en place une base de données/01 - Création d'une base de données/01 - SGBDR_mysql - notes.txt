@@ -1,0 +1,34 @@
+"Vues" -> tables virtuelles, crée à partir d'une requète, limite les risque de problèmes de jointure par les utilisateurs
+"Procédures stockées" -> bouts de code stockés sur la BdD
+"Contraintes" -> limites mises en place pour garantir l'intégrité des données
+
+IF EXISTS/IF NOT EXISTS -> sécurisation des "CREATE" et des "DROP"
+
+USERS:
+applications-> seulement "Données"
+Developpeur-> tous sauf GRANT
+
+Sécurité (historisation)
+ALTER TABLE [NomTable] ADD dateCreation DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ADD dateModification DATETIME ON UPDATE CURRENT_TIMESTAMP;
+
+Excel:
+ctrl+direction => aller à la dernière cellule de cette direction possèdant le même état (remplit ou vide)
+
+copier tableau=> touche "home" pour revenir en A1, ctrl+Shift+ flèche droite suivit de ctrl+shift+flèche bas
+
+=RECHERCHEV("Cellule concernée"; "Tableau de référence où la première colonne est celle où doit se trouver la valeur (avec les $ pour empécher le déport lors du report)"; "index de la colonne à récupérer dans le tableau de reférence"; FAUX) FAUX pour correspondance exacte, vrai pour première approximation
+
+Filtres Avancés Pour extraction sans doublons
+
+=TEXTE(Cellule; "aaaa-mm-jj") transforme une date en string
+
+WAMP Change dossier de sauvegarde
+Click gauche sur icone WAMP, survoler MySQL et ouvrir My.ini
+rechercher datadir et indiquer le nouveau dossier.
+De base: 
+datadir="c:/wamp64/bin/mysql/mysql5.7.36/data"
+Maison:
+datadir="D:/Git/AFPA_CDA/Exercices/98 - Databases"
+AFPA:
+datadir="U:/59011-14-06/Exercices/98 - Databases" <= A VERIFIER au retour en salle

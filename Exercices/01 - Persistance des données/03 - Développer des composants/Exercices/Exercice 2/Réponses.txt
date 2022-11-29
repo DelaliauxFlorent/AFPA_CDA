@@ -1,0 +1,72 @@
+-- On a à présent une colonne suplémentaire qui contient en valeur le nombre d'article de cette commande multiplié par le prix unitaire de l'article conserné.
+
+-- A) Afficher le montant le plus élevé de commande
+SELECT ROUND(MAX(cde_total),2) AS "Total Max" FROM commandes; 
+
+SELECT ROUND(MAX(co.quantiteCommande * ar.prixArticle),2) AS "Total Max" FROM commandes AS co INNER JOIN articles AS ar ON co.idArticle = ar.idArticle;
+
+-- B) Afficher le montant moyen des commandes.
+SELECT ROUND(AVG(cde_total),2) AS "Total Moyen" FROM commandes;
+
+SELECT ROUND(AVG(co.quantiteCommande * ar.prixArticle),2) AS "Total Moyen" FROM commandes AS co INNER JOIN articles AS ar ON co.idArticle = ar.idArticle;
+
+-- C) Afficher le montant le plus bas de commande.
+SELECT ROUND(MIN(cde_total),2) AS "Total Min" FROM commandes;
+
+SELECT ROUND(MIN(co.quantiteCommande * ar.prixArticle),2) AS "Total Min" FROM commandes AS co INNER JOIN articles AS ar ON co.idArticle = ar.idArticle;
+
+-- D) Afficher le nombre de commandes qui ont été passées.
+SELECT COUNT(idCommande) AS "Nombre Commandes" FROM commandes; 
+-- mieux, plus performant
+SELECT COUNT(*) AS "Nombre Commandes" FROM commandes; 
+
+-- E) Afficher le montant moyen de commande par client
+SELECT idClient, ROUND(AVG(cde_total),2) AS "Total Moyen" FROM commandes GROUP BY idClient;
+
+SELECT CONCAT(cl.nomClient, " ", cl.prenomClient) AS NomClient, ROUND(AVG(co.quantiteCommande * ar.prixArticle),2) AS "Total Moyen" FROM commandes AS co INNER JOIN articles AS ar ON co.idArticle = ar.idArticle INNER JOIN clients AS cl ON co.idClient = cl.idClient GROUP BY co.idClient;
+
+-- F) Afficher le montant le plus élevé de commande par client.
+SELECT idClient, ROUND(MAX(cde_total),2) AS "Total Max" FROM commandes GROUP BY idClient;
+
+SELECT CONCAT(cl.nomClient, " ", cl.prenomClient) AS NomClient, ROUND(MAX(co.quantiteCommande * ar.prixArticle),2) AS "Total Max" FROM commandes AS co INNER JOIN articles AS ar ON co.idArticle = ar.idArticle INNER JOIN clients AS cl ON co.idClient = cl.idClient GROUP BY co.idClient;
+
+-- G) Afficher le nombre de commandes par client.
+SELECT idClient, COUNT(idCommande) AS "Nombre Commandes" FROM commandes GROUP BY idClient;
+SELECT idClient, COUNT(*) AS "Nombre Commandes" FROM commandes GROUP BY idClient;
+
+SELECT CONCAT(cl.nomClient, " ", cl.prenomClient) AS NomClient, COUNT(*) AS "Nombre Commandes" FROM commandes  AS co INNER JOIN clients AS cl ON co.idClient = cl.idClient GROUP BY co.idClient;
+
+-- H) Afficher le nombre d 'articles commandés en moyenne par client
+SELECT idClient, ROUND(AVG(quantiteCommande),2) AS "Nbre Moyen d'articles" FROM commandes GROUP BY idClient;
+
+SELECT CONCAT(cl.nomClient, " ", cl.prenomClient) AS NomClient, ROUND(AVG(co.quantiteCommande),2) AS "Nbre Moyen d'articles" FROM commandes  AS co INNER JOIN clients AS cl ON co.idClient = cl.idClient GROUP BY co.idClient;
+
+-- I) Afficher le nombre d'articles commandés en moyenne par article.
+SELECT idArticle, ROUND(AVG(quantiteCommande),2) AS "Nbre Moyen d'articles" FROM commandes GROUP BY idArticle;
+
+SELECT ar.descriptionArticle, ROUND(AVG(co.quantiteCommande),2) AS "Nbre Moyen d'articles" FROM commandes AS co INNER JOIN articles AS ar ON co.idArticle=ar.idArticle GROUP BY co.idArticle;
+
+-- J) Afficher le nombre total d'articles commandés par article.
+SELECT idArticle, SUM(quantiteCommande) AS "Nbre total commandé" FROM commandes GROUP BY idArticle;
+
+SELECT ar.descriptionArticle, SUM(co.quantiteCommande) AS "Nbre total commandé" FROM commandes AS co INNER JOIN articles AS ar ON co.idArticle=ar.idArticle GROUP BY co.idArticle;
+
+-- K) Afficher le nombre moyen d'articles par client et par date.
+SELECT idClient, dateCommande, ROUND(AVG(quantiteCommande),2) AS "Nbre Moyen d'articles" FROM commandes GROUP BY idClient, dateCommande;
+
+SELECT CONCAT(cl.nomClient, " ", cl.prenomClient) AS NomClient, co.dateCommande, ROUND(AVG(co.quantiteCommande),2) AS "Nbre Moyen d'articles" FROM commandes AS co INNER JOIN clients AS cl ON co.idClient = cl.idClient GROUP BY co.idClient, co.dateCommande;
+
+-- L) Afficher le nombre de commandes par jour.
+SELECT dateCommande, COUNT(*) AS "Nbre commandes" FROM commandes GROUP BY dateCommande;
+
+-- M) Afficher le nombre de clients dans la table.
+SELECT COUNT(*) AS NbreClient FROM clients;
+
+-- N) Afficher le nombre de clients différents qui ont passé commande.
+SELECT COUNT(DISTINCT idClient) AS NbreClientsDistinct FROM commandes;
+
+-- O) Afficher le nombre d' articles différents qui ont été commandés.
+SELECT COUNT(DISTINCT idArticle) AS NbreArticlesDif FROM commandes;
+
+-- P) Afficher le nombre de jours différents de commandes
+SELECT COUNT(DISTINCT dateCommande) AS "Dates distinctes" FROM commandes;

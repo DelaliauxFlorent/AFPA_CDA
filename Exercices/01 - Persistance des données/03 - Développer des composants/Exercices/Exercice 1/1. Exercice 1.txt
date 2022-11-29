@@ -1,0 +1,69 @@
+Ecrivez des requêtes SELECT (A chaquefois ,vous stockerez la requete dans un fichier texte» pour
+a. Affichez la totalité de la table « client ».
+
+    SELECT idClient, nomClient, prenomClient, dateEntreeClient FROM clients;
+
+b. Affichez les noms de tous les clients.
+
+    SELECT DISTINCT nomClient FROM clients;
+
+c. Affichez les différentes dates de commandes sans répétition.
+
+    SELECT DISTINCT dateCommande FROM commandes;
+
+d. Affichez les clients qui se prénomment « sophie ».
+
+    SELECT idClient, nomClient, prenomClient, dateEntreeClient FROM clients WHERE prenomClient="sophie";
+
+e. Affichez les numéros des articles et leur quantité commandés par le client 2.
+
+    SELECT idArticle, quantiteCommande FROM commandes WHERE idClient=2;
+
+f. Affichez les noms des clients en majuscules-.
+
+    SELECT UPPER(nomClient) FROM clients;
+
+g. Affichez les noms des clients avec la première lettre en majuscule.
+
+    SELECT CONCAT(UPPER(SUBSTRING(nomClient,1,1)),LOWER(SUBSTRING(nomClient,2))) as Nom FROM clients;
+
+h. Affichez les noms des clients qui ont 5caractères.
+
+    SELECT nomClient FROM clients WHERE LENGTH(nomClient)=5;
+
+i. Affichez les noms des clients qui commencent par « t » ou qui ont un « l » en troisième position.
+
+    SELECT nomClient FROM clients WHERE nomClient LIKE "t%" OR SUBSTRING(nomClient,3,1)="l";
+
+j. Affichez le numéro de client, le numéro de commande, la date de commande et la date de paiement attendue des commandes (=date_cde+15jours).
+
+    SELECT idClient AS "Numero de Client", idCommande AS "Numero de Commande", dateCommande AS "Date de la Commande", ADDDATE(dateCommande, INTERVAL 15 DAY) as "date de paiement attendue" FROM commandes;
+
+k. Affichez la date et l'heure actuelles.
+
+    SELECT CURRENT_TIMESTAMP();
+    SELECT DATE_FORMAT(CURRENT_TIMESTAMP(), "Nous sommes le %d/%m/%Y et il est %H:%i:%s") AS "Horloge Parlante";
+
+l. Affichez l'ancienneté des clients.
+
+    SELECT YEAR(CURRENT_DATE)-YEAR(`dateEntreeClient`) as anciennete FROM clients; 
+
+m. Affichez la quantité maximale achetée par un client.
+
+    SELECT MAX(quantiteCommande) as "Max Commande" FROM commandes GROUP BY idClient; 
+
+n. Affichez la quantité totale achetée par le client 2.
+
+    SELECT SUM(quantiteCommande) AS "Total Commande" FROM commandes WHERE idClient=2;
+
+o. Affichez la quantité moyenne achetée par le client 2.
+
+    SELECT AVG(quantiteCommande) AS "Commande Moyenne" FROM commandes WHERE idClient=2;
+
+p. Affichez les clients classés par ordre alphabétique de leur nom.
+
+    SELECT idClient, nomClient, prenomClient, dateEntreeClient FROM clients ORDER BY nomClient;
+
+q. Affichez les articles classés selon leur prix décroissant. 
+
+    SELECT idArticle, descriptionArticle, prixArticle FROM articles ORDER BY prixArticle DESC; 
