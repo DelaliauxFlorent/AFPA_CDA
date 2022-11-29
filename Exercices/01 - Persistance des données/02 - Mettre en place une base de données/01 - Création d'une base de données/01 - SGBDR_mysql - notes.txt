@@ -32,3 +32,8 @@ Maison:
 datadir="D:/Git/AFPA_CDA/Exercices/98 - Databases"
 AFPA:
 datadir="U:/59011-14-06/Exercices/98 - Databases" <= A VERIFIER au retour en salle
+
+BdD:
+Bac a Sable, Dev, Re7+Qualification, Prod
+
+fréquence, timing, volumes

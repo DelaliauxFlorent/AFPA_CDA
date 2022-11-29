@@ -136,7 +136,7 @@ DROP TABLE IF EXISTS Ingredients;
 CREATE TABLE Ingredients(
     idIngredient INT AUTO_INCREMENT PRIMARY KEY,
     nomIngredient VARCHAR(50) NOT NULL,
-    quantiteStockIngredient DECIMAL(6, 2) NOT NULL,
+    quantiteStockIngredient DECIMAL(6, 2) NOT NULL
 ) DEFAULT charset = UTF8;
 
 --
@@ -363,14 +363,14 @@ ALTER TABLE
 ADD
     CONSTRAINT FK_Apparitions_Especes FOREIGN KEY(idEspece) REFERENCES Especes(idEspece),
 ADD
-    CONSTRAINT FK_Apparitions_ZoneGeo FOREIGN KEY(idZoneGeographique) REFERENCES ZoneGeographiques(idZoneGeographique);
+    CONSTRAINT FK_Apparitions_ZoneGeo FOREIGN KEY(idZoneGeographique) REFERENCES ZonesGeographiques(idZoneGeographique);
 
 ALTER TABLE
     Relations
 ADD
-    CONSTRAINT FK_Relations_PoisPar FOREIGN KEY(idPoisson_parent) REFERENCES Poissons(idPoisson_parent),
+    CONSTRAINT FK_Relations_PoisPar FOREIGN KEY(idPoisson_parent) REFERENCES Poissons(idPoisson),
 ADD
-    CONSTRAINT FK_Relations_PoisEnf FOREIGN KEY(idPoisson_enfant) REFERENCES Poissons(idPoisson_enfant);
+    CONSTRAINT FK_Relations_PoisEnf FOREIGN KEY(idPoisson_enfant) REFERENCES Poissons(idPoisson);
 
 ALTER TABLE
     Nettoyages

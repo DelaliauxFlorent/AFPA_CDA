@@ -42,7 +42,7 @@ CREATE TABLE TypesLogements(
 DROP TABLE IF EXISTS Logements;
 
 CREATE TABLE Logements(
-    idLogements INT AUTO_INCREMENT PRIMARY KEY,
+    idLogement INT AUTO_INCREMENT PRIMARY KEY,
     numeroLogement VARCHAR(5) NOT NULL,
     rueLogement VARCHAR(60) NOT NULL,
     superficieLogement INT NOT NULL,
@@ -56,7 +56,7 @@ DROP TABLE IF EXISTS Possessions;
 CREATE TABLE Possessions(
     idPossession INT AUTO_INCREMENT PRIMARY KEY,
     idIndividu INT,
-    idLogements INT
+    idLogement INT
 );
 
 --
@@ -72,7 +72,7 @@ ALTER TABLE
 ADD
     CONSTRAINT FK_Logements_TypesLogements FOREIGN KEY(idTypeLogement) REFERENCES TypesLogements(idTypeLogement),
 ADD
-    CONSTRAINT FK_Logements_Quartiers FOREIGN KEY(idQuartiers) REFERENCES Quartiers(idQuartiers);
+    CONSTRAINT FK_Logements_Quartiers FOREIGN KEY(idQuartier) REFERENCES Quartiers(idQuartier);
 
 ALTER TABLE
     Possessions
