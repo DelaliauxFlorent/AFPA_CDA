@@ -41,7 +41,7 @@ SELECT * FROM villes_france ORDER BY ville_surface LIMIT 50;
 ALTER TABLE regions ADD region_nbDepartement int(3);
 
 -- 14.	Ecrire une procédure stockée (nommée MajRegion), qui vient mettre à jour cette colonne
-
+CREATE PROCEDURE `MajRegion`() NOT DETERMINISTIC CONTAINS SQL SQL SECURITY DEFINER UPDATE regions SET region_nbDepartement = (SELECT count(*) FROM departements WHERE departement_regionID=region_id); 
 
 -- 15.	Créer une vue qui regroupe les 3 tables
 CREATe view VueTroisTable AS
