@@ -4,9 +4,12 @@ namespace Puissance4
 {
     class Program
     {
+        
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World! ");
+            Parties game = new Parties();
+            game.lancerPartie();
+
         }
     }
 }
