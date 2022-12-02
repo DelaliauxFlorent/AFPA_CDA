@@ -80,7 +80,7 @@ namespace Puissance4
             {
                 Console.WriteLine("Dans quel colonne mettre le jeton?");
                 choixColonne = Convert.ToInt32(Console.ReadLine());
-                if (choixColonne > grilleJeu.NbreColonnes)
+                if (0 > choixColonne || choixColonne > grilleJeu.NbreColonnes)
                 {
                     erreurCol = true;
                     Console.WriteLine("Erreur! Cette colonne n'existe pas.");
@@ -93,6 +93,10 @@ namespace Puissance4
 
             } while (erreurCol);
             return choixColonne;
+        }
+        public void afficheResultat(Joueurs j, bool gagne)
+        {
+
         }
     }
 }

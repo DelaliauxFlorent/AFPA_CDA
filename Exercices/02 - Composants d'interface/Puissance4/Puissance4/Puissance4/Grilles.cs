@@ -46,6 +46,20 @@ namespace Puissance4
             return true;
         }
 
+        public int premVide(int colonne)
+        {
+            int i = 0;
+            do
+            {
+                if (Tableau[colonne, i].EstVide)
+                {
+                    return i;
+                }
+                i++;
+            } while (i < NbreLignes);
+            return -1;
+        }
+
         public int estAligne(int colonne, int ligne, int dirCol, int dirLig)
         {
             int newCol = colonne + dirCol;

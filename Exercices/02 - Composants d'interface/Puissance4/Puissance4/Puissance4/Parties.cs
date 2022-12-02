@@ -72,6 +72,9 @@ namespace Puissance4
                 joueurActu = prochainJoueur(joueurActu);
                 Affichages.afficheInviteJoueur(joueurActu);
                 int colonneJouee = Affichages.demanderColonne(grilleJeu);
+                grilleJeu.Tableau[colonneJouee, grilleJeu.premVide(colonneJouee)].Contenu = joueurActu;
+                gagne = estGagne(grilleJeu, colonneJouee, grilleJeu.premVide(colonneJouee));
+                plein = grilleJeu.estPleine();
             } while (!plein && !gagne);
         }
     }
