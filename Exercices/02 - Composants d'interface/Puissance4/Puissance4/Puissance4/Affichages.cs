@@ -17,7 +17,7 @@ namespace Puissance4
 
         public static Joueurs demandeInfoJoueur(int num)
         {
-            Console.WriteLine("\nQuel est le nom du joueur "+num+"?");
+            Console.WriteLine("\nQuel est le nom du joueur " + num + "?");
             String nomJoueur = Console.ReadLine();
             Console.WriteLine("Quel couleur?");
             String couleurJoueur = Console.ReadLine();
@@ -49,9 +49,9 @@ namespace Puissance4
 
         public static void afficheGrille(Grilles grilleJeu)
         {
-            for (int i = grilleJeu.NbreLignes-1; i >= 0; i--)
+            for (int i = grilleJeu.NbreLignes - 1; i >= 0; i--)
             {
-                for (int j = grilleJeu.NbreColonnes-1; j >=0; j--)
+                for (int j = grilleJeu.NbreColonnes - 1; j >= 0; j--)
                 {
                     Console.Write(" ");
                     if (grilleJeu.Tableau[j, i].EstVide)
@@ -69,7 +69,30 @@ namespace Puissance4
         }
         public static void afficheInviteJoueur(Joueurs j)
         {
-            Console.WriteLine("C'est à "+j.Nom+" de jouer!");
+            Console.WriteLine("C'est à " + j.Nom + " de jouer!");
+        }
+
+        public static int demanderColonne(Grilles grilleJeu)
+        {
+            int choixColonne;
+            bool erreurCol = false;
+            do
+            {
+                Console.WriteLine("Dans quel colonne mettre le jeton?");
+                choixColonne = Convert.ToInt32(Console.ReadLine());
+                if (choixColonne > grilleJeu.NbreColonnes)
+                {
+                    erreurCol = true;
+                    Console.WriteLine("Erreur! Cette colonne n'existe pas.");
+                }
+                else if (grilleJeu.colonnePleine(choixColonne))
+                {
+                    erreurCol = true;
+                    Console.WriteLine("Erreur! Cette colonne est déjà pleine.");
+                }
+
+            } while (erreurCol);
+            return choixColonne;
         }
     }
 }

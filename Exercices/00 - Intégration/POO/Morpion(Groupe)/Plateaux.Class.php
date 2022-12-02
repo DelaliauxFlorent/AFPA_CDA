@@ -52,8 +52,7 @@ class Plateaux
 
     public function hydrate($data)
     {
-        foreach ($data as $key => $value)
-        {
+        foreach ($data as $key => $value) {
             $methode = "set" . ucfirst($key); //ucfirst met la 1ere lettre en majuscule
             if (is_callable(([$this, $methode]))) // is_callable verifie que la methode existe
             {
@@ -109,10 +108,8 @@ class Plateaux
 
         $tab = [];
 
-        for ($i = 0; $i < $this->getDimY(); $i++)
-        {
-            for ($j = 0; $j < $this->getDimX(); $j++)
-            {
+        for ($i = 0; $i < $this->getDimY(); $i++) {
+            for ($j = 0; $j < $this->getDimX(); $j++) {
                 $tab[$i][$j] = new Cases(["posX" => $j, "posY" => $i, "contenu" => new Joueurs()]);
             }
         }
@@ -129,12 +126,13 @@ class Plateaux
         return ($x >= 0 && $y >= 0 && $y < $this->getDimY() && $x < $this->getDimX());
     }
 
-    public function estPlein(){
+    public function estPlein()
+    {
         foreach ($this->getTableau() as $key => $tabCases) {
-            foreach ($tabCases as $cases){
-                    if ($cases->getContenu()->getSigne() == ""){
-                        return false;
-                    }
+            foreach ($tabCases as $cases) {
+                if ($cases->getContenu()->getSigne() == "") {
+                    return false;
+                }
             }
         }
         return true;
@@ -153,26 +151,19 @@ class Plateaux
     {
         $newPosX = $posX + $dirX; //Calcul de la position direction X
         $newPosY = $posY + $dirY; //Calcul de la position direction Y
-        if ($this->caseExiste($newPosY, $newPosX))
-        { //determine le signe actuelle de la case
+        if ($this->caseExiste($newPosY, $newPosX)) { //determine le signe actuelle de la case
             $signe = ($this->getTableau()[$posY][$posX])->getContenu()->getSigne(); //Recuperation du tableau PositionX et Position Y
             $signeDir = ($this->getTableau()[$newPosY][$newPosX])->getContenu()->getSigne();
             //Recuperation du tableau NewPositionX et NewPositionY
-            if ($signe == $signeDir)
-        {
+            if ($signe == $signeDir) {
                 $posX = $newPosX; // nouvelles positions
                 $posY = $newPosY;
                 return 1 + $this->estAligne($posX, $posY, $dirX, $dirY); //relance
-            }
-        else
-        {
+            } else {
                 return 1;
             }
-        }
-        else
-        {
+        } else {
             return 1;
         }
     }
 }
-

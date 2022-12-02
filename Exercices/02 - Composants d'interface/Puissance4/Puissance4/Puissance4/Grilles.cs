@@ -26,6 +26,45 @@ namespace Puissance4
         public int NbreColonnes { get; set; }
         public Cases [,] Tableau { get;}
 
+        public bool colonnePleine(int colonne)
+        {
+            return !(Tableau[colonne - 1, NbreLignes - 1].EstVide);
+        }
+
+        public bool estPleine()
+        {
+            for (int i = 0; i < NbreColonnes; i++)
+            {
+                for (int j = 0; j < NbreLignes; j++)
+                {
+                    if(Tableau[i, j].EstVide)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        public int estAligne(int colonne, int ligne, int dirCol, int dirLig)
+        {
+            int newCol = colonne + dirCol;
+            int newLig = ligne + dirLig;
+            if(0<=newCol && newCol < NbreColonnes && 0<= newLig && newLig < NbreLignes)
+            {
+                char signeActu = Tableau[colonne, ligne].Contenu.Signe;
+                char signeDir = Tableau[newCol, newLig].Contenu.Signe;
+                if (signeActu == signeDir)
+                {
+                    return 1 + estAligne(newCol, newLig, dirCol, dirLig);
+                }
+                else
+                {
+                    return 1;
+                }
+            }
+            return 1;
+        }
 
     }
 }

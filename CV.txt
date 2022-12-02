@@ -1,0 +1,8 @@
+gestion de projet:
+uml
+méthode agile
+github
+veille technologique
+
+Front, Back
+pas Web mais applications multicouches
