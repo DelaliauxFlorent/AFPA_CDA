@@ -23,7 +23,7 @@ namespace Puissance4
 
             Grilles grilleJeu = new Grilles(nbreligne, nbreColonne);
 
-            NbAligne = Affichages.demandeNbreAligne();
+            NbAligne = Affichages.demandeNbreAligne(grilleJeu);
             NbreJoueurs = Affichages.demandeNbreJoueurs();
             ListeJoueurs = new Joueurs[NbreJoueurs];
             for (int i = 0; i < NbreJoueurs; i++)

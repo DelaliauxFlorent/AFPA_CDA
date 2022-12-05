@@ -13,16 +13,6 @@ namespace Puissance4
         public bool EstVide { get; set; }
 
         /// <summary>
-        /// Assignation d'un joueur à une case
-        /// </summary>
-        /// <param name="contenu"></param>
-        public Cases(Joueurs contenu)
-        {
-            Contenu = contenu;
-            EstVide = false;
-        }
-
-        /// <summary>
         /// Constructeur vide de la classe
         /// </summary>
         public Cases()

@@ -8,6 +8,8 @@ namespace Puissance4
 {
     class Grilles
     {
+        
+
         /// <summary>
         /// Constructeur de la grille
         /// </summary>

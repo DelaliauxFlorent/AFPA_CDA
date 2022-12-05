@@ -20,8 +20,26 @@ namespace Puissance4
         /// <returns>int</returns>
         public static int demandeNbreJoueurs()
         {
-            Console.Write("Nombre de joueurs: ");
-            int nbJoueur = Convert.ToInt32(Console.ReadLine());
+            bool erreurDmdNbJ=false;
+            int nbJoueur=2;
+            do
+            {
+                Console.WriteLine("Nombre de joueurs: ");
+                String nbJ = Console.ReadLine();
+                if (nbJ != "")
+                {
+                    erreurDmdNbJ = !int.TryParse(nbJ, out nbJoueur);
+                    if (erreurDmdNbJ)
+                    {
+                        Console.WriteLine("Erreur! Veuillez entrer un nombre.");
+                    }
+                }
+                else
+                {
+                    erreurDmdNbJ = true;
+                }
+            } while (erreurDmdNbJ);
+            
             return nbJoueur;
         }
 
@@ -33,13 +51,36 @@ namespace Puissance4
         /// <returns>Un joueur avec un ID, un nom, une couleur et un signe</returns>
         public static Joueurs demandeInfoJoueur(int num)
         {
-            Console.WriteLine("\nQuel est le nom du joueur " + num + "?");
-            String nomJoueur = Console.ReadLine();
+            bool erreurNom = false;
             bool erreurColor = false;
+            bool erreurSigne = false;
+
+
+            String nomJoueur;
             ConsoleColor couleurJoueur = ConsoleColor.Gray;
             char signJoueur = '#';
+            String choixSign;
+
+            //Demande du nom
             do
             {
+                Console.WriteLine("\nQuel est le nom du joueur " + num + "?");
+                nomJoueur = Console.ReadLine();
+                if (nomJoueur == "")
+                {
+                    erreurNom = true;   // Erreur si champ vide
+                    Console.WriteLine("Erreur! Le nom ne peut être vide.");
+                }
+                else
+                {
+                    erreurNom = false;
+                }
+            } while (erreurNom);   
+            
+            //Demande de la couleur
+            do
+            {
+                //Affichage de la liste des couleurs possibles
                 Console.WriteLine("Liste des couleurs possibles:");
                 for (int i = 0; i < ListeCouleursT.Length; i++)
                 {
@@ -91,20 +132,31 @@ namespace Puissance4
                     Console.WriteLine("Erreur! Entrée invalide, veuillez donner le numéro correspondant à la couleur voulue.");
                 }
             } while (erreurColor);
-            bool erreurSigne = false;
+
+            // Demande du caractère
             do
             {
                 Console.WriteLine("Quel caractère?");
-                signJoueur = Console.ReadKey().KeyChar;
-                if (Joueurs.signeExiste(signJoueur))
+                choixSign = Console.ReadLine();
+                if (choixSign.Length==1)
                 {
-                    erreurSigne = true;
-                    Console.WriteLine("Erreur! Ce signe est déjà utilisé. Veuillez en choisir un autre.");
+                    char.TryParse(choixSign, out signJoueur);
+                    if (Joueurs.signeExiste(signJoueur))
+                    {
+                        erreurSigne = true;
+                        Console.WriteLine("Erreur! Ce signe est déjà utilisé. Veuillez en choisir un autre.");
+                    }
+                    else
+                    {
+                        erreurSigne = false;
+                    }
                 }
                 else
                 {
-                    erreurSigne = false;
+                    erreurSigne = true;
+                    Console.WriteLine("Erreur! Il vous faut un et un seul caractère.");
                 }
+                
             } while (erreurSigne);
             
             Joueurs player = new Joueurs(num-1, nomJoueur, couleurJoueur, signJoueur);
@@ -115,10 +167,37 @@ namespace Puissance4
         /// Demande le nombre de jeton devant être alignés pour que le joueur gagne
         /// </summary>
         /// <returns>int</returns>
-        public static int demandeNbreAligne()
+        public static int demandeNbreAligne(Grilles grilleJeu)
         {
-            Console.WriteLine("Combien de jetons identiques doivent-ils être alignés pour remporter la partie?");
-            int nbAligne = Convert.ToInt32(Console.ReadLine());
+            bool erreurDmdNbAli = false;
+            String nbAlignT;
+            int nbAligne;
+            do
+            {
+                Console.WriteLine("Combien de jetons identiques doivent-ils être alignés pour remporter la partie?");
+                nbAlignT = Console.ReadLine();
+                erreurDmdNbAli = !int.TryParse(nbAlignT, out nbAligne);
+                if (erreurDmdNbAli)
+                {
+                    Console.WriteLine("Erreur! Veuillez entrer un nombre.");
+                }
+                else
+                {
+                    if (nbAligne<3)
+                    {
+                        erreurDmdNbAli = true;
+                        Console.WriteLine("Erreur! Cette valeur est trop petite.");
+                    }else if(nbAligne>=Math.Max(grilleJeu.NbreColonnes, grilleJeu.NbreLignes))
+                    {
+                        erreurDmdNbAli = true;
+                        Console.WriteLine("Erreur! Cette valeur est trop grande.");
+                    }
+                    else
+                    {
+                        erreurDmdNbAli = false;
+                    }
+                }
+            } while (erreurDmdNbAli);            
             return nbAligne;
         }
 
@@ -128,8 +207,32 @@ namespace Puissance4
         /// <returns>int</returns>
         public static int demandeNbreLignes()
         {
-            Console.WriteLine("De combien de lignes est constituée la grille?");
-            int nbreLigne = Convert.ToInt32(Console.ReadLine());
+            bool erreurDmdNbLig = false;
+            String choixNbLigne;
+            int nbreLigne;
+            do
+            {
+                Console.WriteLine("De combien de lignes est constituée la grille? (Min=6)");
+                choixNbLigne = Console.ReadLine();
+                erreurDmdNbLig = !int.TryParse(choixNbLigne, out nbreLigne);
+                if (erreurDmdNbLig)
+                {
+                    Console.WriteLine("Erreur! Veuillez entrer un nombre.");
+                }
+                else
+                {
+                    if (nbreLigne < 6)
+                    {
+                        erreurDmdNbLig = true;
+                        Console.WriteLine("Erreur! Une grille de Puissance 4 possède au moins 6 lignes.");
+                    }
+                    else
+                    {
+                        erreurDmdNbLig = false;
+                    }
+                }
+            } while (erreurDmdNbLig);
+            
             return nbreLigne;
         }
 
@@ -139,8 +242,32 @@ namespace Puissance4
         /// <returns></returns>
         public static int demandeNbreColonnes()
         {
-            Console.WriteLine("De combien de colonnes est constituée la grille?");
-            int nbreColonne = Convert.ToInt32(Console.ReadLine());
+            bool erreurDmdNbCol = false;
+            String choixNbCol;
+            int nbreColonne;
+            do
+            {
+                Console.WriteLine("De combien de colonnes est constituée la grille? (Min=7)");
+                choixNbCol = Console.ReadLine();
+                erreurDmdNbCol = !int.TryParse(choixNbCol, out nbreColonne);
+                if (erreurDmdNbCol)
+                {
+                    Console.WriteLine("Erreur! Veuillez entrer un nombre.");
+                }
+                else
+                {
+                    if (nbreColonne < 7)
+                    {
+                        erreurDmdNbCol = true;
+                        Console.WriteLine("Erreur! Une grille de Puissance 4 possède au moins 7 colonnes.");
+                    }
+                    else
+                    {
+                        erreurDmdNbCol = false;
+                    }
+                }
+            } while (erreurDmdNbCol);
+            
             return nbreColonne;
         }
 

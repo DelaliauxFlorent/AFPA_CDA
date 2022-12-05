@@ -38,7 +38,7 @@ namespace Puissance4
         }
 
         /// <summary>
-        /// Afficher les infos d'un joueur (debug)
+        /// Afficher les infos d'un joueur V1 (debug)
         /// </summary>
         public void afficherJoueur()
         {
@@ -46,6 +46,14 @@ namespace Puissance4
             Console.ForegroundColor = Couleur;
             Console.Write(Signe);
             Console.ForegroundColor = ConsoleColor.Gray;
+        }
+
+        /// <summary>
+        /// Afficher les infos d'un joueur avec simple Console.WriteLine (debug)
+        /// </summary>
+        public override string ToString()
+        {
+            return "Joueur N°"+Num+": Nom="+Nom+"\tCouleur="+Couleur+"\tSigne="+Signe;
         }
 
         /// <summary>
