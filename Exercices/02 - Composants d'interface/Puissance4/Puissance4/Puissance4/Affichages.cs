@@ -54,12 +54,14 @@ namespace Puissance4
             bool erreurNom = false;
             bool erreurColor = false;
             bool erreurSigne = false;
+            bool erreurColSig = false;
 
 
             String nomJoueur;
             ConsoleColor couleurJoueur = ConsoleColor.Gray;
             char signJoueur = '#';
             String choixSign;
+            List<int> listeIndexSign = new List<int>() ;
 
             //Demande du nom
             do
@@ -75,90 +77,90 @@ namespace Puissance4
                 {
                     erreurNom = false;
                 }
-            } while (erreurNom);   
-            
-            //Demande de la couleur
+            } while (erreurNom);
+            //Demande couleur ET signe
             do
             {
-                //Affichage de la liste des couleurs possibles
-                Console.WriteLine("Liste des couleurs possibles:");
-                for (int i = 0; i < ListeCouleursT.Length; i++)
+                //Demande de la couleur
+                do
                 {
-                    Console.Write(ListeCouleursT[i]);
-                    if (i % 3 == 2)
+                    //Affichage de la liste des couleurs possibles
+                    Console.WriteLine("Liste des couleurs possibles:");
+                    for (int i = 0; i < ListeCouleursT.Length; i++)
                     {
-                        Console.Write("\n");
+                        Console.Write(ListeCouleursT[i]);
+                        if (i % 3 == 2)
+                        {
+                            Console.Write("\n");
+                        }
+                        else
+                        {
+                            if (i != 3)
+                            {
+                                Console.Write("\t");
+                            }
+                            if (i == 10 || i == 13)
+                            {
+                                Console.Write("\t");
+                            }
+                            Console.Write("\t| ");
+                        }
                     }
-                    else
+                    Console.WriteLine("\nQuel couleur utiliser (numéro)?");
+                    String choixCouleur = Console.ReadLine();
+                    if (int.TryParse(choixCouleur, out int ChoixColorNum))
                     {
-                        if (i != 3)
-                        {
-                            Console.Write("\t");
-                        }
-                        if(i==10 || i==13)
-                        {
-                            Console.Write("\t");
-                        }
-                        Console.Write("\t| ");
-                    }                    
-                }
-                Console.WriteLine("\nQuel couleur utiliser (numéro)?");
-                String choixCouleur = Console.ReadLine();
-                if (int.TryParse(choixCouleur, out int ChoixColorNum))
-                {
-                    if (ChoixColorNum > 0 && ChoixColorNum < 16)
-                    {
-                        if (!Joueurs.couleurExiste(consoleColors[ChoixColorNum]))
+                        if (ChoixColorNum > 0 && ChoixColorNum < 16)
                         {
                             erreurColor = false;
-                            couleurJoueur = consoleColors[ChoixColorNum];
                         }
                         else
                         {
                             erreurColor = true;
-                            Console.WriteLine("Erreur! Cette couleur a déjà été attribuée.");
+                            Console.WriteLine("Erreur! Ce numéro ne correspond à aucune couleur.");
                         }
+
                     }
                     else
                     {
                         erreurColor = true;
-                        Console.WriteLine("Erreur! Ce numéro ne correspond à aucune couleur.");
+                        Console.WriteLine("Erreur! Entrée invalide, veuillez donner le numéro correspondant à la couleur voulue.");
                     }
+                } while (erreurColor);
 
-                }
-                else
+                // Demande du caractère
+                do
                 {
-                    erreurColor = true;
-                    Console.WriteLine("Erreur! Entrée invalide, veuillez donner le numéro correspondant à la couleur voulue.");
-                }
-            } while (erreurColor);
-
-            // Demande du caractère
-            do
-            {
-                Console.WriteLine("Quel caractère?");
-                choixSign = Console.ReadLine();
-                if (choixSign.Length==1)
-                {
-                    char.TryParse(choixSign, out signJoueur);
-                    if (Joueurs.signeExiste(signJoueur))
+                    Console.WriteLine("Quel caractère?");
+                    choixSign = Console.ReadLine();
+                    if (choixSign.Length == 1)
                     {
-                        erreurSigne = true;
-                        Console.WriteLine("Erreur! Ce signe est déjà utilisé. Veuillez en choisir un autre.");
+                        char.TryParse(choixSign, out signJoueur);
+                        erreurSigne = false;
                     }
                     else
                     {
-                        erreurSigne = false;
+                        erreurSigne = true;
+                        Console.WriteLine("Erreur! Il vous faut un et un seul caractère.");
+                    }
+
+                } while (erreurSigne);
+
+                var items = Joueurs.ListeSignes.FindAll(c=>c.Equals(signJoueur));
+                foreach (var item in items)
+                {
+                    listeIndexSign.Add(Joueurs.ListeSignes.IndexOf(item));
+                }
+                foreach (var indx in listeIndexSign)
+                {
+                    if (Joueurs.ListeCouleurs[indx] == couleurJoueur)
+                    {
+                        erreurColSig = true;
+                        Console.WriteLine("Erreur! Cette association Couleur/Signe est déjà utilisé par un autre joueur. Veuillez en choisir une autre.");
                     }
                 }
-                else
-                {
-                    erreurSigne = true;
-                    Console.WriteLine("Erreur! Il vous faut un et un seul caractère.");
-                }
-                
-            } while (erreurSigne);
-            
+
+            } while (erreurColSig);
             Joueurs player = new Joueurs(num-1, nomJoueur, couleurJoueur, signJoueur);
             return player;
         }
