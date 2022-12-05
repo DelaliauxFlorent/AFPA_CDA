@@ -12,27 +12,48 @@ namespace Puissance4
         public int NbAligne { get; set; }
         public Joueurs[] ListeJoueurs { get; set; }
 
+        /// <summary>
+        /// Initialise la partie
+        /// </summary>
+        /// <returns>La grille de jeu</returns>
         private Grilles initPartie()
         {
-            int nbreligne = Affichages.demandeNbreLignes();
-            int nbreColonne = Affichages.demandeNbreColonnes();
+            //int nbreligne = Affichages.demandeNbreLignes();
+            //int nbreColonne = Affichages.demandeNbreColonnes();
+
+            int nbreligne = 5;
+            int nbreColonne = 5;
+
             Grilles grilleJeu = new Grilles(nbreligne, nbreColonne);
 
-            NbAligne = Affichages.demandeNbreAligne();
-            NbreJoueurs = Affichages.demandeNbreJoueurs();
-            ListeJoueurs = new Joueurs[NbreJoueurs];
-            for (int i = 0; i < NbreJoueurs; i++)
-            {
-                ListeJoueurs[i] = Affichages.demandeInfoJoueur(i + 1);
-            }
+            //NbAligne = Affichages.demandeNbreAligne();
+            //NbreJoueurs = Affichages.demandeNbreJoueurs();
+            //ListeJoueurs = new Joueurs[NbreJoueurs];
+            //for (int i = 0; i < NbreJoueurs; i++)
+            //{
+            //    ListeJoueurs[i] = Affichages.demandeInfoJoueur(i + 1);
+            //}
 
-            foreach (Joueurs player in ListeJoueurs)
-            {
-                player.afficherJoueur();
-            }
+            //foreach (Joueurs player in ListeJoueurs)
+            //{
+            //    player.afficherJoueur();
+            //}
+
+            
+            NbAligne = 4;
+            NbreJoueurs = 2;
+
+            ListeJoueurs = new Joueurs[NbreJoueurs];
+            ListeJoueurs[0] = new Joueurs(0, "Toto", ConsoleColor.Red, '#');
+            ListeJoueurs[1] = new Joueurs(1, "Titi", ConsoleColor.Yellow, '0');
             return grilleJeu;
         }
 
+        /// <summary>
+        /// Détermine à qui c'est le tour de jouer
+        /// </summary>
+        /// <param name="j">Joueur ayant joué précedemment</param>
+        /// <returns>Le joueur dont c'est le tour</returns>
         public Joueurs prochainJoueur(Joueurs j = null)
         {
             if (j == null)
@@ -43,6 +64,13 @@ namespace Puissance4
             return ListeJoueurs[(j.Num + 1) % NbreJoueurs];
         }
 
+        /// <summary>
+        /// Vérifie si la partie est gagné
+        /// </summary>
+        /// <param name="grilleJeu">Grille de jeu</param>
+        /// <param name="colonne">Absice du jeton</param>
+        /// <param name="ligne">Ordonné du jeton</param>
+        /// <returns></returns>
         public bool estGagne(Grilles grilleJeu, int colonne, int ligne)
         {
             int aDroite = grilleJeu.estAligne(colonne, ligne, 1, 0);
@@ -60,6 +88,9 @@ namespace Puissance4
             return (horiz >= NbAligne || vert >= NbAligne || diagD >= NbAligne || diagM >= NbAligne);
         }
 
+        /// <summary>
+        /// Lance la partie
+        /// </summary>
         public void lancerPartie()
         {
             Grilles grilleJeu = initPartie();
@@ -72,10 +103,12 @@ namespace Puissance4
                 joueurActu = prochainJoueur(joueurActu);
                 Affichages.afficheInviteJoueur(joueurActu);
                 int colonneJouee = Affichages.demanderColonne(grilleJeu);
-                grilleJeu.Tableau[colonneJouee, grilleJeu.premVide(colonneJouee)].Contenu = joueurActu;
-                gagne = estGagne(grilleJeu, colonneJouee, grilleJeu.premVide(colonneJouee));
+                int ligneJouee = grilleJeu.premVide(colonneJouee);
+                grilleJeu.Tableau[colonneJouee, ligneJouee].Contenu = joueurActu;
+                gagne = estGagne(grilleJeu, colonneJouee, ligneJouee);
                 plein = grilleJeu.estPleine();
             } while (!plein && !gagne);
+            Affichages.afficheResultat(joueurActu, gagne);
         }
     }
 }

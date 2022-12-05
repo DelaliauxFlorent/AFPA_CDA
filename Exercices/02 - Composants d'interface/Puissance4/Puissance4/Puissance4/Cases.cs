@@ -12,16 +12,29 @@ namespace Puissance4
         public Joueurs Contenu { get; set; }
         public bool EstVide { get; }
 
+        /// <summary>
+        /// Assignation d'un joueur à une case
+        /// </summary>
+        /// <param name="contenu"></param>
         public Cases(Joueurs contenu)
         {
             Contenu = contenu;
             EstVide = false;
         }
+
+        /// <summary>
+        /// Constructeur vide de la classe
+        /// </summary>
         public Cases()
         {
             EstVide = true;
         }
 
+        /// <summary>
+        /// Check si la case est vide. Si oui, y affecte le joueur. Sinon, retourne que l'action est impossible
+        /// </summary>
+        /// <param name="j"></param>
+        /// <returns></returns>
         public bool estJouable(Joueurs j)
         {
             if (EstVide)

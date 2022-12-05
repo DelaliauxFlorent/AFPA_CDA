@@ -14,46 +14,58 @@ namespace Puissance4
         /// </summary>
 
         public int Num { get; set; }
-        public String Couleur { get; set; }
+        public ConsoleColor Couleur { get; set; }
         public char Signe { get; set; }
         public String Nom { get; set; }
-        public static List<String> ListeCouleurs { get; }
-        public static List<String> ListeSignes { get; }
+        public static readonly List<ConsoleColor> ListeCouleurs = new List<ConsoleColor>();
+        public static readonly List<char> ListeSignes = new List<char>();
 
         /// <summary>
         /// Constructeur de Classe
         /// </summary>
         /// <param name="number">Le numéro du joueur</param>
+        /// <param name="name">Le nom du joueur</param>
         /// <param name="color">La couleur choisie par le joueur</param>
         /// <param name="sign">Le signe choisi par le joueur</param>
-        /// <param name="name">Le nom du joueur</param>
-        public Joueurs(int number, String color, char sign, String name)
+        public Joueurs(int number, String name, ConsoleColor color, char sign)
         {
             Num = number;
+            Nom = name;
             Couleur = color;
             Signe = sign;
-            Nom = name;
-            //if(!(ListeCouleurs?.Any() ?? false)){
-            //    ListeCouleurs.Add(color);
-            //}
-            //if (!(ListeSignes?.Any() ?? false))
-            //{
-            //    ListeSignes.Add(color);
-            //}
+            ListeCouleurs.Add(color);
+            ListeSignes.Add(sign);
         }
 
+        /// <summary>
+        /// Afficher les infos d'un joueur (debug)
+        /// </summary>
         public void afficherJoueur()
         {
-            Console.WriteLine("\nJoueur:\n"+Num+"\t"+Nom+"\t"+Couleur+"\t"+Signe);
+            Console.Write("Joueur "+Num+":\n" + "\t" + Nom + "\t");
+            Console.ForegroundColor = Couleur;
+            Console.Write(Signe);
+            Console.ForegroundColor = ConsoleColor.Gray;
         }
 
-        //public static bool couleurExiste(String color)
-        //{
-        //    return ListeCouleurs.Contains(color);
-        //}
-        //public static bool signeExiste(String sign)
-        //{
-        //    return ListeSignes.Contains(sign);
-        //}
+        /// <summary>
+        /// Check si la couleur a déjà été choisie
+        /// </summary>
+        /// <param name="colorC">Couleur à vérifier</param>
+        /// <returns></returns>
+        public static bool couleurExiste(ConsoleColor colorC)
+        {
+            return ListeCouleurs.Contains(colorC);
+        }
+
+        /// <summary>
+        /// Check si le signe a déjà été choisi
+        /// </summary>
+        /// <param name="sign">Signe à vérifier</param>
+        /// <returns></returns>
+        public static bool signeExiste(char sign)
+        {
+            return ListeSignes.Contains(sign);
+        }
     }
 }

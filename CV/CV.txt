@@ -6,3 +6,5 @@ veille technologique
 
 Front, Back
 pas Web mais applications multicouches
+
+Recherche d'entreprise pour une période d'application = stage non rémunéré

@@ -8,6 +8,11 @@ namespace Puissance4
 {
     class Grilles
     {
+        /// <summary>
+        /// Constructeur de la grille
+        /// </summary>
+        /// <param name="nbreLignes">Nombre de lignes de la grille</param>
+        /// <param name="nbreColonnes">Nombre de colonne de la grille</param>
         public Grilles(int nbreLignes, int nbreColonnes)
         {
             NbreLignes = nbreLignes;
@@ -26,11 +31,20 @@ namespace Puissance4
         public int NbreColonnes { get; set; }
         public Cases [,] Tableau { get;}
 
+        /// <summary>
+        /// Check si la colonne est déjà pleine
+        /// </summary>
+        /// <param name="colonne">Numéro de la colonne a checker (commance à 1)</param>
+        /// <returns></returns>
         public bool colonnePleine(int colonne)
         {
-            return !(Tableau[colonne - 1, NbreLignes - 1].EstVide);
+            return !(Tableau[colonne, NbreLignes - 1].EstVide);
         }
 
+        /// <summary>
+        /// Check si la grille est déjà entièrement remplie
+        /// </summary>
+        /// <returns></returns>
         public bool estPleine()
         {
             for (int i = 0; i < NbreColonnes; i++)
@@ -46,6 +60,11 @@ namespace Puissance4
             return true;
         }
 
+        /// <summary>
+        /// Récupère la valeur de la première ligne vide de la colonne
+        /// </summary>
+        /// <param name="colonne">Le numéro de la colonne (commence à 1)</param>
+        /// <returns>Soit la valeur de la première ligne vide, soit -1 en cas d'erreur/colonne pleine</returns>
         public int premVide(int colonne)
         {
             int i = 0;
@@ -60,11 +79,19 @@ namespace Puissance4
             return -1;
         }
 
+        /// <summary>
+        /// Check dans une direction à partir du jeton placé pour savoir le nombre de jeton aligné par là
+        /// </summary>
+        /// <param name="colonne">"Position X" du jeton placé</param>
+        /// <param name="ligne">"Position Y" du jeton placé</param>
+        /// <param name="dirCol">Direction du mouvement sur les absices</param>
+        /// <param name="dirLig">Direction du mouvement sur les ordonnées</param>
+        /// <returns></returns>
         public int estAligne(int colonne, int ligne, int dirCol, int dirLig)
         {
             int newCol = colonne + dirCol;
             int newLig = ligne + dirLig;
-            if(0<=newCol && newCol < NbreColonnes && 0<= newLig && newLig < NbreLignes)
+            if(0<=newCol && newCol < NbreColonnes && 0<= newLig && newLig < NbreLignes && !Tableau[newCol, newLig].EstVide)
             {
                 char signeActu = Tableau[colonne, ligne].Contenu.Signe;
                 char signeDir = Tableau[newCol, newLig].Contenu.Signe;
