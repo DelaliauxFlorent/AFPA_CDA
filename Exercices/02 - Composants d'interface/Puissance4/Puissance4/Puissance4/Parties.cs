@@ -8,7 +8,7 @@ namespace Puissance4
 {
     class Parties
     {
-        public int NbreJoueurs { get; set; }
+        public static int NbreJoueurs { get; set; }
         public int NbAligne { get; set; }
         public Joueurs[] ListeJoueurs { get; set; }
 

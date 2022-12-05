@@ -145,18 +145,11 @@ namespace Puissance4
                     }
 
                 } while (erreurSigne);
-
-                var items = Joueurs.ListeSignes.FindAll(c=>c.Equals(signJoueur));
-                foreach (var item in items)
+                if (num > 2)
                 {
-                    listeIndexSign.Add(Joueurs.ListeSignes.IndexOf(item));
-                }
-                foreach (var indx in listeIndexSign)
-                {
-                    if (Joueurs.ListeCouleurs[indx] == couleurJoueur)
+                    for (int i = 0; i < Parties.NbreJoueurs; i++)
                     {
-                        erreurColSig = true;
-                        Console.WriteLine("Erreur! Cette association Couleur/Signe est déjà utilisé par un autre joueur. Veuillez en choisir une autre.");
+
                     }
                 }
 
