@@ -34,7 +34,7 @@ namespace Puissance4
         /// <summary>
         /// Check si la colonne est déjà pleine
         /// </summary>
-        /// <param name="colonne">Numéro de la colonne a checker (commance à 1)</param>
+        /// <param name="colonne">Numéro de la colonne a checker</param>
         /// <returns></returns>
         public bool colonnePleine(int colonne)
         {

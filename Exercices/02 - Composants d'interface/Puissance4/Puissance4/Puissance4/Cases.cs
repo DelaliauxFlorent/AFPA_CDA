@@ -10,7 +10,7 @@ namespace Puissance4
     {
 
         public Joueurs Contenu { get; set; }
-        public bool EstVide { get; }
+        public bool EstVide { get; set; }
 
         /// <summary>
         /// Assignation d'un joueur à une case
@@ -40,6 +40,7 @@ namespace Puissance4
             if (EstVide)
             {
                 Contenu = j;
+                EstVide = false;
                 return true;
             }
             else

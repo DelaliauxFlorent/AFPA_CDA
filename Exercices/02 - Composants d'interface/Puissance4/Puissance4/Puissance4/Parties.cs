@@ -18,34 +18,24 @@ namespace Puissance4
         /// <returns>La grille de jeu</returns>
         private Grilles initPartie()
         {
-            //int nbreligne = Affichages.demandeNbreLignes();
-            //int nbreColonne = Affichages.demandeNbreColonnes();
-
-            int nbreligne = 5;
-            int nbreColonne = 5;
+            int nbreligne = Affichages.demandeNbreLignes();
+            int nbreColonne = Affichages.demandeNbreColonnes();
 
             Grilles grilleJeu = new Grilles(nbreligne, nbreColonne);
 
-            //NbAligne = Affichages.demandeNbreAligne();
-            //NbreJoueurs = Affichages.demandeNbreJoueurs();
-            //ListeJoueurs = new Joueurs[NbreJoueurs];
-            //for (int i = 0; i < NbreJoueurs; i++)
-            //{
-            //    ListeJoueurs[i] = Affichages.demandeInfoJoueur(i + 1);
-            //}
+            NbAligne = Affichages.demandeNbreAligne();
+            NbreJoueurs = Affichages.demandeNbreJoueurs();
+            ListeJoueurs = new Joueurs[NbreJoueurs];
+            for (int i = 0; i < NbreJoueurs; i++)
+            {
+                ListeJoueurs[i] = Affichages.demandeInfoJoueur(i + 1);
+            }
 
             //foreach (Joueurs player in ListeJoueurs)
             //{
             //    player.afficherJoueur();
             //}
 
-            
-            NbAligne = 4;
-            NbreJoueurs = 2;
-
-            ListeJoueurs = new Joueurs[NbreJoueurs];
-            ListeJoueurs[0] = new Joueurs(0, "Toto", ConsoleColor.Red, '#');
-            ListeJoueurs[1] = new Joueurs(1, "Titi", ConsoleColor.Yellow, '0');
             return grilleJeu;
         }
 
@@ -104,10 +94,11 @@ namespace Puissance4
                 Affichages.afficheInviteJoueur(joueurActu);
                 int colonneJouee = Affichages.demanderColonne(grilleJeu);
                 int ligneJouee = grilleJeu.premVide(colonneJouee);
-                grilleJeu.Tableau[colonneJouee, ligneJouee].Contenu = joueurActu;
+                grilleJeu.Tableau[colonneJouee, ligneJouee].estJouable(joueurActu);
                 gagne = estGagne(grilleJeu, colonneJouee, ligneJouee);
                 plein = grilleJeu.estPleine();
             } while (!plein && !gagne);
+            Affichages.afficheGrille(grilleJeu);
             Affichages.afficheResultat(joueurActu, gagne);
         }
     }

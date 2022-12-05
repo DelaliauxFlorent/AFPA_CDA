@@ -33,7 +33,7 @@ namespace Puissance4
         /// <returns>Un joueur avec un ID, un nom, une couleur et un signe</returns>
         public static Joueurs demandeInfoJoueur(int num)
         {
-            Console.WriteLine("\nQuel est le nom du joueur " + (num+1) + "?");
+            Console.WriteLine("\nQuel est le nom du joueur " + num + "?");
             String nomJoueur = Console.ReadLine();
             bool erreurColor = false;
             ConsoleColor couleurJoueur = ConsoleColor.Gray;
@@ -107,7 +107,7 @@ namespace Puissance4
                 }
             } while (erreurSigne);
             
-            Joueurs player = new Joueurs(num, nomJoueur, couleurJoueur, signJoueur);
+            Joueurs player = new Joueurs(num-1, nomJoueur, couleurJoueur, signJoueur);
             return player;
         }
 
@@ -150,7 +150,7 @@ namespace Puissance4
         /// <param name="grilleJeu">La grille a afficher</param>
         public static void afficheGrille(Grilles grilleJeu)
         {
-            //Console.Clear();
+            Console.Clear();
             String ligneSepar = "";
             for (int col = 0; col < grilleJeu.NbreColonnes; col++)
             {
@@ -161,7 +161,7 @@ namespace Puissance4
             Console.WriteLine(ligneSepar);
             for (int i = grilleJeu.NbreLignes - 1; i >= 0; i--)
             {
-                for (int j = grilleJeu.NbreColonnes - 1; j >= 0; j--)
+                for (int j = 0; j <grilleJeu.NbreColonnes; j++)
                 {
                     Console.Write(" ");
                     if (grilleJeu.Tableau[j, i].EstVide)
@@ -198,25 +198,41 @@ namespace Puissance4
         /// <returns></returns>
         public static int demanderColonne(Grilles grilleJeu)
         {
-            int choixColonne;
+            String choixColonneT;
+            int choixColonneN;
             bool erreurCol = false;
             do
             {
                 Console.WriteLine("Dans quel colonne mettre le jeton?");
-                choixColonne = Convert.ToInt32(Console.ReadLine());
-                if (0 > choixColonne || choixColonne > grilleJeu.NbreColonnes)
+                
+                choixColonneT = Console.ReadLine();
+                if (int.TryParse(choixColonneT, out choixColonneN))
+                {
+                    choixColonneN--;
+                    if (0 > choixColonneN || choixColonneN > grilleJeu.NbreColonnes)
+                    {
+                        erreurCol = true;
+                        Console.WriteLine("Erreur! Cette colonne n'existe pas.");
+                    }
+                    else if (grilleJeu.colonnePleine(choixColonneN))
+                    {
+                        erreurCol = true;
+                        Console.WriteLine("Erreur! Cette colonne est déjà pleine.");
+                    }
+                    else
+                    {
+                        erreurCol = false;
+                    }
+                }
+                else
                 {
                     erreurCol = true;
-                    Console.WriteLine("Erreur! Cette colonne n'existe pas.");
+                    Console.WriteLine("Erreur! Entrée invalide. Veuillez donner le numéro de la colonne.");
                 }
-                else if (grilleJeu.colonnePleine(choixColonne))
-                {
-                    erreurCol = true;
-                    Console.WriteLine("Erreur! Cette colonne est déjà pleine.");
-                }
+                    
 
             } while (erreurCol);
-            return choixColonne-1;
+            return choixColonneN;
         }
 
         /// <summary>
