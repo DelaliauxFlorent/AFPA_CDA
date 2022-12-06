@@ -12,6 +12,8 @@ namespace Puissance4
         public int NbAligne { get; set; }
         public Joueurs[] ListeJoueurs { get; set; }
 
+        public static int Mode { get; set; }
+
         /// <summary>
         /// Initialise la partie
         /// </summary>

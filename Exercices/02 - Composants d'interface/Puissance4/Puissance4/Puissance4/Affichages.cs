@@ -49,6 +49,7 @@ namespace Puissance4
             return nbJoueur;
         }
 
+        public static void
 
         /// <summary>
         /// Demande les info d'un joueur spécifique
