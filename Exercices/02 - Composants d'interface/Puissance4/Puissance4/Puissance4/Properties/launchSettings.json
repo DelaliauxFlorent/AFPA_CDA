@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Puissance4": {
+      "commandName": "Project",
+      "commandLineArgs": "--Std"
+    }
+  }
+}

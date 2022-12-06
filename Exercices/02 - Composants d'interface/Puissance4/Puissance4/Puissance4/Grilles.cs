@@ -10,6 +10,9 @@ namespace Puissance4
     {
         public static readonly int maxLignes = 20;
         public static readonly int maxColonnes = 20;
+        public static readonly int minLignes = 6;
+        public static readonly int minColonnes = 7;
+
 
         /// <summary>
         /// Constructeur de la grille

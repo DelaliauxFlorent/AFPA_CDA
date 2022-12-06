@@ -39,6 +39,11 @@ namespace Puissance4
                     {
                         Console.WriteLine("Erreur! Veuillez entrer un nombre.");
                     }
+                    else if (nbJoueur < 2)
+                    {
+                        erreurDmdNbJ = true;
+                        Console.WriteLine("Désolé, ce jeu ne possède pas d'I.A.s, il vous faut au moins 2 joueurs!");
+                    }
                 }
                 else
                 {
@@ -210,29 +215,14 @@ namespace Puissance4
 
         }
 
-        /// <summary>
-        /// Demande les info d'un joueur spécifique
-        /// </summary>
-        /// <param name="num">Son ID</param>
-        /// <returns>Un joueur avec un ID, un nom, une couleur et un signe</returns>
-        public static Joueurs demandeInfoJoueur(int num)
+        public static String demandeNom(int num)
         {
             // Déclaration et initialisation des Checks d'erreurs
             // Si erreur lors de la saisie du nom
             bool erreurNom = false;
-            // Si erreur dans l'association Couleur/Signe
-            bool erreurColSig = false;
 
             // Variables pour les ReadLines
             String nomJoueur;
-
-            // Déclaration et initialisation de la couleur et du signe par défaut
-            ConsoleColor couleurJoueur = ConsoleColor.Gray;
-            char signJoueur = '#';
-
-            // Index pour parcourir les listes de couleurs et de signe de la classe Joueurs
-            int indxCheckColSig;
-
             //
             //Demande du nom
             //
@@ -268,6 +258,37 @@ namespace Puissance4
                     }
                 }
             } while (erreurNom);
+            return nomJoueur;
+        }
+
+        /// <summary>
+        /// Demande les info d'un joueur spécifique
+        /// </summary>
+        /// <param name="num">Son ID</param>
+        /// <returns>Un joueur avec un ID, un nom, une couleur et un signe</returns>
+        public static Joueurs demandeInfoJoueur(int num)
+        {
+            // Déclaration et initialisation des Checks d'erreurs
+            // Si erreur lors de la saisie du nom
+            bool erreurNom = false;
+            // Si erreur dans l'association Couleur/Signe
+            bool erreurColSig = false;
+
+            // Variables pour les ReadLines
+            String nomJoueur;
+
+            // Déclaration et initialisation de la couleur et du signe par défaut
+            ConsoleColor couleurJoueur = ConsoleColor.Gray;
+            char signJoueur = '#';
+
+            // Index pour parcourir les listes de couleurs et de signe de la classe Joueurs
+            int indxCheckColSig;
+
+            //
+            //Demande du nom
+            //
+            nomJoueur = demandeNom(num);
+            
             //
             //Demande couleur ET signe
             //
@@ -396,7 +417,7 @@ namespace Puissance4
             do
             {
                 // Affichage de la demande
-                Console.WriteLine("De combien de lignes est constituée la grille? (Min=6)");
+                Console.WriteLine("De combien de lignes est constituée la grille? (Min=" + Grilles.minLignes + ")");
                 choixNbLigne = Console.ReadLine();
                 // Test si bien un entier
                 erreurDmdNbLig = !int.TryParse(choixNbLigne, out nbreLigne);
@@ -444,7 +465,7 @@ namespace Puissance4
             do
             {
                 // Affichage de la demande
-                Console.WriteLine("De combien de colonnes est constituée la grille? (Min=7)");
+                Console.WriteLine("De combien de colonnes est constituée la grille? (Min="+Grilles.minColonnes+")");
                 choixNbCol = Console.ReadLine();
                 // Test si bien un entier
                 erreurDmdNbCol = !int.TryParse(choixNbCol, out nbreColonne);
@@ -543,7 +564,7 @@ namespace Puissance4
                     }
                     else
                     {
-                        if (grilleJeu.NbreColonnes >= 10 && j < 9)
+                        if (grilleJeu.NbreColonnes >= 10)
                         {
                             Console.Write(" ");
                         }

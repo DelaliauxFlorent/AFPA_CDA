@@ -20,29 +20,51 @@ namespace Puissance4
         /// <returns>La grille de jeu</returns>
         private Grilles initPartie()
         {
-            int nbreligne = Affichages.demandeNbreLignes();
-            int nbreColonne = Affichages.demandeNbreColonnes();
-
-            Grilles grilleJeu = new Grilles(nbreligne, nbreColonne);
-
-            NbAligne = Affichages.demandeNbreAligne(grilleJeu);
-
-            Mode = Affichages.demandeMode();
-            if (Mode == 2)
+            int nbreligne;
+            int nbreColonne;
+            Grilles grilleJeu;
+            if (Program.Standard)
             {
-                Joueurs.ListeSignes.Add(Affichages.demandeSigne());
+                nbreligne = 6;
+                nbreColonne = 7;
+                grilleJeu = new Grilles(nbreligne, nbreColonne);
+                NbAligne = 4;
+                NbreJoueurs = 2;
+                ListeJoueurs = new Joueurs[NbreJoueurs];
+                String nom0 = Affichages.demandeNom(0);
+                ListeJoueurs[0] = new Joueurs(0, nom0, ConsoleColor.DarkRed, 'O');
+                String nom1 = Affichages.demandeNom(1);                
+                ListeJoueurs[1] = new Joueurs(1, nom1, ConsoleColor.DarkYellow, 'O');
             }
-            else if (Mode == 3)
+            else
             {
-                Joueurs.ListeCouleurs.Add(Affichages.demandeCouleur());
-            }
-
-            NbreJoueurs = Affichages.demandeNbreJoueurs();
-            ListeJoueurs = new Joueurs[NbreJoueurs];
-            for (int i = 0; i < NbreJoueurs; i++)
-            {
-                ListeJoueurs[i] = Affichages.demandeInfoJoueur(i);
-            }
+                nbreligne = Affichages.demandeNbreLignes();
+                nbreColonne = Affichages.demandeNbreColonnes();
+                grilleJeu = new Grilles(nbreligne, nbreColonne);
+                NbAligne = Affichages.demandeNbreAligne(grilleJeu);
+                if (Program.ModeArg != 0)
+                {
+                    Mode = Program.ModeArg;
+                }
+                else
+                {
+                    Mode = Affichages.demandeMode();
+                }
+                if (Mode == 2)
+                {
+                    Joueurs.ListeSignes.Add(Affichages.demandeSigne());
+                }
+                else if (Mode == 3)
+                {
+                    Joueurs.ListeCouleurs.Add(Affichages.demandeCouleur());
+                }
+                NbreJoueurs = Affichages.demandeNbreJoueurs();
+                ListeJoueurs = new Joueurs[NbreJoueurs];
+                for (int i = 0; i < NbreJoueurs; i++)
+                {
+                    ListeJoueurs[i] = Affichages.demandeInfoJoueur(i);
+                }
+            }   
 
             //foreach (Joueurs player in ListeJoueurs)
             //{
@@ -113,6 +135,7 @@ namespace Puissance4
             } while (!plein && !gagne);
             Affichages.afficheGrille(grilleJeu);
             Affichages.afficheResultat(joueurActu, gagne);
+            Console.ReadKey();
         }
     }
 }
