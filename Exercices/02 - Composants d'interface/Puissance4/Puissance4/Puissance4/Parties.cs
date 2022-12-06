@@ -9,8 +9,8 @@ namespace Puissance4
     class Parties
     {
         public static int NbreJoueurs { get; set; }
-        public int NbAligne { get; set; }
-        public Joueurs[] ListeJoueurs { get; set; }
+        public static int NbAligne { get; set; }
+        public static Joueurs[] ListeJoueurs { get; set; }
 
         public static int Mode { get; set; }
 
@@ -26,6 +26,17 @@ namespace Puissance4
             Grilles grilleJeu = new Grilles(nbreligne, nbreColonne);
 
             NbAligne = Affichages.demandeNbreAligne(grilleJeu);
+
+            Mode = Affichages.demandeMode();
+            if (Mode == 2)
+            {
+                Joueurs.ListeSignes.Add(Affichages.demandeSigne());
+            }
+            else if (Mode == 3)
+            {
+                Joueurs.ListeCouleurs.Add(Affichages.demandeCouleur());
+            }
+
             NbreJoueurs = Affichages.demandeNbreJoueurs();
             ListeJoueurs = new Joueurs[NbreJoueurs];
             for (int i = 0; i < NbreJoueurs; i++)

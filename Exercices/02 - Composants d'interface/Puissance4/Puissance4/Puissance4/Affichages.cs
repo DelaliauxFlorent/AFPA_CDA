@@ -49,7 +49,166 @@ namespace Puissance4
             return nbJoueur;
         }
 
-        public static void
+        public static int demandeMode()
+        {
+            String choixModeT;
+            bool erreurChoixMode = false;
+            int choixMode;
+            do
+            {
+                Console.WriteLine("Quel mode de jeu voulez-vous utiliser?");
+                Console.WriteLine("1 - Choix de la couleur et du signe pour chaque joueur.");
+                Console.WriteLine("2 - Choix de la couleur mais signe identique pour chaque joueur.");
+                Console.WriteLine("3 - Choix du signe mais couleur identique pour chaque joueur.");
+
+                choixModeT = Console.ReadLine();
+                erreurChoixMode = !int.TryParse(choixModeT, out choixMode);
+                if (erreurChoixMode)
+                {
+                    Console.WriteLine("Erreur! Veuillez entrer un entier.");
+                }
+                else
+                {
+                    if (choixMode < 1 || choixMode > 3)
+                    {
+                        erreurChoixMode = true;
+                        Console.WriteLine("Erreur! Ce mode n'existe pas.");
+                    }
+                    else
+                    {
+                        erreurChoixMode = false;
+                    }
+                }
+            } while (erreurChoixMode);
+            return choixMode;
+        }
+
+        public static ConsoleColor demandeCouleur()
+        {
+            // Si erreur lors de la saisie de la couleur
+            bool erreurColor = false;
+            String choixCouleur;
+            ConsoleColor couleurJoueur = ConsoleColor.Gray;
+            //
+            //Demande de la couleur
+            //
+            do
+            {
+                //
+                //Affichage de la liste des couleurs possibles
+                //
+                Console.WriteLine("Liste des couleurs possibles:");
+                for (int i = 0; i < ListeCouleursT.Length; i++)
+                {
+                    Console.Write(ListeCouleursT[i]);
+                    if (i % 3 == 2)
+                    {
+                        Console.Write("\n");
+                    }
+                    else
+                    {
+                        if (i != 3)
+                        {
+                            Console.Write("\t");
+                        }
+                        if (i == 10 || i == 13)
+                        {
+                            Console.Write("\t");
+                        }
+                        Console.Write("\t| ");
+                    }
+                }
+                //
+                // Demande du choix du joueur
+                //
+                Console.WriteLine("\nQuel couleur utiliser (numéro)?");
+                choixCouleur = Console.ReadLine();
+                // Check si le choix est bien un entier
+                // Si oui => 
+                if (int.TryParse(choixCouleur, out int ChoixColorNum))
+                {
+                    // Vérification que le choix est possible
+                    // Si c'est le cas, (re)mise du code d'erreur à false
+                    // et assignation de la couleur à la variable qui sera
+                    // utilisé pour créer le joueur retourné 
+                    if (ChoixColorNum > 0 && ChoixColorNum < 16)
+                    {
+                        // Si tous les joueurs ont le même signe mais
+                        // peuvent choisir la couleur, on check si
+                        // la couleur sélectionnée a déjà été choisie
+                        if (Parties.Mode == 2 && Joueurs.couleurExiste(consoleColors[ChoixColorNum]))
+                        {
+                            erreurColor = true;
+                            Console.WriteLine("Erreur! Cette couleur a déjà été choisie par un autre joueur.");
+                        }
+                        else
+                        {
+                            erreurColor = false;
+                            couleurJoueur = consoleColors[ChoixColorNum];
+                        }
+                    }
+                    // Sinon, code d'erreur à true et affichage du message
+                    // d'erreur indiquant le problème
+                    else
+                    {
+                        erreurColor = true;
+                        Console.WriteLine("Erreur! Ce numéro ne correspond à aucune couleur.");
+                    }
+
+                }
+                // Sinon, code d'erreur à true et affichage du message
+                // d'erreur indiquant le problème
+                else
+                {
+                    erreurColor = true;
+                    Console.WriteLine("Erreur! Entrée invalide, veuillez donner le numéro correspondant à la couleur voulue.");
+                }
+                // On boucle tant qu'il y a un problème
+            } while (erreurColor);
+            return couleurJoueur;
+        }
+
+        public static char demandeSigne()
+        {
+            // Si erreur lors de la saisie du signe
+            bool erreurSigne = false;
+            String choixSign;
+            char signJoueur = '#';
+            //
+            // Demande du caractère
+            //
+            do
+            {
+                Console.WriteLine("Quel caractère utiliser?");
+                choixSign = Console.ReadLine();
+                // On vérifie si le joueur n'a bien entré qu'un seul caractère
+                if (choixSign.Length == 1)
+                {
+                    // Si oui => (re)mise du code d'erreur à false
+                    // et assignation du signe à la variable qui sera
+                    // utilisé pour créer le joueur retourné 
+                    char.TryParse(choixSign, out signJoueur);
+                    if (Parties.Mode == 3 && Joueurs.signeExiste(signJoueur))
+                    {
+                        erreurSigne = true;
+                        Console.WriteLine("Erreur! Ce caractère est déjà utilisé par un autre joueurs.");
+                    }
+                    else
+                    {
+                        erreurSigne = false;
+                    }
+                }
+                else
+                {
+                    // Sinon, code d'erreur à true et message explicant pourquoi
+                    erreurSigne = true;
+                    Console.WriteLine("Erreur! Il vous faut un et un seul caractère.");
+                }
+                // On boucle tant qu'il y a un problème
+            } while (erreurSigne);
+            return signJoueur;
+
+        }
 
         /// <summary>
         /// Demande les info d'un joueur spécifique
@@ -61,17 +220,11 @@ namespace Puissance4
             // Déclaration et initialisation des Checks d'erreurs
             // Si erreur lors de la saisie du nom
             bool erreurNom = false;
-            // Si erreur lors de la saisie de la couleur
-            bool erreurColor = false;
-            // Si erreur lors de la saisie du signe
-            bool erreurSigne = false;
             // Si erreur dans l'association Couleur/Signe
             bool erreurColSig = false;
 
             // Variables pour les ReadLines
             String nomJoueur;
-            String choixCouleur;
-            String choixSign;
 
             // Déclaration et initialisation de la couleur et du signe par défaut
             ConsoleColor couleurJoueur = ConsoleColor.Gray;
@@ -94,7 +247,25 @@ namespace Puissance4
                 }
                 else
                 {
-                    erreurNom = false;
+                    bool nomExiste = false;
+                    int indexNomExiste = 0;
+                    while (!nomExiste && indexNomExiste < num)
+                    {
+                        if (Parties.ListeJoueurs[indexNomExiste].Nom == nomJoueur)
+                        {
+                            nomExiste = true;
+                        }
+                        indexNomExiste++;
+                    }
+                    if (nomExiste)
+                    {
+                        erreurNom = true;
+                        Console.WriteLine("Erreur! Ce nom est déjà utilisé.");
+                    }
+                    else
+                    {
+                        erreurNom = false;
+                    }
                 }
             } while (erreurNom);
             //
@@ -103,101 +274,27 @@ namespace Puissance4
             do
             {
                 erreurColSig = false;
-                //
-                //Demande de la couleur
-                //
-                do
+                if (Parties.Mode != 3)
                 {
-                    //
-                    //Affichage de la liste des couleurs possibles
-                    //
-                    Console.WriteLine("Liste des couleurs possibles:");
-                    for (int i = 0; i < ListeCouleursT.Length; i++)
-                    {
-                        Console.Write(ListeCouleursT[i]);
-                        if (i % 3 == 2)
-                        {
-                            Console.Write("\n");
-                        }
-                        else
-                        {
-                            if (i != 3)
-                            {
-                                Console.Write("\t");
-                            }
-                            if (i == 10 || i == 13)
-                            {
-                                Console.Write("\t");
-                            }
-                            Console.Write("\t| ");
-                        }
-                    }
-                    //
-                    // Demande du choix du joueur
-                    //
-                    Console.WriteLine("\nQuel couleur utiliser (numéro)?");
-                    choixCouleur = Console.ReadLine();
-                    // Check si le choix est bien un entier
-                    // Si oui => 
-                    if (int.TryParse(choixCouleur, out int ChoixColorNum))
-                    {
-                        // Vérification que le choix est possible
-                        // Si c'est le cas, (re)mise du code d'erreur à false
-                        // et assignation de la couleur à la variable qui sera
-                        // utilisé pour créer le joueur retourné 
-                        if (ChoixColorNum > 0 && ChoixColorNum < 16)
-                        {
-                            erreurColor = false;
-                            couleurJoueur = consoleColors[ChoixColorNum];
-                        }
-                        // Sinon, code d'erreur à true et affichage du message
-                        // d'erreur indiquant le problème
-                        else
-                        {
-                            erreurColor = true;
-                            Console.WriteLine("Erreur! Ce numéro ne correspond à aucune couleur.");
-                        }
-
-                    }
-                    // Sinon, code d'erreur à true et affichage du message
-                    // d'erreur indiquant le problème
-                    else
-                    {
-                        erreurColor = true;
-                        Console.WriteLine("Erreur! Entrée invalide, veuillez donner le numéro correspondant à la couleur voulue.");
-                    }
-                    // On boucle tant qu'il y a un problème
-                } while (erreurColor);
-
-                //
-                // Demande du caractère
-                //
-                do
+                    couleurJoueur = demandeCouleur();
+                }
+                else
                 {
-                    Console.WriteLine("Quel caractère?");
-                    choixSign = Console.ReadLine();
-                    // On vérifie si le joueur n'a bien entré qu'un seul caractère
-                    if (choixSign.Length == 1)
-                    {
-                        // Si oui => (re)mise du code d'erreur à false
-                        // et assignation du signe à la variable qui sera
-                        // utilisé pour créer le joueur retourné 
-                        char.TryParse(choixSign, out signJoueur);
-                        erreurSigne = false;
-                    }
-                    else
-                    {
-                        // Sinon, code d'erreur à true et message explicant pourquoi
-                        erreurSigne = true;
-                        Console.WriteLine("Erreur! Il vous faut un et un seul caractère.");
-                    }
-                    // On boucle tant qu'il y a un problème
-                } while (erreurSigne);
+                    couleurJoueur = Joueurs.ListeCouleurs[0];
+                }
+                if (Parties.Mode != 2)
+                {
+                    signJoueur = demandeSigne();
+                }
+                else
+                {
+                    signJoueur = Joueurs.ListeSignes[0];
+                }
 
                 //
                 // Après le premier joueur, on doit faire un check supplémentaire
                 //
-                if (num > 0)
+                if (num > 0 && Parties.Mode == 1)
                 {
                     // Initialise l'index à 0
                     indxCheckColSig = 0;
@@ -389,38 +486,67 @@ namespace Puissance4
             // Vidage de la console
             Console.Clear();
             // Préparation des lignes de séparation
-            String ligneSepar = "";
-            
+            String ligneSepar = "├";
+            String ligneTete = "┌";
+            String ligneBas = "└";
+            String entete = "|";
+
             //
             // Création dee l'"entête" de la grille de jeu
             //
             for (int col = 0; col < grilleJeu.NbreColonnes; col++)
             {
-                Console.Write(" " + (col + 1) + " |");
-                ligneSepar += "---+";
+                
+                entete += " ";
+                if (grilleJeu.NbreColonnes >= 10)
+                {
+                    if (col < 9)
+                    {
+                        entete += "0";
+                    }
+                    ligneSepar += "─";
+                    ligneTete += "─";
+                    ligneBas += "─";
+
+                }
+                entete += (col + 1) + " |";
+                ligneSepar += "───┼";
+                ligneTete += "───┬";
+                ligneBas += "───┴";
             }
-            ligneSepar= ligneSepar.Substring(0, ligneSepar.Length-1);
+            ligneSepar = ligneSepar.Substring(0, ligneSepar.Length - 1);
             ligneSepar += "┤";
-            Console.Write("\n");
-            Console.WriteLine(ligneSepar);
+            ligneTete = ligneTete.Substring(0, ligneTete.Length - 1);
+            ligneTete += "┐";
+            ligneBas = ligneBas.Substring(0, ligneBas.Length - 1);
+            ligneBas += "┘";
 
             //
             // Parcours des lignes et des colonnes pour avoir
             // la position [0;0] en bas à gauche
             //
+            Console.WriteLine(ligneTete);
             for (int i = grilleJeu.NbreLignes - 1; i >= 0; i--)
             {
                 for (int j = 0; j < grilleJeu.NbreColonnes; j++)
                 {
                     // Une case consiste en un espace
-                    Console.Write(" ");
+                    Console.Write("| ");
                     // Ajout d'un espace si case vide
                     if (grilleJeu.Tableau[j, i].EstVide)
                     {
                         Console.Write(" ");
+                        if (grilleJeu.NbreColonnes >= 10)
+                        {
+                            Console.Write(" ");
+                        }
                     }
                     else
                     {
+                        if (grilleJeu.NbreColonnes >= 10 && j < 9)
+                        {
+                            Console.Write(" ");
+                        }
                         // Si case non-vide, on change la couleur
                         // d'affichage du texte par la valeur
                         // propre au joueur concerné
@@ -431,13 +557,15 @@ namespace Puissance4
                         Console.ForegroundColor = ConsoleColor.Gray;
                     }
                     // Et on finit la case par un espace et la séparation de colonne
-                    Console.Write(" |");
+                    Console.Write(" ");
                 }
                 // Retour à la ligne et ajout de la ligne de séparation
-                Console.Write("\n");
+                Console.Write("|\n");
                 Console.WriteLine(ligneSepar);
 
             }
+            Console.WriteLine(entete);
+            Console.WriteLine(ligneBas);
         }
 
         /// <summary>
