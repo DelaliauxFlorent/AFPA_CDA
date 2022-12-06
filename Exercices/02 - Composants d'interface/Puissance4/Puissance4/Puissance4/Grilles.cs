@@ -8,7 +8,8 @@ namespace Puissance4
 {
     class Grilles
     {
-        
+        public static readonly int maxLignes = 20;
+        public static readonly int maxColonnes = 20;
 
         /// <summary>
         /// Constructeur de la grille
@@ -20,6 +21,7 @@ namespace Puissance4
             NbreLignes = nbreLignes;
             NbreColonnes = nbreColonnes;
             Tableau = new Cases[nbreColonnes, nbreLignes];
+            // On rempli la grille de cases vides
             for (int i = 0; i < nbreColonnes; i++)
             {
                 for (int j = 0; j < nbreLignes; j++)
@@ -91,13 +93,25 @@ namespace Puissance4
         /// <returns></returns>
         public int estAligne(int colonne, int ligne, int dirCol, int dirLig)
         {
+            // Calcul des nouvelles coordonnées
             int newCol = colonne + dirCol;
             int newLig = ligne + dirLig;
+
+            // Si la nouvelle coordonné correspond à une case possible
+            // ET que cette dernière n'est pas vide
             if(0<=newCol && newCol < NbreColonnes && 0<= newLig && newLig < NbreLignes && !Tableau[newCol, newLig].EstVide)
             {
-                char signeActu = Tableau[colonne, ligne].Contenu.Signe;
-                char signeDir = Tableau[newCol, newLig].Contenu.Signe;
-                if (signeActu == signeDir)
+                // Récupération des Joueurs pour la case actuelle et la case suivante
+                Joueurs joueurActu = Tableau[colonne, ligne].Contenu;
+                Joueurs joueurDir = Tableau[newCol, newLig].Contenu;
+
+                //// Récupération des signes pour la case actuelle et la case suivante
+                //char signeActu = Tableau[colonne, ligne].Contenu.Signe;
+                //char signeDir = Tableau[newCol, newLig].Contenu.Signe;
+                //// Récupération des couleurs pour la case actuelle et la case suivante
+                //ConsoleColor couleurActu = Tableau[colonne, ligne].Contenu.Couleur;
+                //ConsoleColor couleurDir = Tableau[newCol, newLig].Contenu.Couleur;
+                if (joueurActu == joueurDir)
                 {
                     return 1 + estAligne(newCol, newLig, dirCol, dirLig);
                 }

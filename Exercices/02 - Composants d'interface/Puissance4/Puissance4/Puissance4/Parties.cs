@@ -28,7 +28,7 @@ namespace Puissance4
             ListeJoueurs = new Joueurs[NbreJoueurs];
             for (int i = 0; i < NbreJoueurs; i++)
             {
-                ListeJoueurs[i] = Affichages.demandeInfoJoueur(i + 1);
+                ListeJoueurs[i] = Affichages.demandeInfoJoueur(i);
             }
 
             //foreach (Joueurs player in ListeJoueurs)
