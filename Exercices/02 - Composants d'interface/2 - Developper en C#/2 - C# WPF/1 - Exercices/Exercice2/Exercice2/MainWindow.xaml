@@ -1,0 +1,76 @@
+﻿<Window x:Class="Exercice2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Exercice2"
+        mc:Ignorable="d"
+        Title="Calculette" Height="450" Width="400" ResizeMode="NoResize" Icon="calculator.png">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="24"></Setter>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Opacity="0.75" ShadowDepth="5"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Cursor" Value="Hand"></Setter>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="24"></Setter>
+            <Setter Property="Padding" Value="0,0,5,0"></Setter>
+            <Setter Property="TextAlignment" Value="Right"></Setter>
+            <Setter Property="Background" Value="LightGray"></Setter>
+            <Setter Property="Focusable" Value="False"></Setter>
+        </Style>
+    </Window.Resources>
+    <Window.Background>
+        <SolidColorBrush Color="LightGray" Opacity="0.5"/>
+    </Window.Background>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="0.3*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="0.3*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="0.3*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="0.3*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.3*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="0.3*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="0.3*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="0.3*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="0.3*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="0.3*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="0.3*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="7">425,58</TextBlock>
+        <Button Grid.Row="3" Grid.Column="1" x:Name="Num1" Content="1"></Button>
+        <Button Grid.Row="3" Grid.Column="3" x:Name="Num2" Content="2"></Button>
+        <Button Grid.Row="3" Grid.Column="5" x:Name="Num3" Content="3"></Button>
+        <Button Grid.Row="3" Grid.Column="7" x:Name="CE" Content="CE"></Button>
+        <Button Grid.Row="5" Grid.Column="1" x:Name="Num4" Content="4"></Button>
+        <Button Grid.Row="5" Grid.Column="3" x:Name="Num5" Content="5"></Button>
+        <Button Grid.Row="5" Grid.Column="5" x:Name="Num6" Content="6"></Button>
+        <Button Grid.Row="5" Grid.Column="7" x:Name="Plus" Content="+"></Button>
+        <Button Grid.Row="7" Grid.Column="1" x:Name="Num7" Content="7"></Button>
+        <Button Grid.Row="7" Grid.Column="3" x:Name="Num8" Content="8"></Button>
+        <Button Grid.Row="7" Grid.Column="5" x:Name="Num9" Content="9"></Button>
+        <Button Grid.Row="7" Grid.Column="7" x:Name="Minus" Content="-"></Button>
+        <Button Grid.Row="9" Grid.Column="1" x:Name="Num0" Content="0"></Button>
+        <Button Grid.Row="9" Grid.Column="3" x:Name="Comma" Content=","></Button>
+        <Button Grid.Row="9" Grid.Column="5" x:Name="Div" Content="/"></Button>
+        <Button Grid.Row="9" Grid.Column="7" x:Name="Mult" Content="X"></Button>
+        <Button Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="7" x:Name="Equal" Content="="></Button>
+    </Grid>
+</Window>
