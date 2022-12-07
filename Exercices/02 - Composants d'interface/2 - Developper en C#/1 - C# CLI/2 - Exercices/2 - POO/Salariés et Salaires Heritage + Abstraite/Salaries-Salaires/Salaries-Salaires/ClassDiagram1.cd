@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Salaries_Salaires.Commerciaux">
+    <Position X="5.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commerciaux.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salaries_Salaires.Entreprises">
+    <Position X="11.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgCAAAAAQAAAIAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entreprises.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salaries_Salaires.Interimaires">
+    <Position X="8.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAIAAAIA=</HashCode>
+      <FileName>Interimaires.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salaries_Salaires.Program">
+    <Position X="13.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salaries_Salaires.Representants">
+    <Position X="3.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAQEAAAAAAAAABAAAAAAAACAAAAgAAA=</HashCode>
+      <FileName>Representants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salaries_Salaires.Salaries">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAACAAAAAAAAEACAAAAAAACAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Salaries.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salaries_Salaires.Techniciens">
+    <Position X="8.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Techniciens.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Salaries_Salaires.Vendeurs">
+    <Position X="5.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAQEAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Vendeurs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

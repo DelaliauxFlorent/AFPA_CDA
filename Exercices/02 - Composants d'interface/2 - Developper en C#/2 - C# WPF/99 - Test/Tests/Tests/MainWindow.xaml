@@ -1,0 +1,59 @@
+﻿<Window x:Class="Tests.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tests"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="0.5*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" >
+            <TextBlock x:Name="Histo" Background="Gray"></TextBlock>            
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" >
+            <TextBlock x:Name="Actu" Background="LightGray" TextAlignment="Right"></TextBlock>
+        </Grid>
+        <Button x:Name="OpPar" Grid.Column="1" Grid.Row="3" Content="("></Button>
+        <Button x:Name="ClPar" Grid.Column="2" Grid.Row="3" Content=")"></Button>
+        <Button x:Name="SQRT" Grid.Column="3" Grid.Row="3" Content="²"></Button>
+        <Button x:Name="Div" Grid.Column="4" Grid.Row="3" Content="/"></Button>
+        <Button x:Name="Num7" Grid.Column="1" Grid.Row="4" Content="7"></Button>
+        <Button x:Name="Num8" Grid.Column="2" Grid.Row="4" Content="8"></Button>
+        <Button x:Name="Num9" Grid.Column="3" Grid.Row="4" Content="9"></Button>
+        <Button x:Name="Multi" Grid.Column="4" Grid.Row="4" Content="*"></Button>
+        <Button x:Name="Num4" Grid.Column="1" Grid.Row="5" Content="4"></Button>
+        <Button x:Name="Num5" Grid.Column="2" Grid.Row="5" Content="5"></Button>
+        <Button x:Name="Num6" Grid.Column="3" Grid.Row="5" Content="6"></Button>
+        <Button x:Name="Minus" Grid.Column="4" Grid.Row="5" Content="-"></Button>
+        <Button x:Name="Num1" Grid.Column="1" Grid.Row="6" Content="1"></Button>
+        <Button x:Name="Num2" Grid.Column="2" Grid.Row="6" Content="2"></Button>
+        <Button x:Name="Num3" Grid.Column="3" Grid.Row="6" Content="3"></Button>
+        <Button x:Name="Plus" Grid.Column="4" Grid.Row="6" Content="+"></Button>
+        <Button x:Name="NumVirg" Grid.Column="3" Grid.Row="7" Content="."></Button>
+        <Button x:Name="Equal" Grid.Column="4" Grid.Row="7" Content="="></Button>
+
+        <Grid Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2">
+            <Button x:Name="Num0" Content="0"></Button>
+        </Grid>
+        
+    </Grid>
+</Window>

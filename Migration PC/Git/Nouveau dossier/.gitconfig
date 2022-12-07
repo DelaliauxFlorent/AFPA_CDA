@@ -1,0 +1,7 @@
+[core]
+	editor = \"C:\\Users\\59011-14-06\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\code\" --wait
+[safe]
+	directory = U:/59011-14-06
+[user]
+	name = Florent
+	email = florent.delaliaux@gmail.com
