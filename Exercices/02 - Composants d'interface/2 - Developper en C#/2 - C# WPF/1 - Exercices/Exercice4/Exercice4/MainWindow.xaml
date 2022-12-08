@@ -1,0 +1,95 @@
+﻿<Window x:Class="Exercice4.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Exercice4"
+        mc:Ignorable="d"
+        Title="Adhésion" Height="600" Width="600" Background="LightGray">
+    <Grid x:Name="MainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="30*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
+            <RowDefinition Height="0.5*"></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="6*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid x:Name="NameAdd" Grid.Row="1" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="4*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.5*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="4*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label x:Name="demNom" Grid.Column="0" Grid.Row="0" Content="Nom/Prénom:" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
+            <TextBox x:Name="infoNom" Grid.Column="1" Grid.Row="0" Text="DENRY Didier" VerticalAlignment="Center"></TextBox>
+            <Label x:Name="demAdd" Grid.Column="0" Grid.Row="2" Content="Adresse:" VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
+            <TextBox x:Name="infoAdd" Grid.Column="1" Grid.Row="2" Text="2, rue des Fleurs&#x0a;59000 Lille"></TextBox>
+        </Grid>
+        <Grid x:Name="naissance" Grid.Column="1" Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid x:Name="dOB" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label x:Name="demDOB" Grid.Column="0" Content="Date de naissance:"></Label>
+                <DatePicker x:Name="infoDOB" Grid.Column="1" DisplayDate="12/15/1954" SelectedDate="12/15/1954" SelectedDateFormat="Long" BorderBrush="{x:Null}"></DatePicker>
+            </Grid>
+            <GroupBox x:Name="Genre" Header="Sexe" Grid.Column="2" Grid.Row="0" Grid.RowSpan="3" >
+                <Grid x:Name="genreInt">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="5*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <RadioButton Grid.Column="1" Grid.Row="1" x:Name="sMascu" Content="Masculin" IsChecked="True"></RadioButton>
+                    <RadioButton Grid.Column="1" Grid.Row="3" x:Name="sFem" Content="Féminin"></RadioButton>
+                </Grid>
+            </GroupBox>
+        </Grid>
+        <Grid x:Name="ActLev">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="4*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.5*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="4*"></RowDefinition>
+            </Grid.RowDefinitions>
+        </Grid>
+    </Grid>
+</Window>
