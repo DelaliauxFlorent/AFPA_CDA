@@ -1,0 +1,224 @@
+﻿<Window x:Class="_3___EcranDeSaisie.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_3___EcranDeSaisie"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="1000" Width="1200" FontSize="16">
+    <Grid x:Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="6*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid x:Name="Header" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="4*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="7" Content="Opération de pêche" FontWeight="Bold" x:Name="lblOpDePeche"></Label>
+            <GroupBox Grid.Column="1" Grid.Row="1" Header="Navire" x:Name="gbNavire">
+                <Grid x:Name="gbNavireInterGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                        <ColumnDefinition Width="5*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="0.1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="0.1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label x:Name="lblImmatNav" Grid.Column="1" Grid.Row="1" Content="Immatriculation : " VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
+                    <TextBox x:Name="tbxImmatNav" Grid.Column="3" Grid.Row="1" Text="639451" IsEnabled="false" VerticalAlignment="Center"/>
+                    <Label x:Name="lblNomNav" Grid.Column="1" Grid.Row="3" Content="Nom : " VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
+                    <TextBox x:Name="tbxNomNav" Grid.Column="3" Grid.Row="3" Text="PHILCATHAN" IsEnabled="false" VerticalAlignment="Center"></TextBox>
+                </Grid>
+            </GroupBox>
+            <GroupBox Grid.Column="3" Grid.Row="1" Header="Marée" x:Name="gbMaree">
+                <Grid x:Name="gbMareeInterGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="0.1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="0.1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label x:Name="lblDepMar" Grid.Column="1" Grid.Row="1" Content="Départ : " VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
+                    <TextBox x:Name="tbxDepMar" Grid.Column="3" Grid.Row="1" Text="22/01/2013 - UCH - Granville" IsEnabled="false" VerticalAlignment="Center"/>
+                    <Label x:Name="lblRetMar" Grid.Column="1" Grid.Row="3" Content="Retour : " VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
+                    <TextBox x:Name="tbxRetMar" Grid.Column="3" Grid.Row="3" Text="23/01/2013 - UCH - Granville" IsEnabled="false" VerticalAlignment="Center"></TextBox>
+                </Grid>
+            </GroupBox>
+            <GroupBox Grid.Column="5" Grid.Row="1" Header="Programme d'observation" x:Name="gbProgObs">
+                <Grid x:Name="gbProObsInterGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="0.1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="0.1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label x:Name="lblProgProgObs" Grid.Column="1" Grid.Row="1" Content="Programme : " VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="Red"></Label>
+                    <TextBox x:Name="tbxProgProgObs" Grid.Column="3" Grid.Row="1" Text="SIH-OBSMER" IsEnabled="false" VerticalAlignment="Center"/>
+                    <Label x:Name="lblStratObs" Grid.Column="1" Grid.Row="3" Content="Stratégie : " VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
+                    <TextBox x:Name="tbxStratObs" Grid.Column="3" Grid.Row="3" Text="OBSMER démar" IsEnabled="false" VerticalAlignment="Center"></TextBox>
+                </Grid>
+            </GroupBox>
+            <GroupBox Grid.Column="7" Grid.Row="1" Header="Saisisseur" x:Name="gbSais">
+                <Grid x:Name="gbSaisInterGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="0.1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="0.1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label x:Name="lblOperSaisie" Grid.Column="1" Grid.Row="1" Content="Opérateur de saisie : " VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
+                    <TextBox x:Name="tbxOperSaisie" Grid.Column="3" Grid.Row="1" Text="TETARD Xavier" IsEnabled="false" VerticalAlignment="Center"/>
+                    <Label x:Name="lblDerModif" Grid.Column="1" Grid.Row="3" Content="Dernière modification : " VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
+                    <TextBox x:Name="tbxDerModif" Grid.Column="3" Grid.Row="3" Text="25/11/2013 10:16:37" IsEnabled="false" VerticalAlignment="Center"></TextBox>
+                </Grid>
+            </GroupBox>
+        </Grid>
+        <TabControl x:Name="multiOnglets" Grid.Row="2" Grid.Column="0" Margin="5">
+            <TabItem Header="Opération">
+                <Grid x:Name="gridOperation">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="6*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="7*"></RowDefinition>
+                        <RowDefinition Height="13*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid x:Name="gridDebFinOper" Grid.Row="0" Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                            <ColumnDefinition Width="10*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <GroupBox Grid.Row="0" Grid.Column="0" x:Name="gbFilage" Header="Début de l'opération (Filage)">
+                            <Grid x:Name="gridDebOper" Grid.Row="0" Grid.Column="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0.1*"></RowDefinition>
+                                    <RowDefinition Height="1*"></RowDefinition>
+                                    <RowDefinition Height="0.1*"></RowDefinition>
+                                    <RowDefinition Height="1.1*"></RowDefinition>
+                                    <RowDefinition Height="0.1*"></RowDefinition>
+                                    <RowDefinition Height="1.1*"></RowDefinition>
+                                    <RowDefinition Height="0.1*"></RowDefinition>
+                                    <RowDefinition Height="1.1*"></RowDefinition>
+                                    <RowDefinition Height="0.1*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Label Grid.Column="0" Grid.Row="3" x:Name="lblDtHrDeb" Content="Date et heure : " HorizontalAlignment="Right" VerticalAlignment="Top"></Label>
+                                <Grid x:Name="choixDTDebOp" Grid.Row="3" Grid.Column="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <DatePicker x:Name="choixDateDebOp" Grid.Column="0" DisplayDate="01/22/2013" SelectedDate="01/22/2013"></DatePicker>
+                                    <ComboBox x:Name="choixHeureDepOp" Grid.Column="1">
+                                        <ComboBoxItem Content="17h00"></ComboBoxItem>
+                                        <ComboBoxItem Content="17h15"></ComboBoxItem>
+                                        <ComboBoxItem Content="17h30"></ComboBoxItem>
+                                        <ComboBoxItem Content="17h45"></ComboBoxItem>
+                                        <ComboBoxItem Content="18h00"></ComboBoxItem>
+                                        <ComboBoxItem Content="18h15"></ComboBoxItem>
+                                        <ComboBoxItem Content="18h30" IsSelected="True"></ComboBoxItem>
+                                        <ComboBoxItem Content="18h45"></ComboBoxItem>
+                                        <ComboBoxItem Content="19h00"></ComboBoxItem>
+                                        <ComboBoxItem Content="19h15"></ComboBoxItem>
+                                        <ComboBoxItem Content="19h30"></ComboBoxItem>
+                                        <ComboBoxItem Content="19h45"></ComboBoxItem>
+                                        <ComboBoxItem Content="20h00"></ComboBoxItem>
+                                        <ComboBoxItem Content="20h15"></ComboBoxItem>
+                                        <ComboBoxItem Content="20h30"></ComboBoxItem>
+                                        <ComboBoxItem Content="20h45"></ComboBoxItem>
+                                        <ComboBoxItem Content="21h00"></ComboBoxItem>
+                                        <ComboBoxItem Content="21h15"></ComboBoxItem>
+                                        <ComboBoxItem Content="21h30"></ComboBoxItem>
+                                        <ComboBoxItem Content="21h45"></ComboBoxItem>
+                                        <ComboBoxItem Content="22h00"></ComboBoxItem>
+                                        <ComboBoxItem Content="22h15"></ComboBoxItem>
+                                        <ComboBoxItem Content="22h30"></ComboBoxItem>
+                                        <ComboBoxItem Content="22h45"></ComboBoxItem>
+                                        <ComboBoxItem Content="23h00"></ComboBoxItem>
+                                        <ComboBoxItem Content="23h15"></ComboBoxItem>
+                                        <ComboBoxItem Content="23h30"></ComboBoxItem>
+                                        <ComboBoxItem Content="23h45"></ComboBoxItem>
+                                    </ComboBox>
+                                </Grid>
+                                <Label Grid.Column="0" Grid.Row="5" x:Name="lblLatDeb" Content="Latitude : " HorizontalAlignment="Right"></Label>
+                                <TextBox x:Name="txbLatDebOp" Grid.Column="1" Grid.Row="5" Text="+49 14.100"></TextBox>
+                                <Grid x:Name="Nom" Grid.Row="0" Grid.Column="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1*"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                </Grid>
+                                <Label Grid.Column="0" Grid.Row="7" x:Name="lblLongDeb" Content="Longitude : " HorizontalAlignment="Right"></Label>
+                                <TextBox x:Name="txbLonDebOp" Grid.Column="1" Grid.Row="7" Text="-1 48.320"></TextBox>
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox Grid.Row="0" Grid.Column="2" x:Name="gbVirage" Header="Fin de l'opération (Virage)">
+
+                        </GroupBox>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Engin">
+
+            </TabItem>
+            <TabItem Header="Positions géographiques">
+
+            </TabItem>
+            <TabItem Header="Commentaires">
+
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

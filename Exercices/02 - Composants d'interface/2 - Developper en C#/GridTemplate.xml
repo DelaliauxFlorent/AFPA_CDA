@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>GridTemplate</Title>
+			<Author>Florent</Author>
+			<Description>Template for Grids in XAML</Description>
+			<Shortcut>grt</Shortcut>
+        </Header>
+        <Snippet>
+            <Code Language="xaml">
+                <![CDATA[<Grid x:Name="Nom" Grid.Row="0" Grid.Column="0"><Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition></Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"></RowDefinition></Grid.RowDefinitions></Grid>]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>
