@@ -17,8 +17,7 @@
             <RowDefinition Height="4*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="3*"></RowDefinition>
-            <RowDefinition Height="0.5*"></RowDefinition>
-            <RowDefinition Height="4*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="6*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
@@ -80,16 +79,67 @@
                 </Grid>
             </GroupBox>
         </Grid>
-        <Grid x:Name="ActLev">
+        <Grid x:Name="ActLev" Grid.Column="1" Grid.Row="4">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="6*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
-                <ColumnDefinition Width="4*"></ColumnDefinition>
+                <ColumnDefinition Width="6*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="1.5*"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
-                <RowDefinition Height="4*"></RowDefinition>
+                <RowDefinition Height="0.2*"></RowDefinition>
+                <RowDefinition Height="3*"></RowDefinition>
             </Grid.RowDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" x:Name="acti" Content="Activité : "></Label>
+            <ListBox Grid.Column="0" Grid.Row="2" x:Name="listChoixActi" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                <ListBoxItem x:Name="ChoixActiWP" Content="Water Polo" IsSelected="True"></ListBoxItem>
+                <ListBoxItem x:Name="ChoixActiNat" Content="Natation"></ListBoxItem>
+                <ListBoxItem x:Name="ChoixActiAG" Content="Aqua Gym"></ListBoxItem>
+                <ListBoxItem x:Name="ChoixActiLoi" Content="Loisir"></ListBoxItem>
+            </ListBox>
+            <Label Grid.Column="2" Grid.Row="0" x:Name="Nivo" Content="Niveau : "></Label>
+            <ListBox Grid.Column="2" Grid.Row="2" x:Name="listChoixNiveau">
+                <ListBoxItem x:Name="ChoixNivPou" Content="Poussin"></ListBoxItem>
+                <ListBoxItem x:Name="ChoixNivMin" Content="Minime"></ListBoxItem>
+                <ListBoxItem x:Name="ChoixNivCad" Content="Cadet"></ListBoxItem>
+                <ListBoxItem x:Name="ChoixNivJun" Content="Junior"></ListBoxItem>
+                <ListBoxItem x:Name="ChoixNivSen" Content="Senior" IsSelected="True"></ListBoxItem>
+            </ListBox>
+        </Grid>
+        <Grid x:Name="footer" Grid.Column="1" Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition Width="4*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <GroupBox x:Name="Docs" Grid.Column="0" Grid.Row="0" Header="Documents fournis">
+                <Grid x:Name="DocsIntern">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="10*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="0.5*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="0.5*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <CheckBox Grid.Column="1" Grid.Row="1" x:Name="CertiMed" Content="Certificat médical" IsChecked="True"></CheckBox>
+                    <CheckBox Grid.Column="1" Grid.Row="3" x:Name="EnvTim" Content="5 enveloppes timbrées" IsChecked="True"></CheckBox>
+                    <CheckBox Grid.Column="1" Grid.Row="5" x:Name="Photos" Content="2 photos récentes"></CheckBox>
+                </Grid>
+            </GroupBox>
+            <StackPanel x:Name="SaveCancel" Grid.Column="2" Grid.Row="0" VerticalAlignment="Bottom">
+                <StackPanel.Effect>
+                    <DropShadowEffect/>
+                </StackPanel.Effect>
+                <Button x:Name="Save" Content="Enregistrer" Margin="10" Padding="10"></Button>
+                <Button x:Name="Cancel" Content="Annuler" Margin="10" Padding="10"></Button>
+            </StackPanel>
         </Grid>
     </Grid>
 </Window>
