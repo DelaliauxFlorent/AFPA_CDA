@@ -46,9 +46,9 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <BitmapImage x:Key="QuestMark" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="U:\59011-14-06\Exercices\02 - Composants d'interface\2 - Developper en C#\2 - C# WPF\3 - EcranDeSaisie\3 - EcranDeSaisie\questions.png"/>
-        <BitmapImage x:Key="Arrow" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="U:\59011-14-06\Exercices\02 - Composants d'interface\2 - Developper en C#\2 - C# WPF\3 - EcranDeSaisie\3 - EcranDeSaisie\Fleche.png"/>
-        <BitmapImage x:Key="Plus" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="U:\59011-14-06\Exercices\02 - Composants d'interface\2 - Developper en C#\2 - C# WPF\3 - EcranDeSaisie\3 - EcranDeSaisie\plus.png"/>
-        <BitmapImage x:Key="Minus" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="U:\59011-14-06\Exercices\02 - Composants d'interface\2 - Developper en C#\2 - C# WPF\3 - EcranDeSaisie\3 - EcranDeSaisie\moins.png"/>
+        <BitmapImage x:Key="QuestMark" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="pack://application:,,,/3 - EcranDeSaisie;component/imgs/questions.png"/>
+        <BitmapImage x:Key="Arrow" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="pack://application:,,,/3 - EcranDeSaisie;component/imgs/Fleche.png"/>
+        <BitmapImage x:Key="Plus" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="pack://application:,,,/3 - EcranDeSaisie;component/imgs/plus.png"/>
+        <BitmapImage x:Key="Minus" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="pack://application:,,,/3 - EcranDeSaisie;component/imgs/moins.png"/>
     </Application.Resources>
 </Application>
