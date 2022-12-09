@@ -474,16 +474,30 @@
                         </Grid>
                     </Grid>
                     <Grid x:Name="gridNavireAssoc" Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="1.1*"></RowDefinition>
+                            <RowDefinition Height="0.1*"></RowDefinition>
                             <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="0.1*"></RowDefinition>
+                            <RowDefinition Height="6*"></RowDefinition>
+                            <RowDefinition Height="0.1*"></RowDefinition>
                             <RowDefinition Height="6*"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <Grid x:Name="gridLblNavireAssoc" Grid.Row="0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.1*"></ColumnDefinition>
-                                <ColumnDefinition Width="50*"></ColumnDefinition>
-                                <ColumnDefinition Width="0.1*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
+                        <Grid x:Name="gridLblNavireAssoc" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="10">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="0.1*"></RowDefinition>
                                 <RowDefinition Height="10*"></RowDefinition>
