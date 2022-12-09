@@ -24,5 +24,10 @@ namespace _3___EcranDeSaisie
         {
             InitializeComponent();
         }
+
+        private void multiOnglets_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

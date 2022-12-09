@@ -45,10 +45,10 @@
                         <RowDefinition Height="1*"></RowDefinition>
                         <RowDefinition Height="0.1*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Label x:Name="lblImmatNav" Grid.Column="1" Grid.Row="1" Content="Immatriculation : " VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
-                    <TextBox x:Name="tbxImmatNav" Grid.Column="3" Grid.Row="1" Text="639451" IsEnabled="false" VerticalAlignment="Center"/>
-                    <Label x:Name="lblNomNav" Grid.Column="1" Grid.Row="3" Content="Nom : " VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
-                    <TextBox x:Name="tbxNomNav" Grid.Column="3" Grid.Row="3" Text="PHILCATHAN" IsEnabled="false" VerticalAlignment="Center"></TextBox>
+                    <Label x:Name="lblImmatNav" Grid.Column="1" Grid.Row="1" Content="Immatriculation : " HorizontalAlignment="Right"></Label>
+                    <TextBox x:Name="tbxImmatNav" Grid.Column="3" Grid.Row="1" Text="639451"  Style="{DynamicResource ResourceKey=disabledField}"/>
+                    <Label x:Name="lblNomNav" Grid.Column="1" Grid.Row="3" Content="Nom : " HorizontalAlignment="Right"></Label>
+                    <TextBox x:Name="tbxNomNav" Grid.Column="3" Grid.Row="3" Text="PHILCATHAN" Style="{DynamicResource ResourceKey=disabledField}"></TextBox>
                 </Grid>
             </GroupBox>
             <GroupBox Grid.Column="3" Grid.Row="1" Header="Marée" x:Name="gbMaree">
@@ -68,9 +68,9 @@
                         <RowDefinition Height="0.1*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Label x:Name="lblDepMar" Grid.Column="1" Grid.Row="1" Content="Départ : " VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
-                    <TextBox x:Name="tbxDepMar" Grid.Column="3" Grid.Row="1" Text="22/01/2013 - UCH - Granville" IsEnabled="false" VerticalAlignment="Center"/>
+                    <TextBox x:Name="tbxDepMar" Grid.Column="3" Grid.Row="1" Text="22/01/2013 - UCH - Granville"  Style="{DynamicResource ResourceKey=disabledField}"/>
                     <Label x:Name="lblRetMar" Grid.Column="1" Grid.Row="3" Content="Retour : " VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
-                    <TextBox x:Name="tbxRetMar" Grid.Column="3" Grid.Row="3" Text="23/01/2013 - UCH - Granville" IsEnabled="false" VerticalAlignment="Center"></TextBox>
+                    <TextBox x:Name="tbxRetMar" Grid.Column="3" Grid.Row="3" Text="23/01/2013 - UCH - Granville" Style="{DynamicResource ResourceKey=disabledField}"></TextBox>
                 </Grid>
             </GroupBox>
             <GroupBox Grid.Column="5" Grid.Row="1" Header="Programme d'observation" x:Name="gbProgObs">
@@ -89,10 +89,10 @@
                         <RowDefinition Height="1*"></RowDefinition>
                         <RowDefinition Height="0.1*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Label x:Name="lblProgProgObs" Grid.Column="1" Grid.Row="1" Content="Programme : " VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="Red"></Label>
-                    <TextBox x:Name="tbxProgProgObs" Grid.Column="3" Grid.Row="1" Text="SIH-OBSMER" IsEnabled="false" VerticalAlignment="Center"/>
-                    <Label x:Name="lblStratObs" Grid.Column="1" Grid.Row="3" Content="Stratégie : " VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
-                    <TextBox x:Name="tbxStratObs" Grid.Column="3" Grid.Row="3" Text="OBSMER démar" IsEnabled="false" VerticalAlignment="Center"></TextBox>
+                    <Label x:Name="lblProgProgObs" Grid.Column="1" Grid.Row="1" Content="Programme : " HorizontalAlignment="Right" Style="{DynamicResource ResourceKey=textImportant}"></Label>
+                    <TextBox x:Name="tbxProgProgObs" Grid.Column="3" Grid.Row="1" Text="SIH-OBSMER"  Style="{DynamicResource ResourceKey=disabledField}"/>
+                    <Label x:Name="lblStratObs" Grid.Column="1" Grid.Row="3" Content="Stratégie : " HorizontalAlignment="Right"></Label>
+                    <TextBox x:Name="tbxStratObs" Grid.Column="3" Grid.Row="3" Text="OBSMER démar" Style="{DynamicResource ResourceKey=disabledField}"></TextBox>
                 </Grid>
             </GroupBox>
             <GroupBox Grid.Column="7" Grid.Row="1" Header="Saisisseur" x:Name="gbSais">
@@ -111,14 +111,14 @@
                         <RowDefinition Height="1*"></RowDefinition>
                         <RowDefinition Height="0.1*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Label x:Name="lblOperSaisie" Grid.Column="1" Grid.Row="1" Content="Opérateur de saisie : " VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
-                    <TextBox x:Name="tbxOperSaisie" Grid.Column="3" Grid.Row="1" Text="TETARD Xavier" IsEnabled="false" VerticalAlignment="Center"/>
-                    <Label x:Name="lblDerModif" Grid.Column="1" Grid.Row="3" Content="Dernière modification : " VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
-                    <TextBox x:Name="tbxDerModif" Grid.Column="3" Grid.Row="3" Text="25/11/2013 10:16:37" IsEnabled="false" VerticalAlignment="Center"></TextBox>
+                    <Label x:Name="lblOperSaisie" Grid.Column="1" Grid.Row="1" Content="Opérateur de saisie : " HorizontalAlignment="Right"></Label>
+                    <TextBox x:Name="tbxOperSaisie" Grid.Column="3" Grid.Row="1" Text="TETARD Xavier" Style="{DynamicResource ResourceKey=disabledField}"/>
+                    <Label x:Name="lblDerModif" Grid.Column="1" Grid.Row="3" Content="Dernière modification : " HorizontalAlignment="Right"></Label>
+                    <TextBox x:Name="tbxDerModif" Grid.Column="3" Grid.Row="3" Text="25/11/2013 10:16:37" Style="{DynamicResource ResourceKey=disabledField}"></TextBox>
                 </Grid>
             </GroupBox>
         </Grid>
-        <TabControl x:Name="multiOnglets" Grid.Row="2" Grid.Column="0" Margin="5">
+        <TabControl x:Name="multiOnglets" Grid.Row="2" Grid.Column="0" Margin="5" SelectionChanged="multiOnglets_SelectionChanged">
             <TabItem Header="Opération">
                 <Grid x:Name="gridOperation">
                     <Grid.RowDefinitions>
@@ -152,7 +152,7 @@
                                     <RowDefinition Height="1.1*"></RowDefinition>
                                     <RowDefinition Height="0.1*"></RowDefinition>
                                 </Grid.RowDefinitions>
-                                <Label Grid.Column="0" Grid.Row="3" x:Name="lblDtHrDeb" Content="Date et heure : " HorizontalAlignment="Right" VerticalAlignment="Top"></Label>
+                                <Label Grid.Column="0" Grid.Row="3" x:Name="lblDtHrDeb" Content="Date et heure : " HorizontalAlignment="Right" VerticalAlignment="Top" Style="{DynamicResource ResourceKey=textImportant}"></Label>
                                 <Grid x:Name="choixDTDebOp" Grid.Row="3" Grid.Column="1">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -190,23 +190,323 @@
                                         <ComboBoxItem Content="23h45"></ComboBoxItem>
                                     </ComboBox>
                                 </Grid>
-                                <Label Grid.Column="0" Grid.Row="5" x:Name="lblLatDeb" Content="Latitude : " HorizontalAlignment="Right"></Label>
+                                <Label Grid.Column="0" Grid.Row="5" x:Name="lblLatDeb" Content="Latitude : " HorizontalAlignment="Right" Style="{DynamicResource ResourceKey=textImportant}"></Label>
                                 <TextBox x:Name="txbLatDebOp" Grid.Column="1" Grid.Row="5" Text="+49 14.100"></TextBox>
-                                <Grid x:Name="Nom" Grid.Row="0" Grid.Column="0">
+                                <Grid x:Name="diversLatDebOp" Grid.Row="5" Grid.Column="2">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="1*"></RowDefinition>
-                                    </Grid.RowDefinitions>
+                                    <Grid x:Name="gridButtonQM1" Grid.Column="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                                            <ColumnDefinition Width="10*"></ColumnDefinition>
+                                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="5*"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Image Grid.Column="1" Grid.Row="1" Source="{DynamicResource QuestMark}" Stretch="Uniform"></Image>
+                                    </Grid>
+                                    <Grid x:Name="gridButtonFleche1" Grid.Column="1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                                            <ColumnDefinition Width="10*"></ColumnDefinition>
+                                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="5*"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Button Grid.Column="1" Grid.Row="1"  Style="{DynamicResource ResourceKey=ArrowButton}"></Button>
+                                    </Grid>
+
                                 </Grid>
-                                <Label Grid.Column="0" Grid.Row="7" x:Name="lblLongDeb" Content="Longitude : " HorizontalAlignment="Right"></Label>
+                                <Label Grid.Column="0" Grid.Row="7" x:Name="lblLongDeb" Content="Longitude : " HorizontalAlignment="Right" Style="{DynamicResource ResourceKey=textImportant}"></Label>
                                 <TextBox x:Name="txbLonDebOp" Grid.Column="1" Grid.Row="7" Text="-1 48.320"></TextBox>
+                                <Grid x:Name="diversLonDebOp" Grid.Row="7" Grid.Column="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid x:Name="gridButtonQM2" Grid.Column="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                                            <ColumnDefinition Width="10*"></ColumnDefinition>
+                                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="5*"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Image Grid.Column="1" Grid.Row="1" Source="{DynamicResource QuestMark}" Stretch="Uniform"></Image>
+                                    </Grid>
+                                    <Grid x:Name="gridButtonFleche2" Grid.Column="1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                                            <ColumnDefinition Width="10*"></ColumnDefinition>
+                                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="5*"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Button Grid.Column="1" Grid.Row="1"  Style="{DynamicResource ResourceKey=ArrowButton}"></Button>
+                                    </Grid>
+
+                                </Grid>
                             </Grid>
                         </GroupBox>
                         <GroupBox Grid.Row="0" Grid.Column="2" x:Name="gbVirage" Header="Fin de l'opération (Virage)">
+                            <Grid x:Name="gridFinOper" Grid.Row="0" Grid.Column="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0.1*"></RowDefinition>
+                                    <RowDefinition Height="1*"></RowDefinition>
+                                    <RowDefinition Height="0.1*"></RowDefinition>
+                                    <RowDefinition Height="1.1*"></RowDefinition>
+                                    <RowDefinition Height="0.1*"></RowDefinition>
+                                    <RowDefinition Height="1.1*"></RowDefinition>
+                                    <RowDefinition Height="0.1*"></RowDefinition>
+                                    <RowDefinition Height="1.1*"></RowDefinition>
+                                    <RowDefinition Height="0.1*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Label Grid.Row="1" Grid.Column="0" Content="Durée (h): " HorizontalAlignment="Right"></Label>
+                                <TextBox x:Name="dureeFin" Style="{DynamicResource disabledField}" Grid.Column="1" Grid.Row="1" Text="2:00"></TextBox>
+                                <Label Grid.Column="0" Grid.Row="3" x:Name="lblDtHrFin" Content="Date et heure: " HorizontalAlignment="Right" VerticalAlignment="Top" Style="{DynamicResource ResourceKey=textImportant}"></Label>
+                                <Grid x:Name="choixDTFinOp" Grid.Row="3" Grid.Column="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <DatePicker x:Name="choixDateFinOp" Grid.Column="0" DisplayDate="01/22/2013" SelectedDate="01/22/2013"></DatePicker>
+                                    <ComboBox x:Name="choixHeureFinOp" Grid.Column="1">
+                                        <ComboBoxItem Content="17h00"></ComboBoxItem>
+                                        <ComboBoxItem Content="17h15"></ComboBoxItem>
+                                        <ComboBoxItem Content="17h30"></ComboBoxItem>
+                                        <ComboBoxItem Content="17h45"></ComboBoxItem>
+                                        <ComboBoxItem Content="18h00"></ComboBoxItem>
+                                        <ComboBoxItem Content="18h15"></ComboBoxItem>
+                                        <ComboBoxItem Content="18h30"></ComboBoxItem>
+                                        <ComboBoxItem Content="18h45"></ComboBoxItem>
+                                        <ComboBoxItem Content="19h00"></ComboBoxItem>
+                                        <ComboBoxItem Content="19h15"></ComboBoxItem>
+                                        <ComboBoxItem Content="19h30"></ComboBoxItem>
+                                        <ComboBoxItem Content="19h45"></ComboBoxItem>
+                                        <ComboBoxItem Content="20h00"></ComboBoxItem>
+                                        <ComboBoxItem Content="20h15"></ComboBoxItem>
+                                        <ComboBoxItem Content="20h30" IsSelected="True"></ComboBoxItem>
+                                        <ComboBoxItem Content="20h45"></ComboBoxItem>
+                                        <ComboBoxItem Content="21h00"></ComboBoxItem>
+                                        <ComboBoxItem Content="21h15"></ComboBoxItem>
+                                        <ComboBoxItem Content="21h30"></ComboBoxItem>
+                                        <ComboBoxItem Content="21h45"></ComboBoxItem>
+                                        <ComboBoxItem Content="22h00"></ComboBoxItem>
+                                        <ComboBoxItem Content="22h15"></ComboBoxItem>
+                                        <ComboBoxItem Content="22h30"></ComboBoxItem>
+                                        <ComboBoxItem Content="22h45"></ComboBoxItem>
+                                        <ComboBoxItem Content="23h00"></ComboBoxItem>
+                                        <ComboBoxItem Content="23h15"></ComboBoxItem>
+                                        <ComboBoxItem Content="23h30"></ComboBoxItem>
+                                        <ComboBoxItem Content="23h45"></ComboBoxItem>
+                                    </ComboBox>
+                                </Grid>
+                                <Label Grid.Column="0" Grid.Row="5" x:Name="lblLatFin" Content="Latitude: " HorizontalAlignment="Right" Style="{DynamicResource ResourceKey=textImportant}"></Label>
+                                <TextBox x:Name="txbLatFinOp" Grid.Column="1" Grid.Row="5" Text="+49 14.200"></TextBox>
+                                <Grid x:Name="diversLatFinOp" Grid.Row="5" Grid.Column="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid x:Name="gridButtonQM3" Grid.Column="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                                            <ColumnDefinition Width="10*"></ColumnDefinition>
+                                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="5*"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Image Grid.Column="1" Grid.Row="1" Source="{DynamicResource QuestMark}" Stretch="Uniform"></Image>
+                                    </Grid>
+                                    <Grid x:Name="gridButtonFleche3" Grid.Column="1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                                            <ColumnDefinition Width="10*"></ColumnDefinition>
+                                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="5*"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                    </Grid>
 
+                                </Grid>
+                                <Label Grid.Column="0" Grid.Row="7" x:Name="lblLongFin" Content="Longitude: " HorizontalAlignment="Right" Style="{DynamicResource ResourceKey=textImportant}"></Label>
+                                <TextBox x:Name="txbLonFinOp" Grid.Column="1" Grid.Row="7" Text="-1 48.390"></TextBox>
+                                <Grid x:Name="diversLonFinOp" Grid.Row="7" Grid.Column="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid x:Name="gridButtonQM4" Grid.Column="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                                            <ColumnDefinition Width="10*"></ColumnDefinition>
+                                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="5*"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Image Grid.Column="1" Grid.Row="1" Source="{DynamicResource QuestMark}" Stretch="Uniform"></Image>
+                                    </Grid>
+                                    <Grid x:Name="gridButtonFleche4" Grid.Column="1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                                            <ColumnDefinition Width="10*"></ColumnDefinition>
+                                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="5*"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                    </Grid>
+
+                                </Grid>
+                            </Grid>
                         </GroupBox>
+                    </Grid>
+                    <Grid x:Name="gridlblZA" Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                            <ColumnDefinition Width="50*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.1*"></RowDefinition>
+                            <RowDefinition Height="10*"></RowDefinition>
+                            <RowDefinition Height="0.1*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label x:Name="lblZA" Content="Zones d'activité : 27E8" Style="{DynamicResource ResourceKey=titreZone}" Grid.Row="1" Grid.Column="1">
+                        </Label>
+                    </Grid>
+                    <Grid x:Name="gridAutreCarOp" Grid.Row="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="6*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid x:Name="gridLblAutreCarOp" Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                                <ColumnDefinition Width="50*"></ColumnDefinition>
+                                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.1*"></RowDefinition>
+                                <RowDefinition Height="10*"></RowDefinition>
+                                <RowDefinition Height="0.1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label x:Name="lblAutCarOp" Content="Autres caractéristiques de l'opération" Style="{DynamicResource ResourceKey=titreZone}" Grid.Row="1" Grid.Column="1">
+                            </Label>
+                        </Grid>
+                        <Grid x:Name="gridInternAutreCarOp" Grid.Row="1" Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                                <ColumnDefinition Width="30*"></ColumnDefinition>
+                                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.1*"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="0.1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid x:Name="gridPlusMinAutre" Grid.Row="1" Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0.1*"></RowDefinition>
+                                    <RowDefinition Height="1*"></RowDefinition>
+                                    <RowDefinition Height="0.1*"></RowDefinition>
+                                    <RowDefinition Height="1*"></RowDefinition>
+                                    <RowDefinition Height="0.1*"></RowDefinition>
+                                    <RowDefinition Height="1*"></RowDefinition>
+                                    <RowDefinition Height="0.1*"></RowDefinition>
+                                    <RowDefinition Height="1*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid x:Name="gridPlusAutre" Grid.Row="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="0.1*"></RowDefinition>
+                                        <RowDefinition Height="1*"></RowDefinition>
+                                        <RowDefinition Height="0.1*"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Button Grid.Row="1" Grid.Column="1" x:Name="PlusAutre" Style="{DynamicResource PlusButton}"></Button>
+                                </Grid>
+                                <Grid x:Name="gridMinusAutre" Grid.Row="3">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="0.1*"></RowDefinition>
+                                        <RowDefinition Height="1*"></RowDefinition>
+                                        <RowDefinition Height="0.1*"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Button Grid.Row="1" Grid.Column="1" x:Name="MinusAutre" Style="{DynamicResource MinusButton}"></Button>
+                                </Grid>
+                            </Grid>
+                            <DataGrid Grid.Column="3" Grid.Row="1">
+                                <DataGrid.Columns>
+                                    <DataGridCheckBoxColumn Width="0.5*"></DataGridCheckBoxColumn>
+                                    <DataGridTextColumn Width="4*" Header="Caractéristique"></DataGridTextColumn>
+                                    <DataGridTextColumn Width="3*" Header="Valeur"></DataGridTextColumn>
+                                    <DataGridTextColumn Width="2*" Header="Unité"></DataGridTextColumn>
+                                    <DataGridTextColumn Width="2*" Header="Support"></DataGridTextColumn>
+                                    <DataGridTextColumn Width="2*" Header="Fraction"></DataGridTextColumn>
+                                    <DataGridTextColumn Width="4*" Header="Méthode"></DataGridTextColumn>
+                                    <DataGridTextColumn Width="2*"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </Grid>
+                    <Grid x:Name="gridNavireAssoc" Grid.Row="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="6*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid x:Name="gridLblNavireAssoc" Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                                <ColumnDefinition Width="50*"></ColumnDefinition>
+                                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.1*"></RowDefinition>
+                                <RowDefinition Height="10*"></RowDefinition>
+                                <RowDefinition Height="0.1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label x:Name="lblNavireAssoc" Content="&#x25BC; Navire Associé" Style="{DynamicResource ResourceKey=titreZone}" Grid.Row="1" Grid.Column="1">
+                            </Label>
+                        </Grid>
+                        <Grid x:Name="gridInternNavireAssoc" Grid.Row="1" Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                                <ColumnDefinition Width="30*"></ColumnDefinition>
+                                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.1*"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="0.1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                        </Grid>
                     </Grid>
                 </Grid>
             </TabItem>

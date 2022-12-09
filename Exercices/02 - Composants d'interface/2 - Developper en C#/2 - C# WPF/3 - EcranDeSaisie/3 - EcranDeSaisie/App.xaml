@@ -5,6 +5,50 @@
              xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="_3___EcranDeSaisie.App"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-
+        <Style x:Key="textImportant" TargetType="Label">
+            <Setter Property="Foreground" Value="Red"></Setter>
+        </Style>
+        <Style x:Key="titreZone" TargetType="Label">
+            <Setter Property="Foreground" Value="#FF326DA5"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFE0E8F1"/>
+                        <GradientStop Color="#FFF6F8FA" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="disabledField" TargetType="TextBox">
+            <Setter Property="Background" Value="LightGray"></Setter>
+            <Setter Property="IsEnabled" Value="False"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        </Style>
+        <Style x:Key="ArrowButton" TargetType="Button">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="{DynamicResource Arrow}"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="PlusButton" TargetType="Button">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="{DynamicResource Plus}"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="MinusButton" TargetType="Button">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="{DynamicResource Minus}"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <BitmapImage x:Key="QuestMark" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="U:\59011-14-06\Exercices\02 - Composants d'interface\2 - Developper en C#\2 - C# WPF\3 - EcranDeSaisie\3 - EcranDeSaisie\questions.png"/>
+        <BitmapImage x:Key="Arrow" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="U:\59011-14-06\Exercices\02 - Composants d'interface\2 - Developper en C#\2 - C# WPF\3 - EcranDeSaisie\3 - EcranDeSaisie\Fleche.png"/>
+        <BitmapImage x:Key="Plus" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="U:\59011-14-06\Exercices\02 - Composants d'interface\2 - Developper en C#\2 - C# WPF\3 - EcranDeSaisie\3 - EcranDeSaisie\plus.png"/>
+        <BitmapImage x:Key="Minus" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="U:\59011-14-06\Exercices\02 - Composants d'interface\2 - Developper en C#\2 - C# WPF\3 - EcranDeSaisie\3 - EcranDeSaisie\moins.png"/>
     </Application.Resources>
 </Application>
