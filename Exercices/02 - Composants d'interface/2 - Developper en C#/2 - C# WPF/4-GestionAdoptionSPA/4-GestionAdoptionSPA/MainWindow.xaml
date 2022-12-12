@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_4_GestionAdoptionSPA"
         mc:Ignorable="d"
-        Title="Refuge SAP" Height="700" Width="800" Background="LightGray">
+        Title="Refuge SAP" Height="700" Width="800" Background="LightGray" Icon="LogoSPA.png">
     <Grid x:Name="mainGrid" Margin="10">
             <Grid.RowDefinitions>
             <RowDefinition Height="1*"></RowDefinition>
@@ -41,11 +41,11 @@
                         <RowDefinition Height="2*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Label x:Name="lblNomAdoptant" Grid.Column="0" Grid.Row="0" Content="Nom Complet: "></Label>
-                    <TextBox x:Name="txtbxNomAdoptant" Grid.Row="0" Grid.Column="2"></TextBox>
+                    <TextBox x:Name="txtbxNomAdoptant" Grid.Row="0" Grid.Column="2" Text="Nom et prénom adoptant"></TextBox>
                     <Label x:Name="lblContactAdoptant" Grid.Column="0" Grid.Row="2" Content="Contact: "></Label>
-                    <TextBox x:Name="txtbxContactAdoptant" Grid.Row="2" Grid.Column="2"></TextBox>
+                    <TextBox x:Name="txtbxContactAdoptant" Grid.Row="2" Grid.Column="2" Text="03.28.xx.xx.xx"></TextBox>
                     <Label x:Name="lblAdresseAdoptant" Grid.Column="0" Grid.Row="4" Content="Adresse: " VerticalContentAlignment="Top"></Label>
-                    <TextBox x:Name="txtbxAdresseAdoptant" Grid.Row="4" Grid.Column="2" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>
+                    <TextBox x:Name="txtbxAdresseAdoptant" Grid.Row="4" Grid.Column="2" TextWrapping="Wrap" AcceptsReturn="True" Text="XX Rue XXXXXXX&#x0a;59X40 Dunkerque"></TextBox>
                 </Grid>
             </GroupBox>
             <GroupBox x:Name="grpbxResponsable" Grid.Row="0" Grid.Column="2" Header="Responsable" Padding="5">
@@ -94,16 +94,16 @@
                 </Grid.RowDefinitions>
                 <Label x:Name="lblTypeAdoptee" Grid.Row="0" Grid.Column="0" Content="Type: "></Label>
                 <ComboBox x:Name="cmbxTypeAdoptee" Grid.Row="0" Grid.Column="2">
-                    <ComboBoxItem Content="Chien"></ComboBoxItem>
+                    <ComboBoxItem Content="Chien" IsSelected="True"></ComboBoxItem>
                     <ComboBoxItem Content="Chat"></ComboBoxItem>
                     <ComboBoxItem Content="Tortue"></ComboBoxItem>
                     <ComboBoxItem Content="Furet"></ComboBoxItem>
                     <ComboBoxItem Content="Serpent"></ComboBoxItem>
                 </ComboBox>
                 <Label x:Name="lblNomAdoptee" Grid.Column="4" Grid.Row="0" Content="Nom: "></Label>
-                <TextBox x:Name="txtbxNomAdoptee" Grid.Row="0" Grid.Column="6"></TextBox>
+                <TextBox x:Name="txtbxNomAdoptee" Grid.Row="0" Grid.Column="6" Text="Lassie"></TextBox>
                 <Label x:Name="lblRaceAdoptee" Grid.Column="0" Grid.Row="2" Content="Race: "></Label>
-                <TextBox x:Name="txtbxRaceAdoptee" Grid.Row="2" Grid.Column="2"></TextBox>
+                <TextBox x:Name="txtbxRaceAdoptee" Grid.Row="2" Grid.Column="2" Text="Colley"></TextBox>
                 <Label x:Name="lblAgeAdoptee" Grid.Column="4" Grid.Row="2" Content="Age: "></Label>
                 <TextBox x:Name="txtbxAgeAdoptee" Grid.Row="2" Grid.Column="6"></TextBox>
                 <GroupBox x:Name="grpbxMarqAdoptee" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="4" Header="Marquage">
@@ -118,10 +118,10 @@
                             <RowDefinition Height="0.1*"></RowDefinition>
                             <RowDefinition Height="1*"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <RadioButton x:Name="rdbtnMarqPuce" Content="Puce" GroupName="rdbtnMarq" Grid.Column="0" Grid.Row="0"></RadioButton>
+                        <RadioButton x:Name="rdbtnMarqPuce" Content="Puce" GroupName="rdbtnMarq" Grid.Column="0" Grid.Row="0" IsChecked="True"></RadioButton>
                         <RadioButton x:Name="rdbtnMarqTatoo" Content="Tatouage" GroupName="rdbtnMarq" Grid.Column="0" Grid.Row="2"></RadioButton>
                         <Label x:Name="lblNumRefAdoptee" Grid.Column="2" Grid.Row="0" Content="Identifiant:" HorizontalContentAlignment="Left"></Label>
-                        <TextBox x:Name="txtbxNumRefAdoptee" Grid.Row="2" Grid.Column="2"></TextBox>
+                        <TextBox x:Name="txtbxNumRefAdoptee" Grid.Row="2" Grid.Column="2" Text="xxxxxxxxxxxxx"></TextBox>
                     </Grid>
                 </GroupBox>
                 <Grid x:Name="gridSteriAdoptee" Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="3">
@@ -140,12 +140,12 @@
                     <Label x:Name="lblSexAdoptee" Grid.Column="0" Grid.Row="1" Content="Sexe: "></Label>
                     <ComboBox x:Name="cmbbxSexAdoptee" Grid.Column="2" Grid.Row="1">
                         <ComboBoxItem Content="Mâle"></ComboBoxItem>
-                        <ComboBoxItem Content="Femelle"></ComboBoxItem>
+                        <ComboBoxItem Content="Femelle" IsSelected="True"></ComboBoxItem>
                     </ComboBox>
                     <Label x:Name="lblSteriAdoptee" Content="Stérilisé: " Grid.Row="3" Grid.Column="0"></Label>
                     <ComboBox x:Name="cmbbxSteriAdoptee" Grid.Column="2" Grid.Row="3">
                         <ComboBoxItem Content="Oui"></ComboBoxItem>
-                        <ComboBoxItem Content="Non"></ComboBoxItem>
+                        <ComboBoxItem Content="Non" IsSelected="True"></ComboBoxItem>
                     </ComboBox>
                 </Grid>
 
@@ -209,7 +209,9 @@
             <GroupBox x:Name="grpbxPaiement" Grid.Column="2" Header="Paiement" Padding="5">
                 <Grid x:Name="gridInnerPaie">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="3.5*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"></RowDefinition>
@@ -218,21 +220,10 @@
                         <RowDefinition Height="0.1*"></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
                     </Grid.RowDefinitions>
-
-                    <Grid x:Name="gridFraisAdopt" Grid.Row="0" Grid.Column="0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="3*"></ColumnDefinition>
-                            <ColumnDefinition Width="0.1*"></ColumnDefinition>
-                            <ColumnDefinition Width="3*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="1*"></RowDefinition>
-                        </Grid.RowDefinitions>
                         <Label x:Name="lblTotalPaie" Grid.Column="0" Grid.Row="0" Content="Frais d'adoption: "></Label>
                         <TextBox x:Name="txtbxTotalPaie" Grid.Row="0" Grid.Column="2" Style="{DynamicResource DisabledTextBox}" Text="Prix Généré auto"></TextBox>
-                    </Grid>
-                    <Label x:Name="lblModePaiement" Grid.Column="0" Grid.Row="2" Content="Méthode de paiement:" HorizontalContentAlignment="Left"></Label>
-                    <ComboBox x:Name="cmbbxModePaiement" Grid.Column="0" Grid.Row="4">
+                    <Label x:Name="lblModePaiement" Grid.Column="0" Grid.Row="2" Content="Méthode de paiement: " ></Label>
+                    <ComboBox x:Name="cmbbxModePaiement" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3">
                         <ComboBoxItem Content="Carte Bleue"></ComboBoxItem>
                         <ComboBoxItem Content="Chèque"></ComboBoxItem>
                         <ComboBoxItem Content="Espèces"></ComboBoxItem>
@@ -260,9 +251,8 @@
                     <ImageBrush ImageSource="reinit.png" Stretch="Uniform" AlignmentX="Left">
                         <ImageBrush.RelativeTransform>
                             <TransformGroup>
-                                <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.8" ScaleY="0.8"/>
-                                <SkewTransform CenterY="0.5" CenterX="0.5"/>
-                                <RotateTransform CenterY="0.5" CenterX="0.5"/>
+                                <ScaleTransform CenterY="0.5" CenterX="0.25" ScaleX="0.75" ScaleY="0.75"/>
+
                                 <TranslateTransform/>
                             </TransformGroup>
                         </ImageBrush.RelativeTransform>
@@ -274,9 +264,8 @@
                     <ImageBrush AlignmentX="Left" ImageSource="cancel.png" Stretch="Uniform">
                         <ImageBrush.RelativeTransform>
                             <TransformGroup>
-                                <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.8" ScaleY="0.8"/>
-                                <SkewTransform CenterY="0.5" CenterX="0.5"/>
-                                <RotateTransform CenterY="0.5" CenterX="0.5"/>
+                                <ScaleTransform CenterY="0.5" CenterX="0.25" ScaleX="0.75" ScaleY="0.75"/>
+
                                 <TranslateTransform/>
                             </TransformGroup>
                         </ImageBrush.RelativeTransform>
@@ -288,9 +277,7 @@
                     <ImageBrush ImageSource="valid.png" Stretch="Uniform" AlignmentX="Left">
                         <ImageBrush.RelativeTransform>
                             <TransformGroup>
-                                <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.8" ScaleY="0.8"/>
-                                <SkewTransform CenterY="0.5" CenterX="0.5"/>
-                                <RotateTransform CenterY="0.5" CenterX="0.5"/>
+                                <ScaleTransform CenterY="0.5" CenterX="0.25" ScaleX="0.75" ScaleY="0.75"/>
                                 <TranslateTransform/>
                             </TransformGroup>
                         </ImageBrush.RelativeTransform>

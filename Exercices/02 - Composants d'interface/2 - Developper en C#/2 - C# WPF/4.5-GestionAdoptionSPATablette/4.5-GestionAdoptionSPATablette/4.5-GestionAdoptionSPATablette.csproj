@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C5E42C09-A5BE-4E17-8915-1DC3EFE5D90D}</ProjectGuid>
+    <ProjectGuid>{82967AB0-B40E-4A42-AAE4-730F2ED28817}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>_4_GestionAdoptionSPA</RootNamespace>
-    <AssemblyName>4-GestionAdoptionSPA</AssemblyName>
+    <RootNamespace>_4._5_GestionAdoptionSPATablette</RootNamespace>
+    <AssemblyName>4.5-GestionAdoptionSPATablette</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -95,34 +95,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="img\Chien.jpg" />
+    <Resource Include="cancel.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Chien.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="img\cancel.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="img\reinit.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="img\valid.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="valid.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="cancel.png" />
+    <Resource Include="LogoSPA.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="reinit.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="img\LogoSPA.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="LogoSPA.png" />
+    <Resource Include="valid.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
