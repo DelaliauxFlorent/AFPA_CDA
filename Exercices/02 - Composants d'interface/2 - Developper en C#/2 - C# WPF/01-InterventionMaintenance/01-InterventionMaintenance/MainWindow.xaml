@@ -1,0 +1,222 @@
+﻿<Window x:Class="_01_InterventionMaintenance.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_01_InterventionMaintenance"
+        mc:Ignorable="d"
+        Title="Intervention Maintenance" Height="800" Width="800" Background="LightGray">
+    <Grid x:Name="mainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="0.1*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="0.1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="0.1*" />
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="0.2*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.1*"></ColumnDefinition>
+            <ColumnDefinition Width="9.8*"></ColumnDefinition>
+            <ColumnDefinition Width="0.1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="gridEnTete" Grid.Row="1" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="0.5*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <ComboBox x:Name="cmbbxAnnee" Grid.Column="1" Grid.Row="1">
+                <ComboBoxItem Content="2021" IsSelected="True"></ComboBoxItem>
+                <ComboBoxItem Content="2020"></ComboBoxItem>
+            </ComboBox>
+        </Grid>
+        <DataGrid Grid.Row="3" Grid.Column="1" x:Name="dtgrdListeInterventions" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Numéro" Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Prestataire" Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Code UEM" Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Type de travail" Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Point de km de début" Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Point de km de fin" Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Volume" Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Prix Unitaire" Width="auto"></DataGridTextColumn>
+                <DataGridTextColumn Header="Date de réception" Width="auto"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid x:Name="gridBtns" Grid.Row="5" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="0.1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Button x:Name="btnAjout" Content="Ajouter" Grid.Column="1" Grid.Row="1"></Button>
+            <Button x:Name="btnModif" Content="Modifier" Grid.Column="3" Grid.Row="1"></Button>
+            <Button x:Name="btnSave" Content="Sauvegarder" Grid.Column="5" Grid.Row="1"></Button>
+            <Button x:Name="btnSuppr" Content="Supprimer" Grid.Column="7" Grid.Row="1"></Button>
+            <Button x:Name="btnImpr" Content="Imprimer" Grid.Column="9" Grid.Row="1"></Button>
+        </Grid>
+        <TabControl x:Name="tbctrlDetails" Grid.Row="7" Grid.Column="1">
+            <TabItem x:Name="tbItemUEM" Header="UEM">
+                <Grid x:Name="gridInternUEM" Grid.Row="0" Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="48*"></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="48*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="98*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <GroupBox x:Name="grpbxUEMCanal" Grid.Row="1" Grid.Column="1" Header="Canal">
+                        <Grid x:Name="gridInternCanal" Grid.Row="0" Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                <ColumnDefinition Width="48*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="2*"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="2*"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label x:Name="lblTypeCanal" Grid.Column="1" Grid.Row="1" Content="Type de Canal:"></Label>
+                            <ComboBox x:Name="cmbbxTypeCanal" Grid.Column="3" Grid.Row="1">
+                                <ComboBoxItem Content="Distributeur" IsSelected="True"></ComboBoxItem>
+                                <ComboBoxItem Content="Autres"></ComboBoxItem>
+                            </ComboBox>
+                            <Label x:Name="lblCanal" Grid.Column="1" Grid.Row="3" Content="Canal:"></Label>
+                            <ComboBox x:Name="cmbbxCanal" Grid.Column="3" Grid.Row="3">
+                                <ComboBoxItem Content="Nd-Dis-NDebouchage" IsSelected="True"></ComboBoxItem>
+                                <ComboBoxItem Content="Autres"></ComboBoxItem>
+                            </ComboBox>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox x:Name="grpbxUEMTous" Header="Tous" Grid.Row="1" Grid.Column="3">
+                        <Grid x:Name="gridInternUEMTous" Grid.Row="0" Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                <ColumnDefinition Width="48*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="2*"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="2*"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label x:Name="lblCodeUEM" Grid.Column="1" Grid.Row="1" Content="Code UEM:"></Label>
+                            <TextBox x:Name="txtbxCodeUEM" Grid.Column="3" Grid.Row="1" Text="Nid-Ari-ND8"></TextBox>
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tbItemPrevisions" Header="Prévisions">
+                <Grid x:Name="gridInternPrevisions" Grid.Row="0" Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid x:Name="gridInternPrevisionsG" Grid.Row="0" Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="50*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.1*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="0.1*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="0.1*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="0.1*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="0.1*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="0.1*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="0.1*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="0.1*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="0.1*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label x:Name="lblPrevTypeTravail" Grid.Column="1" Grid.Row="1" Content="Type de travail:"></Label>
+                        <Label x:Name="lblPrevTypeEntretien" Grid.Column="1" Grid.Row="3" Content="Type d'entretien:"></Label>
+                        <Label x:Name="lblPrevPtsKmDeb" Grid.Column="1" Grid.Row="5" Content="Point de kilomètre du début:"></Label>
+                        <Label x:Name="lblPrevPtsKmFin" Grid.Column="1" Grid.Row="7" Content="Point de kilomètre de fin:"></Label>
+                        <Label x:Name="lblPrevQte" Grid.Column="1" Grid.Row="9" Content="Quantité:"></Label>
+                        <Label x:Name="lblPrevMontant" Grid.Column="1" Grid.Row="11" Content="Montant:"></Label>
+                    </Grid>
+                    <Grid x:Name="gridInternPrevisionsD" Grid.Row="0" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="50*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.1*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="0.1*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="0.1*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="0.1*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="0.1*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="0.1*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="0.1*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="0.1*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="0.1*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label x:Name="lblPrevPU" Grid.Column="1" Grid.Row="9" Content="Prix unitaire:"></Label>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tbItemRealisations" Header="Réalisations">
+
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

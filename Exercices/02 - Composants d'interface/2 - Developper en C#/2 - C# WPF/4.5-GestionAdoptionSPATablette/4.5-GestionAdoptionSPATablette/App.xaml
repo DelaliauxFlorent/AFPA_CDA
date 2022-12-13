@@ -12,6 +12,7 @@
         <Style TargetType="{x:Type Label}">
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="MinHeight" Value="20"></Setter>
         </Style>
         <Style TargetType="{x:Type RadioButton}">
             <Setter Property="VerticalContentAlignment" Value="Center"/>

@@ -67,13 +67,16 @@
                         <ColumnDefinition Width="3.7*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.8*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="1*" MinHeight="20"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
                         <RowDefinition Height="0.1*"></RowDefinition>
-                        <RowDefinition Height="0.8*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
                         <RowDefinition Height="0.1*"></RowDefinition>
-                        <RowDefinition Height="0.8*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
                         <RowDefinition Height="0.1*"></RowDefinition>
-                        <RowDefinition Height="0.*"></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
                         <RowDefinition Height="0.1*"></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
@@ -128,8 +131,8 @@
                             <TextBox x:Name="txtbxNumRefAdoptee" Grid.Row="2" Grid.Column="2" Text="xxxxxxxxxxxxx" Style="{DynamicResource DisabledTextBox}"></TextBox>
                         </Grid>
                     </GroupBox>
-                    <Label x:Name="lblAnteMedAdoptee" Grid.Column="0" Grid.Row="16" Content="Antécédents Médicaux:" HorizontalContentAlignment="Left"></Label>
-                    <DataGrid x:Name="dtgrdAnteMedAdoptee" Grid.Row="16" Grid.Column="2">
+                    <Label x:Name="lblAnteMedAdoptee" Grid.Column="0" Grid.Row="16" Content="Antécédents Médicaux:" Grid.ColumnSpan="3"></Label>
+                    <DataGrid x:Name="dtgrdAnteMedAdoptee" Grid.Row="18" Grid.Column="0" Grid.ColumnSpan="3" MinHeight="50">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Date" Width="1*"></DataGridTextColumn>
                             <DataGridTextColumn Header="Action" Width="5*"></DataGridTextColumn>
@@ -140,37 +143,41 @@
 
             <Grid x:Name="gridDocPay" Grid.Row="4" Grid.Column="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="5*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.1*"></ColumnDefinition>
-                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="0.1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <GroupBox x:Name="grpbxDocSup" Grid.Column="0" Header="Documents Supplémentaires" Padding="5">
+                <GroupBox x:Name="grpbxDocSup" Grid.Column="0" Grid.Row="0" Header="Documents Supplémentaires" Padding="5">
 
                     <Grid x:Name="gridInnerDocSup">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="2*"></ColumnDefinition>
-                            <ColumnDefinition Width="0.1*"></ColumnDefinition>
-                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="1*"></RowDefinition>
-                            <RowDefinition Height="0.1*"></RowDefinition>
                             <RowDefinition Height="1*"></RowDefinition>
-                            <RowDefinition Height="0.1*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
                             <RowDefinition Height="1*"></RowDefinition>
                         </Grid.RowDefinitions>
                         <CheckBox x:Name="chkbxCNI" Grid.Row="0" Grid.Column="0" Content="Pièce d'identité"></CheckBox>
-                        <CheckBox x:Name="chkbxPreuveDomi" Grid.Row="2" Grid.Column="0" Content="Preuve de domiciliation"></CheckBox>
+                        <CheckBox x:Name="chkbxPreuveDomi" Grid.Row="2" Grid.Column="0" Content="Preuve de domiciliation" FlowDirection="RightToLeft"></CheckBox>
                         <CheckBox x:Name="chkbxJustifRevenus" Grid.Row="4" Grid.Column="0" Content="Justification de revenus"></CheckBox>
-                        <CheckBox x:Name="chkbxCG" Grid.Row="0" Grid.Column="2" Content="Conditions générales signées"></CheckBox>
-                        <CheckBox x:Name="chkbxInfo7J" Grid.Row="2" Grid.Column="2" Content="Informé de la limite de rétractation"></CheckBox>
-                        <CheckBox x:Name="chkbxPaieRecu" Grid.Row="4" Grid.Column="2" Content="Paiement reçu"></CheckBox>
+                        <CheckBox x:Name="chkbxCG" Grid.Row="6" Grid.Column="0" Content="Conditions générales signées" FlowDirection="RightToLeft"></CheckBox>
+                        <CheckBox x:Name="chkbxInfo7J" Grid.Row="8" Grid.Column="0" Content="Informé de la limite de rétractation"></CheckBox>
+                        <CheckBox x:Name="chkbxPaieRecu" Grid.Row="10" Grid.Column="0" Content="Paiement reçu" FlowDirection="RightToLeft"></CheckBox>
                     </Grid>
                 </GroupBox>
-                <GroupBox x:Name="grpbxPaiement" Grid.Column="2" Header="Paiement" Padding="5">
+                <GroupBox x:Name="grpbxPaiement" Grid.Column="0" Grid.Row="2" Header="Paiement" Padding="5">
                     <Grid x:Name="gridInnerPaie">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="3.5*"></ColumnDefinition>
