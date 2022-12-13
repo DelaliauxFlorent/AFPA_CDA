@@ -66,7 +66,7 @@ namespace _5_CalculatriceFonctionnelle
                     }
                     if ((String)((Button)(sender)).Content=="=")
                     {
-                        txtblckAfficheurMemo.Text += resultat.ToString();
+                        txtblckAfficheurMemo.Text ="";
                         txtblckAfficheurActu.Text = resultat.ToString();
                         memorisationSign = null;
                     }
