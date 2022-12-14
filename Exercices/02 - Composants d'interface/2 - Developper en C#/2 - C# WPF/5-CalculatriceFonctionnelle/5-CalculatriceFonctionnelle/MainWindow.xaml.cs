@@ -23,7 +23,7 @@ namespace _5_CalculatriceFonctionnelle
         private List<Double> memorisationNum = new List<Double>();
         private String memorisationSign;
         private Double resultat = 0;
-
+        private char[] listeOperandes = { '+', '-', '*', '/' };
 
         public MainWindow()
         {
@@ -64,9 +64,9 @@ namespace _5_CalculatriceFonctionnelle
                         default:
                             break;
                     }
-                    if ((String)((Button)(sender)).Content=="=")
+                    if ((String)((Button)(sender)).Content == "=")
                     {
-                        txtblckAfficheurMemo.Text ="";
+                        txtblckAfficheurMemo.Text = "";
                         txtblckAfficheurActu.Text = resultat.ToString();
                         memorisationSign = null;
                     }
@@ -83,11 +83,27 @@ namespace _5_CalculatriceFonctionnelle
 
         private void cancel_Click(object sender, RoutedEventArgs e)
         {
-
+            memorisationSign = null;
+            resultat = 0;
+            memorisationNum.Clear();
+            txtblckAfficheurMemo.Text = "";
+            cancelCur_Click(sender, e);
         }
         private void cancelCur_Click(object sender, RoutedEventArgs e)
         {
+            txtblckAfficheurActu.Text = "";
+        }
 
+        private Double eval(String histo)
+        {
+            if(Double.TryParse(histo, out Double valeur))
+            {
+                return valeur;
+            }
+            else
+            {
+
+            }
         }
     }
 }
