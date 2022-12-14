@@ -6,9 +6,9 @@
     <Application.Resources>
         <Style TargetType="Button">
             <Setter Property="Background" Value="White"></Setter>
-            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="FontSize" Value="30"></Setter>
         </Style>
-        <BitmapImage x:Key="CalculatorIcon" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="U:\59011-14-06\Exercices\02 - Composants d'interface\2 - Developper en C#\2 - C# WPF\5-CalculatriceFonctionnelle\5-CalculatriceFonctionnelle\calculator.png"/>
+        <BitmapImage x:Key="CalculatorIcon" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="pack://application:,,,/5-CalculatriceFonctionnelle;component/calculator.png"/>
 
     </Application.Resources>
 </Application>
