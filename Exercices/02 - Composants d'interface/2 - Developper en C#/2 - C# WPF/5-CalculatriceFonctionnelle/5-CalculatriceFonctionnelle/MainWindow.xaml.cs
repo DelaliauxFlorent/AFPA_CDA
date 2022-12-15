@@ -22,7 +22,7 @@ namespace _5_CalculatriceFonctionnelle
     {
         private String memorisationSign;
         private Double resultat = 0;
-        private String[] listeOperandes = { "+", "-", "*", "/"};
+        private char[] listeOperandes = { '+', '-', '*', '/' };
         private bool justEqual = false;
 
         public MainWindow()
@@ -44,16 +44,6 @@ namespace _5_CalculatriceFonctionnelle
 
         private void symb_Click(object sender, RoutedEventArgs e)
         {
-            //if (txtblckAfficheurActu.Text == "" &&
-            //    (txtblckAfficheurMemo.Text[txtblckAfficheurMemo.Text.Length-1]=='+' ||
-            //    txtblckAfficheurMemo.Text[txtblckAfficheurMemo.Text.Length - 1] == '-' ||
-            //    txtblckAfficheurMemo.Text[txtblckAfficheurMemo.Text.Length - 1] == '*' ||
-            //    txtblckAfficheurMemo.Text[txtblckAfficheurMemo.Text.Length - 1] == '/'))
-            //{
-            //    txtblckAfficheurMemo.Text = txtblckAfficheurMemo.Text.Remove(txtblckAfficheurMemo.Text.Length-1, 1);
-            //    txtblckAfficheurMemo.Text += ((Button)(sender)).Content;
-            //    memorisationSign= (String)((Button)(sender)).Content;
-            //}
             if (Double.TryParse(txtblckAfficheurActu.Text, out double valeurActu))
             {
                 if (justEqual)
@@ -88,8 +78,6 @@ namespace _5_CalculatriceFonctionnelle
                     }
                     if ((String)((Button)(sender)).Content == "=")
                     {
-                        //txtblckAfficheurMemo.Text = "";
-                        //txtblckAfficheurActu.Text = resultat.ToString();
                         txtblckAfficheurActu.Text = eval(txtblckAfficheurMemo.Text.Remove(txtblckAfficheurMemo.Text.Length-1)).ToString();
                         memorisationSign = null;
                         justEqual = true;
@@ -110,6 +98,7 @@ namespace _5_CalculatriceFonctionnelle
             resultat = 0;
             txtblckAfficheurMemo.Text = "";
             cancelCur_Click(sender, e);
+            justEqual = false;
         }
         private void cancelCur_Click(object sender, RoutedEventArgs e)
         {
@@ -126,12 +115,11 @@ namespace _5_CalculatriceFonctionnelle
             {
                 int indexListeCar = 0;
                 String[] tableau;
-                String sign = " ";
+                char sign = ' ';
                 do
                 {
-                    String[] caractSplit = { listeOperandes[indexListeCar] };
+                    char[] caractSplit = { listeOperandes[indexListeCar] };
                     tableau = histo.Split(caractSplit, 2);
-                    histo.Split()
                     if (tableau.Length == 2)
                     {
                         sign = listeOperandes[indexListeCar];
@@ -156,7 +144,11 @@ namespace _5_CalculatriceFonctionnelle
                     case '*':
                         return eval(tableau[0]) * eval(tableau[1]);
                     case '/':
-                        return eval(tableau[0]) / eval(tableau[1]);
+                        if (eval(tableau[1]) != 0)
+                        {
+                            return eval(tableau[0]) / eval(tableau[1]);
+                        }
+                        return 0;
                     default:
                         return 0;
                 }
