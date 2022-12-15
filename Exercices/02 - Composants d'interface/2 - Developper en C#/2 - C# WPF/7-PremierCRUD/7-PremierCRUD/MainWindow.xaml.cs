@@ -24,6 +24,7 @@ namespace _7_PremierCRUD
     public partial class MainWindow : Window
     {
         private const string PathListProd = "../../ListeProduits.json";
+        private List<Produits> listingProduits = new List<Produits>();
 
         public MainWindow()
         {
@@ -33,10 +34,12 @@ namespace _7_PremierCRUD
 
         public void RemplirGrid()
         {
-            dtgdGrille.ItemsSource = CreerListeFile();
+            //CreerListe();
+            CreerListeFileJSON();
+            dtgdGrille.ItemsSource = listingProduits;
         }
 
-        private List<Produits> CreerListe()
+        private void CreerListe()
         {
             List<Produits> liste = new List<Produits>();
 
@@ -45,17 +48,28 @@ namespace _7_PremierCRUD
                 Produits p = new Produits(i, "Produit" + i, i * 2);
                 liste.Add(p);
             }
-            liste.Dump();
-            return liste;
+            //liste.Dump();
+            listingProduits.Clear();
+            listingProduits.AddRange(liste);
         }
 
-        private List<Produits> CreerListeFile()
+        private void CreerListeFileJSON()
         {
             using (StreamReader r = new StreamReader(PathListProd))
             {
                 string json = r.ReadToEnd();
                 List<Produits> listProduits = JsonConvert.DeserializeObject<List<Produits>>(json);
-                return listProduits;
+                listingProduits.Clear();
+                listingProduits.AddRange(listProduits);
+            }
+        }
+
+        private void UpdateListeFileJSON()
+        {
+            using (StreamWriter ecrire = new StreamWriter(PathListProd, false))
+            {
+                string json = JsonConvert.SerializeObject(listingProduits);
+                ecrire.Write(json);
             }
         }
 
@@ -75,6 +89,7 @@ namespace _7_PremierCRUD
             ((Produits)dtgdGrille.SelectedItem).LibelleProduit = prodRetour.LibelleProduit;
             ((Produits)dtgdGrille.SelectedItem).Quantite = prodRetour.Quantite;
             dtgdGrille.Items.Refresh();
+            UpdateListeFileJSON();
         }
     }
 }
