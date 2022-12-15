@@ -22,6 +22,8 @@
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Label x:Name="lblChamp1" Grid.Row="1" Grid.Column="1" Content="ID:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"></Label>
         <Label x:Name="valChamp1" Grid.Row="1" Grid.Column="3" VerticalContentAlignment="Center"></Label>
@@ -29,5 +31,7 @@
         <TextBox x:Name="valChamp2" Grid.Row="3" Grid.Column="3" VerticalContentAlignment="Center"></TextBox>
         <Label x:Name="lblChamp3" Grid.Row="5" Grid.Column="1" Content="Quantité:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"></Label>
         <TextBox x:Name="valChamp3" Grid.Row="5" Grid.Column="3" VerticalContentAlignment="Center"></TextBox>
+        <Button x:Name="btnModif" Grid.Column="1" Grid.Row="7" Content="Modifier" Click="btnModif_Click"></Button>
+        <Button x:Name="btnAnnul" Grid.Column="3" Grid.Row="7" Content="Annuler" Click="btnAnnul_Click"></Button>
     </Grid>
 </Window>

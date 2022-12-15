@@ -63,10 +63,18 @@ namespace _7_PremierCRUD
         {
             DataGridRow row = sender as DataGridRow;
             Produits prod = (Produits)row.Item;
-            Details detail = new Details(prod);
+            Details detail = new Details(this, prod);
             base.Opacity = 0.7;
             detail.ShowDialog();
             base.Opacity = 1;
+        }
+
+        public void MAJRetour(Produits prodRetour)
+        {
+
+            ((Produits)dtgdGrille.SelectedItem).LibelleProduit = prodRetour.LibelleProduit;
+            ((Produits)dtgdGrille.SelectedItem).Quantite = prodRetour.Quantite;
+            dtgdGrille.Items.Refresh();
         }
     }
 }
