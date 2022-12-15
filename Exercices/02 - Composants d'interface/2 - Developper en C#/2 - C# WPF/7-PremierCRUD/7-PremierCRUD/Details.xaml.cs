@@ -29,21 +29,35 @@ namespace _7_PremierCRUD
             fenetreParente = w;
         }
 
+        /// <summary>
+        /// Si on veut annuler, on ferme simplement la fenêtre sans rien faire d'autre
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAnnul_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// Gestion de la tentative de modification d'une entrée
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnModif_Click(object sender, RoutedEventArgs e)
         {
+            //on change pas l'ID et le libelle peut être "n'importe quoi"
+            // Mais la quantité doit être un entier
             if (int.TryParse(valChamp3.Text, out int qte))
             {
+                // Si c'est bien le cas, on peut dire à la fenêtre parente de réaliser les modifs voulues
                 Produits newProd = new Produits((Int32)valChamp1.Content, valChamp2.Text, qte);
                 fenetreParente.MAJRetour(newProd);
                 this.Close();
             }
             else
             {
+                // Sinon, on informe l'utilisateur du problème et c'est tous
                 MessageBox.Show("Le champ \"Quantité\" doit être en entier!", "Erreur de format", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }

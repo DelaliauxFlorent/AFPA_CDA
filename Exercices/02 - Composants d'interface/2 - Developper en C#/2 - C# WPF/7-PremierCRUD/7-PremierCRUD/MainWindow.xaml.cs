@@ -23,8 +23,8 @@ namespace _7_PremierCRUD
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const string PathListProd = "../../ListeProduits.json";
-        private List<Produits> listingProduits = new List<Produits>();
+        public const string PathListProd = "../../ListeProduits.json";
+        public List<Produits> listingProduits = new List<Produits>();
 
         public MainWindow()
         {
@@ -32,6 +32,9 @@ namespace _7_PremierCRUD
             RemplirGrid();
         }
 
+        /// <summary>
+        /// Remplissage de la DataGrid
+        /// </summary>
         public void RemplirGrid()
         {
             //CreerListe();
@@ -39,6 +42,9 @@ namespace _7_PremierCRUD
             dtgdGrille.ItemsSource = listingProduits;
         }
 
+        /// <summary>
+        /// Création de la liste de façon automatique
+        /// </summary>
         private void CreerListe()
         {
             List<Produits> liste = new List<Produits>();
@@ -53,17 +59,27 @@ namespace _7_PremierCRUD
             listingProduits.AddRange(liste);
         }
 
+        /// <summary>
+        /// Création de la liste à partir d'un fichier JSON
+        /// </summary>
         private void CreerListeFileJSON()
         {
             using (StreamReader r = new StreamReader(PathListProd))
             {
+                // Met le contenu du JSON dans la chaîne de caractères "json"
                 string json = r.ReadToEnd();
+                // Converti la chaîne en une liste de produits appelé "listProduits"
                 List<Produits> listProduits = JsonConvert.DeserializeObject<List<Produits>>(json);
+                // Vide la liste "interne" pour être sur une base saine
                 listingProduits.Clear();
+                // Rempli la liste "interne" avec la liste tirée du fichier JSON
                 listingProduits.AddRange(listProduits);
             }
         }
 
+        /// <summary>
+        /// Mise à jour du fichier JSON
+        /// </summary>
         private void UpdateListeFileJSON()
         {
             using (StreamWriter ecrire = new StreamWriter(PathListProd, false))
@@ -73,6 +89,11 @@ namespace _7_PremierCRUD
             }
         }
 
+        /// <summary>
+        /// Gestion du double clique sur une ligne de la DataGrid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Row_DblClck(object sender, MouseButtonEventArgs e)
         {
             DataGridRow row = sender as DataGridRow;
@@ -83,9 +104,12 @@ namespace _7_PremierCRUD
             base.Opacity = 1;
         }
 
+        /// <summary>
+        /// Mise à jour des valeurs
+        /// </summary>
+        /// <param name="prodRetour"></param>
         public void MAJRetour(Produits prodRetour)
         {
-
             ((Produits)dtgdGrille.SelectedItem).LibelleProduit = prodRetour.LibelleProduit;
             ((Produits)dtgdGrille.SelectedItem).Quantite = prodRetour.Quantite;
             dtgdGrille.Items.Refresh();
