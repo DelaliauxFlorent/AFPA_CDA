@@ -21,20 +21,46 @@ namespace _7_PremierCRUD
     {
         MainWindow fenetreParente;
         int indexListe;
+        String modeOuverture;
 
-        public Details(MainWindow w, Produits prod)
+        public Details(MainWindow w, String mode, Produits prod = null)
         {
             InitializeComponent();
-            RemplirChamps(prod);
             fenetreParente = w;
+            modeOuverture = mode;
+            RemplirChamps(prod);
         }
 
-        private void RemplirChamps(Produits p)
+        private void RemplirChamps(Produits p = null)
         {
-            indexListe = ProduitService.listingProduits.IndexOf(p);
-            valChamp1.Content = p.IdProduit;
-            valChamp2.Text = p.LibelleProduit;
-            valChamp3.Text = p.Quantite.ToString();
+            btnValid.Content = modeOuverture;
+            switch (modeOuverture)
+            {
+                case "Ajouter":
+                    indexListe = ProduitService.listingProduits.Count();
+                    valChamp1.Content = ProduitService.listingProduits[indexListe - 1].IdProduit + 1;
+                    break;
+                case "Modifier":
+                    indexListe = ProduitService.listingProduits.IndexOf(p);
+                    valChamp1.Content = p.IdProduit;
+                    valChamp2.Text = p.LibelleProduit;
+                    valChamp3.Text = p.NumeroProduit;
+                    valChamp4.Text = p.Quantite.ToString();
+                    break;
+                case "Supprimer":
+                case "Afficher":
+                    indexListe = ProduitService.listingProduits.IndexOf(p);
+                    valChamp1.Content = p.IdProduit;
+                    valChamp2.IsEnabled = false;
+                    valChamp2.Text = p.LibelleProduit;
+                    valChamp3.IsEnabled = false;
+                    valChamp3.Text = p.NumeroProduit;
+                    valChamp4.IsEnabled = false;
+                    valChamp4.Text = p.Quantite.ToString();
+                    break;
+                default:
+                    break;
+            }
         }
 
         /// <summary>
@@ -52,22 +78,40 @@ namespace _7_PremierCRUD
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnModif_Click(object sender, RoutedEventArgs e)
+        private void btnValid_Click(object sender, RoutedEventArgs e)
         {
-            //on change pas l'ID et le libelle peut être "n'importe quoi"
-            // Mais la quantité doit être un entier
-            if (int.TryParse(valChamp3.Text, out int qte))
+            if (valChamp2.Text != "" && valChamp3.Text != "" && valChamp4.Text != "")
             {
-                // Si c'est bien le cas, on peut dire à la fenêtre parente de réaliser les modifs voulues
-                String fichier = MainWindow.PathListProd;
-                Produits newProd = new Produits((Int32)valChamp1.Content, valChamp2.Text, qte);
-                ProduitService.MAJRetour(newProd, indexListe, fichier,fenetreParente);
-                this.Close();
+                //on change pas l'ID et le libelle peut être "n'importe quoi", mais pas vide
+                // Mais la quantité doit être un entier
+                if (int.TryParse(valChamp4.Text, out int qte))
+                {
+                    // Si c'est bien le cas, on peut dire à la fenêtre parente de réaliser les modifs voulues
+                    String fichier = MainWindow.PathListProd;
+                    Produits newProd = new Produits((Int32)valChamp1.Content, valChamp2.Text, valChamp3.Text, qte);
+                    switch (modeOuverture)
+                    {
+                        case "Ajouter":
+                            ProduitService.AjouterListe(newProd, fichier);
+                            break;
+                        case "Modifier":
+                            ProduitService.ModifierListe(newProd, indexListe, fichier);
+                            break;
+                        default:
+                            break;
+                    }
+                    this.Close();
+                }
+                else
+                {
+                    // Sinon, on informe l'utilisateur du problème et c'est tous
+                    MessageBox.Show("Le champ \"Quantité\" doit être en entier!", "Erreur de format", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             else
             {
                 // Sinon, on informe l'utilisateur du problème et c'est tous
-                MessageBox.Show("Le champ \"Quantité\" doit être en entier!", "Erreur de format", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Un de vos champs est vide!", "Information manquante", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

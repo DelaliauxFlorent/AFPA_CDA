@@ -10,12 +10,14 @@ namespace _7_PremierCRUD
     {
         public int IdProduit { get; set; }
         public string LibelleProduit { get; set; }
+        public String NumeroProduit { get; set; }
         public int Quantite { get; set; }
 
-        public Produits(int idProduit, string libelleProduit, int quantite)
+        public Produits(int idProduit, string libelleProduit, string numero, int quantite)
         {
             IdProduit = idProduit;
             LibelleProduit = libelleProduit;
+            NumeroProduit = numero;
             Quantite = quantite;
         }
     }

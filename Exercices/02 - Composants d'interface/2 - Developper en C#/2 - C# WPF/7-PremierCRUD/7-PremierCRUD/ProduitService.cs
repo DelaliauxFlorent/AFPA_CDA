@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using DemoEF.Helpers;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,8 @@ namespace _7_PremierCRUD
         public static void RemplirGrid(String fichier, MainWindow w)
         {
             listingProduits.Clear();
-            listingProduits.AddRange(ProduitService.CreerListeFileJSON(fichier));
+            //listingProduits.AddRange(CreerListe());
+            listingProduits.AddRange(CreerListeFileJSON(fichier));
             w.dtgdGrille.ItemsSource = listingProduits;
         }
 
@@ -38,9 +40,15 @@ namespace _7_PremierCRUD
 
             for (int i = 1; i < 15; i++)
             {
-                Produits p = new Produits(i, "Produit" + i, i * 2);
+                String j="";
+                if (i < 10)
+                {
+                    j = "0";
+                }
+                Produits p = new Produits(i, "Produit" + i,"20221216060"+j+i, i * 2);
                 liste.Add(p);
             }
+            liste.Dump();
             return liste;
         }
 
@@ -48,10 +56,16 @@ namespace _7_PremierCRUD
         /// Mise à jour des valeurs
         /// </summary>
         /// <param name="prodRetour"></param>
-        public static void MAJRetour(Produits prodRetour,int indexP, String fichier, MainWindow w)
+        public static void ModifierListe(Produits prodRetour,int indexP, String fichier)
         {
             listingProduits.RemoveAt(indexP);
             listingProduits.Insert(indexP, prodRetour);
+            FichierJSON.UpdateListeFileJSON(fichier);
+        }
+
+        public static void AjouterListe(Produits prodRetour, String fichier)
+        {
+            listingProduits.Add(prodRetour);
             FichierJSON.UpdateListeFileJSON(fichier);
         }
 

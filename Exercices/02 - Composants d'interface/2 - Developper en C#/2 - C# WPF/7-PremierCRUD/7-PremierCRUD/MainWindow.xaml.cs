@@ -40,12 +40,20 @@ namespace _7_PremierCRUD
         {
             DataGridRow row = sender as DataGridRow;
             Produits prod = (Produits)row.Item;
-            Details detail = new Details(this, prod);
+            Details detail = new Details(this, "Modifier", prod);
             base.Opacity = 0.7;
             detail.ShowDialog();
             dtgdGrille.Items.Refresh();
             base.Opacity = 1;
         }
 
+        private void btnAjout_Click(object sender, RoutedEventArgs e)
+        {
+            Details fenetreAjout = new Details(this,"Ajouter");
+            base.Opacity = 0.7;
+            fenetreAjout.ShowDialog();
+            dtgdGrille.Items.Refresh();
+            base.Opacity = 1;
+        }
     }
 }
