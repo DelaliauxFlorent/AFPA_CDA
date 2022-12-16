@@ -56,8 +56,9 @@ namespace _7_PremierCRUD
             if (int.TryParse(valChamp3.Text, out int qte))
             {
                 // Si c'est bien le cas, on peut dire à la fenêtre parente de réaliser les modifs voulues
+                String fichier = MainWindow.PathListProd;
                 Produits newProd = new Produits((Int32)valChamp1.Content, valChamp2.Text, qte);
-                fenetreParente.MAJRetour(newProd);
+                ProduitService.MAJRetour(newProd, fichier,fenetreParente);
                 this.Close();
             }
             else

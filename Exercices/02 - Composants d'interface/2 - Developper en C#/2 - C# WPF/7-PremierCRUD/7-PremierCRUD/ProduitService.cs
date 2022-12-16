@@ -44,5 +44,17 @@ namespace _7_PremierCRUD
             return liste;
         }
 
+        /// <summary>
+        /// Mise à jour des valeurs
+        /// </summary>
+        /// <param name="prodRetour"></param>
+        public static void MAJRetour(Produits prodRetour, String fichier, MainWindow w)
+        {
+            ((Produits)w.dtgdGrille.SelectedItem).LibelleProduit = prodRetour.LibelleProduit;
+            ((Produits)w.dtgdGrille.SelectedItem).Quantite = prodRetour.Quantite;
+            w.dtgdGrille.Items.Refresh();
+            FichierJSON.UpdateListeFileJSON(fichier);
+        }
+
     }
 }

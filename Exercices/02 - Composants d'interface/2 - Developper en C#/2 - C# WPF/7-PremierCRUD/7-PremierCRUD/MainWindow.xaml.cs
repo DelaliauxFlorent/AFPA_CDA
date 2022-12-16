@@ -46,16 +46,5 @@ namespace _7_PremierCRUD
             base.Opacity = 1;
         }
 
-        /// <summary>
-        /// Mise à jour des valeurs
-        /// </summary>
-        /// <param name="prodRetour"></param>
-        public void MAJRetour(Produits prodRetour)
-        {
-            ((Produits)dtgdGrille.SelectedItem).LibelleProduit = prodRetour.LibelleProduit;
-            ((Produits)dtgdGrille.SelectedItem).Quantite = prodRetour.Quantite;
-            dtgdGrille.Items.Refresh();
-            FichierJSON.UpdateListeFileJSON(PathListProd);
-        }
     }
 }
