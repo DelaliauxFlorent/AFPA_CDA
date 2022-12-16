@@ -38,7 +38,9 @@ namespace _7_PremierCRUD
         public void RemplirGrid()
         {
             //CreerListe();
-            CreerListeFileJSON();
+            //CreerListeFileJSON();
+            listingProduits.Clear();
+            listingProduits.AddRange(ProduitService.CreerListeFileJSON(PathListProd));
             dtgdGrille.ItemsSource = listingProduits;
         }
 

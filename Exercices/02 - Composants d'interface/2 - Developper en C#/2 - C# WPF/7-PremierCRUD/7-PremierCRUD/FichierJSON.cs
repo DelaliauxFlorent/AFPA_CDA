@@ -9,7 +9,7 @@ namespace _7_PremierCRUD
 {
     class FichierJSON
     {
-        public String LireJSON(String fichier)
+        public static String LireJSON(String fichier)
         {
             using (StreamReader r = new StreamReader(fichier))
             {
