@@ -43,6 +43,7 @@ namespace _7_PremierCRUD
             Details detail = new Details(this, prod);
             base.Opacity = 0.7;
             detail.ShowDialog();
+            dtgdGrille.Items.Refresh();
             base.Opacity = 1;
         }
 

@@ -48,11 +48,10 @@ namespace _7_PremierCRUD
         /// Mise à jour des valeurs
         /// </summary>
         /// <param name="prodRetour"></param>
-        public static void MAJRetour(Produits prodRetour, String fichier, MainWindow w)
+        public static void MAJRetour(Produits prodRetour,int indexP, String fichier, MainWindow w)
         {
-            ((Produits)w.dtgdGrille.SelectedItem).LibelleProduit = prodRetour.LibelleProduit;
-            ((Produits)w.dtgdGrille.SelectedItem).Quantite = prodRetour.Quantite;
-            w.dtgdGrille.Items.Refresh();
+            listingProduits.RemoveAt(indexP);
+            listingProduits.Insert(indexP, prodRetour);
             FichierJSON.UpdateListeFileJSON(fichier);
         }
 

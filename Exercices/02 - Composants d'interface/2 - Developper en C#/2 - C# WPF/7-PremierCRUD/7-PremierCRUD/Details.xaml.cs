@@ -20,6 +20,8 @@ namespace _7_PremierCRUD
     public partial class Details : Window
     {
         MainWindow fenetreParente;
+        int indexListe;
+
         public Details(MainWindow w, Produits prod)
         {
             InitializeComponent();
@@ -29,6 +31,7 @@ namespace _7_PremierCRUD
 
         private void RemplirChamps(Produits p)
         {
+            indexListe = ProduitService.listingProduits.IndexOf(p);
             valChamp1.Content = p.IdProduit;
             valChamp2.Text = p.LibelleProduit;
             valChamp3.Text = p.Quantite.ToString();
@@ -58,7 +61,7 @@ namespace _7_PremierCRUD
                 // Si c'est bien le cas, on peut dire à la fenêtre parente de réaliser les modifs voulues
                 String fichier = MainWindow.PathListProd;
                 Produits newProd = new Produits((Int32)valChamp1.Content, valChamp2.Text, qte);
-                ProduitService.MAJRetour(newProd, fichier,fenetreParente);
+                ProduitService.MAJRetour(newProd, indexListe, fichier,fenetreParente);
                 this.Close();
             }
             else
