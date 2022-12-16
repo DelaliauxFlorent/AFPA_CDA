@@ -19,10 +19,13 @@
             <RowDefinition Height="10*" />
             <RowDefinition Height="5*" />
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="1" Grid.Column="1" x:Name="dtgdGrille" AlternatingRowBackground="#FFC3EFFF" IsReadOnly="True">
+        <DataGrid Grid.Row="1" Grid.Column="1" x:Name="dtgdGrille" AlternatingRowBackground="#FFC3EFFF" IsReadOnly="True" SelectionMode="Single">
             <DataGrid.Resources>
                 <Style TargetType="DataGridRow">
                     <EventSetter Event="MouseDoubleClick" Handler="Row_DblClck"/>
+                    <EventSetter Event="Selected" Handler="DataGridRow_Selected"/>
+                    <EventSetter Event="Unselected" Handler="DataGridRow_Unselected"/>
+                    <EventSetter Event="LostFocus" Handler="DataGridRow_Unselected"/>
                 </Style>
             </DataGrid.Resources>
         </DataGrid>
@@ -38,7 +41,7 @@
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
             <Button x:Name="btnAjout" Grid.Column="1" Content="Ajouter" Click="btnAjout_Click"></Button>
-            <Button x:Name="btnSuppr" Grid.Column="3" Content="Supprimer"></Button>
+            <Button x:Name="btnSuppr" Grid.Column="3" Content="Supprimer" Click="btnSuppr_Click" IsEnabled="False"></Button>
         </Grid>
     </Grid>
 </Window>

@@ -8,31 +8,36 @@ using System.Threading.Tasks;
 
 namespace _7_PremierCRUD
 {
-    class ProduitService
+    static class ProduitService
     {
-
-        public static List<Produits> listingProduits = new List<Produits>();
+        public static List<Produits> ListingProduits { get; set; }
 
         /// <summary>
-        /// Remplissage de la DataGrid
+        /// On remplit la liste des produits en passant par un des CreerListe, puis on peuple la DataGrid avec.
         /// </summary>
+        /// <param name="fichier">Chemin d'accès au fichier qu'on passera en argument pour la création de la liste</param>
+        /// <param name="w"></param>
         public static void RemplirGrid(String fichier, MainWindow w)
         {
-            listingProduits.Clear();
-            //listingProduits.AddRange(CreerListe());
-            listingProduits.AddRange(CreerListeFileJSON(fichier));
-            w.dtgdGrille.ItemsSource = listingProduits;
+            ListingProduits = new List<Produits>();
+            ListingProduits.AddRange(CreerListeFileJSON(fichier));
+            w.dtgdGrille.ItemsSource = ListingProduits;
         }
 
+        /// <summary>
+        /// Récupération d'une liste de produit à partir d'un JSON
+        /// </summary>
+        /// <param name="fichier">Chemin d'accès du fichier que FichierJson.LireJSON() devra lire</param>
+        /// <returns></returns>
         public static List<Produits> CreerListeFileJSON(String fichier)
         {
-            String json = FichierJSON.LireJSON(fichier);
+            String json = FichierJson.LireJSON(fichier);
             List<Produits> listProduits = JsonConvert.DeserializeObject<List<Produits>>(json);
             return listProduits;
         }
 
         /// <summary>
-        /// Création de la liste de façon automatique
+        /// Création d'une liste de produit de façon automatique
         /// </summary>
         public static List<Produits> CreerListe()
         {
@@ -40,34 +45,54 @@ namespace _7_PremierCRUD
 
             for (int i = 1; i < 15; i++)
             {
-                String j="";
+                String j = "";
                 if (i < 10)
                 {
                     j = "0";
                 }
-                Produits p = new Produits(i, "Produit" + i,"20221216060"+j+i, i * 2);
+                Produits p = new Produits(i, "Produit" + i, "20221216060" + j + i, i * 2);
                 liste.Add(p);
             }
-            liste.Dump();
+            liste.Dump();// Utilisé pour générer un JSON pour les tests
             return liste;
         }
 
         /// <summary>
-        /// Mise à jour des valeurs
+        /// Mise à jour d'un fichier JSON avec les nouvelles données
         /// </summary>
-        /// <param name="prodRetour"></param>
-        public static void ModifierListe(Produits prodRetour,int indexP, String fichier)
+        /// <param name="prodModif">Le produit que l'on veut modifier</param>
+        /// <param name="lbl">Son nouveau "Libelle"</param>
+        /// <param name="num">Son nouveau "Numéro"</param>
+        /// <param name="qte">Sa nouvelle "Quantité"</param>
+        /// <param name="fichier">Le chemin d'accès du fichier à mettre à jour</param>
+        public static void ModifierProduit(Produits prodModif,String lbl, String num, int qte, String fichier)
         {
-            listingProduits.RemoveAt(indexP);
-            listingProduits.Insert(indexP, prodRetour);
-            FichierJSON.UpdateListeFileJSON(fichier);
+            prodModif.LibelleProduit= lbl;
+            prodModif.NumeroProduit=num;
+            prodModif.Quantite=qte;
+            FichierJson.UpdateListeFileJSON(fichier);
         }
 
-        public static void AjouterListe(Produits prodRetour, String fichier)
+        /// <summary>
+        /// Ajout d'un produit dans un fichier JSON
+        /// </summary>
+        /// <param name="prodAjout">Le nouveau produit à ajouter à la liste et au fichier</param>
+        /// <param name="fichier">Le chemin d'accès du fichier à mettre à jour</param>
+        public static void AjouterProduit(Produits prodAjout, String fichier)
         {
-            listingProduits.Add(prodRetour);
-            FichierJSON.UpdateListeFileJSON(fichier);
+            ListingProduits.Add(prodAjout);
+            FichierJson.UpdateListeFileJSON(fichier);
         }
 
+        /// <summary>
+        /// Suppression d'un produit dans un fichier JSON
+        /// </summary>
+        /// <param name="prodSuppr">Le produit à supprimer</param>
+        /// <param name="fichier">Le chemin d'accès du fichier à mettre à jour<param>
+        public static void SupprimerProduit(Produits prodSuppr, String fichier)
+        {
+            ListingProduits.Remove(prodSuppr);
+            FichierJson.UpdateListeFileJSON(fichier);
+        }
     }
 }

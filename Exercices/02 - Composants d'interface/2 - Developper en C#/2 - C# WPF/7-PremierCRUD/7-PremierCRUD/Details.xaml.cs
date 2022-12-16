@@ -20,43 +20,61 @@ namespace _7_PremierCRUD
     public partial class Details : Window
     {
         MainWindow fenetreParente;
-        int indexListe;
-        String modeOuverture;
+        public int IndexListe { get; set; }
+        public String ModeOuverture { get; set; }
+        public Produits ProduitPasse { get; set; }
 
+        /// <summary>
+        /// Constructeur de la fenêtre de détails
+        /// </summary>
+        /// <param name="w">La fenêtre "Mère"</param>
+        /// <param name="mode">Le mode d'ouverture, Ajouter/Modifier/Supprimer</param>
+        /// <param name="prod">Le produit concerné</param>
         public Details(MainWindow w, String mode, Produits prod = null)
         {
             InitializeComponent();
             fenetreParente = w;
-            modeOuverture = mode;
-            RemplirChamps(prod);
+            ModeOuverture = mode;
+            ProduitPasse = prod;
+            RemplirChamps();
         }
 
-        private void RemplirChamps(Produits p = null)
+        /// <summary>
+        /// Rempli les champs de la fenêtre en fonction du mode
+        /// </summary>
+        private void RemplirChamps()
         {
-            btnValid.Content = modeOuverture;
-            switch (modeOuverture)
+            // Change le texte du bouton de validation en fonction du mode
+            btnValid.Content = ModeOuverture;
+            switch (ModeOuverture)
             {
                 case "Ajouter":
-                    indexListe = ProduitService.listingProduits.Count();
-                    valChamp1.Content = ProduitService.listingProduits[indexListe - 1].IdProduit + 1;
+                    // Si on a demandé à ajouter un produit:
+                    // la seule valeur entrée par le logiciel et l'ID
+                    // Par défaut, le nouvel ID suit l'ID du dernier élément de la liste
+                    valChamp1.Content = ProduitService.ListingProduits[ProduitService.ListingProduits.Count - 1].IdProduit + 1;
                     break;
                 case "Modifier":
-                    indexListe = ProduitService.listingProduits.IndexOf(p);
-                    valChamp1.Content = p.IdProduit;
-                    valChamp2.Text = p.LibelleProduit;
-                    valChamp3.Text = p.NumeroProduit;
-                    valChamp4.Text = p.Quantite.ToString();
+                    // Si on a demandé à modifier un produit:
+                    // on rempli les champs avec les valeurs du produit en question
+                    IndexListe = ProduitService.ListingProduits.IndexOf(ProduitPasse);
+                    valChamp1.Content = ProduitPasse.IdProduit;
+                    valChamp2.Text = ProduitPasse.LibelleProduit;
+                    valChamp3.Text = ProduitPasse.NumeroProduit;
+                    valChamp4.Text = ProduitPasse.Quantite.ToString();
                     break;
                 case "Supprimer":
-                case "Afficher":
-                    indexListe = ProduitService.listingProduits.IndexOf(p);
-                    valChamp1.Content = p.IdProduit;
+                    // Si on a demandé à supprimer un produit:
+                    // on rempli les champs avec les valeurs du produit en question (pour confirmation)
+                    // Mais on les désactives pour éviter les méprises
+                    IndexListe = ProduitService.ListingProduits.IndexOf(ProduitPasse);
+                    valChamp1.Content = ProduitPasse.IdProduit;
                     valChamp2.IsEnabled = false;
-                    valChamp2.Text = p.LibelleProduit;
+                    valChamp2.Text = ProduitPasse.LibelleProduit;
                     valChamp3.IsEnabled = false;
-                    valChamp3.Text = p.NumeroProduit;
+                    valChamp3.Text = ProduitPasse.NumeroProduit;
                     valChamp4.IsEnabled = false;
-                    valChamp4.Text = p.Quantite.ToString();
+                    valChamp4.Text = ProduitPasse.Quantite.ToString();
                     break;
                 default:
                     break;
@@ -74,28 +92,40 @@ namespace _7_PremierCRUD
         }
 
         /// <summary>
-        /// Gestion de la tentative de modification d'une entrée
+        /// Gère le clique sur le bouton de validation en fonction du mode d'ouverture de la fenêtre
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnValid_Click(object sender, RoutedEventArgs e)
         {
+            // On vérifie qu'aucun des champs n'est vide
             if (valChamp2.Text != "" && valChamp3.Text != "" && valChamp4.Text != "")
             {
-                //on change pas l'ID et le libelle peut être "n'importe quoi", mais pas vide
-                // Mais la quantité doit être un entier
+                // On vérifie que la quantité est un entier
                 if (int.TryParse(valChamp4.Text, out int qte))
                 {
-                    // Si c'est bien le cas, on peut dire à la fenêtre parente de réaliser les modifs voulues
+                    // Si c'est bien le cas, on récupère le chemin d'accès du fichier
                     String fichier = MainWindow.PathListProd;
-                    Produits newProd = new Produits((Int32)valChamp1.Content, valChamp2.Text, valChamp3.Text, qte);
-                    switch (modeOuverture)
+                    // Et on peut dire à la classe ProduitService d'effectuer la fonction correspondante
+                    switch (ModeOuverture)
                     {
                         case "Ajouter":
-                            ProduitService.AjouterListe(newProd, fichier);
+                            // On crée un nouveau produit avec les valeurs des différents champs
+                            Produits newProd = new Produits((Int32)valChamp1.Content, valChamp2.Text, valChamp3.Text, qte);
+                            // On demande à ProduitService de l'ajouter au fichier
+                            ProduitService.AjouterProduit(newProd, fichier);
                             break;
                         case "Modifier":
-                            ProduitService.ModifierListe(newProd, indexListe, fichier);
+                            // On demande à ProduitService de modifier le fichier avec les valeurs des champs
+                            ProduitService.ModifierProduit(ProduitPasse, valChamp2.Text, valChamp3.Text, qte, fichier);
+                            break;
+                        case "Supprimer":
+                            // On demande une dernière confirmation de la suppression
+                            if (MessageBox.Show("Êtes-vous certain de vouloir supprimer cette entrée?", "Confirmer la suppression:", MessageBoxButton.OKCancel, MessageBoxImage.Warning, MessageBoxResult.Cancel)==MessageBoxResult.OK)
+                            {
+                                // Si OK, on demande à ProduitService de supprimer ce produit du fichier
+                                ProduitService.SupprimerProduit(ProduitPasse, fichier);
+                            }
                             break;
                         default:
                             break;

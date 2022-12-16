@@ -38,22 +38,63 @@ namespace _7_PremierCRUD
         /// <param name="e"></param>
         private void Row_DblClck(object sender, MouseButtonEventArgs e)
         {
+            // On récupère le produit que l'on veut modifier
             DataGridRow row = sender as DataGridRow;
             Produits prod = (Produits)row.Item;
+            // On instancie une fenêtre de détail en mode "Modifier"
             Details detail = new Details(this, "Modifier", prod);
             base.Opacity = 0.7;
             detail.ShowDialog();
+            // On refresh() la DataGrid
             dtgdGrille.Items.Refresh();
             base.Opacity = 1;
         }
 
+        /// <summary>
+        /// Gestion de la demande d'ajout d'un produit
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAjout_Click(object sender, RoutedEventArgs e)
         {
-            Details fenetreAjout = new Details(this,"Ajouter");
+            // On instancie une fenêtre de détail en mode "Ajouter"
+            Details fenetreAjout = new Details(this, "Ajouter");
             base.Opacity = 0.7;
             fenetreAjout.ShowDialog();
+            // On refresh() la DataGrid
             dtgdGrille.Items.Refresh();
             base.Opacity = 1;
+        }
+
+        /// <summary>
+        /// Gestion de la demande de suppression d'un produit
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSuppr_Click(object sender, RoutedEventArgs e)
+        {
+            if (dtgdGrille.SelectedItem != null)
+            {
+                // On récupère le produit que l'on veut supprimer
+                Produits prodSuppr = (Produits)dtgdGrille.SelectedItem;
+                // On instancie une fenêtre de détail en mode "Supprimer"
+                Details fenetreSuppr = new Details(this, "Supprimer", prodSuppr);
+                base.Opacity = 0.7;
+                fenetreSuppr.ShowDialog();
+                // On refresh() la DataGrid
+                dtgdGrille.Items.Refresh();
+                base.Opacity = 1;
+            }
+        }
+
+        private void DataGridRow_Selected(object sender, RoutedEventArgs e)
+        {
+            btnSuppr.IsEnabled = true;
+        }
+
+        private void DataGridRow_Unselected(object sender, RoutedEventArgs e)
+        {
+            btnSuppr.IsEnabled = false;
         }
     }
 }
