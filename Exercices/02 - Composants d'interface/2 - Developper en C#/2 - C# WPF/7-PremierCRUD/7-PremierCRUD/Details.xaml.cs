@@ -23,10 +23,15 @@ namespace _7_PremierCRUD
         public Details(MainWindow w, Produits prod)
         {
             InitializeComponent();
-            valChamp1.Content = prod.IdProduit;
-            valChamp2.Text = prod.LibelleProduit;
-            valChamp3.Text = prod.Quantite.ToString();
+            RemplirChamps(prod);
             fenetreParente = w;
+        }
+
+        private void RemplirChamps(Produits p)
+        {
+            valChamp1.Content = p.IdProduit;
+            valChamp2.Text = p.LibelleProduit;
+            valChamp3.Text = p.Quantite.ToString();
         }
 
         /// <summary>

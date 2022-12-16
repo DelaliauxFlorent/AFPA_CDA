@@ -24,59 +24,11 @@ namespace _7_PremierCRUD
     public partial class MainWindow : Window
     {
         public const string PathListProd = "../../ListeProduits.json";
-        public List<Produits> listingProduits = new List<Produits>();
 
         public MainWindow()
         {
             InitializeComponent();
-            RemplirGrid();
-        }
-
-        /// <summary>
-        /// Remplissage de la DataGrid
-        /// </summary>
-        public void RemplirGrid()
-        {
-            //CreerListe();
-            //CreerListeFileJSON();
-            listingProduits.Clear();
-            listingProduits.AddRange(ProduitService.CreerListeFileJSON(PathListProd));
-            dtgdGrille.ItemsSource = listingProduits;
-        }
-
-        /// <summary>
-        /// Création de la liste de façon automatique
-        /// </summary>
-        private void CreerListe()
-        {
-            List<Produits> liste = new List<Produits>();
-
-            for (int i = 1; i < 15; i++)
-            {
-                Produits p = new Produits(i, "Produit" + i, i * 2);
-                liste.Add(p);
-            }
-            //liste.Dump();
-            listingProduits.Clear();
-            listingProduits.AddRange(liste);
-        }
-
-        /// <summary>
-        /// Création de la liste à partir d'un fichier JSON
-        /// </summary>
-        private void CreerListeFileJSON()
-        {
-            using (StreamReader r = new StreamReader(PathListProd))
-            {
-                // Met le contenu du JSON dans la chaîne de caractères "json"
-                string json = r.ReadToEnd();
-                // Converti la chaîne en une liste de produits appelé "listProduits"
-                List<Produits> listProduits = JsonConvert.DeserializeObject<List<Produits>>(json);
-                // Vide la liste "interne" pour être sur une base saine
-                listingProduits.Clear();
-                // Rempli la liste "interne" avec la liste tirée du fichier JSON
-                listingProduits.AddRange(listProduits);
-            }
+            ProduitService.RemplirGrid(PathListProd, this);
         }
 
         /// <summary>
@@ -86,7 +38,7 @@ namespace _7_PremierCRUD
         {
             using (StreamWriter ecrire = new StreamWriter(PathListProd, false))
             {
-                string json = JsonConvert.SerializeObject(listingProduits);
+                string json = JsonConvert.SerializeObject(ProduitService.listingProduits);
                 ecrire.Write(json);
             }
         }
