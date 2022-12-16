@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -15,6 +16,18 @@ namespace _7_PremierCRUD
             {
                 String json = r.ReadToEnd();
                 return json;
+            }
+        }
+
+        /// <summary>
+        /// Mise à jour du fichier JSON
+        /// </summary>
+        public static void UpdateListeFileJSON(String fichier)
+        {
+            using (StreamWriter ecrire = new StreamWriter(fichier, false))
+            {
+                string json = JsonConvert.SerializeObject(ProduitService.listingProduits);
+                ecrire.Write(json);
             }
         }
     }

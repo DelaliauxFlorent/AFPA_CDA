@@ -32,18 +32,6 @@ namespace _7_PremierCRUD
         }
 
         /// <summary>
-        /// Mise à jour du fichier JSON
-        /// </summary>
-        private void UpdateListeFileJSON()
-        {
-            using (StreamWriter ecrire = new StreamWriter(PathListProd, false))
-            {
-                string json = JsonConvert.SerializeObject(ProduitService.listingProduits);
-                ecrire.Write(json);
-            }
-        }
-
-        /// <summary>
         /// Gestion du double clique sur une ligne de la DataGrid
         /// </summary>
         /// <param name="sender"></param>
@@ -67,7 +55,7 @@ namespace _7_PremierCRUD
             ((Produits)dtgdGrille.SelectedItem).LibelleProduit = prodRetour.LibelleProduit;
             ((Produits)dtgdGrille.SelectedItem).Quantite = prodRetour.Quantite;
             dtgdGrille.Items.Refresh();
-            UpdateListeFileJSON();
+            FichierJSON.UpdateListeFileJSON(PathListProd);
         }
     }
 }
