@@ -1,0 +1,35 @@
+﻿<Application x:Class="EVAL_Maquette_Florent.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:EVAL_Maquette_Florent"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <Style TargetType="Label">
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="TextBox" x:Key="inputLine">
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="DatePicker">
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="RadioButton">
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="ComboBoxItem">
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="IsTextSearchEnabled" Value="True"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <BitmapImage x:Key="Save" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="U:\59011-14-06\EVAL_Maquette_Florent\EVAL_Maquette_Florent\floppy-disk.png"/>
+        <BitmapImage x:Key="Cancel" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="U:\59011-14-06\EVAL_Maquette_Florent\EVAL_Maquette_Florent\multiply.png"/>
+    </Application.Resources>
+</Application>

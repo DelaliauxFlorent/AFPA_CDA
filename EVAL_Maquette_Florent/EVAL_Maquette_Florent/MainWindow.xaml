@@ -1,0 +1,340 @@
+﻿<Window x:Class="EVAL_Maquette_Florent.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EVAL_Maquette_Florent"
+        mc:Ignorable="d"
+        Title="Gestion des fiches de paie" Height="1024" Width="1980" Background="LightGray" FontSize="12">
+    <Grid x:Name="mainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="0.1*" />
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="0.1*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.1*" />
+            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="0.1*" />
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="header" Grid.Row="1" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"></ColumnDefinition>
+                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                <ColumnDefinition Width="10*"></ColumnDefinition>
+                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
+                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <GroupBox x:Name="grpbxInfosPerso" Header="Informations personnelles">
+                <Grid x:Name="infosPerso" Grid.Row="0" Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="0.1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="0.1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="0.1*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="0.1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label x:Name="lblNom" Grid.Column="1" Grid.Row="1" Content="Nom:"></Label>
+                    <TextBox x:Name="txbxNom" Grid.Column="3" Grid.Row="1" Text="TIKDAM" Style="{DynamicResource inputLine}"></TextBox>
+                    <Label x:Name="lblPrenom" Grid.Column="1" Grid.Row="3" Content="Prénom:"></Label>
+                    <TextBox x:Name="txbxPrenom" Grid.Column="3" Grid.Row="3" Text="Ahmed" Style="{DynamicResource inputLine}"></TextBox>
+                    <Label x:Name="lblDateNaiss" Grid.Column="1" Grid.Row="5" Content="Date de Naissance:"></Label>
+                    <DatePicker x:Name="dtpckDateNaiss" Grid.Column="3" Grid.Row="5" DisplayDate="10/01/1981" SelectedDate="10/01/1981"></DatePicker>
+                    <GroupBox Header="Genre" x:Name="grpbxGenre" Grid.Column="5" Grid.Row="1" Grid.RowSpan="3">
+                        <Grid x:Name="gridGenre" Grid.Row="0" Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.1*"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="0.1*"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="0.1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <RadioButton GroupName="rdbtnGenre" x:Name="rdbtnM" Grid.Column="1" Grid.Row="1" Content="M" IsChecked="True"></RadioButton>
+                            <RadioButton GroupName="rdbtnGenre" x:Name="rdbtnF" Grid.Column="1" Grid.Row="3" Content="F"></RadioButton>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Situation Familiale" x:Name="grpbxSituation" Grid.Column="7" Grid.Row="1" Grid.RowSpan="3">
+                        <Grid x:Name="gridSituation" Grid.Row="0" Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.1*"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="0.1*"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="0.1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <RadioButton GroupName="rdbtnSituation" x:Name="rdbtnCelib" Grid.Column="1" Grid.Row="1" Content="Célibataire" IsChecked="True"></RadioButton>
+                            <RadioButton GroupName="rdbtnSituation" x:Name="rdbtnMarie" Grid.Column="1" Grid.Row="3" Content="Marié(e)"></RadioButton>
+                        </Grid>
+                    </GroupBox>
+                    <Label x:Name="lblNbEnfant" Grid.Column="5" Grid.Row="5" Content="Nombre d'enfant(s):"></Label>
+                    <TextBox x:Name="txtbxNbEnfant" Grid.Column="7" Grid.Row="5" Text="0" Style="{DynamicResource inputLine}"></TextBox>
+                    <Label x:Name="lblAdresse" Grid.Column="1" Grid.Row="7" VerticalContentAlignment="Top" Content="Adresse:"></Label>
+                    <TextBox x:Name="txtbxAdresse" Grid.Column="3" Grid.Row="7" Grid.ColumnSpan="5" VerticalContentAlignment="Top" TextWrapping="Wrap" AcceptsReturn="True" Text="215 BLD Ch de Gaulle&#x0a;95000 Paris
+"></TextBox>
+                </Grid>
+            </GroupBox>
+            <GroupBox x:Name="grpbxInfosPro" Header="Informations professionnelles" Grid.Column="2">
+                <Grid x:Name="gridInfosPro" Grid.Row="0" Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*" />
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="0.1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="0.1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="0.1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="1.2*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label x:Name="lblDateEntree" Grid.Column="1" Grid.Row="1" Content="Date d'entrée:"></Label>
+                    <DatePicker x:Name="dtpckDateEntree" Grid.Column="3" Grid.Row="1" DisplayDate="01/01/2010" SelectedDate="01/01/2010"></DatePicker>
+                    <Label x:Name="lblFonction" Grid.Column="1" Grid.Row="3" Content="Fonction:"></Label>
+                    <ComboBox x:Name="cmbbxFonction" Grid.Column="3" Grid.Row="3">
+                        <ComboBoxItem Content="Assistant(e)"></ComboBoxItem>
+                        <ComboBoxItem Content="Commerciale"></ComboBoxItem>
+                        <ComboBoxItem Content="Comptable" IsSelected="True"></ComboBoxItem>
+                        <ComboBoxItem Content="DAF"></ComboBoxItem>
+                    </ComboBox>
+                    <Label x:Name="lblDepart" Grid.Column="1" Grid.Row="5" Content="Département:"></Label>
+                    <ComboBox x:Name="cmbbxDepart" Grid.Column="3" Grid.Row="5">
+                        <ComboBoxItem Content="Administratif" IsSelected="True"></ComboBoxItem>
+                        <ComboBoxItem Content="Commerciale"></ComboBoxItem>
+                    </ComboBox>
+                    <Label x:Name="lblService" Grid.Column="1" Grid.Row="7" Content="Service:"></Label>
+                    <ComboBox x:Name="cmbbxService" Grid.Column="3" Grid.Row="7">
+                        <ComboBoxItem Content="Administratif"></ComboBoxItem>
+                        <ComboBoxItem Content="Commerciale"></ComboBoxItem>
+                        <ComboBoxItem Content="Comptabilité" IsSelected="True"></ComboBoxItem>
+                        <ComboBoxItem Content="Finance"></ComboBoxItem>
+                    </ComboBox>
+                    <Label x:Name="lblCNSS" Grid.Column="5" Grid.Row="1" Content="CNSS:"></Label>
+                    <TextBox x:Name="txtbxCNSS" Grid.Column="7" Grid.Row="1" Text="654123" Style="{DynamicResource inputLine}"></TextBox>
+                    <Label x:Name="lblMatricule" Grid.Column="5" Grid.Row="3" Content="Matricule:"></Label>
+                    <TextBox x:Name="txtbxMatricule" Grid.Column="7" Grid.Row="3" Text="856325" Style="{DynamicResource inputLine}"></TextBox>
+                    <Label x:Name="lblCIMR" Grid.Column="5" Grid.Row="5" Content="CIMR:"></Label>
+                    <TextBox x:Name="txtbxCIMR" Grid.Column="7" Grid.Row="5" Text="326543" Style="{DynamicResource inputLine}"></TextBox>
+                    <Label x:Name="lblMutuelle" Grid.Column="5" Grid.Row="7" Content="Mutuelle:"></Label>
+                    <TextBox x:Name="txtbxMutuelle" Grid.Column="7" Grid.Row="7" Text="698543" Style="{DynamicResource inputLine}"></TextBox>
+                </Grid>
+            </GroupBox>
+            <GroupBox x:Name="grpbxInfoPaie" Header="Informations de paiement" Grid.Column="4">
+                <Grid x:Name="gridPaie" Grid.Row="0" Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="0.1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="0.1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="0.1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="1.2*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label x:Name="lblTypePaie" Grid.Column="1" Grid.Row="1" Content="Type de paiement:"></Label>
+                    <ComboBox x:Name="cmbbxTypePaie" Grid.Column="3" Grid.Row="1">
+                        <ComboBoxItem Content="Annuel"></ComboBoxItem>
+                        <ComboBoxItem Content="Mensuel" IsSelected="True"></ComboBoxItem>
+                        <ComboBoxItem Content="Ponctuel"></ComboBoxItem>
+                        <ComboBoxItem Content="Semestriel"></ComboBoxItem>
+                        <ComboBoxItem Content="Trimestriel"></ComboBoxItem>
+                    </ComboBox>
+                    <Label x:Name="lblModePaie" Grid.Column="1" Grid.Row="3" Content="Mode de paiement:"></Label>
+                    <ComboBox x:Name="cmbbxModePaie" Grid.Column="3" Grid.Row="3">
+                        <ComboBoxItem Content="Chèque"></ComboBoxItem>
+                        <ComboBoxItem Content="Virement" IsSelected="True"></ComboBoxItem>
+                    </ComboBox>
+                    <Label x:Name="lblBaseHoraire" Grid.Column="1" Grid.Row="5" Content="Salaire de base horaire:"></Label>
+                    <TextBox x:Name="txtbxBaseHoraire" Grid.Column="3" Grid.Row="5" Text="36,65" Style="{DynamicResource inputLine}"></TextBox>
+                    <Label x:Name="lblPrime" Grid.Column="1" Grid.Row="7" Content="Prime:"></Label>
+                    <TextBox x:Name="txtbxPrime" Grid.Column="3" Grid.Row="7" Text="500" Style="{DynamicResource inputLine}"></TextBox>
+                </Grid>
+            </GroupBox>
+            <Grid x:Name="gridBtns" Grid.Row="0" Grid.Column="6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Button x:Name="btnSauvegarder" Grid.Column="1" Grid.Row="1" Content="Sauvegarder" Margin="0">
+                    <Button.Background>
+                        <ImageBrush ImageSource="{DynamicResource Save}" Stretch="Uniform" AlignmentX="Left">
+                            <ImageBrush.RelativeTransform>
+                                <TransformGroup>
+                                    <ScaleTransform CenterY="0.5" CenterX="0.25" ScaleX="0.75" ScaleY="0.75"/>
+                                </TransformGroup>
+                            </ImageBrush.RelativeTransform>
+                        </ImageBrush>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="btnAnnuler" Grid.Column="1" Grid.Row="3" Content="Annuler">
+                    <Button.Background>
+                        <ImageBrush ImageSource="{DynamicResource Cancel}" Stretch="Uniform" AlignmentX="Left">
+                            <ImageBrush.RelativeTransform>
+                                <TransformGroup>
+                                    <ScaleTransform CenterY="0.5" CenterX="0.25" ScaleX="0.75" ScaleY="0.75"/>
+                                </TransformGroup>
+                            </ImageBrush.RelativeTransform>
+                        </ImageBrush>
+                    </Button.Background>
+                </Button>
+            </Grid>
+        </Grid>
+        <Grid x:Name="gridCentrageFichePaie" Grid.Row="3" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
+                <ColumnDefinition Width="5.4*"></ColumnDefinition>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="9.9*"></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="gridChoixMois" Grid.Row="1" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <ComboBox x:Name="cmbbxMoisVisu" Grid.Column="1" Grid.Row="0">
+                    <ComboBoxItem Content="Septembre 2022 (200h)"></ComboBoxItem>
+                    <ComboBoxItem Content="Octobre 2022 (175h)"></ComboBoxItem>
+                    <ComboBoxItem Content="Novembre 2022 (185h)"></ComboBoxItem>
+                    <ComboBoxItem Content="Décembre 2022 (191h)" IsSelected="True"></ComboBoxItem>
+                </ComboBox>
+
+            </Grid>
+            <Grid x:Name="gridFichePaie" Grid.Row="3" Grid.Column="1" Background="AliceBlue">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="0.1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="0.1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="0.1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="0.1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="0.1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="0.1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="0.1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="0.1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Rectangle Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="9" Fill="LightSkyBlue"></Rectangle>
+                <Rectangle Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="9" Fill="LightSkyBlue"></Rectangle>
+                <Rectangle Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="9" Fill="LightSkyBlue"></Rectangle>
+                <Rectangle Grid.Row="14" Grid.Column="0" Grid.ColumnSpan="9" Fill="LightSkyBlue"></Rectangle>
+
+
+                <TextBlock x:Name="titreBase" Grid.Column="2" Grid.Row="0" Text="Base"></TextBlock>
+                <TextBlock x:Name="titreTaux" Grid.Column="4" Grid.Row="0" Text="Taux"></TextBlock>
+                <TextBlock x:Name="titreAPayer" Grid.Column="6" Grid.Row="0" Text="À Payer"></TextBlock>
+                <TextBlock x:Name="titreARetenir" Grid.Column="8" Grid.Row="0" Text="À Retenir"></TextBlock>
+                <Label x:Name="lblVisuSalBase" Grid.Column="0" Grid.Row="2" Content="Salaire de base"></Label>
+                <TextBlock x:Name="valeurVisuSalBaseBase" Grid.Column="2" Grid.Row="2" Text="191"></TextBlock>
+                <TextBlock x:Name="valeurVisuSalBaseTaux" Grid.Column="4" Grid.Row="2" Text="36,65"></TextBlock>
+                <TextBlock x:Name="valeurVisuSalBaseAPayer" Grid.Column="6" Grid.Row="2" Text="7 000,00€"></TextBlock>
+                <Label x:Name="lblVisuPrimeAncien" Grid.Column="0" Grid.Row="4" Content="Prime Ancienneté"></Label>
+                <TextBlock x:Name="valeurVisuPrimeAncienBase" Grid.Column="2" Grid.Row="4" Text="7000"></TextBlock>
+                <TextBlock x:Name="valeurVisuPrimeAncienTaux" Grid.Column="4" Grid.Row="4" Text="10%"></TextBlock>
+                <TextBlock x:Name="valeurVisuPrimeAncienAPayer" Grid.Column="6" Grid.Row="4" Text="700,00€"></TextBlock>
+                <Label x:Name="lblVisuSalBrut" Grid.Column="0" Grid.Row="6" Content="Salaire Brut"></Label>
+                <TextBlock x:Name="valeurVisuSalBrutAPayer" Grid.Column="6" Grid.Row="6" Text="7 700,00€"></TextBlock>
+                <Label x:Name="lblVisuCotiCNSS" Grid.Column="0" Grid.Row="8" Content="Cotisation CNSS"></Label>
+                <TextBlock x:Name="valeurVisuCotiCNSSBase" Grid.Column="2" Grid.Row="8" Text="7000"></TextBlock>
+                <TextBlock x:Name="valeurVisuCotiCNSSTaux" Grid.Column="4" Grid.Row="8" Text="4,48%"></TextBlock>
+                <TextBlock x:Name="valeurVisuCotiCNSSARetenir" Grid.Column="8" Grid.Row="8" Text="313,60€"></TextBlock>
+                <Label x:Name="lblVisuAMO" Grid.Column="0" Grid.Row="10" Content="AMO"></Label>
+                <TextBlock x:Name="valeurVisuAMOBase" Grid.Column="2" Grid.Row="10" Text="7000"></TextBlock>
+                <TextBlock x:Name="valeurVisuAMOTaux" Grid.Column="4" Grid.Row="10" Text="2,26%"></TextBlock>
+                <TextBlock x:Name="valeurVisuAMOARetenir" Grid.Column="8" Grid.Row="10" Text="158,20€"></TextBlock>
+                <Label x:Name="lblVisuIGR" Grid.Column="0" Grid.Row="12" Content="IGR"></Label>
+                <TextBlock x:Name="valeurVisuIGRBase" Grid.Column="2" Grid.Row="12" Text="7000"></TextBlock>
+                <TextBlock x:Name="valeurVisuIGRTaux" Grid.Column="4" Grid.Row="12" Text="20%"></TextBlock>
+                <TextBlock x:Name="valeurVisuIGRARetenir" Grid.Column="8" Grid.Row="12" Text="1 400,00€"></TextBlock>
+                <Label x:Name="lblVisuMutuelle" Grid.Column="0" Grid.Row="14" Content="Mutuelle"></Label>
+                <TextBlock x:Name="valeurVisuMutuelleBase" Grid.Column="2" Grid.Row="14" Text="20"></TextBlock>
+                <TextBlock x:Name="valeurVisuMutuelleTaux" Grid.Column="4" Grid.Row="14" Text="1"></TextBlock>
+                <TextBlock x:Name="valeurVisuMutuelleARetenir" Grid.Column="8" Grid.Row="14" Text="20,00€"></TextBlock>
+                <Label x:Name="lblVisuNetAPayer" Grid.Column="0" Grid.Row="16" Content="Net à Payer"></Label>
+                <TextBlock x:Name="valeurVisuNetAPayerAPayer" Grid.Column="6" Grid.Row="16" Text="5 808,20€€"></TextBlock>
+            </Grid>
+        </Grid>
+
+    </Grid>
+</Window>
