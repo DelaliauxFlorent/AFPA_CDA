@@ -98,5 +98,10 @@ namespace _7_PremierCRUD
             string json = JsonConvert.SerializeObject(ListingProduits);
             FichierJson.UpdateListeFileJSON(json);
         }
+
+        public static Produits FindById(int iD)
+        {
+            return ListingProduits.Find(x => x.IdProduit == iD);
+        }
     }
 }
