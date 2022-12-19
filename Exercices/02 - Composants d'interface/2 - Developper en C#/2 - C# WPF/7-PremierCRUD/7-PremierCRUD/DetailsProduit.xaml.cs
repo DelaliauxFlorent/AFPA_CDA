@@ -17,7 +17,7 @@ namespace _7_PremierCRUD
     /// <summary>
     /// Interaction logic for Details.xaml
     /// </summary>
-    public partial class Details : Window
+    public partial class DetailsProduit : Window
     {
         GestionProduits fenetreParente;
         public int IndexListe { get; set; }
@@ -30,7 +30,7 @@ namespace _7_PremierCRUD
         /// <param name="w">La fenêtre "Mère"</param>
         /// <param name="mode">Le mode d'ouverture, Ajouter/Modifier/Supprimer</param>
         /// <param name="prod">Le produit concerné</param>
-        public Details(GestionProduits w, String mode, Produits prod = null)
+        public DetailsProduit(GestionProduits w, String mode, Produits prod = null)
         {
             InitializeComponent();
             fenetreParente = w;

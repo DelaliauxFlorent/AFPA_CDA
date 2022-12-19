@@ -61,7 +61,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Details.xaml">
+    <Page Include="DetailsCategorie.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DetailsProduit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -83,8 +87,11 @@
     </Compile>
     <Compile Include="Categories.cs" />
     <Compile Include="CategorieService.cs" />
-    <Compile Include="Details.xaml.cs">
-      <DependentUpon>Details.xaml</DependentUpon>
+    <Compile Include="DetailsCategorie.xaml.cs">
+      <DependentUpon>DetailsCategorie.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DetailsProduit.xaml.cs">
+      <DependentUpon>DetailsProduit.xaml</DependentUpon>
     </Compile>
     <Compile Include="FichierJson.cs" />
     <Compile Include="GestionCategories.xaml.cs">

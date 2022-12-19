@@ -25,5 +25,12 @@ namespace _7_PremierCRUD
             List<Categories> listCategs = JsonConvert.DeserializeObject<List<Categories>>(json);
             return listCategs;
         }
+
+        public static void ModifierCategorie(Categories categModif, String lbl)
+        {
+            categModif.LibelleCategorie = lbl;
+            string json = JsonConvert.SerializeObject(ListingCategories);
+            FichierJson.UpdateListeFileJSON(json, PathListCateg);
+        }
     }
 }

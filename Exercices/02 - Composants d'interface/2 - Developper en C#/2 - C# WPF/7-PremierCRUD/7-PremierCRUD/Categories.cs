@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _7_PremierCRUD
 {
-    class Categories
+     public class Categories
     {
         public int IdCategorie { get; set; }
         public String LibelleCategorie { get; set; }
