@@ -23,12 +23,11 @@ namespace _7_PremierCRUD
     /// </summary>
     public partial class MainWindow : Window
     {
-        public const string PathListProd = "../../ListeProduits.json";
 
         public MainWindow()
         {
             InitializeComponent();
-            ProduitService.RemplirGrid(PathListProd, this);
+            ProduitService.RemplirGrid(this);
         }
 
         /// <summary>
@@ -41,8 +40,8 @@ namespace _7_PremierCRUD
             // On récupère le produit que l'on veut modifier
             DataGridRow row = sender as DataGridRow;
             Produits prod = (Produits)row.Item;
-            // On instancie une fenêtre de détail en mode "Modifier"
-            Details detail = new Details(this, "Modifier", prod);
+            // On instancie une fenêtre de détail en mode "Visualiser"
+            Details detail = new Details(this, "Visualiser", prod);
             base.Opacity = 0.7;
             detail.ShowDialog();
             // On refresh() la DataGrid
@@ -90,11 +89,27 @@ namespace _7_PremierCRUD
         private void DataGridRow_Selected(object sender, RoutedEventArgs e)
         {
             btnSuppr.IsEnabled = true;
+            btnModif.IsEnabled = true;
         }
 
         private void DataGridRow_Unselected(object sender, RoutedEventArgs e)
         {
             btnSuppr.IsEnabled = false;
+            btnModif.IsEnabled = false;
+        }
+
+        private void btnModif_Click(object sender, RoutedEventArgs e)
+        {
+            if (dtgdGrille.SelectedItem != null)
+            {
+                Produits prod = (Produits)dtgdGrille.SelectedItem;
+                Details detail = new Details(this, "Modifier", prod);
+                base.Opacity = 0.7;
+                detail.ShowDialog();
+                // On refresh() la DataGrid
+                dtgdGrille.Items.Refresh();
+                base.Opacity = 1;
+            }
         }
     }
 }

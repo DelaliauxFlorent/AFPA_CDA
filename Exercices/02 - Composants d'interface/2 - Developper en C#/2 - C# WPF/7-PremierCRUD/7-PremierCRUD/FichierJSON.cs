@@ -15,9 +15,9 @@ namespace _7_PremierCRUD
         /// </summary>
         /// <param name="fichier">Adresse du fichier à lire</param>
         /// <returns>Liste sous forme de String</returns>
-        public static String LireJSON(String fichier)
+        public static String LireJSON()
         {
-            using (StreamReader r = new StreamReader(fichier))
+            using (StreamReader r = new StreamReader(ProduitService.PathListProd))
             {
                 String json = r.ReadToEnd();
                 return json;
@@ -28,11 +28,10 @@ namespace _7_PremierCRUD
         /// Mets à jour un fichier avec la liste des produits
         /// </summary>
         /// <param name="fichier">Adresse du fichier à mettre à jour</param>
-        public static void UpdateListeFileJSON(String fichier)
+        public static void UpdateListeFileJSON(String json)
         {
-            using (StreamWriter ecrire = new StreamWriter(fichier, false))
+            using (StreamWriter ecrire = new StreamWriter(ProduitService.PathListProd, false))
             {
-                string json = JsonConvert.SerializeObject(ProduitService.ListingProduits);
                 ecrire.Write(json);
             }
         }

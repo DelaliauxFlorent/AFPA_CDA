@@ -11,16 +11,17 @@ namespace _7_PremierCRUD
     static class ProduitService
     {
         public static List<Produits> ListingProduits { get; set; }
+        public const string PathListProd = "../../ListeProduits.json";
 
         /// <summary>
         /// On remplit la liste des produits en passant par un des CreerListe, puis on peuple la DataGrid avec.
         /// </summary>
         /// <param name="fichier">Chemin d'accès au fichier qu'on passera en argument pour la création de la liste</param>
         /// <param name="w"></param>
-        public static void RemplirGrid(String fichier, MainWindow w)
+        public static void RemplirGrid(MainWindow w)
         {
             ListingProduits = new List<Produits>();
-            ListingProduits.AddRange(CreerListeFileJSON(fichier));
+            ListingProduits.AddRange(CreerListeFileJSON());
             w.dtgdGrille.ItemsSource = ListingProduits;
         }
 
@@ -29,9 +30,9 @@ namespace _7_PremierCRUD
         /// </summary>
         /// <param name="fichier">Chemin d'accès du fichier que FichierJson.LireJSON() devra lire</param>
         /// <returns></returns>
-        public static List<Produits> CreerListeFileJSON(String fichier)
+        public static List<Produits> CreerListeFileJSON()
         {
-            String json = FichierJson.LireJSON(fichier);
+            String json = FichierJson.LireJSON();
             List<Produits> listProduits = JsonConvert.DeserializeObject<List<Produits>>(json);
             return listProduits;
         }
@@ -65,12 +66,13 @@ namespace _7_PremierCRUD
         /// <param name="num">Son nouveau "Numéro"</param>
         /// <param name="qte">Sa nouvelle "Quantité"</param>
         /// <param name="fichier">Le chemin d'accès du fichier à mettre à jour</param>
-        public static void ModifierProduit(Produits prodModif,String lbl, String num, int qte, String fichier)
+        public static void ModifierProduit(Produits prodModif,String lbl, String num, int qte)
         {
             prodModif.LibelleProduit= lbl;
             prodModif.NumeroProduit=num;
             prodModif.Quantite=qte;
-            FichierJson.UpdateListeFileJSON(fichier);
+            string json = JsonConvert.SerializeObject(ListingProduits);
+            FichierJson.UpdateListeFileJSON(json);
         }
 
         /// <summary>
@@ -78,10 +80,11 @@ namespace _7_PremierCRUD
         /// </summary>
         /// <param name="prodAjout">Le nouveau produit à ajouter à la liste et au fichier</param>
         /// <param name="fichier">Le chemin d'accès du fichier à mettre à jour</param>
-        public static void AjouterProduit(Produits prodAjout, String fichier)
+        public static void AjouterProduit(Produits prodAjout)
         {
             ListingProduits.Add(prodAjout);
-            FichierJson.UpdateListeFileJSON(fichier);
+            string json = JsonConvert.SerializeObject(ListingProduits);
+            FichierJson.UpdateListeFileJSON(json);
         }
 
         /// <summary>
@@ -89,10 +92,11 @@ namespace _7_PremierCRUD
         /// </summary>
         /// <param name="prodSuppr">Le produit à supprimer</param>
         /// <param name="fichier">Le chemin d'accès du fichier à mettre à jour<param>
-        public static void SupprimerProduit(Produits prodSuppr, String fichier)
+        public static void SupprimerProduit(Produits prodSuppr)
         {
             ListingProduits.Remove(prodSuppr);
-            FichierJson.UpdateListeFileJSON(fichier);
+            string json = JsonConvert.SerializeObject(ListingProduits);
+            FichierJson.UpdateListeFileJSON(json);
         }
     }
 }

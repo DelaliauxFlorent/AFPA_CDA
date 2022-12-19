@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>Grid snippet</Title>
+			<Author>Alexandre Bertrand</Author>
+			<Description>Create a grid with one row and one column with height/width = 1*</Description>
+			<Shortcut>gr</Shortcut>
+		</Header>
+		<Snippet>
+			<Code Language="XAML">
+				<![CDATA[<Grid x:Name="$name$" Grid.Row="$row$" Grid.Column="$column$">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+    </Grid>]]>
+			</Code>
+			<Declarations>
+				<Literal>
+					<ID>name</ID>
+					<ToolTip>Name of the grid</ToolTip>
+					<Default>Grid</Default>
+				</Literal>
+				<Literal>
+					<ID>row</ID>
+					<ToolTip>Index of row where the grid takes place</ToolTip>
+					<Default>0</Default>
+				</Literal>
+				<Literal>
+					<ID>column</ID>
+					<ToolTip>Index of column where the grid takes place</ToolTip>
+					<Default>0</Default>
+				</Literal>
+			</Declarations>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

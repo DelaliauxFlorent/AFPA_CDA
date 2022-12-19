@@ -48,6 +48,17 @@ namespace _7_PremierCRUD
             btnValid.Content = ModeOuverture;
             switch (ModeOuverture)
             {
+                case "Visualiser":
+                    btnValid.Visibility = Visibility.Hidden;
+                    btnAnnul.Content = "OK";
+                    valChamp1.Content = ProduitPasse.IdProduit;
+                    valChamp2.IsEnabled = false;
+                    valChamp2.Text = ProduitPasse.LibelleProduit;
+                    valChamp3.IsEnabled = false;
+                    valChamp3.Text = ProduitPasse.NumeroProduit;
+                    valChamp4.IsEnabled = false;
+                    valChamp4.Text = ProduitPasse.Quantite.ToString();
+                    break;
                 case "Ajouter":
                     // Si on a demandé à ajouter un produit:
                     // la seule valeur entrée par le logiciel et l'ID
@@ -104,8 +115,6 @@ namespace _7_PremierCRUD
                 // On vérifie que la quantité est un entier
                 if (int.TryParse(valChamp4.Text, out int qte))
                 {
-                    // Si c'est bien le cas, on récupère le chemin d'accès du fichier
-                    String fichier = MainWindow.PathListProd;
                     // Et on peut dire à la classe ProduitService d'effectuer la fonction correspondante
                     switch (ModeOuverture)
                     {
@@ -113,18 +122,18 @@ namespace _7_PremierCRUD
                             // On crée un nouveau produit avec les valeurs des différents champs
                             Produits newProd = new Produits((Int32)valChamp1.Content, valChamp2.Text, valChamp3.Text, qte);
                             // On demande à ProduitService de l'ajouter au fichier
-                            ProduitService.AjouterProduit(newProd, fichier);
+                            ProduitService.AjouterProduit(newProd);
                             break;
                         case "Modifier":
                             // On demande à ProduitService de modifier le fichier avec les valeurs des champs
-                            ProduitService.ModifierProduit(ProduitPasse, valChamp2.Text, valChamp3.Text, qte, fichier);
+                            ProduitService.ModifierProduit(ProduitPasse, valChamp2.Text, valChamp3.Text, qte);
                             break;
                         case "Supprimer":
                             // On demande une dernière confirmation de la suppression
                             if (MessageBox.Show("Êtes-vous certain de vouloir supprimer cette entrée?", "Confirmer la suppression:", MessageBoxButton.OKCancel, MessageBoxImage.Warning, MessageBoxResult.Cancel)==MessageBoxResult.OK)
                             {
                                 // Si OK, on demande à ProduitService de supprimer ce produit du fichier
-                                ProduitService.SupprimerProduit(ProduitPasse, fichier);
+                                ProduitService.SupprimerProduit(ProduitPasse);
                             }
                             break;
                         default:
