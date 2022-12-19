@@ -30,7 +30,7 @@ namespace _7_PremierCRUD
         /// <param name="fichier">Adresse du fichier à mettre à jour</param>
         public static void UpdateListeFileJSON(String json, String path)
         {
-            using (StreamWriter ecrire = new StreamWriter(ProduitService.PathListProd, false))
+            using (StreamWriter ecrire = new StreamWriter(path, false))
             {
                 ecrire.Write(json);
             }
