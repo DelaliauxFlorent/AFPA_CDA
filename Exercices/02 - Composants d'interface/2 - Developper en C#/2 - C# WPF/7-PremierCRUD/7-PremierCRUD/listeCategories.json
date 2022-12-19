@@ -1,0 +1,38 @@
+[
+  {
+    "IdCategorie": 1,
+    "LibelleCategorie": "Catégorie 1"
+  },
+  {
+    "IdCategorie": 2,
+    "LibelleCategorie": "Catégorie 2"
+  },
+  {
+    "IdCategorie": 3,
+    "LibelleCategorie": "Catégorie 3"
+  },
+  {
+    "IdCategorie": 4,
+    "LibelleCategorie": "Catégorie 4"
+  },
+  {
+    "IdCategorie": 5,
+    "LibelleCategorie": "Catégorie 5"
+  },
+  {
+    "IdCategorie": 6,
+    "LibelleCategorie": "Catégorie 6"
+  },
+  {
+    "IdCategorie": 7,
+    "LibelleCategorie": "Catégorie 7"
+  },
+  {
+    "IdCategorie": 8,
+    "LibelleCategorie": "Catégorie 8"
+  },
+  {
+    "IdCategorie": 9,
+    "LibelleCategorie": "Catégorie 9"
+  }
+]

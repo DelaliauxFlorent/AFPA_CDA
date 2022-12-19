@@ -9,7 +9,7 @@ namespace _7_PremierCRUD
     public class Produits
     {
         public int IdProduit { get; set; }
-        public string LibelleProduit { get; set; }
+        public String LibelleProduit { get; set; }
         public String NumeroProduit { get; set; }
         public int Quantite { get; set; }
 

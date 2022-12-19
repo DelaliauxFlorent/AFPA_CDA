@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DemoEF.Helpers
+namespace _7_PremierCRUD
 {
     static class ObjectHelper
     {

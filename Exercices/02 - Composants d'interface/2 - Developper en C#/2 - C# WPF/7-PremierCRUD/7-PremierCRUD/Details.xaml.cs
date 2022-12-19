@@ -19,7 +19,7 @@ namespace _7_PremierCRUD
     /// </summary>
     public partial class Details : Window
     {
-        MainWindow fenetreParente;
+        GestionProduits fenetreParente;
         public int IndexListe { get; set; }
         public String ModeOuverture { get; set; }
         public Produits ProduitPasse { get; set; }
@@ -30,7 +30,7 @@ namespace _7_PremierCRUD
         /// <param name="w">La fenêtre "Mère"</param>
         /// <param name="mode">Le mode d'ouverture, Ajouter/Modifier/Supprimer</param>
         /// <param name="prod">Le produit concerné</param>
-        public Details(MainWindow w, String mode, Produits prod = null)
+        public Details(GestionProduits w, String mode, Produits prod = null)
         {
             InitializeComponent();
             fenetreParente = w;
@@ -50,24 +50,25 @@ namespace _7_PremierCRUD
             {
                 case "Visualiser":
                     btnValid.Visibility = Visibility.Hidden;
+                    this.Title = "Visualiser un produit";
                     btnAnnul.Content = "OK";
                     valChamp1.Content = ProduitPasse.IdProduit;
-                    valChamp2.IsEnabled = false;
                     valChamp2.Text = ProduitPasse.LibelleProduit;
-                    valChamp3.IsEnabled = false;
                     valChamp3.Text = ProduitPasse.NumeroProduit;
-                    valChamp4.IsEnabled = false;
                     valChamp4.Text = ProduitPasse.Quantite.ToString();
+                    DisableFields();
                     break;
                 case "Ajouter":
                     // Si on a demandé à ajouter un produit:
                     // la seule valeur entrée par le logiciel et l'ID
                     // Par défaut, le nouvel ID suit l'ID du dernier élément de la liste
+                    this.Title = "Ajouter un produit";
                     valChamp1.Content = ProduitService.ListingProduits[ProduitService.ListingProduits.Count - 1].IdProduit + 1;
                     break;
                 case "Modifier":
                     // Si on a demandé à modifier un produit:
                     // on rempli les champs avec les valeurs du produit en question
+                    this.Title = "Modifier un produit";
                     IndexListe = ProduitService.ListingProduits.IndexOf(ProduitPasse);
                     valChamp1.Content = ProduitPasse.IdProduit;
                     valChamp2.Text = ProduitPasse.LibelleProduit;
@@ -78,18 +79,24 @@ namespace _7_PremierCRUD
                     // Si on a demandé à supprimer un produit:
                     // on rempli les champs avec les valeurs du produit en question (pour confirmation)
                     // Mais on les désactives pour éviter les méprises
+                    this.Title = "Supprimer un produit";
                     IndexListe = ProduitService.ListingProduits.IndexOf(ProduitPasse);
                     valChamp1.Content = ProduitPasse.IdProduit;
-                    valChamp2.IsEnabled = false;
                     valChamp2.Text = ProduitPasse.LibelleProduit;
-                    valChamp3.IsEnabled = false;
                     valChamp3.Text = ProduitPasse.NumeroProduit;
-                    valChamp4.IsEnabled = false;
                     valChamp4.Text = ProduitPasse.Quantite.ToString();
+                    DisableFields();
                     break;
                 default:
                     break;
             }
+        }
+
+        private void DisableFields()
+        {
+            valChamp2.IsEnabled = false;
+            valChamp3.IsEnabled = false;
+            valChamp4.IsEnabled = false;
         }
 
         /// <summary>

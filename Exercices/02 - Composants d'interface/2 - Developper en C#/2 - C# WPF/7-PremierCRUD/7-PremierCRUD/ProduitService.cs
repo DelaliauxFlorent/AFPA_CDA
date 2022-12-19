@@ -1,10 +1,10 @@
-﻿using DemoEF.Helpers;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace _7_PremierCRUD
 {
@@ -18,7 +18,7 @@ namespace _7_PremierCRUD
         /// </summary>
         /// <param name="fichier">Chemin d'accès au fichier qu'on passera en argument pour la création de la liste</param>
         /// <param name="w"></param>
-        public static void RemplirGrid(MainWindow w)
+        public static void RemplirGrid(GestionProduits w)
         {
             ListingProduits = new List<Produits>();
             ListingProduits.AddRange(CreerListeFileJSON());

@@ -1,0 +1,67 @@
+﻿<Window x:Class="_7_PremierCRUD.GestionProduits"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_7_PremierCRUD"
+        mc:Ignorable="d"
+        Title="Gestion Des Produits" Height="450" Width="800">
+    <Grid x:Name="mainGridGestionProduits">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="98*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="90*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="5*" />
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Row="1" Grid.Column="1" x:Name="dtgdGrille" AlternatingRowBackground="#FFC3EFFF" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False" GridLinesVisibility="Vertical" VerticalScrollBarVisibility="Visible">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Path=IdProduit}" Width="0.3*">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Libelle" Binding="{Binding Path=LibelleProduit}" Width="5*" />
+                <DataGridTextColumn Header="Numéro" Binding="{Binding Path=NumeroProduit}" Width="1*" />
+                <DataGridTextColumn Header="Quantité" Binding="{Binding Path=Quantite}" Width="0.5*">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+            <DataGrid.Resources>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick" Handler="Row_DblClck"/>
+                    <EventSetter Event="Selected" Handler="DataGridRow_Selected"/>
+                    <EventSetter Event="Unselected" Handler="DataGridRow_Unselected"/>
+                </Style>
+            </DataGrid.Resources>
+        </DataGrid>
+        <Grid x:Name="gridAddDelete" Grid.Row="3" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Button x:Name="btnAjout" Grid.Column="1" Content="Ajouter" Click="btnAjout_Click"></Button>
+            <Button x:Name="btnModif" Grid.Column="3" Content="Modifier" Click="btnModif_Click" IsEnabled="False"></Button>
+            <Button x:Name="btnSuppr" Grid.Column="5" Content="Supprimer" Click="btnSuppr_Click" IsEnabled="False"></Button>
+        </Grid>
+    </Grid>
+</Window>
