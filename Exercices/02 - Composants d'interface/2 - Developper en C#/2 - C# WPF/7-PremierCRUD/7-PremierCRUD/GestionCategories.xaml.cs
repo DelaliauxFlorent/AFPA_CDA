@@ -46,9 +46,9 @@ namespace _7_PremierCRUD
         private void btnAjout_Click(object sender, RoutedEventArgs e)
         {
             // On instancie une fenêtre de détail en mode "Ajouter"
-            //Details fenetreAjout = new DetailsProduit(this, "Ajouter");
+            DetailsCategorie fenetreAjout = new DetailsCategorie(this, "Ajouter");
             base.Opacity = 0.7;
-            //fenetreAjout.ShowDialog();
+            fenetreAjout.ShowDialog();
             // On refresh() la DataGrid
             dtgdGrille.Items.Refresh();
             base.Opacity = 1;
@@ -91,10 +91,10 @@ namespace _7_PremierCRUD
         {
             if (dtgdGrille.SelectedItem != null)
             {
-                Produits prod = (Produits)dtgdGrille.SelectedItem;
-                //Details detail = new DetailsProduit(this, "Modifier", prod);
+                Categories categ = (Categories)dtgdGrille.SelectedItem;
+                DetailsCategorie detail = new DetailsCategorie(this, "Modifier", categ);
                 base.Opacity = 0.7;
-                //detail.ShowDialog();
+                detail.ShowDialog();
                 // On refresh() la DataGrid
                 dtgdGrille.Items.Refresh();
                 base.Opacity = 1;

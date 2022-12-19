@@ -89,49 +89,41 @@ namespace _7_PremierCRUD
 
         private void btnValid_Click(object sender, RoutedEventArgs e)
         {
-            // On vérifie qu'aucun des champs n'est vide
-            //if (valChamp2.Text != "" && valChamp3.Text != "" && valChamp4.Text != "")
-            //{
-            //    // On vérifie que la quantité est un entier
-            //    if (int.TryParse(valChamp4.Text, out int qte))
-            //    {
-            //        // Et on peut dire à la classe ProduitService d'effectuer la fonction correspondante
-            //        switch (ModeOuverture)
-            //        {
-            //            case "Ajouter":
-            //                // On crée un nouveau produit avec les valeurs des différents champs
-            //                Produits newProd = new Produits((Int32)valChamp1.Content, valChamp2.Text, valChamp3.Text, qte);
-            //                // On demande à ProduitService de l'ajouter au fichier
-            //                ProduitService.AjouterProduit(newProd);
-            //                break;
-            //            case "Modifier":
-            //                // On demande à ProduitService de modifier le fichier avec les valeurs des champs
-            //                ProduitService.ModifierProduit(ProduitPasse, valChamp2.Text, valChamp3.Text, qte);
-            //                break;
-            //            case "Supprimer":
-            //                // On demande une dernière confirmation de la suppression
-            //                if (MessageBox.Show("Êtes-vous certain de vouloir supprimer cette entrée?", "Confirmer la suppression:", MessageBoxButton.OKCancel, MessageBoxImage.Warning, MessageBoxResult.Cancel) == MessageBoxResult.OK)
-            //                {
-            //                    // Si OK, on demande à ProduitService de supprimer ce produit du fichier
-            //                    ProduitService.SupprimerProduit(ProduitPasse);
-            //                }
-            //                break;
-            //            default:
-            //                break;
-            //        }
-            //        this.Close();
-            //    }
-            //    else
-            //    {
-            //        // Sinon, on informe l'utilisateur du problème et c'est tous
-            //        MessageBox.Show("Le champ \"Quantité\" doit être en entier!", "Erreur de format", MessageBoxButton.OK, MessageBoxImage.Error);
-            //    }
-            //}
-            //else
-            //{
-            //    // Sinon, on informe l'utilisateur du problème et c'est tous
-            //    MessageBox.Show("Un de vos champs est vide!", "Information manquante", MessageBoxButton.OK, MessageBoxImage.Error);
-            //}
+            //On vérifie qu'aucun des champs n'est vide
+            if (valChamp2.Text != "")
+            {
+                // Et on peut dire à la classe CategorieService d'effectuer la fonction correspondante
+                switch (ModeOuverture)
+                {
+                    case "Ajouter":
+                        // On crée un nouveau produit avec les valeurs des différents champs
+                        Categories newCat = new Categories((Int32)valChamp1.Content, valChamp2.Text);
+                        // On demande à CategorieService de l'ajouter au fichier
+                        //CategorieService.AjouterCategorie(newCat);
+                        break;
+                    case "Modifier":
+                        // On demande à CategorieService de modifier le fichier avec les valeurs des champs
+                        CategorieService.ModifierCategorie(CategoriePassee, valChamp2.Text);
+                        break;
+                    case "Supprimer":
+                        // On demande une dernière confirmation de la suppression
+                        if (MessageBox.Show("Êtes-vous certain de vouloir supprimer cette entrée?", "Confirmer la suppression:", MessageBoxButton.OKCancel, MessageBoxImage.Warning, MessageBoxResult.Cancel) == MessageBoxResult.OK)
+                        {
+                            // Si OK, on demande à CategorieService de supprimer ce produit du fichier
+                            //CategorieService.SupprimerCategorie(CategoriePassee);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                this.Close();
+
+            }
+            else
+            {
+                // Sinon, on informe l'utilisateur du problème et c'est tous
+                MessageBox.Show("Un de vos champs est vide!", "Information manquante", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
