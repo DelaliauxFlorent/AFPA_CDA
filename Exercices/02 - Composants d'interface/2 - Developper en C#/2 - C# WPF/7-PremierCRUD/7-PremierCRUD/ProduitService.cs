@@ -32,7 +32,7 @@ namespace _7_PremierCRUD
         /// <returns></returns>
         public static List<Produits> CreerListeFileJSON()
         {
-            String json = FichierJson.LireJSON();
+            String json = FichierJson.LireJSON(PathListProd);
             List<Produits> listProduits = JsonConvert.DeserializeObject<List<Produits>>(json);
             return listProduits;
         }
@@ -72,7 +72,7 @@ namespace _7_PremierCRUD
             prodModif.NumeroProduit=num;
             prodModif.Quantite=qte;
             string json = JsonConvert.SerializeObject(ListingProduits);
-            FichierJson.UpdateListeFileJSON(json);
+            FichierJson.UpdateListeFileJSON(json, PathListProd);
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace _7_PremierCRUD
         {
             ListingProduits.Add(prodAjout);
             string json = JsonConvert.SerializeObject(ListingProduits);
-            FichierJson.UpdateListeFileJSON(json);
+            FichierJson.UpdateListeFileJSON(json, PathListProd);
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace _7_PremierCRUD
         {
             ListingProduits.Remove(prodSuppr);
             string json = JsonConvert.SerializeObject(ListingProduits);
-            FichierJson.UpdateListeFileJSON(json);
+            FichierJson.UpdateListeFileJSON(json, PathListProd);
         }
 
         public static Produits FindById(int iD)

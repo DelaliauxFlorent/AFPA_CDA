@@ -15,9 +15,9 @@ namespace _7_PremierCRUD
         /// </summary>
         /// <param name="fichier">Adresse du fichier à lire</param>
         /// <returns>Liste sous forme de String</returns>
-        public static String LireJSON()
+        public static String LireJSON(String path)
         {
-            using (StreamReader r = new StreamReader(ProduitService.PathListProd))
+            using (StreamReader r = new StreamReader(path))
             {
                 String json = r.ReadToEnd();
                 return json;
@@ -28,7 +28,7 @@ namespace _7_PremierCRUD
         /// Mets à jour un fichier avec la liste des produits
         /// </summary>
         /// <param name="fichier">Adresse du fichier à mettre à jour</param>
-        public static void UpdateListeFileJSON(String json)
+        public static void UpdateListeFileJSON(String json, String path)
         {
             using (StreamWriter ecrire = new StreamWriter(ProduitService.PathListProd, false))
             {
