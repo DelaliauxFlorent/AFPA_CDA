@@ -105,9 +105,11 @@ namespace _7_PremierCRUD
         /// </summary>
         /// <param name="prodSuppr">Le produit à supprimer</param>
         /// <param name="fichier">Le chemin d'accès du fichier à mettre à jour<param>
-        public static void SupprimerProduit(Produits prodSuppr)
+        public static void SupprimerProduit(ProduitsDTO prodDTOSuppr)
         {
+            Produits prodSuppr = FindById(prodDTOSuppr.IdProduit);
             ListingProduits.Remove(prodSuppr);
+            ListingProduitsDTO.Remove(prodDTOSuppr);
             string json = JsonConvert.SerializeObject(ListingProduits);
             FichierJson.UpdateListeFileJSON(json, PathListProd);
         }

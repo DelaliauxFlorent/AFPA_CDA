@@ -98,6 +98,7 @@ namespace _7_PremierCRUD
                     valChamp2.Text = ProduitDTOPasse.LibelleProduit;
                     valChamp3.Text = ProduitDTOPasse.NumeroProduit;
                     valChamp4.Text = ProduitDTOPasse.Quantite.ToString();
+                    valChamp5.SelectedItem = CategorieService.FindById(ProduitDTOPasse.IdCategorie);
                     DisableFields();
                     break;
                 default:
@@ -130,10 +131,10 @@ namespace _7_PremierCRUD
         /// <param name="e"></param>
         private void btnValid_Click(object sender, RoutedEventArgs e)
         {
-            int idCateg = ((Categories)valChamp5.SelectedItem).IdCategorie;
             // On vérifie qu'aucun des champs n'est vide
-            if (valChamp2.Text != "" && valChamp3.Text != "" && valChamp4.Text != "")
+            if (valChamp2.Text != "" && valChamp3.Text != "" && valChamp4.Text != "" && valChamp5.SelectedItem!=null)
             {
+                int idCateg = ((Categories)valChamp5.SelectedItem).IdCategorie;
                 // On vérifie que la quantité est un entier
                 if (int.TryParse(valChamp4.Text, out int qte))
                 {
@@ -155,7 +156,7 @@ namespace _7_PremierCRUD
                             if (MessageBox.Show("Êtes-vous certain de vouloir supprimer cette entrée?", "Confirmer la suppression:", MessageBoxButton.OKCancel, MessageBoxImage.Warning, MessageBoxResult.Cancel)==MessageBoxResult.OK)
                             {
                                 // Si OK, on demande à ProduitService de supprimer ce produit du fichier
-                                ProduitService.SupprimerProduit(ProduitPasse);
+                                ProduitService.SupprimerProduit(ProduitDTOPasse);
                             }
                             break;
                         default:

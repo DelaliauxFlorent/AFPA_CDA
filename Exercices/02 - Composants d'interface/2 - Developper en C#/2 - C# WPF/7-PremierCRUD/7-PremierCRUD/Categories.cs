@@ -25,7 +25,7 @@ namespace _7_PremierCRUD
 
         public Categories()
         {
-
+            LibelleCategorie = "Aucune catégorie";
         }
 
         public override bool Equals(object obj)
