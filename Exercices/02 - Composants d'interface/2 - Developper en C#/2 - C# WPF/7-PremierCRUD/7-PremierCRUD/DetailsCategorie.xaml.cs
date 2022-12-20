@@ -99,7 +99,7 @@ namespace _7_PremierCRUD
                         // On crée un nouveau produit avec les valeurs des différents champs
                         Categories newCat = new Categories((Int32)valChamp1.Content, valChamp2.Text);
                         // On demande à CategorieService de l'ajouter au fichier
-                        //CategorieService.AjouterCategorie(newCat);
+                        CategorieService.AjouterCategorie(newCat);
                         break;
                     case "Modifier":
                         // On demande à CategorieService de modifier le fichier avec les valeurs des champs
@@ -110,7 +110,7 @@ namespace _7_PremierCRUD
                         if (MessageBox.Show("Êtes-vous certain de vouloir supprimer cette entrée?", "Confirmer la suppression:", MessageBoxButton.OKCancel, MessageBoxImage.Warning, MessageBoxResult.Cancel) == MessageBoxResult.OK)
                         {
                             // Si OK, on demande à CategorieService de supprimer ce produit du fichier
-                            //CategorieService.SupprimerCategorie(CategoriePassee);
+                            CategorieService.SupprimerCategorie(CategoriePassee);
                         }
                         break;
                     default:

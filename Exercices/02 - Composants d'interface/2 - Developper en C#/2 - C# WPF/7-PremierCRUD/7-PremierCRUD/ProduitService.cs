@@ -21,7 +21,7 @@ namespace _7_PremierCRUD
         public static void RemplirGrid(GestionProduits w)
         {
             ListingProduits = new List<Produits>();
-            ListingProduits.AddRange(CreerListe());
+            ListingProduits.AddRange(CreerListeFileJSON());
             w.dtgdGrille.ItemsSource = ListingProduits;
         }
 

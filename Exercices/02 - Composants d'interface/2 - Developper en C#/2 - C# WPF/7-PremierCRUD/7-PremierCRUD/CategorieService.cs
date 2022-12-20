@@ -32,5 +32,24 @@ namespace _7_PremierCRUD
             string json = JsonConvert.SerializeObject(ListingCategories);
             FichierJson.UpdateListeFileJSON(json, PathListCateg);
         }
+
+        public static void AjouterCategorie(Categories categAjout)
+        {
+            ListingCategories.Add(categAjout);
+            string json = JsonConvert.SerializeObject(ListingCategories);
+            FichierJson.UpdateListeFileJSON(json, PathListCateg);
+        }
+
+        public static void SupprimerCategorie(Categories categSuppr)
+        {
+            ListingCategories.Remove(categSuppr);
+            string json = JsonConvert.SerializeObject(ListingCategories);
+            FichierJson.UpdateListeFileJSON(json, PathListCateg);
+        }
+
+        public static Categories FindById(int iD)
+        {
+            return ListingCategories.Find(x => x.IdCategorie == iD);
+        }
     }
 }
