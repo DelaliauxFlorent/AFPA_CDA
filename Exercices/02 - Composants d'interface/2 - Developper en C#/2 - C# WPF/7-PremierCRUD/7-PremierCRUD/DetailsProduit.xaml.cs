@@ -75,7 +75,7 @@ namespace _7_PremierCRUD
                     // la seule valeur entrée par le logiciel et l'ID
                     // Par défaut, le nouvel ID suit l'ID du dernier élément de la liste
                     this.Title = "Ajouter un produit";
-                    valChamp1.Content = ProduitService.ListingProduits[ProduitService.ListingProduits.Count - 1].IdProduit + 1;
+                    valChamp1.Content = ProduitService.ListingProduitsDTO[ProduitService.ListingProduitsDTO.Count - 1].IdProduit + 1;
                     break;
                 case "Modifier":
                     // Si on a demandé à modifier un produit:
@@ -129,7 +129,7 @@ namespace _7_PremierCRUD
         /// <param name="e"></param>
         private void btnValid_Click(object sender, RoutedEventArgs e)
         {
-            int idCateg = 1;
+            int idCateg = ((Categories)valChamp5.SelectedItem).IdCategorie;
             // On vérifie qu'aucun des champs n'est vide
             if (valChamp2.Text != "" && valChamp3.Text != "" && valChamp4.Text != "")
             {

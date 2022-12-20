@@ -22,7 +22,7 @@ namespace _7_PremierCRUD
         public static void RemplirGrid(GestionProduits w)
         {
             CreerListeFileJSON();
-            List<ProduitsDTO> ListingProduitsDTO = new List<ProduitsDTO>();
+            ListingProduitsDTO = new List<ProduitsDTO>();
             CategorieService.CreerListeFileJSON();
             for (int i = 0; i < ListingProduits.Count; i++)
             {
@@ -88,6 +88,8 @@ namespace _7_PremierCRUD
         public static void AjouterProduit(Produits prodAjout)
         {
             ListingProduits.Add(prodAjout);
+            ProduitsDTO prodDTOAjout = new ProduitsDTO(prodAjout);
+            ListingProduitsDTO.Add(prodDTOAjout);
             string json = JsonConvert.SerializeObject(ListingProduits);
             FichierJson.UpdateListeFileJSON(json, PathListProd);
         }

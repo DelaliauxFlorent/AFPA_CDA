@@ -27,6 +27,14 @@ namespace _7_PremierCRUD
         {
             IdProduit = idProduit;
         }
+        public Produits(ProduitsDTO prodDTO)
+        {
+            IdProduit = prodDTO.IdProduit;
+            LibelleProduit = prodDTO.LibelleProduit;
+            NumeroProduit = prodDTO.NumeroProduit;
+            Quantite = prodDTO.Quantite;
+            IdCategorie = prodDTO.IdCategorie;
+        }
 
         public Produits()
         {
