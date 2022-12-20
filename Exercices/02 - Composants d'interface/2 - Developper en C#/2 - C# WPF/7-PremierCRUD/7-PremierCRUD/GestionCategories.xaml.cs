@@ -64,11 +64,11 @@ namespace _7_PremierCRUD
             if (dtgdGrille.SelectedItem != null)
             {
                 // On récupère le produit que l'on veut supprimer
-                Produits prodSuppr = (Produits)dtgdGrille.SelectedItem;
+                Categories categSuppr = (Categories)dtgdGrille.SelectedItem;
                 // On instancie une fenêtre de détail en mode "Supprimer"
-               // Details fenetreSuppr = new DetailsProduit(this, "Supprimer", prodSuppr);
+                DetailsCategorie fenetreSuppr = new DetailsCategorie(this, "Supprimer", categSuppr);
                 base.Opacity = 0.7;
-                //fenetreSuppr.ShowDialog();
+                fenetreSuppr.ShowDialog();
                 // On refresh() la DataGrid
                 dtgdGrille.Items.Refresh();
                 base.Opacity = 1;
