@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _7_PremierCRUD
 {
-    class ProduitsDTO
+    public class ProduitsDTO
     {
         public int IdProduit { get; set; }
         public String LibelleProduit { get; set; }
@@ -31,8 +31,15 @@ namespace _7_PremierCRUD
             LibelleProduit = prod.LibelleProduit;
             NumeroProduit = prod.NumeroProduit;
             Quantite = prod.Quantite;
-            IdCategorie = prod.IdCategorie;
-            LibelleCategorie = CategorieService.FindById(prod.IdCategorie).LibelleCategorie;
+            if (CategorieService.FindById(prod.IdCategorie).LibelleCategorie!="")
+            {
+                IdCategorie = prod.IdCategorie;
+                LibelleCategorie = CategorieService.FindById(prod.IdCategorie).LibelleCategorie;
+            }
+            else
+            {
+                LibelleCategorie = "Aucune catégorie";
+            }
         }
 
         public ProduitsDTO(int idProduit)

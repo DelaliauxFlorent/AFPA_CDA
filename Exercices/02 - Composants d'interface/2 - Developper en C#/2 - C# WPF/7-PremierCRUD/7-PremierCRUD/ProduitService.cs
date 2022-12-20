@@ -106,7 +106,14 @@ namespace _7_PremierCRUD
 
         public static Produits FindById(int iD)
         {
-            return ListingProduits.Find(x => x.IdProduit == iD);
+            if(ListingProduits.Find(x => x.IdProduit == iD) != null)
+            {
+                return ListingProduits.Find(x => x.IdProduit == iD);
+            }
+            else
+            {
+                return new Produits();
+            }
         }
     }
 }

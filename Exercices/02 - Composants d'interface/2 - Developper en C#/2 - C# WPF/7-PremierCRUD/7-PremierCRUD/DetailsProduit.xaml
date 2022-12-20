@@ -17,11 +17,13 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
+            <RowDefinition Height="0.5*" />
             <RowDefinition Height="1*" />
+            <RowDefinition Height="0.5*" />
             <RowDefinition Height="1*" />
+            <RowDefinition Height="0.5*" />
             <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="0.5*" />
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
@@ -35,7 +37,15 @@
         <TextBox x:Name="valChamp3" Grid.Row="5" Grid.Column="3" VerticalContentAlignment="Center"></TextBox>
         <Label x:Name="lblChamp4" Grid.Row="7" Grid.Column="1" Content="Quantité:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"></Label>
         <TextBox x:Name="valChamp4" Grid.Row="7" Grid.Column="3" VerticalContentAlignment="Center"></TextBox>
-        <Button x:Name="btnValid" Grid.Column="1" Grid.Row="9" Click="btnValid_Click"></Button>
-        <Button x:Name="btnAnnul" Grid.Column="3" Grid.Row="9" Content="Annuler" Click="btnAnnul_Click"></Button>
+        <Label x:Name="lblChamp5" Grid.Row="9" Grid.Column="1" Content="Catégorie:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"></Label>
+        <ComboBox x:Name="valChamp5" Grid.Column="3" Grid.Row="9">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding LibelleCategorie}"></TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Button x:Name="btnValid" Grid.Column="1" Grid.Row="11" Click="btnValid_Click"></Button>
+        <Button x:Name="btnAnnul" Grid.Column="3" Grid.Row="11" Content="Annuler" Click="btnAnnul_Click"></Button>
     </Grid>
 </Window>

@@ -19,7 +19,7 @@
             <RowDefinition Height="10*" />
             <RowDefinition Height="5*" />
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="1" Grid.Column="1" x:Name="dtgdGrille" AlternatingRowBackground="#FFC3EFFF" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False" GridLinesVisibility="Vertical" VerticalScrollBarVisibility="Visible">
+        <DataGrid Grid.Row="1" Grid.Column="1" x:Name="dtgdGrille" AlternatingRowBackground="#FFC3EFFF" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False" GridLinesVisibility="Vertical" VerticalScrollBarVisibility="Visible" AlternationCount="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Numéro" Binding="{Binding Path=NumeroProduit}" Width="1*" />
                 <DataGridTextColumn Header="Libelle" Binding="{Binding Path=LibelleProduit}" Width="4*" />

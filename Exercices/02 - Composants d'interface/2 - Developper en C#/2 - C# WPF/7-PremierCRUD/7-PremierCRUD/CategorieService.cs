@@ -47,7 +47,14 @@ namespace _7_PremierCRUD
 
         public static Categories FindById(int iD)
         {
-            return ListingCategories.Find(x => x.IdCategorie == iD);
+            if (ListingCategories.Find(x => x.IdCategorie == iD) != null)
+            {
+                return ListingCategories.Find(x => x.IdCategorie == iD);
+            }
+            else
+            {
+                return new Categories();
+            }
         }
     }
 }

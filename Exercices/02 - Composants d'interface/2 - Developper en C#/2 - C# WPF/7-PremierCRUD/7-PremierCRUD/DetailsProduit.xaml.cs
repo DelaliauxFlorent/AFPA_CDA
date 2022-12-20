@@ -23,6 +23,7 @@ namespace _7_PremierCRUD
         public int IndexListe { get; set; }
         public String ModeOuverture { get; set; }
         public Produits ProduitPasse { get; set; }
+        public ProduitsDTO ProduitDTOPasse { get; set; }
 
         /// <summary>
         /// Constructeur de la fenêtre de détails
@@ -30,12 +31,20 @@ namespace _7_PremierCRUD
         /// <param name="w">La fenêtre "Mère"</param>
         /// <param name="mode">Le mode d'ouverture, Ajouter/Modifier/Supprimer</param>
         /// <param name="prod">Le produit concerné</param>
-        public DetailsProduit(GestionProduits w, String mode, Produits prod = null)
+        //public DetailsProduit(GestionProduits w, String mode, Produits prod = null)
+        //{
+        //    InitializeComponent();
+        //    fenetreParente = w;
+        //    ModeOuverture = mode;
+        //    ProduitPasse = prod;
+        //    RemplirChamps();
+        //}
+        public DetailsProduit(GestionProduits w, String mode, ProduitsDTO prod = null)
         {
             InitializeComponent();
             fenetreParente = w;
             ModeOuverture = mode;
-            ProduitPasse = prod;
+            ProduitDTOPasse = prod;
             RemplirChamps();
         }
 
@@ -46,16 +55,19 @@ namespace _7_PremierCRUD
         {
             // Change le texte du bouton de validation en fonction du mode
             btnValid.Content = ModeOuverture;
+            valChamp5.ItemsSource = CategorieService.ListingCategories;
+
             switch (ModeOuverture)
             {
                 case "Visualiser":
                     btnValid.Visibility = Visibility.Hidden;
                     this.Title = "Visualiser un produit";
                     btnAnnul.Content = "OK";
-                    valChamp1.Content = ProduitPasse.IdProduit;
-                    valChamp2.Text = ProduitPasse.LibelleProduit;
-                    valChamp3.Text = ProduitPasse.NumeroProduit;
-                    valChamp4.Text = ProduitPasse.Quantite.ToString();
+                    valChamp1.Content = ProduitDTOPasse.IdProduit;
+                    valChamp2.Text = ProduitDTOPasse.LibelleProduit;
+                    valChamp3.Text = ProduitDTOPasse.NumeroProduit;
+                    valChamp4.Text = ProduitDTOPasse.Quantite.ToString();
+                    valChamp5.SelectedItem = CategorieService.FindById(ProduitDTOPasse.IdCategorie);
                     DisableFields();
                     break;
                 case "Ajouter":
@@ -69,22 +81,22 @@ namespace _7_PremierCRUD
                     // Si on a demandé à modifier un produit:
                     // on rempli les champs avec les valeurs du produit en question
                     this.Title = "Modifier un produit";
-                    IndexListe = ProduitService.ListingProduits.IndexOf(ProduitPasse);
-                    valChamp1.Content = ProduitPasse.IdProduit;
-                    valChamp2.Text = ProduitPasse.LibelleProduit;
-                    valChamp3.Text = ProduitPasse.NumeroProduit;
-                    valChamp4.Text = ProduitPasse.Quantite.ToString();
+                    IndexListe = ProduitService.ListingProduitsDTO.IndexOf(ProduitDTOPasse);
+                    valChamp1.Content = ProduitDTOPasse.IdProduit;
+                    valChamp2.Text = ProduitDTOPasse.LibelleProduit;
+                    valChamp3.Text = ProduitDTOPasse.NumeroProduit;
+                    valChamp4.Text = ProduitDTOPasse.Quantite.ToString();
                     break;
                 case "Supprimer":
                     // Si on a demandé à supprimer un produit:
                     // on rempli les champs avec les valeurs du produit en question (pour confirmation)
                     // Mais on les désactives pour éviter les méprises
                     this.Title = "Supprimer un produit";
-                    IndexListe = ProduitService.ListingProduits.IndexOf(ProduitPasse);
-                    valChamp1.Content = ProduitPasse.IdProduit;
-                    valChamp2.Text = ProduitPasse.LibelleProduit;
-                    valChamp3.Text = ProduitPasse.NumeroProduit;
-                    valChamp4.Text = ProduitPasse.Quantite.ToString();
+                    IndexListe = ProduitService.ListingProduitsDTO.IndexOf(ProduitDTOPasse);
+                    valChamp1.Content = ProduitDTOPasse.IdProduit;
+                    valChamp2.Text = ProduitDTOPasse.LibelleProduit;
+                    valChamp3.Text = ProduitDTOPasse.NumeroProduit;
+                    valChamp4.Text = ProduitDTOPasse.Quantite.ToString();
                     DisableFields();
                     break;
                 default:
@@ -97,6 +109,7 @@ namespace _7_PremierCRUD
             valChamp2.IsEnabled = false;
             valChamp3.IsEnabled = false;
             valChamp4.IsEnabled = false;
+            valChamp5.IsEnabled = false;
         }
 
         /// <summary>

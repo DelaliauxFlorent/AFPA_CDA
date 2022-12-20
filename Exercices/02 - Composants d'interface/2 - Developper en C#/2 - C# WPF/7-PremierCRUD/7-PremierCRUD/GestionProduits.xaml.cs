@@ -34,7 +34,7 @@ namespace _7_PremierCRUD
         {
             // On récupère le produit que l'on veut modifier
             DataGridRow row = sender as DataGridRow;
-            Produits prod = (Produits)row.Item;
+            ProduitsDTO prod = (ProduitsDTO)row.Item;
             // On instancie une fenêtre de détail en mode "Visualiser"
             DetailsProduit detail = new DetailsProduit(this, "Visualiser", prod);
             base.Opacity = 0.7;
@@ -70,7 +70,7 @@ namespace _7_PremierCRUD
             if (dtgdGrille.SelectedItem != null)
             {
                 // On récupère le produit que l'on veut supprimer
-                Produits prodSuppr = (Produits)dtgdGrille.SelectedItem;
+                ProduitsDTO prodSuppr = (ProduitsDTO)dtgdGrille.SelectedItem;
                 // On instancie une fenêtre de détail en mode "Supprimer"
                 DetailsProduit fenetreSuppr = new DetailsProduit(this, "Supprimer", prodSuppr);
                 base.Opacity = 0.7;
@@ -97,7 +97,7 @@ namespace _7_PremierCRUD
         {
             if (dtgdGrille.SelectedItem != null)
             {
-                Produits prod = (Produits)dtgdGrille.SelectedItem;
+                ProduitsDTO prod = (ProduitsDTO)dtgdGrille.SelectedItem;
                 DetailsProduit detail = new DetailsProduit(this, "Modifier", prod);
                 base.Opacity = 0.7;
                 detail.ShowDialog();
