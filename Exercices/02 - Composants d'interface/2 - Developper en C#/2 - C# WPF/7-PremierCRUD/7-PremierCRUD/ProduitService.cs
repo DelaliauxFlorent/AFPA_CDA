@@ -21,7 +21,7 @@ namespace _7_PremierCRUD
         public static void RemplirGrid(GestionProduits w)
         {
             ListingProduits = new List<Produits>();
-            ListingProduits.AddRange(CreerListeFileJSON());
+            ListingProduits.AddRange(CreerListe());
             w.dtgdGrille.ItemsSource = ListingProduits;
         }
 
@@ -51,7 +51,7 @@ namespace _7_PremierCRUD
                 {
                     j = "0";
                 }
-                Produits p = new Produits(i, "Produit" + i, "20221216060" + j + i, i * 2);
+                Produits p = new Produits(i, "Produit" + i, "20221216060" + j + i, i * 2,(i%5)+1);
                 liste.Add(p);
             }
             liste.Dump();// Utilisé pour générer un JSON pour les tests
@@ -66,11 +66,12 @@ namespace _7_PremierCRUD
         /// <param name="num">Son nouveau "Numéro"</param>
         /// <param name="qte">Sa nouvelle "Quantité"</param>
         /// <param name="fichier">Le chemin d'accès du fichier à mettre à jour</param>
-        public static void ModifierProduit(Produits prodModif,String lbl, String num, int qte)
+        public static void ModifierProduit(Produits prodModif,String lbl, String num, int qte, int idCateg)
         {
             prodModif.LibelleProduit= lbl;
             prodModif.NumeroProduit=num;
             prodModif.Quantite=qte;
+            prodModif.IdCategorie = idCateg;
             string json = JsonConvert.SerializeObject(ListingProduits);
             FichierJson.UpdateListeFileJSON(json, PathListProd);
         }

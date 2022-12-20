@@ -116,6 +116,7 @@ namespace _7_PremierCRUD
         /// <param name="e"></param>
         private void btnValid_Click(object sender, RoutedEventArgs e)
         {
+            int idCateg = 1;
             // On vérifie qu'aucun des champs n'est vide
             if (valChamp2.Text != "" && valChamp3.Text != "" && valChamp4.Text != "")
             {
@@ -127,13 +128,13 @@ namespace _7_PremierCRUD
                     {
                         case "Ajouter":
                             // On crée un nouveau produit avec les valeurs des différents champs
-                            Produits newProd = new Produits((Int32)valChamp1.Content, valChamp2.Text, valChamp3.Text, qte);
+                            Produits newProd = new Produits((Int32)valChamp1.Content, valChamp2.Text, valChamp3.Text, qte, idCateg);
                             // On demande à ProduitService de l'ajouter au fichier
                             ProduitService.AjouterProduit(newProd);
                             break;
                         case "Modifier":
                             // On demande à ProduitService de modifier le fichier avec les valeurs des champs
-                            ProduitService.ModifierProduit(ProduitPasse, valChamp2.Text, valChamp3.Text, qte);
+                            ProduitService.ModifierProduit(ProduitPasse, valChamp2.Text, valChamp3.Text, qte, idCateg);
                             break;
                         case "Supprimer":
                             // On demande une dernière confirmation de la suppression
