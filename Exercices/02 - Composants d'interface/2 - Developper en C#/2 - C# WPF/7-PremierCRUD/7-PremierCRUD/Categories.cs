@@ -16,5 +16,30 @@ namespace _7_PremierCRUD
             IdCategorie = idCategorie;
             LibelleCategorie = libelleCategorie;
         }
+
+
+        public Categories(int idCategorie)
+        {
+            IdCategorie = idCategorie;
+        }
+
+        public Categories()
+        {
+
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj as Categories == null)
+            {
+                return false;
+            }
+            if (this.IdCategorie == ((Categories)obj).IdCategorie)
+            {
+                return true;
+            }
+            return false;
+        }
     }
+
 }

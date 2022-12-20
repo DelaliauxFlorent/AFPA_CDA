@@ -20,5 +20,28 @@ namespace _7_PremierCRUD
             NumeroProduit = numero;
             Quantite = quantite;
         }
+
+        public Produits(int idProduit)
+        {
+            IdProduit = idProduit;
+        }
+
+        public Produits()
+        {
+
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj as Produits == null)
+            {
+                return false;
+            }
+            if (this.IdProduit == ((Produits)obj).IdProduit)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }
