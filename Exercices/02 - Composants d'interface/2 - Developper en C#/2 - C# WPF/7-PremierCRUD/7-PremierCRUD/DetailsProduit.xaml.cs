@@ -86,6 +86,7 @@ namespace _7_PremierCRUD
                     valChamp2.Text = ProduitDTOPasse.LibelleProduit;
                     valChamp3.Text = ProduitDTOPasse.NumeroProduit;
                     valChamp4.Text = ProduitDTOPasse.Quantite.ToString();
+                    valChamp5.SelectedItem = CategorieService.FindById(ProduitDTOPasse.IdCategorie);
                     break;
                 case "Supprimer":
                     // Si on a demandé à supprimer un produit:
@@ -147,7 +148,7 @@ namespace _7_PremierCRUD
                             break;
                         case "Modifier":
                             // On demande à ProduitService de modifier le fichier avec les valeurs des champs
-                            ProduitService.ModifierProduit(ProduitPasse, valChamp2.Text, valChamp3.Text, qte, idCateg);
+                            ProduitService.ModifierProduit(ProduitDTOPasse, valChamp2.Text, valChamp3.Text, qte, idCateg);
                             break;
                         case "Supprimer":
                             // On demande une dernière confirmation de la suppression

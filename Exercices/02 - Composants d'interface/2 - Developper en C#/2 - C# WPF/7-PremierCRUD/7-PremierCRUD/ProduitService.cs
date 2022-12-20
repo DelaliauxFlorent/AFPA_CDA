@@ -70,12 +70,18 @@ namespace _7_PremierCRUD
         /// <param name="num">Son nouveau "Numéro"</param>
         /// <param name="qte">Sa nouvelle "Quantité"</param>
         /// <param name="fichier">Le chemin d'accès du fichier à mettre à jour</param>
-        public static void ModifierProduit(Produits prodModif,String lbl, String num, int qte, int idCateg)
+        public static void ModifierProduit(ProduitsDTO prodDTOModif,String lbl, String num, int qte, int idCateg)
         {
+            Produits prodModif = FindById(prodDTOModif.IdProduit);
             prodModif.LibelleProduit= lbl;
             prodModif.NumeroProduit=num;
             prodModif.Quantite=qte;
             prodModif.IdCategorie = idCateg;
+            prodDTOModif.LibelleProduit = lbl;
+            prodDTOModif.NumeroProduit = num;
+            prodDTOModif.Quantite = qte;
+            prodDTOModif.IdCategorie = idCateg;
+            prodDTOModif.LibelleCategorie = ((Categories)CategorieService.FindById(idCateg)).LibelleCategorie;
             string json = JsonConvert.SerializeObject(ListingProduits);
             FichierJson.UpdateListeFileJSON(json, PathListProd);
         }
@@ -115,6 +121,18 @@ namespace _7_PremierCRUD
             else
             {
                 return new Produits();
+            }
+        }
+
+        public static ProduitsDTO FindDTOById(int iD)
+        {
+            if (ListingProduits.Find(x => x.IdProduit == iD) != null)
+            {
+                return ListingProduitsDTO.Find(x => x.IdProduit == iD);
+            }
+            else
+            {
+                return new ProduitsDTO();
             }
         }
     }
