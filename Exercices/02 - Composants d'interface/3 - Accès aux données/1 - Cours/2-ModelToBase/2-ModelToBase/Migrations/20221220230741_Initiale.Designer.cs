@@ -8,8 +8,8 @@ using _2_ModelToBase.Data;
 namespace _2_ModelToBase.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20221220142056_MigrationPersonnes")]
-    partial class MigrationPersonnes
+    [Migration("20221220230741_Initiale")]
+    partial class Initiale
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,14 +24,16 @@ namespace _2_ModelToBase.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
+                    b.Property<short>("Age")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Nom")
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("Prenom")
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
 
                     b.HasKey("Id");
 

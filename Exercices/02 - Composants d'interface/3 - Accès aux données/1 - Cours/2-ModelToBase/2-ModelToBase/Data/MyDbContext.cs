@@ -12,5 +12,11 @@ namespace _2_ModelToBase.Data
         public MyDbContext(DbContextOptions<MyDbContext> options) : base(options)
         {
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Personnes>(e => e.Property(o => o.Age).HasColumnType("tinyint(1)").HasConversion<short>());
+        }
     }
 }

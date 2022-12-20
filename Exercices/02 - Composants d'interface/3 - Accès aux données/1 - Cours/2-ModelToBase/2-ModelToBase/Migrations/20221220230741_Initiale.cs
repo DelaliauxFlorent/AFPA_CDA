@@ -3,7 +3,7 @@ using MySql.EntityFrameworkCore.Metadata;
 
 namespace _2_ModelToBase.Migrations
 {
-    public partial class MigrationPersonnes : Migration
+    public partial class Initiale : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,9 +13,9 @@ namespace _2_ModelToBase.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    Prenom = table.Column<string>(type: "text", nullable: true),
-                    Nom = table.Column<string>(type: "text", nullable: true),
-                    Age = table.Column<int>(type: "int", nullable: false)
+                    Prenom = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true),
+                    Nom = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true),
+                    Age = table.Column<short>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
