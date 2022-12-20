@@ -14,16 +14,14 @@ namespace _7_PremierCRUD
 
         public static void RemplirGrid(GestionCategories w)
         {
-            ListingCategories = new List<Categories>();
-            ListingCategories.AddRange(CreerListeFileJSON());
+            CreerListeFileJSON();
             w.dtgdGrille.ItemsSource = ListingCategories;
         }
 
-        public static List<Categories> CreerListeFileJSON()
+        public static void CreerListeFileJSON()
         {
             String json = FichierJson.LireJSON(PathListCateg);
-            List<Categories> listCategs = JsonConvert.DeserializeObject<List<Categories>>(json);
-            return listCategs;
+            ListingCategories = JsonConvert.DeserializeObject<List<Categories>>(json);
         }
 
         public static void ModifierCategorie(Categories categModif, String lbl)

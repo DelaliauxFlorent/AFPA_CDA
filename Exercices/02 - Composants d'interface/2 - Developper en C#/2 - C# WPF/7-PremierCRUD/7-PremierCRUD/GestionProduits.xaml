@@ -21,22 +21,16 @@
         </Grid.RowDefinitions>
         <DataGrid Grid.Row="1" Grid.Column="1" x:Name="dtgdGrille" AlternatingRowBackground="#FFC3EFFF" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False" GridLinesVisibility="Vertical" VerticalScrollBarVisibility="Visible">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Path=IdProduit}" Width="0.3*">
-                    <DataGridTextColumn.CellStyle>
-                        <Style TargetType="DataGridCell">
-                            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
-                        </Style>
-                    </DataGridTextColumn.CellStyle>
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="Libelle" Binding="{Binding Path=LibelleProduit}" Width="5*" />
                 <DataGridTextColumn Header="Numéro" Binding="{Binding Path=NumeroProduit}" Width="1*" />
-                <DataGridTextColumn Header="Quantité" Binding="{Binding Path=Quantite}" Width="0.5*">
+                <DataGridTextColumn Header="Libelle" Binding="{Binding Path=LibelleProduit}" Width="4*" />
+                <DataGridTextColumn Header="Quantité" Binding="{Binding Path=Quantite}" Width="0.75*">
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="HorizontalAlignment" Value="Right"></Setter>
                         </Style>
                     </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
+                <DataGridTextColumn Header="Catégorie" Binding="{Binding Path=LibelleCategorie}" Width="1*"></DataGridTextColumn>
             </DataGrid.Columns>
             <DataGrid.Resources>
                 <Style TargetType="DataGridRow">
