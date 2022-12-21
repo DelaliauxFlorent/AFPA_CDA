@@ -36,6 +36,7 @@ namespace _3_CreerAPI
             });
             services.AddTransient<PersonnesServices>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddControllersWithViews().AddNewtonsoftJson();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

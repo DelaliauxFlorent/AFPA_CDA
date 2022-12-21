@@ -50,6 +50,11 @@ namespace _3_CreerAPI.Data.Services
         {
             //nothing
             // On va mettre à jour le context dans le controller par mapping et passer les modifs à la base
+            if (p == null)
+            {
+                throw new ArgumentNullException(nameof(p));
+            }
+            _context.SaveChanges();
         }
     }
 }
