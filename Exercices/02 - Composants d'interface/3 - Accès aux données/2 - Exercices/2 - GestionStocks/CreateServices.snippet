@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>CreateServices</Title>
+			<Author>Florent Delaliaux</Author>
+			<Description>Create a services class for a specific class.</Description>
+			<Shortcut>crsrv</Shortcut>
+		</Header>
+		<Snippet>
+
+			<Code Language="CSharp">
+				<![CDATA[private readonly $MyDbContext$ _context;
+
+        public $ClassName$sServices($MyDbContext$ context)
+        {
+            _context = context;
+        }
+
+        public void Add$ClassName$($ClassName$ a)
+        {
+            if (a == null)
+            {
+                throw new ArgumentNullException(nameof(a));
+            }
+            _context.$TableName$s.Add(a);
+            _context.SaveChanges();
+        }
+
+        public void Delete$ClassName$($ClassName$ a)
+        {
+            if (a == null)
+            {
+                throw new ArgumentNullException(nameof(a));
+            }
+            _context.$TableName$s.Remove(a);
+            _context.SaveChanges();
+        }
+
+        public IEnumerable<$ClassName$> GetAll$ClassName$s()
+        {
+            return _context.$TableName$s.ToList();
+        }
+
+        public $ClassName$ Get$ClassName$ById(int id)
+        {
+            return _context.$TableName$s.FirstOrDefault(a => a.Id$ClassName$ == id);
+        }
+
+        public void Update$ClassName$($ClassName$ a)
+        {
+            _context.SaveChanges();
+        }
+		]]>
+			</Code>
+			<Declarations>
+				<Literal>
+					<ID>MyDbContext</ID>
+					<ToolTip>The name of the DbContext you added to your solution.</ToolTip>
+					<Default>MyDbContext</Default>
+				</Literal>
+				<Literal>
+					<ID>ClassName</ID>
+					<ToolTip>The name of the class for which you want to create the service (./Models/DbModels/Class.cs).</ToolTip>
+					<Default>Class</Default>
+				</Literal>
+				<Literal>
+					<ID>TableName</ID>
+					<ToolTip>The name of the table for which you want to create the service (name used in the attribut in DbContext).</ToolTip>
+					<Default>Table</Default>
+				</Literal>
+			</Declarations>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>
