@@ -1,4 +1,5 @@
 ﻿using _2_GestionStocks.Models.DbModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,12 +39,17 @@ namespace _2_GestionStocks.Data.Services
 
         public IEnumerable<Article> GetAllArticles()
         {
-            return _context.Articles.ToList();
+            return _context.Articles.Include("Category").ToList();
         }
 
         public Article GetArticleById(int id)
         {
-            return _context.Articles.FirstOrDefault(a => a.IdArticle == id);
+            return _context.Articles.Include("Category").FirstOrDefault(a => a.IdArticle == id);
+        }
+
+        public Article GetArticleByLibelle(string libelle)
+        {
+            return _context.Articles.Include("Category").FirstOrDefault(obj => obj.LibelleArticle == libelle);
         }
 
         public void UpdateArticle(Article a)

@@ -1,0 +1,99 @@
+﻿<Window x:Class="_2_GestionStocks.ListingArticles"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_2_GestionStocks"
+        mc:Ignorable="d"
+        Title="Listing des articles" Height="450" Width="800">
+    <Grid x:Name="gridMainListingArticles">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="3*" />
+        </Grid.RowDefinitions>
+        <Label x:Name="titreListingArticles" Grid.Column="1" Grid.Row="0" Content="Listing des articles" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="30"></Label>
+        <DataGrid x:Name="dtgrdListingArticles" Grid.Column="1" Grid.Row="1" AutoGenerateColumns="False" AlternatingRowBackground="AliceBlue" IsReadOnly="True" SelectionMode="Single" SelectionUnit="FullRow" GridLinesVisibility="All" VerticalScrollBarVisibility="Visible">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="0.2*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Libelle" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Quantité" Width="0.5*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Catégorie" Width="1*"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid x:Name="gridFooterBtnListingArticles" Grid.Row="2" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="3*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Button x:Name="btnAddArticle" Style="{StaticResource BtnListing}" Grid.Column="0" Grid.Row="1" Content="Ajouter">
+                <Button.Background>
+                    <ImageBrush ImageSource="/plus.png" Stretch="Uniform" AlignmentX="Left">
+                        <ImageBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.25" ScaleX="0.75" ScaleY="0.75"/>
+                            </TransformGroup>
+                        </ImageBrush.RelativeTransform>
+                    </ImageBrush>
+                </Button.Background>
+            </Button>
+            <Button x:Name="btnAddArticle2" Style="{StaticResource BtnListing}" Grid.Column="1" Grid.Row="1">
+                <Button.Content>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <TextBlock Background="LightGray" Text="Ajouter" Grid.Column="1"></TextBlock>
+                        <Image Source="/plus.png" Grid.Column="0">
+                            <Image.Style>
+                                <Style TargetType="Image">
+                                    <Setter Property="Stretch" Value="Uniform"></Setter>
+                                    <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                    </Grid>
+                </Button.Content>
+            </Button>
+            <Button x:Name="btnModArticle" Grid.Column="2" Grid.Row="1" Content="Modifier" Style="{StaticResource BtnListing}">
+                <Button.Background>
+                    <ImageBrush ImageSource="/write.png" Stretch="Uniform" AlignmentX="Left">
+                        <ImageBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.25" ScaleX="0.75" ScaleY="0.75"/>
+                            </TransformGroup>
+                        </ImageBrush.RelativeTransform>
+                    </ImageBrush>
+                </Button.Background>
+            </Button>
+            <Button x:Name="btnSupArticle" Grid.Column="4" Grid.Row="1" Content="Supprimer" Style="{StaticResource BtnListing}">
+                <Button.Background>
+                    <ImageBrush ImageSource="/delete.png" Stretch="Uniform" AlignmentX="Left">
+                        <ImageBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.25" ScaleX="0.75" ScaleY="0.75"/>
+                            </TransformGroup>
+                        </ImageBrush.RelativeTransform>
+                    </ImageBrush>
+                </Button.Background>
+            </Button>
+        </Grid>
+    </Grid>
+</Window>

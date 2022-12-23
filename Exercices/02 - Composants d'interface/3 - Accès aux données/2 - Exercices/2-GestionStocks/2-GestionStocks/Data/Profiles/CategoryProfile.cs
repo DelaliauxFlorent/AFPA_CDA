@@ -17,6 +17,11 @@ namespace _2_GestionStocks.Data.Profiles
             CreateMap<CategoryDTO, Category>();
             CreateMap<Category, CategoriesDTOIn>();
             CreateMap<CategoriesDTOIn, Category>();
+            CreateMap<Category, CategoriesDTOAvecLibelleTypeProduit>();
+            CreateMap<CategoriesDTOAvecLibelleTypeProduit, Category>();
+
+            /******** Différence avec une API  ********/
+            CreateMap<Category, CategoriesDTOAvecLibelleTypeProduit>().ForMember(d => d.LibelleTypeProduit, o => o.MapFrom(s => s.IdTypeProduitNavigation.LibelleTypeProduit));
         }
     }
 }

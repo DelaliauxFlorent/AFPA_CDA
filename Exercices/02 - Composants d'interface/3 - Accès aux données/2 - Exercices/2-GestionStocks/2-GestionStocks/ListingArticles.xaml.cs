@@ -10,27 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace _2_GestionStocks
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ListingArticles.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ListingArticles : Window
     {
-        public MainWindow()
+        public ListingArticles()
         {
             InitializeComponent();
-        }
-
-        private void btnListeArticles_Click(object sender, RoutedEventArgs e)
-        {
-            ListingArticles listArt = new ListingArticles();
-            base.Opacity =0.7;
-            listArt.ShowDialog();
-            base.Opacity = 1;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using _2_GestionStocks.Models.DbModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,12 +40,12 @@ namespace _2_GestionStocks.Data.Services
 
         public IEnumerable<Category> GetAllCategorys()
         {
-            return _context.Categories.ToList();
+            return _context.Categories.Include("TypesProduit").ToList();
         }
 
         public Category GetCategoryById(int id)
         {
-            return _context.Categories.FirstOrDefault(a => a.IdCategorie == id);
+            return _context.Categories.Include("TypesProduit").FirstOrDefault(a => a.IdCategorie == id);
         }
 
         public void UpdateCategory(Category a)

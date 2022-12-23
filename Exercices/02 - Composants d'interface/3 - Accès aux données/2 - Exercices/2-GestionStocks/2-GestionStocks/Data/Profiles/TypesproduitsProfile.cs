@@ -11,9 +11,12 @@ namespace _2_GestionStocks.Data.Profiles
 {
     class TypesproduitsProfile:Profile
     {
-        public TypeproduitsProfile()
+        public TypesproduitsProfile()
         {
-            CreateMap<Typesproduit>
+            CreateMap<Typesproduit, TypesProduitsDTO>();
+            CreateMap<TypesProduitsDTO, Typesproduit>();
+            CreateMap<Typesproduit, TypesProduitsDTOIn>();
+            CreateMap<TypesProduitsDTOIn, Typesproduit>();
         }
 
     }

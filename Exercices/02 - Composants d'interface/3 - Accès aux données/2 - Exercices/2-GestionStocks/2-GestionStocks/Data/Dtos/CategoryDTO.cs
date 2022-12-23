@@ -15,4 +15,11 @@ namespace _2_GestionStocks.Data.Dtos
         public string LibelleCategorie { get; set; }
         public int IdTypeProduit { get; set; }
     }
+    public class CategoriesDTOAvecLibelleTypeProduit
+    {
+        public int IdCategorie { get; set; }
+        public string LibelleCategorie { get; set; }
+        public int IdTypeProduit { get; set; }
+        public string LibelleTypeProduit { get; set; }
+    }
 }
