@@ -1,10 +1,10 @@
-﻿using _3_VisualisationRelations.Models;
+﻿using _3_VisualisationRelationsAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace _3_VisualisationRelations.Data.Services
+namespace _3_VisualisationRelationsAPI.Data.Services
 {
     public class CitiesServices
     {

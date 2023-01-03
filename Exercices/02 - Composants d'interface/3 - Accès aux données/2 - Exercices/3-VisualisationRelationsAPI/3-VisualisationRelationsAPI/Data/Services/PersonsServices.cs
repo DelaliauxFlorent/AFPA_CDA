@@ -1,52 +1,52 @@
-﻿using _3_VisualisationRelations.Models;
+﻿using _3_VisualisationRelationsAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace _3_VisualisationRelations.Data.Services
+namespace _3_VisualisationRelationsAPI.Data.Services
 {
-    public class CitiesServices
+    public class PersonsServices
     {
 
         private readonly MyDbContext _context;
 
-        public CitiesServices(MyDbContext context)
+        public PersonsServices(MyDbContext context)
         {
             _context = context;
         }
 
-        public void AddCity(City a)
+        public void AddPerson(Person a)
         {
             if (a == null)
             {
                 throw new ArgumentNullException(nameof(a));
             }
-            _context.Cities.Add(a);
+            _context.Persons.Add(a);
             _context.SaveChanges();
         }
 
-        public void DeleteCity(City a)
+        public void DeletePerson(Person a)
         {
             if (a == null)
             {
                 throw new ArgumentNullException(nameof(a));
             }
-            _context.Cities.Remove(a);
+            _context.Persons.Remove(a);
             _context.SaveChanges();
         }
 
-        public IEnumerable<City> GetAllCities()
+        public IEnumerable<Person> GetAllPersons()
         {
-            return _context.Cities.ToList();
+            return _context.Persons.ToList();
         }
 
-        public City GetCityById(int id)
+        public Person GetPersonById(int id)
         {
-            return _context.Cities.FirstOrDefault(a => a.IdCity == id);
+            return _context.Persons.FirstOrDefault(a => a.IdPerson == id);
         }
 
-        public void UpdateCity(City a)
+        public void UpdatePerson(Person a)
         {
             _context.SaveChanges();
         }

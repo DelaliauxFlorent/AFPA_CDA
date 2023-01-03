@@ -1,18 +1,19 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using _3_VisualisationRelationsAPI.Models;
 
 #nullable disable
 
-namespace _3_VisualisationRelations.Models
+namespace _3_VisualisationRelationsAPI.Data
 {
-    public partial class VisualisationRelationsContext : DbContext
+    public partial class MyDbContext : DbContext
     {
-        public VisualisationRelationsContext()
+        public MyDbContext()
         {
         }
 
-        public VisualisationRelationsContext(DbContextOptions<VisualisationRelationsContext> options)
+        public MyDbContext(DbContextOptions<MyDbContext> options)
             : base(options)
         {
         }
@@ -51,7 +52,7 @@ namespace _3_VisualisationRelations.Models
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.HasOne(d => d.Country)
+                entity.HasOne(d => d.IdCountryNavigation)
                     .WithMany(p => p.Cities)
                     .HasForeignKey(d => d.IdCountry)
                     .OnDelete(DeleteBehavior.ClientSetNull)
@@ -74,30 +75,26 @@ namespace _3_VisualisationRelations.Models
 
             modelBuilder.Entity<Content>(entity =>
             {
-                entity.HasKey(e => e.IdContent)
+                entity.HasKey(e => new { e.IdProduct, e.IdCommand })
                     .HasName("PRIMARY");
 
                 entity.ToTable("contents");
 
                 entity.HasIndex(e => e.IdCommand, "FK_Contents_Commands");
 
-                entity.HasIndex(e => e.IdProduct, "FK_Contents_Products");
-
-                entity.Property(e => e.IdContent).HasColumnType("int(11)");
+                entity.Property(e => e.IdProduct).HasColumnType("int(11)");
 
                 entity.Property(e => e.IdCommand).HasColumnType("int(11)");
 
-                entity.Property(e => e.IdProduct).HasColumnType("int(11)");
-
                 entity.Property(e => e.QuantityContent).HasColumnType("int(11)");
 
-                entity.HasOne(d => d.Command)
+                entity.HasOne(d => d.IdCommandNavigation)
                     .WithMany(p => p.Contents)
                     .HasForeignKey(d => d.IdCommand)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Contents_Commands");
 
-                entity.HasOne(d => d.Product)
+                entity.HasOne(d => d.IdProductNavigation)
                     .WithMany(p => p.Contents)
                     .HasForeignKey(d => d.IdProduct)
                     .OnDelete(DeleteBehavior.ClientSetNull)

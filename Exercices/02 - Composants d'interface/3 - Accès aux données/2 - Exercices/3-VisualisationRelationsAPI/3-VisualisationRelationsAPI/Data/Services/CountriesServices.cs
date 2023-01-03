@@ -1,52 +1,52 @@
-﻿using _3_VisualisationRelations.Models;
+﻿using _3_VisualisationRelationsAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace _3_VisualisationRelations.Data.Services
+namespace _3_VisualisationRelationsAPI.Data.Services
 {
-    public class CitiesServices
+    public class CountriesServices
     {
 
         private readonly MyDbContext _context;
 
-        public CitiesServices(MyDbContext context)
+        public CountriesServices(MyDbContext context)
         {
             _context = context;
         }
 
-        public void AddCity(City a)
+        public void AddCountrie(Country a)
         {
             if (a == null)
             {
                 throw new ArgumentNullException(nameof(a));
             }
-            _context.Cities.Add(a);
+            _context.Countries.Add(a);
             _context.SaveChanges();
         }
 
-        public void DeleteCity(City a)
+        public void DeleteCountrie(Country a)
         {
             if (a == null)
             {
                 throw new ArgumentNullException(nameof(a));
             }
-            _context.Cities.Remove(a);
+            _context.Countries.Remove(a);
             _context.SaveChanges();
         }
 
-        public IEnumerable<City> GetAllCities()
+        public IEnumerable<Country> GetAllCountries()
         {
-            return _context.Cities.ToList();
+            return _context.Countries.ToList();
         }
 
-        public City GetCityById(int id)
+        public Country GetCountrieById(int id)
         {
-            return _context.Cities.FirstOrDefault(a => a.IdCity == id);
+            return _context.Countries.FirstOrDefault(a => a.IdCountry== id);
         }
 
-        public void UpdateCity(City a)
+        public void UpdateCountrie(Country a)
         {
             _context.SaveChanges();
         }

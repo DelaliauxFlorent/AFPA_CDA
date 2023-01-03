@@ -1,52 +1,52 @@
-﻿using _3_VisualisationRelations.Models;
+﻿using _3_VisualisationRelationsAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace _3_VisualisationRelations.Data.Services
+namespace _3_VisualisationRelationsAPI.Data.Services
 {
-    public class CitiesServices
+    public class CommandsServices
     {
 
         private readonly MyDbContext _context;
 
-        public CitiesServices(MyDbContext context)
+        public CommandsServices(MyDbContext context)
         {
             _context = context;
         }
 
-        public void AddCity(City a)
+        public void AddCommand(Command a)
         {
             if (a == null)
             {
                 throw new ArgumentNullException(nameof(a));
             }
-            _context.Cities.Add(a);
+            _context.Commands.Add(a);
             _context.SaveChanges();
         }
 
-        public void DeleteCity(City a)
+        public void DeleteCommand(Command a)
         {
             if (a == null)
             {
                 throw new ArgumentNullException(nameof(a));
             }
-            _context.Cities.Remove(a);
+            _context.Commands.Remove(a);
             _context.SaveChanges();
         }
 
-        public IEnumerable<City> GetAllCities()
+        public IEnumerable<Command> GetAllCommands()
         {
-            return _context.Cities.ToList();
+            return _context.Commands.ToList();
         }
 
-        public City GetCityById(int id)
+        public Command GetCommandById(int id)
         {
-            return _context.Cities.FirstOrDefault(a => a.IdCity == id);
+            return _context.Commands.FirstOrDefault(a => a.IdCommand == id);
         }
 
-        public void UpdateCity(City a)
+        public void UpdateCommand(Command a)
         {
             _context.SaveChanges();
         }
