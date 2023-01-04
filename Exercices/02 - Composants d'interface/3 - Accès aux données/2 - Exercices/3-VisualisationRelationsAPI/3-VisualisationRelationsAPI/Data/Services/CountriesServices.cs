@@ -1,4 +1,5 @@
 ﻿using _3_VisualisationRelationsAPI.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace _3_VisualisationRelationsAPI.Data.Services
             _context = context;
         }
 
-        public void AddCountrie(Country a)
+        public void AddCountry(Country a)
         {
             if (a == null)
             {
@@ -26,7 +27,7 @@ namespace _3_VisualisationRelationsAPI.Data.Services
             _context.SaveChanges();
         }
 
-        public void DeleteCountrie(Country a)
+        public void DeleteCountry(Country a)
         {
             if (a == null)
             {
@@ -38,15 +39,15 @@ namespace _3_VisualisationRelationsAPI.Data.Services
 
         public IEnumerable<Country> GetAllCountries()
         {
-            return _context.Countries.ToList();
+            return _context.Countries.Include("Cities").ToList();
         }
 
-        public Country GetCountrieById(int id)
+        public Country GetCountryById(int id)
         {
-            return _context.Countries.FirstOrDefault(a => a.IdCountry== id);
+            return _context.Countries.Include("Cities").FirstOrDefault(a => a.IdCountry== id);
         }
 
-        public void UpdateCountrie(Country a)
+        public void UpdateCountry(Country a)
         {
             _context.SaveChanges();
         }

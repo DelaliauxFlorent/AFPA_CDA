@@ -10,7 +10,16 @@ namespace _3_VisualisationRelationsAPI.Data.Dtos
 
         public string NameCity { get; set; }
         public int IdCountry { get; set; }
+        public string CountryName { get; set; }
+    }
 
-        public virtual CountryDTOName Country { get; set; }
+    public class CityDTONameOnly
+    {
+        public string NameCity { get; set; }
+    }
+    public class CityDTONameID
+    {
+        public int IdCity { get; set; }
+        public string NameCity { get; set; }
     }
 }

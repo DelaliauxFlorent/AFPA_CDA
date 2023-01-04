@@ -1,4 +1,5 @@
 ﻿using _3_VisualisationRelationsAPI.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,12 +39,12 @@ namespace _3_VisualisationRelationsAPI.Data.Services
 
         public IEnumerable<City> GetAllCities()
         {
-            return _context.Cities.ToList();
+            return _context.Cities.Include("Country").ToList();
         }
 
         public City GetCityById(int id)
         {
-            return _context.Cities.FirstOrDefault(a => a.IdCity == id);
+            return _context.Cities.Include("Country").FirstOrDefault(a => a.IdCity == id);
         }
 
         public void UpdateCity(City a)

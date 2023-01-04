@@ -39,6 +39,7 @@ namespace _3_VisualisationRelationsAPI
             services.AddTransient<ContentsServices>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddControllers();
+            services.AddControllersWithViews().AddNewtonsoftJson();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "_3_VisualisationRelationsAPI", Version = "v1" });

@@ -16,6 +16,8 @@ namespace _3_VisualisationRelationsAPI.Data.Profiles
             CreateMap<CountryDTO, Country>();
             CreateMap<Country, CountryDTOName>();
             CreateMap<CountryDTOName, Country>();
+            CreateMap<CountryDTO, CountryDTOName>();
+            CreateMap<CountryDTOName, CountryDTO>();
         }
     }
 }

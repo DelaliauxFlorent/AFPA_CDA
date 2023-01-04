@@ -9,12 +9,12 @@ namespace _3_VisualisationRelationsAPI.Data.Dtos
     {
         public CountryDTO()
         {
-            Cities = new HashSet<CityDTO>();
+            Cities = new HashSet<CityDTONameOnly>();
         }
 
         public string NameCountry { get; set; }
 
-        public virtual ICollection<CityDTO> Cities { get; set; }
+        public virtual ICollection<CityDTONameOnly> Cities { get; set; }
     }
     public class CountryDTOName
     {

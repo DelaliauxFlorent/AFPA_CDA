@@ -12,8 +12,10 @@ namespace _3_VisualisationRelationsAPI.Data.Profiles
     {
         public CitiesProfile()
         {
-            CreateMap<City, CityDTO>();
+            CreateMap<City, CityDTO>().ForMember(c=>c.CountryName, o=>o.MapFrom(s=>s.Country.NameCountry));
             CreateMap<CityDTO, City>();
+            CreateMap<City, CityDTONameOnly>();
+            CreateMap<CityDTONameOnly, City>();
         }
     }
 }
