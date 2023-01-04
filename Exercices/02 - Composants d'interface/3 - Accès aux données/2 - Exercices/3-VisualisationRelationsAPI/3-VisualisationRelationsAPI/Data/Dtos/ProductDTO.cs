@@ -7,7 +7,15 @@ namespace _3_VisualisationRelationsAPI.Data.Dtos
 {
     public class ProductDTO
     {
-        public ProductDTO()
+
+        public int IdProduct { get; set; }
+        public string NameProduct { get; set; }
+        public int PriceProduct { get; set; }
+
+    }
+    public class ProductDTOWithList
+    {
+        public ProductDTOWithList()
         {
             Contents = new HashSet<ContentDTO>();
         }

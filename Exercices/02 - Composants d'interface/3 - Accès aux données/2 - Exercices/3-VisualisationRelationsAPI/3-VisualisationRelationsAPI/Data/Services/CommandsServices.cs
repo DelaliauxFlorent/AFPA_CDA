@@ -1,4 +1,5 @@
 ﻿using _3_VisualisationRelationsAPI.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +39,7 @@ namespace _3_VisualisationRelationsAPI.Data.Services
 
         public IEnumerable<Command> GetAllCommands()
         {
-            return _context.Commands.ToList();
+            return _context.Commands.Include("Contents.Product").ToList();
         }
 
         public Command GetCommandById(int id)

@@ -57,7 +57,7 @@ namespace _3_VisualisationRelationsAPI.Controllers
 
         //PUT api/Countries/{id}
         [HttpPut("{id}")]
-        public ActionResult UpdateCountry(int id, CountryDTO Country)
+        public ActionResult UpdateCountry(int id, CountryDTOName Country)
         {
             var CountryFromRepo = _service.GetCountryById(id);
             if (CountryFromRepo == null)

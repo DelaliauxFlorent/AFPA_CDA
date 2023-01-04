@@ -14,4 +14,11 @@ namespace _3_VisualisationRelationsAPI.Data.Dtos
         public virtual CommandDTO Command { get; set; }
         public virtual ProductDTO Product { get; set; }
     }
+
+    public class ContentDTOForCommands
+    {
+        public String NameProduct { get; set; }
+        public int PricePoduct { get; set; }
+        public int QuantityContent { get; set; }
+    }
 }

@@ -9,12 +9,12 @@ namespace _3_VisualisationRelationsAPI.Data.Dtos
     {
         public CommandDTO()
         {
-            Contents = new HashSet<ContentDTO>();
+            Contents = new HashSet<ContentDTOForCommands>();
         }
 
         public int IdCommand { get; set; }
         public string DeliveryAddressCommand { get; set; }
 
-        public virtual ICollection<ContentDTO> Contents { get; set; }
+        public virtual ICollection<ContentDTOForCommands> Contents { get; set; }
     }
 }
