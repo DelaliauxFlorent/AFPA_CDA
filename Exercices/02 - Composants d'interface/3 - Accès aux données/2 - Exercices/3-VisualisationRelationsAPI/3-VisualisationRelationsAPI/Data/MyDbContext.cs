@@ -52,7 +52,7 @@ namespace _3_VisualisationRelationsAPI.Data
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.HasOne(d => d.IdCountryNavigation)
+                entity.HasOne(d => d.Country)
                     .WithMany(p => p.Cities)
                     .HasForeignKey(d => d.IdCountry)
                     .OnDelete(DeleteBehavior.ClientSetNull)
@@ -88,13 +88,13 @@ namespace _3_VisualisationRelationsAPI.Data
 
                 entity.Property(e => e.QuantityContent).HasColumnType("int(11)");
 
-                entity.HasOne(d => d.IdCommandNavigation)
+                entity.HasOne(d => d.Command)
                     .WithMany(p => p.Contents)
                     .HasForeignKey(d => d.IdCommand)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Contents_Commands");
 
-                entity.HasOne(d => d.IdProductNavigation)
+                entity.HasOne(d => d.Product)
                     .WithMany(p => p.Contents)
                     .HasForeignKey(d => d.IdProduct)
                     .OnDelete(DeleteBehavior.ClientSetNull)

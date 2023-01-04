@@ -1,4 +1,5 @@
 ﻿using _3_VisualisationRelationsAPI.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,12 +39,12 @@ namespace _3_VisualisationRelationsAPI.Data.Services
 
         public IEnumerable<Content> GetAllContents()
         {
-            return _context.Contents.ToList();
+            return _context.Contents.Include("Command").Include("Product").ToList();
         }
 
         public Content GetContentByIds(int idProduct, int idCommand)
         {
-            return _context.Contents.FirstOrDefault(a => a.IdProduct == idProduct && a.IdCommand==idCommand);
+            return _context.Contents.Include("Command").Include("Product").FirstOrDefault(a => a.IdProduct == idProduct && a.IdCommand==idCommand);
         }
         public List<Content> GetContentByIdProduct(int id)
         {

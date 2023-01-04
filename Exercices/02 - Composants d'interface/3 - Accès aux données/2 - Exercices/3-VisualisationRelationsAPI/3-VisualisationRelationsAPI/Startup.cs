@@ -30,17 +30,19 @@ namespace _3_VisualisationRelationsAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<MyDbContext>(OptionsBuilderConfigurationExtensions => OptionsBuilderConfigurationExtensions.UseMySQL(Configuration.GetConnectionString("Default")));
-            services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "_3_VisualisationRelationsAPI", Version = "v1" });
-            });
+
             services.AddTransient<PersonsServices>();
             services.AddTransient<CitiesServices>();
             services.AddTransient<CountriesServices>();
             services.AddTransient<ProductsServices>();
             services.AddTransient<CommandsServices>();
             services.AddTransient<ContentsServices>();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddControllers();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "_3_VisualisationRelationsAPI", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

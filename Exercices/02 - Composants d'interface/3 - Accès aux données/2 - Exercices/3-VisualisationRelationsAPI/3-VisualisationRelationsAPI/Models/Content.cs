@@ -11,7 +11,7 @@ namespace _3_VisualisationRelationsAPI.Models
         public int IdCommand { get; set; }
         public int QuantityContent { get; set; }
 
-        public virtual Command IdCommandNavigation { get; set; }
-        public virtual Product IdProductNavigation { get; set; }
+        public virtual Command Command{ get; set; }
+        public virtual Product Product { get; set; }
     }
 }

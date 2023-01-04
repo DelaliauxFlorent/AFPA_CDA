@@ -11,6 +11,6 @@ namespace _3_VisualisationRelationsAPI.Models
         public string NameCity { get; set; }
         public int IdCountry { get; set; }
 
-        public virtual Country IdCountryNavigation { get; set; }
+        public virtual Country Country { get; set; }
     }
 }
