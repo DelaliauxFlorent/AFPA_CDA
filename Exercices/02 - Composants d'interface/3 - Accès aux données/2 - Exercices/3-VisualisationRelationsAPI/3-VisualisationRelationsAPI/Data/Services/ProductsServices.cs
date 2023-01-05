@@ -39,12 +39,12 @@ namespace _3_VisualisationRelationsAPI.Data.Services
 
         public IEnumerable<Product> GetAllProducts()
         {
-            return _context.Products.ToList();
+            return _context.Products.Include("Contents.Command").ToList();
         }
 
         public Product GetProductById(int id)
         {
-            return _context.Products.FirstOrDefault(a => a.IdProduct == id);
+            return _context.Products.Include("Contents.Command").FirstOrDefault(a => a.IdProduct == id);
         }
 
         public void UpdateProduct(Product a)

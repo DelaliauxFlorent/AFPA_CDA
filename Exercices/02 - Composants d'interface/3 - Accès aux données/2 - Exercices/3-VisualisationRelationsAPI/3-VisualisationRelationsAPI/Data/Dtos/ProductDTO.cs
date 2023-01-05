@@ -17,13 +17,12 @@ namespace _3_VisualisationRelationsAPI.Data.Dtos
     {
         public ProductDTOWithList()
         {
-            Contents = new HashSet<ContentDTO>();
+            Contents = new HashSet<ContentDTOForProduits>();
         }
 
-        public int IdProduct { get; set; }
         public string NameProduct { get; set; }
         public int PriceProduct { get; set; }
 
-        public virtual ICollection<ContentDTO> Contents { get; set; }
+        public virtual ICollection<ContentDTOForProduits> Contents { get; set; }
     }
 }

@@ -44,7 +44,7 @@ namespace _3_VisualisationRelationsAPI.Data.Services
 
         public Command GetCommandById(int id)
         {
-            return _context.Commands.FirstOrDefault(a => a.IdCommand == id);
+            return _context.Commands.Include("Contents.Product").FirstOrDefault(a => a.IdCommand == id);
         }
 
         public void UpdateCommand(Command a)

@@ -17,8 +17,14 @@ namespace _3_VisualisationRelationsAPI.Data.Dtos
 
     public class ContentDTOForCommands
     {
+        public int QuantityContent { get; set; }
         public String NameProduct { get; set; }
         public int PricePoduct { get; set; }
+    }
+
+    public class ContentDTOForProduits
+    {
         public int QuantityContent { get; set; }
+        public String AddressDeliv { get; set; }
     }
 }

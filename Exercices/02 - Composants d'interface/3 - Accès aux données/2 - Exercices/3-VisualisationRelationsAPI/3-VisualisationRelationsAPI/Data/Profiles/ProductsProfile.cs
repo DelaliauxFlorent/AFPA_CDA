@@ -14,6 +14,8 @@ namespace _3_VisualisationRelationsAPI.Data.Profiles
         {
             CreateMap<Product, ProductDTO>();
             CreateMap<ProductDTO, Product>();
+            CreateMap<Product, ProductDTOWithList>();
+            CreateMap<ProductDTOWithList, Product>();
         }
     }
 }

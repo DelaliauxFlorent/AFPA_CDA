@@ -27,20 +27,20 @@ namespace _3_VisualisationRelationsAPI.Controllers
 
         //GET api/Products
         [HttpGet]
-        public ActionResult<IEnumerable<ProductDTO>> GetAllProducts()
+        public ActionResult<IEnumerable<ProductDTOWithList>> GetAllProducts()
         {
             var listProducts = _service.GetAllProducts();
-            return Ok(_mapper.Map<IEnumerable<ProductDTO>>(listProducts));
+            return Ok(_mapper.Map<IEnumerable<ProductDTOWithList>>(listProducts));
         }
 
         //GET api/Products/{id}
         [HttpGet("{id}", Name = "GetProductById")]
-        public ActionResult<ProductDTO> GetProductById(int id)
+        public ActionResult<ProductDTOWithList> GetProductById(int id)
         {
             var commandItem = _service.GetProductById(id);
             if (commandItem != null)
             {
-                return Ok(_mapper.Map<ProductDTO>(commandItem));
+                return Ok(_mapper.Map<ProductDTOWithList>(commandItem));
             }
             return NotFound();
         }
