@@ -17,4 +17,11 @@ namespace _3_VisualisationRelationsAPI.Data.Dtos
 
         public virtual ICollection<ContentDTOForCommands> Contents { get; set; }
     }
+
+    public class CommandDTOBase
+    {
+        public int IdCommand { get; set; }
+        public string DeliveryAddressCommand { get; set; }
+
+    }
 }

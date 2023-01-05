@@ -14,6 +14,8 @@ namespace _3_VisualisationRelationsAPI.Data.Profiles
         {
             CreateMap<Command, CommandDTO>();
             CreateMap<CommandDTO, Command>();
+            CreateMap<Command, CommandDTOBase>();
+            CreateMap<CommandDTOBase, Command>();
         }
     }
 }
