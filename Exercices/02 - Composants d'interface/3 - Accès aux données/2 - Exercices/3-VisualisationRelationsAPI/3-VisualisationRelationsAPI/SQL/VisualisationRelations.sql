@@ -62,7 +62,7 @@ CREATE TABLE Products(
 
 INSERT INTO Products(IdProduct, NameProduct, PriceProduct) VALUES (1, "Stylo", 2);
 INSERT INTO Products(IdProduct, NameProduct, PriceProduct) VALUES (2, "Ramette de Papier", 5);
-INSERT INTO Products(IdProduct, NameProduct, PriceProduct) VALUES (3, "Classeur", 3.5);
+INSERT INTO Products(IdProduct, NameProduct, PriceProduct) VALUES (3, "Classeur", 3);
 INSERT INTO Products(IdProduct, NameProduct, PriceProduct) VALUES (4, "Cahier", 3);
 INSERT INTO Products(IdProduct, NameProduct, PriceProduct) VALUES (5, "Calculatrice", 20);
 
