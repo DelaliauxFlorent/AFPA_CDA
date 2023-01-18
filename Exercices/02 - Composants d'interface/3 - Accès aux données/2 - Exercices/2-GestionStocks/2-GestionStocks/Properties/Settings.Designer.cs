@@ -26,7 +26,7 @@ namespace _2_GestionStocks.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("server=localhost;user=root;database=GestionStocks;port=3306; ssl mode=node")]
+        [global::System.Configuration.DefaultSettingValueAttribute("server=localhost;user=root;database=GestionStocks;port=3306; ssl mode=none")]
         public string Test {
             get {
                 return ((string)(this["Test"]));

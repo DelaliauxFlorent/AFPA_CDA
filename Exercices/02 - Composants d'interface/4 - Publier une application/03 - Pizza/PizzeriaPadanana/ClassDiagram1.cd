@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PizzeriaPadanana.Data.POCOs.Accompagnement">
+    <Position X="9" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAIECAAIACQAAAABgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\POCOs\Accompagnement.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IdTypeAccompagnementNavigation" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PizzeriaPadanana.Data.POCOs.Adress">
+    <Position X="13.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAEAABEAAAAAAAAAAAQAAgAAg=</HashCode>
+      <FileName>Data\POCOs\Adress.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IdCompteNavigation" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PizzeriaPadanana.Data.POCOs.Commande">
+    <Position X="10.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAgAAAAAAAEACACEAAAgAAAAEAAAAqAAA=</HashCode>
+      <FileName>Data\POCOs\Commande.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IdCompteNavigation" />
+      <Property Name="IdSeuilFideliteNavigation" />
+      <Property Name="IdStatutNavigation" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PizzeriaPadanana.Data.POCOs.Composition">
+    <Position X="1" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAQAAhA=</HashCode>
+      <FileName>Data\POCOs\Composition.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IdIngredientNavigation" />
+      <Property Name="IdTypePizzaNavigation" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PizzeriaPadanana.Data.POCOs.Compte">
+    <Position X="13.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAEAAAAAAAAAQAAAAEAAAACAAAAAAACIAAABBIAA=</HashCode>
+      <FileName>Data\POCOs\Compte.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IdRoleNavigation" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PizzeriaPadanana.Data.POCOs.Ingredient">
+    <Position X="1" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAgACAAAACAAAAAAAIAAAAAAAAAAAAQABAA=</HashCode>
+      <FileName>Data\POCOs\Ingredient.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IdTypeIngredientNavigation" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PizzeriaPadanana.Data.POCOs.Itemsmenu">
+    <Position X="3" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgACAAAAAAAAAAAQAAAIAAAAAQIAAAAQAAAAABA=</HashCode>
+      <FileName>Data\POCOs\Itemsmenu.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IdMenuNavigation" />
+      <Property Name="IdTypePizzaNavigation" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PizzeriaPadanana.Data.POCOs.Lignescommande">
+    <Position X="7.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAhCAAAAAAAAAQAAQAAAAAABAAQAAAAAQAAAAAAA=</HashCode>
+      <FileName>Data\POCOs\Lignescommande.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IdAccompagnementNavigation" />
+      <Property Name="IdCommandeNavigation" />
+      <Property Name="IdMenuNavigation" />
+      <Property Name="IdPizzaNavigation" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PizzeriaPadanana.Data.POCOs.Menu">
+    <Position X="5.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAQQAAAAAAQAgAACAAAIAEAAAA=</HashCode>
+      <FileName>Data\POCOs\Menu.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IdTaillePizzaNavigation" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PizzeriaPadanana.Data.POCOs.Pizza">
+    <Position X="6.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAACAAAAAIAAAQAgAACAAAAAAAABA=</HashCode>
+      <FileName>Data\POCOs\Pizza.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IdTaillePizzaNavigation" />
+      <Property Name="IdTypePizzaNavigation" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PizzeriaPadanana.Data.POCOs.Role">
+    <Position X="13.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQIAgAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Data\POCOs\Role.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PizzeriaPadanana.Data.POCOs.Seuilfidelite">
+    <Position X="11" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAACAAAAACIAA=</HashCode>
+      <FileName>Data\POCOs\Seuilfidelite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PizzeriaPadanana.Data.POCOs.Statut" Collapsed="true">
+    <Position X="10.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Data\POCOs\Statut.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PizzeriaPadanana.Data.POCOs.Taillepizza">
+    <Position X="5.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAQAAEAAIAAAQAAAAA=</HashCode>
+      <FileName>Data\POCOs\Taillepizza.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PizzeriaPadanana.Data.POCOs.Typeaccompagnement">
+    <Position X="9" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAACAAAAAIAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\POCOs\Typeaccompagnement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PizzeriaPadanana.Data.POCOs.Typeingredient">
+    <Position X="1" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQBAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Data\POCOs\Typeingredient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PizzeriaPadanana.Data.POCOs.Typepizza">
+    <Position X="3.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAACAAAACAAAAAAAAAAACEAAAAAAAAAADA=</HashCode>
+      <FileName>Data\POCOs\Typepizza.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -12,7 +12,7 @@ namespace _7_PremierCRUD
     {
         public static List<Produits> ListingProduits { get; set; }
         public static List<ProduitsDTO> ListingProduitsDTO { get; set; }
-        public const string PathListProd = "../../ListeProduits.json";
+        public const string PathListProd = "./ListeProduits.json";
 
         /// <summary>
         /// On remplit la liste des produits en passant par un des CreerListe, puis on peuple la DataGrid avec.

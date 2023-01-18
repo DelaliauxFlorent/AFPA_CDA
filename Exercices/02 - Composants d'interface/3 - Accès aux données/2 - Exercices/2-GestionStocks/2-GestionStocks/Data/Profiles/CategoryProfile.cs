@@ -21,7 +21,7 @@ namespace _2_GestionStocks.Data.Profiles
             CreateMap<CategoriesDTOAvecLibelleTypeProduit, Category>();
 
             /******** Différence avec une API  ********/
-            CreateMap<Category, CategoriesDTOAvecLibelleTypeProduit>().ForMember(d => d.LibelleTypeProduit, o => o.MapFrom(s => s.IdTypeProduitNavigation.LibelleTypeProduit));
+            CreateMap<Category, CategoriesDTOAvecLibelleTypeProduit>().ForMember(d => d.LibelleTypeProduit, o => o.MapFrom(s => s.TypeProduit.LibelleTypeProduit));
         }
     }
 }

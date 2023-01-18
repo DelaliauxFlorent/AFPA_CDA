@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace _2_GestionStocks.Data.Services
 {
-    class ArticlesServices
+    public class ArticlesServices
     {
         private readonly MyDbContext _context;
 

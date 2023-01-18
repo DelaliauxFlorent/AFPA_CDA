@@ -12,6 +12,6 @@ namespace _2_GestionStocks.Models.DbModels
         public int? QuantiteStockee { get; set; }
         public int IdCategorie { get; set; }
 
-        public virtual Category IdCategorieNavigation { get; set; }
+        public virtual Category Category { get; set; }
     }
 }

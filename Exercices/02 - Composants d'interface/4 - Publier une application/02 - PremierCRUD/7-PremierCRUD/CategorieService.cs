@@ -10,7 +10,7 @@ namespace _7_PremierCRUD
     class CategorieService
     {
         public static List<Categories> ListingCategories { get; set; }
-        public const string PathListCateg = "../../ListeCategories.json";
+        public const string PathListCateg = "./ListeCategories.json";
 
         public static void RemplirGrid(GestionCategories w)
         {

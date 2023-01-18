@@ -1,0 +1,36 @@
+﻿<Window x:Class="PizzeriaPadanana.Views.FormulaireTypesIngredients"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PizzeriaPadanana.Views"
+        mc:Ignorable="d"
+        Title="FormulaireTypesIngredients" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" x:Name="lblTitreFormTypeIngr" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="48"></Label>
+        <Label x:Name="lblNomTypeIngredientForm" Content="Type d'ingrédients :" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="3"></Label>
+        <TextBox x:Name="txbxNomTypeIngredientForm" Grid.Column="3" Grid.Row="3"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center"></TextBox>
+        <Label x:Name="lblPrixTypeIngredientForm" Content="Prix :" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="5"></Label>
+        <TextBox x:Name="txbxPrixTypeIngredientForm" Grid.Column="3" Grid.Row="5"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center"></TextBox>
+        <Button x:Name="btnActionFormTypeIngr" Grid.Column="1" Grid.Row="7" Click="btn_Click"></Button>
+        <Button x:Name="btnAnnulFormTypeIngr" Grid.Column="3" Grid.Row="7" Click="btn_Click" Content="Annuler"></Button>
+    </Grid>
+</Window>

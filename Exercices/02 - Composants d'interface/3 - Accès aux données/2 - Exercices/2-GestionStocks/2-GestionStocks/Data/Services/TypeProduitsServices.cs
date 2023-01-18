@@ -23,7 +23,7 @@ namespace _2_GestionStocks.Data.Services
             {
                 throw new ArgumentNullException(nameof(a));
             }
-            _context.TypesProduits.Add(a);
+            _context.Typesproduits.Add(a);
             _context.SaveChanges();
         }
 
@@ -33,18 +33,18 @@ namespace _2_GestionStocks.Data.Services
             {
                 throw new ArgumentNullException(nameof(a));
             }
-            _context.TypesProduits.Remove(a);
+            _context.Typesproduits.Remove(a);
             _context.SaveChanges();
         }
 
-        public IEnumerable<Typesproduit> GetAllTypesProduits()
+        public IEnumerable<Typesproduit> GetAllTypesproduits()
         {
-            return _context.TypesProduits.ToList();
+            return _context.Typesproduits.ToList();
         }
 
         public Typesproduit GetTypesProduitById(int id)
         {
-            return _context.TypesProduits.FirstOrDefault(a => a.IdTypeProduit == id);
+            return _context.Typesproduits.FirstOrDefault(a => a.IdTypeProduit == id);
         }
 
         public void UpdateTypesProduit(Typesproduit a)

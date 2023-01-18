@@ -1,0 +1,123 @@
+﻿<Window x:Class="PizzeriaPadanana.LogIn"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PizzeriaPadanana"
+        mc:Ignorable="d"
+        Title="LogIn" Height="1040" Width="1920" Background="{DynamicResource italianWhite}">
+    <Grid>
+        <Rectangle  Fill="{DynamicResource italianGreen}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"/>
+
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" MinWidth="460px"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid  Grid.Row="0" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" MinWidth="80px"></ColumnDefinition>
+                    <ColumnDefinition Width="10*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="5*" MinWidth="80px"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="5*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="1" Grid.Column="0"></Label>
+                    <Image  Source="Images/PizzaLogo.png" Grid.Row="1" Grid.Column="1" />
+                    <Label Grid.Row="1" Grid.Column="2"></Label>
+                </Grid>
+                <Label Grid.Row="0" Grid.Column="1" Content="Pizzeria Padanana" Style="{DynamicResource TitreHeader}"></Label>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Content="Connexion"  Style="{DynamicResource TitrePage}"  />
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"  />
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border  Grid.Column="1" CornerRadius="15" Background="{DynamicResource backgroundGrey}">
+                   
+                </Border>
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border  Grid.Row="1" Grid.Column="1"  CornerRadius="5" Background="Transparent">
+                        
+                        <Label Content="Adresse mail :" VerticalContentAlignment="Center" FontSize="25"  Padding="30 0 0 0"/>
+                     </Border>
+
+                    <Border Grid.Row="3" Grid.Column="1"   CornerRadius="5" Background="Transparent">
+                        <Label Content="Mot de passe :" VerticalContentAlignment="Center" FontSize="25"  Padding="30 0 0 0"/>
+                    </Border>
+                    <Border Grid.Row="1" Grid.Column="3"   CornerRadius="5" Background="#E8E8E8">
+                        <Border.Effect>
+                            <DropShadowEffect ShadowDepth="2"   />
+                        </Border.Effect>
+                        <TextBlock Text="adresse email" VerticalAlignment="Center" FontSize="25"  Padding="30 0 0 0" Foreground="Gray"/>
+                    </Border>
+                    <Border Grid.Row="3" Grid.Column="3"   CornerRadius="5" Background="#E8E8E8">
+                        <Border.Effect>
+                            <DropShadowEffect ShadowDepth="2"   />
+                        </Border.Effect>
+                        <TextBlock Text="motdepassdur6" VerticalAlignment="Center" FontSize="25"  Padding="30 0 0 0" Foreground="Gray"/>
+                    </Border>
+                    <Border Grid.Row="5"  Grid.Column="3"   CornerRadius="15"  Background="{DynamicResource italianWhite}">
+                        <Border.Effect>
+                            <DropShadowEffect ShadowDepth="2"   />
+                        </Border.Effect>
+                        <Button Content="CONNEXION" FontSize="34" BorderThickness="0" Background="Transparent" Click="Button_Click"></Button>
+                    </Border>
+                    
+
+                </Grid>
+            </Grid>
+        </Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" MinHeight="100px" />
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.1*" />
+            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="0.1*" />
+        </Grid.ColumnDefinitions>
+        
+    </Grid>
+</Window>

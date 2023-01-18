@@ -25,7 +25,7 @@ namespace _2_GestionStocks.Data.Profiles
             // pour le DTO ArticlesDTOAvecLibelleCategorie, on a mis l'objet à plat
             // C'est à dire que le libellé catégorie n'est pas un attribut de l'objet categorie à l'intérieur de l'objet Article
             // on a crée un attribut LibelleCategorie à l'intérieur de Article (directement)
-            CreateMap<Article, ArticlesDTOAvecLibelleCategorie>().ForMember(d => d.LibelleCategorie, o => o.MapFrom(s => s.IdCategorieNavigation.LibelleCategorie));
+            CreateMap<Article, ArticlesDTOAvecLibelleCategorie>().ForMember(d => d.LibelleCategorie, o => o.MapFrom(s => s.Category.LibelleCategorie));
         }
     }
 }

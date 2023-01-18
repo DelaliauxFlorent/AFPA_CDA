@@ -16,7 +16,7 @@ namespace _2_GestionStocks.Models.DbModels
         public string LibelleCategorie { get; set; }
         public int IdTypeProduit { get; set; }
 
-        public virtual Typesproduit IdTypeProduitNavigation { get; set; }
+        public virtual Typesproduit TypeProduit { get; set; }
         public virtual ICollection<Article> Articles { get; set; }
     }
 }

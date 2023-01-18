@@ -27,13 +27,13 @@ namespace _3_VisualisationRelations
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<MyDbContext>(OptionsBuilderConfigurationExtensions => OptionsBuilderConfigurationExtensions.UseMySQL(Configuration.GetConnectionString("Default")));
-            services.AddControllersWithViews();
             services.AddTransient<PersonsServices>();
             services.AddTransient<CitiesServices>();
             services.AddTransient<CountriesServices>();
             services.AddTransient<ProductsServices>();
             services.AddTransient<CommandsServices>();
             services.AddTransient<ContentsServices>();
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

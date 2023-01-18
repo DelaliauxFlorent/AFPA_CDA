@@ -1,4 +1,6 @@
-﻿using System;
+﻿using _2_GestionStocks.Controller;
+using _2_GestionStocks.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,11 @@ namespace _2_GestionStocks
     /// </summary>
     public partial class ListingArticles : Window
     {
-        public ListingArticles()
+        public ListingArticles(MyDbContext _context)
         {
             InitializeComponent();
+            ArticlesController _control = new ArticlesController(_context);
+            dtgrdListingArticles.ItemsSource = _control.GetAllArticles();
         }
     }
 }

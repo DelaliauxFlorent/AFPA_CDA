@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _2_GestionStocks.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,14 +21,16 @@ namespace _2_GestionStocks
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MyDbContext _context;
         public MainWindow()
         {
             InitializeComponent();
+            _context = new MyDbContext();
         }
 
         private void btnListeArticles_Click(object sender, RoutedEventArgs e)
         {
-            ListingArticles listArt = new ListingArticles();
+            ListingArticles listArt = new ListingArticles(_context);
             base.Opacity =0.7;
             listArt.ShowDialog();
             base.Opacity = 1;
