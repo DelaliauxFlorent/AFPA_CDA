@@ -1,0 +1,25 @@
+﻿<Window x:Class="_7_PremierCRUD.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_7_PremierCRUD"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Icon="favicon.ico">
+    <Grid x:Name="mainGridMW">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Button x:Name="btnGestionProduits" Grid.Column="1" Grid.Row="1" Content="Gestion des Produits" Click="btnGestionProduits_Click"></Button>
+        <Button x:Name="btnGestionCategories" Grid.Column="1" Grid.Row="3" Content="Gestion des Catégories" Click="btnGestionCategories_Click"></Button>
+    </Grid>
+</Window>

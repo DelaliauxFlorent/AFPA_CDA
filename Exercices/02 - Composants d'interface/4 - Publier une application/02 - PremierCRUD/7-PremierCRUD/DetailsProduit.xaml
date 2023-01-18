@@ -1,0 +1,51 @@
+﻿<Window x:Class="_7_PremierCRUD.DetailsProduit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_7_PremierCRUD"
+        mc:Ignorable="d"
+        Title="Details" Height="450" Width="800" FontSize="20" Icon="favicon.ico">
+    <Grid x:Name="gridDetailProduitMain">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="0.1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Label x:Name="lblChamp1" Grid.Row="1" Grid.Column="1" Content="ID:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"></Label>
+        <Label x:Name="valChamp1" Grid.Row="1" Grid.Column="3" VerticalContentAlignment="Center"></Label>
+        <Label x:Name="lblChamp2" Grid.Row="3" Grid.Column="1" Content="Libelle:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"></Label>
+        <TextBox x:Name="valChamp2" Grid.Row="3" Grid.Column="3" VerticalContentAlignment="Center"></TextBox>
+        <Label x:Name="lblChamp3" Grid.Row="5" Grid.Column="1" Content="Numéro:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"></Label>
+        <TextBox x:Name="valChamp3" Grid.Row="5" Grid.Column="3" VerticalContentAlignment="Center"></TextBox>
+        <Label x:Name="lblChamp4" Grid.Row="7" Grid.Column="1" Content="Quantité:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"></Label>
+        <TextBox x:Name="valChamp4" Grid.Row="7" Grid.Column="3" VerticalContentAlignment="Center"></TextBox>
+        <Label x:Name="lblChamp5" Grid.Row="9" Grid.Column="1" Content="Catégorie:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"></Label>
+        <ComboBox x:Name="valChamp5" Grid.Column="3" Grid.Row="9">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding LibelleCategorie}"></TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Button x:Name="btnValid" Grid.Column="1" Grid.Row="11" Click="btnValid_Click"></Button>
+        <Button x:Name="btnAnnul" Grid.Column="3" Grid.Row="11" Content="Annuler" Click="btnAnnul_Click"></Button>
+    </Grid>
+</Window>

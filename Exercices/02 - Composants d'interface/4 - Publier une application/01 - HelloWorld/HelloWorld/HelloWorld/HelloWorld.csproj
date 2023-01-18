@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="hello-world.ico" />
+    <None Remove="hello-world.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="hello-world.ico" />
+    <Resource Include="hello-world.png" />
+  </ItemGroup>
+
+</Project>
