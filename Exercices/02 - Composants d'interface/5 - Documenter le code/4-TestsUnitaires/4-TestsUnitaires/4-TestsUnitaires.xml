@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>4-TestsUnitaires</name>
+    </assembly>
+    <members>
+        <member name="T:_4_TestsUnitaires.Compte">
+            <summary>
+            Class Compte
+            </summary>
+        </member>
+        <member name="M:_4_TestsUnitaires.Compte.#ctor(System.String,System.Double)">
+            <summary>
+            Constructeur de la class Compte
+            </summary>
+            <param name="nom">Nom du client</param>
+            <param name="solde">Montant du solde</param>
+        </member>
+        <member name="M:_4_TestsUnitaires.Compte.Debit(System.Double)">
+            <summary>
+            Permet de déduire le montant du solde
+            </summary>
+            <param name="montant"></param>
+        </member>
+        <member name="M:_4_TestsUnitaires.Compte.Credit(System.Double)">
+            <summary>
+            Fonction permettant de créditer un solde
+            </summary>
+            <param name="montant">Montant de la somme à ajouter au solde</param>
+        </member>
+        <member name="T:_4_TestsUnitaires.Program">
+            <summary>
+            Class Program du projet TestUnitaire
+            </summary>
+        </member>
+        <member name="M:_4_TestsUnitaires.Program.Main(System.String[])">
+            <summary>
+            Fonction Main
+            </summary>
+            <param name="args"></param>
+        </member>
+    </members>
+</doc>

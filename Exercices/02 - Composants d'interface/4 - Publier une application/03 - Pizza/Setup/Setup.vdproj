@@ -236,7 +236,7 @@
             {
             "Name" = "8:#1916"
             "AlwaysCreate" = "11:TRUE"
-            "Condition" = "8:DESKTOPLINK=\"1\""
+            "Condition" = "8:DESKTOPLINK=1"
             "Transitive" = "11:TRUE"
             "Property" = "8:DesktopFolder"
                 "Folders"

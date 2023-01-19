@@ -77,8 +77,8 @@
                         <RowDefinition Height="1*"></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Button x:Name="btnConnexionMW" Grid.Row="1" Grid.Column="0" Content="Connexion" Style="{DynamicResource ButtonHeader}" Click="btnConnexionMW_Click"></Button>
-                    <Button x:Name="btnInscriptionMW" Grid.Row="1" Grid.Column="2" Content="Inscription" Style="{DynamicResource ButtonHeader}" Click="BtnInscription_Click" />
+                    <Button x:Name="btnConnexionMW" Grid.Row="1" Grid.Column="0" Content="Connexion" Style="{DynamicResource ButtonHeader}" Click="btn_Click"></Button>
+                    <Button x:Name="btnInscriptionMW" Grid.Row="1" Grid.Column="2" Content="Inscription" Style="{DynamicResource ButtonHeader}" Click="btn_Click" />
                 </Grid>
 
             </Grid>

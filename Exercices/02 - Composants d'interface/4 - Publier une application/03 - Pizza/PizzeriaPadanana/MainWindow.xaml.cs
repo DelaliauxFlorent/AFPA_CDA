@@ -29,7 +29,7 @@ namespace PizzeriaPadanana
             InitializeComponent();
             _context = new PizzeriaDbContext();
         }
-
+        /*
         private void BtnInscription_Click(object sender, RoutedEventArgs e)
         {
             Inscription pageInscr = new Inscription();
@@ -44,21 +44,34 @@ namespace PizzeriaPadanana
             this.Opacity = 0.7;
             pageLog.ShowDialog();
             this.Opacity = 1;
-        }
+        }*/
 
         private void btn_Click(object sender, RoutedEventArgs e)
         {
             string cible = ((Button)sender).Name;
             this.Opacity = 0.7;
+            Window newWind;
             switch (cible)
             {
                 case "btnIngr":
-                    PageIngredients pageIngr = new PageIngredients(_context);
-                    pageIngr.ShowDialog();
+                    //PageIngredients pageIngr = new PageIngredients(_context);
+                    newWind = new PageIngredients(_context);
+                    newWind.ShowDialog();
+                    //pageIngr.ShowDialog();
                     break;
                 case "btnTypeIngr":
-                    PageTypeingredients pageTypeIngr = new PageTypeingredients(_context);
-                    pageTypeIngr.ShowDialog();
+                    //PageTypeingredients pageTypeIngr = new PageTypeingredients(_context);
+                    //pageTypeIngr.ShowDialog();
+                    newWind = new PageTypeingredients(_context);
+                    newWind.ShowDialog();
+                    break;
+                case "btnConnexionMW":
+                    newWind = new LogIn();
+                    newWind.ShowDialog();
+                    break;
+                case "btnInscriptionMW":
+                    newWind = new Inscription();
+                    newWind.ShowDialog();
                     break;
                 default:
                     break;
