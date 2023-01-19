@@ -29,6 +29,10 @@ namespace PizzeriaPadanana
     {
         private PizzeriaDbContext _context;
         private TypeingredientsController _TypeIngrController;
+        /// <summary>
+        /// Constructeur
+        /// </summary>
+        /// <param name="context"></param>
         public PageTypeingredients(PizzeriaDbContext context)
         {
             InitializeComponent();
@@ -38,6 +42,9 @@ namespace PizzeriaPadanana
             RemplirGrid();
         }
 
+        /// <summary>
+        /// Remplissage de la DataGrid
+        /// </summary>
         private void RemplirGrid()
         {
             dtgrdListTypeIngredients.ItemsSource = _TypeIngrController.GetAllTypeingredients();
@@ -45,6 +52,11 @@ namespace PizzeriaPadanana
             btnSupprTypeIng.IsEnabled = false;
         }
 
+        /// <summary>
+        /// Gestion des boutons
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_Click(object sender, RoutedEventArgs e)
         {
             string action = ((Button)sender).Content.ToString();
@@ -67,6 +79,11 @@ namespace PizzeriaPadanana
             }
         }
 
+        /// <summary>
+        /// Gestion du changement de sélection d'un élément de la DataGrid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dtgrdListTypeIngredients_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             btnModifTypeIng.IsEnabled = true;

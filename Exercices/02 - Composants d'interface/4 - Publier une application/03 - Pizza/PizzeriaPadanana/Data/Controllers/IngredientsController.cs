@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 
 namespace PizzeriaPadanana.Data.Controllers
 {
+    /// <summary>
+    /// Classe des controllers pour les Ingrédients
+    /// </summary>
     public class IngredientsController : ControllerBase
     {
 

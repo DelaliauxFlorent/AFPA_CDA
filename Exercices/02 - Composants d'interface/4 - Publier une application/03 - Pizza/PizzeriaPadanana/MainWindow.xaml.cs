@@ -24,6 +24,9 @@ namespace PizzeriaPadanana
     {
         private PizzeriaDbContext _context;
 
+        /// <summary>
+        /// Constructeur de la fenêtre
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
@@ -45,7 +48,11 @@ namespace PizzeriaPadanana
             pageLog.ShowDialog();
             this.Opacity = 1;
         }*/
-
+        /// <summary>
+        /// Gestion des boutons de la page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_Click(object sender, RoutedEventArgs e)
         {
             string cible = ((Button)sender).Name;

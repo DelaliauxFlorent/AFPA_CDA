@@ -19,6 +19,9 @@ namespace PizzeriaPadanana
     /// </summary>
     public partial class Inscription : Window
     {
+        /// <summary>
+        /// Constructeur
+        /// </summary>
         public Inscription()
         {
             InitializeComponent();

@@ -27,6 +27,12 @@ namespace PizzeriaPadanana.Views
         private TypeingredientsController _controller;
         private PizzeriaDbContext _context;
 
+        /// <summary>
+        /// Constructeur
+        /// </summary>
+        /// <param name="action">Action voulu (ajout, modification, suppression)</param>
+        /// <param name="obj">Élément sur lequel on veut agir</param>
+        /// <param name="context">Context</param>
         public FormulaireTypesIngredients(string action, TypeingredientDTO obj, PizzeriaDbContext context)
         {
             InitializeComponent();
@@ -51,6 +57,11 @@ namespace PizzeriaPadanana.Views
             }
         }
 
+        /// <summary>
+        /// Gestion des boutons
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_Click(object sender, RoutedEventArgs e)
         {
             string cible = ((Button)sender).Content.ToString();
@@ -75,7 +86,6 @@ namespace PizzeriaPadanana.Views
                         _controller.UpdateTypeingredient(_obj);
                         break;
                     case "Supprimer":
-                        RemplirObj();
                         _controller.DeleteTypeingredient(_obj.IdTypeIngredient);
                         break;
                     default:
@@ -85,18 +95,27 @@ namespace PizzeriaPadanana.Views
             }
         }
 
+        /// <summary>
+        /// Remplissage des champs
+        /// </summary>
         private void RemplirChamps()
         {
             txbxNomTypeIngredientForm.Text = _obj.NomTypeIngredient;
             txbxPrixTypeIngredientForm.Text = _obj.PrixTypeIngredient.ToString();
         }
 
+        /// <summary>
+        /// Désactivation des champs, pour éviter les signaux contraires lors de la suppression
+        /// </summary>
         private void DesactiverChamps()
         {
             txbxNomTypeIngredientForm.IsEnabled = false;
             txbxPrixTypeIngredientForm.IsEnabled = false;
         }
 
+        /// <summary>
+        /// Mise à jour de l'objet avant appel de la fonction voulue
+        /// </summary>
         private void RemplirObj()
         {
             _obj.NomTypeIngredient = txbxNomTypeIngredientForm.Text;

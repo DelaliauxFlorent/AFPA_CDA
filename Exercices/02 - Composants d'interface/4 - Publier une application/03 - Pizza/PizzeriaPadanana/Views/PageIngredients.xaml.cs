@@ -28,6 +28,11 @@ namespace PizzeriaPadanana
     {
         private PizzeriaDbContext _context;
         private IngredientsController _ingrController;
+
+        /// <summary>
+        /// Constructeur
+        /// </summary>
+        /// <param name="context"></param>
         public PageIngredients(PizzeriaDbContext context)
         {
             InitializeComponent();
@@ -37,6 +42,9 @@ namespace PizzeriaPadanana
             RemplirGrid();
         }
 
+        /// <summary>
+        /// Remplissage de la DataGrid
+        /// </summary>
         public void RemplirGrid()
         {
             dtgrdListIngredients.ItemsSource = _ingrController.GetAllIngredients();

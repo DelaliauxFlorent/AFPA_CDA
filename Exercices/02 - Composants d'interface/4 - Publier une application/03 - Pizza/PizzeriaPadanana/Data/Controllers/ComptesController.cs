@@ -13,18 +13,30 @@ using Microsoft.AspNetCore.JsonPatch;
 
 namespace PizzeriaPadanana.Data.Controllers
 {
+    /// <summary>
+    /// Classe des controllers pour les comptes
+    /// </summary>
     class ComptesController : ControllerBase
     {
 
         private readonly ComptesServices _service;
         private readonly IMapper _mapper;
 
+        /// <summary>
+        /// Constructeur
+        /// </summary>
+        /// <param name="service"></param>
+        /// <param name="mapper"></param>
         public ComptesController(ComptesServices service, IMapper mapper)
         {
             _service = service;
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Récupération de tous les comptes
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult<IEnumerable<CompteDTO_Simple>> GetAllComptes()
         {
@@ -32,6 +44,11 @@ namespace PizzeriaPadanana.Data.Controllers
             return Ok(_mapper.Map<IEnumerable<CompteDTO_Simple>>(listeComptes));
         }
 
+        /// <summary>
+        /// Récupération d'un compte précis
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}", Name = "GetCompteById")]
         public ActionResult<CompteDTO_Simple> GetCompteById(int id)
         {
@@ -43,6 +60,11 @@ namespace PizzeriaPadanana.Data.Controllers
             return NotFound();
         }
 
+        /// <summary>
+        /// Création d'un compte
+        /// </summary>
+        /// <param name="v"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult<CompteDTO_Simple> CreateCompte(Compte v)
         {
@@ -50,6 +72,12 @@ namespace PizzeriaPadanana.Data.Controllers
             return CreatedAtRoute(nameof(GetCompteById), new { Id = v.IdCompte }, v);
         }
 
+        /// <summary>
+        /// Mise à jour d'un compte
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="v"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public ActionResult UpdateCompte(int id, Compte v)
         {
@@ -63,6 +91,12 @@ namespace PizzeriaPadanana.Data.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Mise à jour partielle d'un compte
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="patchDoc"></param>
+        /// <returns></returns>
         [HttpPatch("{id}")]
         public ActionResult PartialCompteUpdate(int id, JsonPatchDocument<Compte> patchDoc)
         {
@@ -86,6 +120,11 @@ namespace PizzeriaPadanana.Data.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Suppression d'un compte
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public ActionResult DeleteCompte(int id)
         {

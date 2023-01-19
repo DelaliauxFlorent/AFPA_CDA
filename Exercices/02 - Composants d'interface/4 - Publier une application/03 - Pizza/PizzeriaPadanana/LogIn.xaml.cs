@@ -19,11 +19,19 @@ namespace PizzeriaPadanana
     /// </summary>
     public partial class LogIn : Window
     {
+        /// <summary>
+        /// Constructeur
+        /// </summary>
         public LogIn()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Réaction du bouton
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
