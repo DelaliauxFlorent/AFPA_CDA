@@ -39,6 +39,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_94654609D6DA4533B426738A6C9EFA91"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_A36B6A8829B64BC5A5D80326DFA6F213"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -127,6 +133,20 @@
     {
         "CustomAction"
         {
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_0067FB2EED87471F9E50EE740AFC500E"
+            {
+            "Name" = "8:UnShortcut.js"
+            "Condition" = "8:"
+            "Object" = "8:_94654609D6DA4533B426738A6C9EFA91"
+            "FileType" = "3:3"
+            "InstallAction" = "3:4"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_888DD0D5_66BE_4156_8358_59B3976B0519"
+            "InstallerClass" = "11:FALSE"
+            "CustomActionData" = "8:"
+            }
             "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_2ACB5ADCB8E64668B43749E641F2BB55"
             {
             "Name" = "8:Shortcut.js"
@@ -226,6 +246,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_94654609D6DA4533B426738A6C9EFA91"
+            {
+            "SourcePath" = "8:..\\PizzeriaPadanana\\UnShortcut.js"
+            "TargetName" = "8:UnShortcut.js"
+            "Tag" = "8:"
+            "Folder" = "8:_DFF92A215B4C426A90CDA3FD93D9302B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:TRUE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A36B6A8829B64BC5A5D80326DFA6F213"
             {
             "SourcePath" = "8:..\\PizzeriaPadanana\\Shortcut.js"
@@ -236,7 +276,7 @@
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
             "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
+            "Hidden" = "11:TRUE"
             "System" = "11:FALSE"
             "Permanent" = "11:FALSE"
             "SharedLegacy" = "11:FALSE"
@@ -345,7 +385,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Pizzeria Padanana"
         "ProductCode" = "8:{C9CC280D-E06C-48C0-A20E-660BEE34D838}"
-        "PackageCode" = "8:{5E836193-9AFE-4084-838E-90AB2EB5D676}"
+        "PackageCode" = "8:{0CEB6B09-999E-45A5-8AF8-8407131C2F7C}"
         "UpgradeCode" = "8:{A9E7490A-CC35-4AB5-8333-68DE9C3A521C}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

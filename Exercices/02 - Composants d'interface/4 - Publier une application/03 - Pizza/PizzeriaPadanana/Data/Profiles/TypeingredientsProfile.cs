@@ -9,8 +9,14 @@ using System.Threading.Tasks;
 
 namespace PizzeriaPadanana.Data.Profiles
 {
-    class TypeingredientsProfile:Profile
+    /// <summary>
+    /// Classe de Profile pour les Types d'Ingrédients
+    /// </summary>
+    class TypeingredientsProfile :Profile
     {
+        /// <summary>
+        /// Liste des mappings
+        /// </summary>
         public TypeingredientsProfile()
         {
             CreateMap<Typeingredient, TypeingredientDTO>();

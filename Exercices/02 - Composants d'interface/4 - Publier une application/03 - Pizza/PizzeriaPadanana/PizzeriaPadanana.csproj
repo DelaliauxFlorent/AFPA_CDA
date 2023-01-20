@@ -7,6 +7,10 @@
     <ApplicationIcon>PizzaLogo.ico</ApplicationIcon>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\Git\AFPA_CDA\Exercices\02 - Composants d'interface\4 - Publier une application\03 - Pizza\PizzeriaPadanana\PizzeriaPadanana.xml</DocumentationFile>
+  </PropertyGroup>
+
 	<ItemGroup>
 		<Content Include="Fonts/FerroRosso.ttf" />
 		<Content Include="Fonts/Montserrat-Regular.ttf" />

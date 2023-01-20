@@ -6,12 +6,22 @@ using PizzeriaPadanana.Data.POCOs;
 
 namespace PizzeriaPadanana.Data
 {
+    /// <summary>
+    /// Contexte de connexion à la BDD
+    /// </summary>
     public partial class PizzeriaDbContext : DbContext
     {
+        /// <summary>
+        /// Constructeur vide
+        /// </summary>
         public PizzeriaDbContext()
         {
         }
 
+        /// <summary>
+        /// Constructeur avec options
+        /// </summary>
+        /// <param name="options"></param>
         public PizzeriaDbContext(DbContextOptions<PizzeriaDbContext> options)
             : base(options)
         {
@@ -35,6 +45,10 @@ namespace PizzeriaPadanana.Data
         public virtual DbSet<Typeingredient> Typeingredients { get; set; }
         public virtual DbSet<Typepizza> Typepizzas { get; set; }
 
+        /// <summary>
+        /// Override de la méthode OnConfiguring pour intégrer la ConnectionString
+        /// </summary>
+        /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -43,6 +57,10 @@ namespace PizzeriaPadanana.Data
             }
         }
 
+        /// <summary>
+        /// Override de la méthode OnModelCreating pour la création des classes tirées des tables de la BDD
+        /// </summary>
+        /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Accompagnement>(entity =>
@@ -650,6 +668,10 @@ namespace PizzeriaPadanana.Data
             OnModelCreatingPartial(modelBuilder);
         }
 
+        /// <summary>
+        /// Méthode OnModelCreatingPartial
+        /// </summary>
+        /// <param name="modelBuilder"></param>
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

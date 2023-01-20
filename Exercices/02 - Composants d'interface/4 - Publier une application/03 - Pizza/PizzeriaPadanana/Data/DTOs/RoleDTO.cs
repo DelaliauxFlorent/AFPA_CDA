@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace PizzeriaPadanana.Data.DTOs
 {
+    /// <summary>
+    /// DTO Rôle Base
+    /// </summary>
     class RoleDTO
     {
         public string NomRole { get; set; }
@@ -15,6 +18,9 @@ namespace PizzeriaPadanana.Data.DTOs
         public virtual Compte Compte { get; set; }
     }
 
+    /// <summary>
+    /// DTO Simple pour rôle
+    /// </summary>
     class RoleDTO_Simple
     {
         public string NomRole { get; set; }

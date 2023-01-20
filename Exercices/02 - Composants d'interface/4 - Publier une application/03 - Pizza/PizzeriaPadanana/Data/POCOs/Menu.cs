@@ -5,8 +5,14 @@ using System.Collections.Generic;
 
 namespace PizzeriaPadanana.Data.POCOs
 {
+    /// <summary>
+    /// Classe correspondante à la table Menus
+    /// </summary>
     public partial class Menu
     {
+        /// <summary>
+        /// Constructeur (pour les listes)
+        /// </summary>
         public Menu()
         {
             Itemsmenus = new HashSet<Itemsmenu>();

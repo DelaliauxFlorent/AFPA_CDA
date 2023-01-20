@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace PizzeriaPadanana.Data.Profiles
 {
+    /// <summary>
+    /// Classe de Profile pour les Adresses
+    /// </summary>
     class AdressesProfile
     {
 

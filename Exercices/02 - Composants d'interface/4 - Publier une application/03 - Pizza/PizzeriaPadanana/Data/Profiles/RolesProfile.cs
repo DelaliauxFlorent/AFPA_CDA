@@ -9,8 +9,14 @@ using System.Threading.Tasks;
 
 namespace PizzeriaPadanana.Data.Profiles
 {
+    /// <summary>
+    /// Classe de Profile pour les Rôles
+    /// </summary>
     class RolesProfile : Profile
     {
+        /// <summary>
+        /// Liste des mappings
+        /// </summary>
         protected RolesProfile()
         {
             CreateMap<Role, RoleDTO>().ForMember(r2=>r2.Compte, op=>op.MapFrom(r=>r.Comptes));

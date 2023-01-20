@@ -8,9 +8,15 @@ using System.Threading.Tasks;
 
 namespace PizzeriaPadanana.Data.Profiles
 {
+    /// <summary>
+    /// Classe de Profile pour les Comptes
+    /// </summary>
     public class ComptesProfile : Profile
     {
-        protected ComptesProfile()
+        /// <summary>
+        /// Liste des mappings
+        /// </summary>
+        public ComptesProfile()
         {
             CreateMap<Compte, CompteDTO>();
             CreateMap<CompteDTO, Compte>();

@@ -5,8 +5,14 @@ using System.Collections.Generic;
 
 namespace PizzeriaPadanana.Data.POCOs
 {
+    /// <summary>
+    /// Classe correspondante à la table SeuilFidelites
+    /// </summary>
     public partial class Seuilfidelite
     {
+        /// <summary>
+        /// Constructeur (pour la liste)
+        /// </summary>
         public Seuilfidelite()
         {
             Commandes = new HashSet<Commande>();

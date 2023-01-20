@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 namespace PizzeriaPadanana.Data.POCOs
 {
+    /// <summary>
+    /// Classe correspondante à la table Compositions
+    /// </summary>
     public partial class Composition
     {
         public int IdCompositions { get; set; }

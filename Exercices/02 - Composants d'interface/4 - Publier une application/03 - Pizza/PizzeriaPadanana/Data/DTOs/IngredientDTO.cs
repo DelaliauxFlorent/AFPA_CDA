@@ -11,10 +11,6 @@ namespace PizzeriaPadanana.Data.DTOs
     /// </summary>
     public class IngredientDTO
     {
-        //public IngredientDTO()
-        //{
-        //    Compositions = new HashSet<CompositionDTO>();
-        //}
 
         public int IdIngredient { get; set; }
         public string NomIngredient { get; set; }
@@ -22,12 +18,10 @@ namespace PizzeriaPadanana.Data.DTOs
         public bool? Actif { get; set; }
         public int IdTypeIngredient { get; set; }
 
-        //public virtual ICollection<CompositionDTO> Compositions { get; set; }
-        //public virtual TypeingredientDTO IdTypeIngredientNavigation { get; set; }
     }
 
     /// <summary>
-    ///
+    /// DTO pour listing
     /// </summary>
     public class IngredientDTOAvecType
     {

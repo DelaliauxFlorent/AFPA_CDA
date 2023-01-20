@@ -19,7 +19,7 @@ namespace PizzeriaPadanana.Data.Services
         /// <summary>
         /// Constructeur de la classe
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">Contexte de connexion à la BDD</param>
         public TypeingredientsServices(PizzeriaDbContext context)
         {
             _context = context;

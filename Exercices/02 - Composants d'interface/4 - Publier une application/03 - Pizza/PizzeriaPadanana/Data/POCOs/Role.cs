@@ -5,8 +5,14 @@ using System.Collections.Generic;
 
 namespace PizzeriaPadanana.Data.POCOs
 {
+    /// <summary>
+    /// Classe correspondante à la table Roles
+    /// </summary>
     public partial class Role
     {
+        /// <summary>
+        /// Constructeur (pour la liste)
+        /// </summary>
         public Role()
         {
             Comptes = new HashSet<Compte>();

@@ -5,8 +5,14 @@ using System.Collections.Generic;
 
 namespace PizzeriaPadanana.Data.POCOs
 {
+    /// <summary>
+    /// Classe correspondante à la table Statuts
+    /// </summary>
     public partial class Statut
     {
+        /// <summary>
+        /// Constructeur (pour la liste)
+        /// </summary>
         public Statut()
         {
             Commandes = new HashSet<Commande>();
