@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace PizzeriaPadanana.Data.DTOs
 {
+    /// <summary>
+    /// DTO Basique
+    /// </summary>
     public class IngredientDTO
     {
         //public IngredientDTO()
@@ -23,6 +26,9 @@ namespace PizzeriaPadanana.Data.DTOs
         //public virtual TypeingredientDTO IdTypeIngredientNavigation { get; set; }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public class IngredientDTOAvecType
     {
         public int IdIngredient { get; set; }

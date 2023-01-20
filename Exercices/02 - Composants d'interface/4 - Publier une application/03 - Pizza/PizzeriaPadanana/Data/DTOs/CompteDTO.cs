@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace PizzeriaPadanana.Data.DTOs
 {
+    /// <summary>
+    /// Classe des compteDTO
+    /// </summary>
     public class CompteDTO
     {
         public string Identifiant { get; set; }
@@ -20,21 +23,30 @@ namespace PizzeriaPadanana.Data.DTOs
         public virtual ICollection<Commande> Commandes { get; set; }
     }
 
+    /// <summary>
+    /// DTO Simple n'ayant que le nom, prénom, niveau de fidélité
+    /// </summary>
     public class CompteDTO_Simple
     {
         public string Nom { get; set; }
         public string Prenom { get; set; }
         public int? NiveauFidelite { get; set; }
     }
+
+    /// <summary>
+    /// DTO de connexion
+    /// </summary>
     public class CompteDTO_Connexion
     {
         public string Identifiant { get; set; }
         public string Mdp { get; set; }
     }
 
+    /// <summary>
+    /// DTO pour la création de compte
+    /// </summary>
     public class CompteDTO_Creation
     {
-
         public string Identifiant { get; set; }
         public string Mdp { get; set; }
         public string Nom { get; set; }

@@ -39,6 +39,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_A36B6A8829B64BC5A5D80326DFA6F213"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_DB2712481630406F9F9EA78992D7CCD6"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -121,6 +127,20 @@
     {
         "CustomAction"
         {
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_2ACB5ADCB8E64668B43749E641F2BB55"
+            {
+            "Name" = "8:Shortcut.js"
+            "Condition" = "8:RACCOURCI=1"
+            "Object" = "8:_A36B6A8829B64BC5A5D80326DFA6F213"
+            "FileType" = "3:3"
+            "InstallAction" = "3:1"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_9AEFD08A_D40C_4245_AB03_DFDAF065EDFC"
+            "InstallerClass" = "11:FALSE"
+            "CustomActionData" = "8:"
+            }
         }
         "DefaultFeature"
         {
@@ -206,6 +226,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A36B6A8829B64BC5A5D80326DFA6F213"
+            {
+            "SourcePath" = "8:..\\PizzeriaPadanana\\Shortcut.js"
+            "TargetName" = "8:Shortcut.js"
+            "Tag" = "8:"
+            "Folder" = "8:_DFF92A215B4C426A90CDA3FD93D9302B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DB2712481630406F9F9EA78992D7CCD6"
             {
             "SourcePath" = "8:C:\\Windows\\System32\\msiexec.exe"
@@ -236,7 +276,7 @@
             {
             "Name" = "8:#1916"
             "AlwaysCreate" = "11:TRUE"
-            "Condition" = "8:DESKTOPLINK=1"
+            "Condition" = "8:RACCOURCI=1"
             "Transitive" = "11:TRUE"
             "Property" = "8:DesktopFolder"
                 "Folders"
@@ -305,7 +345,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Pizzeria Padanana"
         "ProductCode" = "8:{C9CC280D-E06C-48C0-A20E-660BEE34D838}"
-        "PackageCode" = "8:{64AFFFDD-C936-48FC-AA88-E5C0E74069EA}"
+        "PackageCode" = "8:{5E836193-9AFE-4084-838E-90AB2EB5D676}"
         "UpgradeCode" = "8:{A9E7490A-CC35-4AB5-8333-68DE9C3A521C}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -425,20 +465,6 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_3169BE36DF3F40BDBAA93B2C1AA20F3F"
-            {
-            "Name" = "8:Pizzeria Padanana"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:TRUE"
-            "Target" = "8:_72755587AED64F8F8A27EEC0317FC448"
-            "Folder" = "8:_7F710D437D554AB39DBE45D8AC791F56"
-            "WorkingFolder" = "8:_DFF92A215B4C426A90CDA3FD93D9302B"
-            "Icon" = "8:_65C46E5290854EDC810F589D3F10CC11"
-            "Feature" = "8:"
-            }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_3FC92DAAFCF34FDDA9BB17631554B75F"
             {
             "Name" = "8:Désinstaller.exe"
@@ -582,7 +608,7 @@
                             "ContextData" = "8:"
                             "Attributes" = "3:0"
                             "Setting" = "3:2"
-                            "Value" = "8:Voullez-vous créer un raccourci sur votre Bureau?"
+                            "Value" = "8:Voullez-vous créer un raccourci sur le Bureau?"
                             "DefaultValue" = "8:#1215"
                             "UsePlugInResources" = "11:TRUE"
                             }
@@ -647,7 +673,7 @@
                             "ContextData" = "8:Public"
                             "Attributes" = "3:2"
                             "Setting" = "3:2"
-                            "Value" = "8:DESKTOPLINK"
+                            "Value" = "8:RACCOURCI"
                             "DefaultValue" = "8:BUTTON2"
                             "UsePlugInResources" = "11:TRUE"
                             }
@@ -660,7 +686,7 @@
                             "ContextData" = "8:"
                             "Attributes" = "3:0"
                             "Setting" = "3:2"
-                            "Value" = "8:0"
+                            "Value" = "8:1"
                             "DefaultValue" = "8:1"
                             "UsePlugInResources" = "11:TRUE"
                             }

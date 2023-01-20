@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace PizzeriaPadanana.Data.DTOs
 {
-    class AdressDTO
+    /// <summary>
+    /// Classe AdressDTO
+    /// </summary>
+    public class AdressDTO
     {
         public string Adresse { get; set; }
         public string ComplementAdresse { get; set; }
