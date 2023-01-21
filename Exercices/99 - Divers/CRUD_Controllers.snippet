@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>CRUD Controller Snippet</Title>
+      <Author>Florent Delaliaux</Author>
+      <Description>Create a Controller Class for a CRUD</Description>
+      <Shortcut>CRUDctrl</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="CSharp">
+        <![CDATA[
+        // Non-API ver. Controller
+
+    /// <summary>
+    /// Classe des Controllers pour les $TableName$
+    /// </summary>
+    public class $TableName$Controller : ControllerBase
+    {
+
+        private readonly $TableName$Services _service;
+        private readonly IMapper _mapper;
+
+        /// <summary>
+        /// Constructeur
+        /// </summary>
+        /// <param name="_context"></param>
+        public $TableName$Controller($Context$ _context)
+        {
+            _service = new $TableName$Services(_context);
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile<$TableName$Profile>();
+            });
+            _mapper = config.CreateMapper();
+        }
+
+        /// <summary>
+        /// Récupérer la liste de tous les objets
+        /// </summary>
+        /// <returns>La liste de tous les objets mappés au format choisi.</returns>
+        public IEnumerable<$DTO$> GetAll$ClassName$s()
+        {
+            var listObjets = _service.GetAll$ClassName$s();
+            return _mapper.Map<IEnumerable<$DTO$>>(listObjets);
+        }
+
+        /// <summary>
+        /// Récupérer un objet spécifique par son ID
+        /// </summary>
+        /// <param name="id">ID de l'objet voulu.</param>
+        /// <returns>Retourne l'objet voulu s'il existe, un objet vide sinon.</returns>
+        public $ClassName$ Get$ClassName$ById(int id)
+        {
+            var obj = _service.Get$ClassName$ById(id);
+            if (obj != null)
+            {
+                return obj;
+            }
+            return new $ClassName$();
+        }
+
+        /// <summary>
+        /// Créer un objet
+        /// </summary>
+        /// <param name="objetPasse"></param>
+        public void Create$ClassName$($DTO$ objetPasse)
+        {
+            $ClassName$ obj = _mapper.Map<$ClassName$>(objetPasse);
+            //on ajoute l'objet à la base de données
+            _service.Add$ClassName$(obj);
+        }
+
+        /// <summary>
+        /// Mettre à jour un objet
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns>Retourne 0 si la modification s'est bien passée, -1 sinon.</returns>
+        public int Update$ClassName$($ClassName$ obj)
+        {
+            var objFromRepo = _service.Get$ClassName$ById(obj.Id$ClassName$);
+            if (objFromRepo == null)
+            {
+                return -1;
+            }
+            _mapper.Map(obj, objFromRepo);
+            _service.Update$ClassName$(objFromRepo);
+            return 0;
+        }
+
+        /// <summary>
+        /// Supprimer un objet
+        /// </summary>
+        /// <param name="id">ID de l'objet que l'on veut supprimer</param>
+        /// <returns>Retourne 0 si la suppression s'est bien passée, -1 sinon.</returns>
+        public int Delete$ClassName$(int id)
+        {
+            var objModelFromRepo = _service.Get$ClassName$ById(id);
+            if (objModelFromRepo == null)
+            {
+                return -1;
+            }
+            _service.Delete$ClassName$(objModelFromRepo);
+            return 0;
+        }
+    }
+
+    /*
+    // API ver. Controller
+
+    /// <summary>
+    /// Classe des Controllers pour les $TableName$
+    /// </summary>
+    [Route("api/[controller]")]
+    [ApiController]
+    public class $TableName$Controller : ControllerBase
+    {
+
+        private readonly $TableName$Services _service;
+        private readonly IMapper _mapper;
+
+        /// <summary>
+        /// Constructeur
+        /// </summary>
+        /// <param name="_context"></param>
+        public $TableName$Controller($TableName$Services service, IMapper mapper)
+        {
+            _service = service;
+            _mapper = mapper;
+        }
+
+        /// <summary>
+        /// Récupérer la liste de tous les objets
+        /// </summary>
+        /// <returns>ActionResult=>OK + La liste de tous les objets mappés au format choisi.</returns>
+        //GET api/$TableName$
+        [HttpGet]
+        public ActionResult<IEnumerable<$DTO$>> GetAll$ClassName$s()
+        {
+            var listObjets = _service.GetAll$ClassName$s();
+            return Ok(_mapper.Map<IEnumerable<$DTO$>>(listObjets));
+        }
+
+        /// <summary>
+        /// Récupérer un objet spécifique par son ID
+        /// </summary>
+        /// <param name="id">ID de l'objet voulu.</param>
+        /// <returns>ActionResult=>OK + L'objet voulu s'il existe, ActionResult=>NotFound sinon.</returns>
+        //GET api/$TableName$/{id}
+        [HttpGet("{id}", Name = "Get$ClassName$ById")]
+        public ActionResult<$DTO$> Get$ClassName$ById(int id)
+        {
+            var obj = _service.Get$ClassName$ById(id);
+            if (obj != null)
+            {
+                return Ok(_mapper.Map<$DTO$>(obj));
+            }
+            return NotFound();
+        }
+
+        /// <summary>
+        /// Créer un objet
+        /// </summary>
+        /// <param name="objetPasse"></param>
+        /// <returns>Le chemin de FinById avec l'objet créé.</returns>
+        //POST api/$TableName$
+        [HttpPost]
+        public ActionResult<$DTO$> Create$ClassName$($ClassName$ objetPasse)
+        {
+            //on ajoute l'objet à la base de données
+            _service.Add$ClassName$(objetPasse);
+            //on retourne le chemin de FinById avec l'objet créé
+            return CreatedAtRoute(nameof(Get$ClassName$ById), new { Id = $ClassName$.Id$ClassName$}, $ClassName$);
+        }
+
+        /// <summary>
+        /// Mettre à jour un objet
+        /// </summary>
+        /// <param name="id">ID de l'objet à modifier</param>
+        /// <param name="obj">Objet modifié</param>
+        /// <returns>Retourne l'ActionResult indiquant si la modification s'est bien passée ou non.</returns>
+        //PUT api/$TableName$/{id}
+        [HttpPut("{id}")]
+        public ActionResult Update$ClassName$(int id, $ClassName$ obj)
+        {
+            var objFromRepo = _service.Get$ClassName$ById(id);
+            if (objFromRepo == null)
+            {
+                return NotFound();
+            }
+            _mapper.Map(obj, objFromRepo);
+            _service.Update$ClassName$(objFromRepo);
+            return NoContent();
+        }
+
+        /// <summary>
+        /// Mise à jour partielle d'un objet
+        /// </summary>
+        /// <param name="id">ID de l'objet à modifier</param>
+        /// <param name="patchDoc">Modification à appliquer à l'objet</param>
+        /// <returns>Retourne l'ActionResult indiquant si la modification partielle s'est bien passée ou non.</returns>
+        //PATCH api/$TableName$/{id}
+        [HttpPatch("{id}")]
+        public ActionResult Partial$ClassName$Update(int id, JsonPatchDocument<Product> patchDoc)
+        {
+            var objFromRepo = _service.Get$ClassName$ById(id);
+            if (objFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            var objToPatch = _mapper.Map<$ClassName$>(objFromRepo);
+            patchDoc.ApplyTo(objToPatch, ModelState);
+
+            if (!TryValidateModel(objToPatch))
+            {
+                return ValidationProblem(ModelState);
+            }
+            _mapper.Map(objToPatch, objFromRepo);
+            _service.Update$ClassName$(objFromRepo);
+            return NoContent();
+        }
+
+        /// <summary>
+        /// Supprimer un objet
+        /// </summary>
+        /// <param name="id">ID de l'objet que l'on veut supprimer</param>
+        /// <returns>Retourne l'ActionResult indiquant si la suppression s'est bien passée ou non.</returns>
+        //DELETE api/$TableName$/{id}
+        [HttpDelete("{id}")]
+        public ActionResult Delete$ClassName$(int id)
+        {
+            var objModelFromRepo = _service.Get$ClassName$ById(id);
+            if (objModelFromRepo == null)
+            {
+                return NotFound();
+            }
+            _service.Delete$ClassName$(objModelFromRepo);
+            return NoContent();
+        }
+    }
+    */
+        ]]>
+      </Code>
+      <Declarations>
+        <Literal>
+          <ID>TableName</ID>
+          <ToolTip>Name of the table in the DB.</ToolTip>
+          <Default>[Table]</Default>
+        </Literal>
+        <Literal>
+          <ID>ClassName</ID>
+          <ToolTip>Name of the class (Model/POCO).</ToolTip>
+          <Default>[Class]</Default>
+        </Literal>
+        <Literal>
+          <ID>Context</ID>
+          <ToolTip>Name of the Context class.</ToolTip>
+          <Default>MyDbContext</Default>
+        </Literal>
+        <Literal>
+          <ID>DTO</ID>
+          <ToolTip>DTO used.</ToolTip>
+          <Default>[DTO]</Default>
+        </Literal>
+      </Declarations>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

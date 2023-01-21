@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>ForMember Snippet</Title>
+      <Author>Florent Delaliaux</Author>
+      <Description>Help construct a ForMember()</Description>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Shortcut>FMH</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="CSharp">
+        <![CDATA[
+        ForMember(c=>c.$AttributMissingData$, o=>o.MapFrom(s=>s.$DataObject$.$AttributData$))
+        ]]>
+      </Code>
+      <Declarations>
+        <Literal>
+          <ID>AttributMissingData</ID>
+          <ToolTip>Name of the attribut that cannot be auto-filled by the mapper.</ToolTip>
+          <Default>[AttributMissingData]</Default>
+        </Literal>
+        <Literal>
+          <ID>DataObject</ID>
+          <ToolTip>Name of the object containing the data needing to be put previous attribut (usually, [one of] the virtual attribut of the class).</ToolTip>
+          <Default>[DataObject]</Default>
+        </Literal>
+        <Literal>
+          <ID>AttributData</ID>
+          <ToolTip>Name of the attribut whose value need to be put in the other one.</ToolTip>
+          <Default>[AttributData]</Default>
+        </Literal>
+      </Declarations>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

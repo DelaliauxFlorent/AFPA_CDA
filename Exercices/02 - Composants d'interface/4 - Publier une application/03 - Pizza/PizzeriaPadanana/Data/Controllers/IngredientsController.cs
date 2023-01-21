@@ -64,9 +64,9 @@ namespace PizzeriaPadanana.Data.Controllers
         }
 
         /// <summary>
-        /// Créer un oobjet
+        /// Créer un objet
         /// </summary>
-        /// <param name="ingr"></param>
+        /// <param name="objetPasse"></param>
         public void CreateIngredient(IngredientDTOAvecType objetPasse)
         {
             Ingredient obj = _mapper.Map<Ingredient>(objetPasse);
@@ -77,7 +77,7 @@ namespace PizzeriaPadanana.Data.Controllers
         /// <summary>
         /// Mettre à jour un objet
         /// </summary>
-        /// <param name="ingr"></param>
+        /// <param name="obj"></param>
         /// <returns>Retourne 0 si la modification s'est bien passée, -1 sinon.</returns>
         public int UpdateIngredient(Ingredient obj)
         {

@@ -103,15 +103,15 @@
         </member>
         <member name="M:PizzeriaPadanana.Data.Controllers.IngredientsController.CreateIngredient(PizzeriaPadanana.Data.DTOs.IngredientDTOAvecType)">
             <summary>
-            Créer un oobjet
+            Créer un objet
             </summary>
-            <param name="ingr"></param>
+            <param name="objetPasse"></param>
         </member>
         <member name="M:PizzeriaPadanana.Data.Controllers.IngredientsController.UpdateIngredient(PizzeriaPadanana.Data.POCOs.Ingredient)">
             <summary>
             Mettre à jour un objet
             </summary>
-            <param name="ingr"></param>
+            <param name="obj"></param>
             <returns>Retourne 0 si la modification s'est bien passée, -1 sinon.</returns>
         </member>
         <member name="M:PizzeriaPadanana.Data.Controllers.IngredientsController.DeleteIngredient(System.Int32)">

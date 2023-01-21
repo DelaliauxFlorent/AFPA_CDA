@@ -23,6 +23,7 @@ namespace PizzeriaPadanana.Data.Profiles
             CreateMap<IngredientDTO, Ingredient>();
             CreateMap<Ingredient, IngredientDTOAvecType>().ForMember(c=>c.NomTypeIngredient, o=>o.MapFrom(s=>s.IdTypeIngredientNavigation.NomTypeIngredient)).ForMember(c=>c.Prix, o=>o.MapFrom(s=>s.IdTypeIngredientNavigation.PrixTypeIngredient));
             CreateMap<IngredientDTOAvecType, Ingredient>();
+
         }
     }
 }
