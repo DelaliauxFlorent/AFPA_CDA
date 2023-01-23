@@ -159,7 +159,7 @@
             "Sequence" = "3:1"
             "Identifier" = "8:_9AEFD08A_D40C_4245_AB03_DFDAF065EDFC"
             "InstallerClass" = "11:FALSE"
-            "CustomActionData" = "8:"
+            "CustomActionData" = "8:[TARGETDIR]"
             }
         }
         "DefaultFeature"
@@ -385,7 +385,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Pizzeria Padanana"
         "ProductCode" = "8:{C9CC280D-E06C-48C0-A20E-660BEE34D838}"
-        "PackageCode" = "8:{0CEB6B09-999E-45A5-8AF8-8407131C2F7C}"
+        "PackageCode" = "8:{59228B41-BB49-43F0-8F22-8749685A33A3}"
         "UpgradeCode" = "8:{A9E7490A-CC35-4AB5-8333-68DE9C3A521C}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

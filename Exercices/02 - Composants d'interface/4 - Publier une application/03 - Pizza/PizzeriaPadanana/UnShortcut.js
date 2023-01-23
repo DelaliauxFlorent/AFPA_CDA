@@ -1,5 +1,7 @@
 // JavaScript source code
 Shell = new ActiveXObject("WScript.Shell");
 FSO = new ActiveXObject("Scripting.FileSystemObject");
+// Chemin vers le bureau
 DesktopPath = Shell.SpecialFolders("Desktop");
-FSO.DeleteFile(DesktopPath + "\\Pizzeria Padanana.lnk")
+// Nom du raccourci
+FSO.DeleteFile(DesktopPath + "\\Pizzeria Padanana.lnk");
