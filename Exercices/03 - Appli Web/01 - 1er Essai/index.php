@@ -1,16 +1,11 @@
 <?php
 
-function ChargerClasse($classe)
-{
-    if ($classe == "DbConnect") {
-        $path = './PHP/MODEL/MANAGER/';
-    }else {
-        $path= './PHP/CONTROLER/CLASSE/';
-    }
-    require $path.$classe.'.Class.php';
-}
+include "./PHP/CONTROLLER/Outils.php";
 spl_autoload_register("ChargerClasse");
 
-Parametre::readConfig();
-DbConnect::connect();
-echo Parametre::$_base;
+//on active la connexion à la base de données
+Parametre::init();
+DbConnect::init();
+var_dump(PersonneManager::GetAllPersonnes());
+echo "<br/><hr/><br/>";
+DbConnect::close();

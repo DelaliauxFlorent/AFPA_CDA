@@ -1,21 +1,30 @@
 <?php
+// Ce fichier sera inclus à chaque fois que l'on aura besoin d'acceder à la base de données.
+// Il permet d'ouvrir la connection à la base de données
 class DbConnect
 {
+    private static $db;
 
-    private static $_db;
-
-    public static function connect()
+    public static function getDb()
     {
-        try {
-            $_db = new PDO('mysql:host=' . Parametre::$_host . ';dbname=' . Parametre::$_base, Parametre::$_user, Parametre::$_password);
-        } catch (PDOException $e) {
-            print "Error!: " . $e->getMessage() . "<br/>";
-            die();
-        }
+        return self::$db;
     }
 
-    public static function disconnect()
+    public static function init()
     {
-        $_db = null;
+        try {
+            // On se connecte à MySQL
+           self::$db = new PDO('mysql:host=' . Parametre::getHost() . ';port=' . Parametre::getPort() . ';dbname=' . Parametre::getBase() . ';charset=utf8', Parametre::getUser(), Parametre::getPassword());
+        }
+        catch (Exception $e)
+        {
+            // En cas d'erreur, on affiche un message et on arrète tout
+            die('Erreur : ' . $e->getMessage());
+        }
+
+    }
+
+    public static function close(){
+        self::$db=null;
     }
 }

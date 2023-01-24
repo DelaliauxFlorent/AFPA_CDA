@@ -1,20 +1,59 @@
 <?php
-class Parametre{
+class Parametre
+{
     ////////////////////////////////////
     // Attributs
 
-    public static $_host;
-    public static $_base;
-    public static $_user;
-    public static $_password;
+    private static $_host;
+    private static $_port;
+    private static $_base;
+    private static $_user;
+    private static $_password;
 
-    public static function readConfig()
+    /////////////////////////////////////
+    // Getters/Setters
+    
+    static function getHost()
     {
-        $json = file_get_contents("PHP/config.json");
-        $infoconnect = json_decode($json);
-        $_host=outils::decode($infoconnect[0]);
-        $_base=outils::decode($infoconnect[1]);
-        $_user=outils::decode($infoconnect[2]);
-        $_password = outils::decode($infoconnect[3]);
+        return self::$_host;
     }
+
+    static function getPort()
+    {
+        return self::$_port;
+    }
+
+    static function getBase()
+    {
+        return self::$_base;
+    }
+
+    static function getUser()
+    {
+        return self::$_user;
+    }
+
+    static function getPassword()
+    {
+        return self::$_password;
+    }
+
+    ////////////////////////////
+
+    public static function init()
+    {
+        if (file_exists("config.json")) {
+            $infoconnect = json_decode(file_get_contents("config.json"));
+            self::$_host = decoder($infoconnect->host);
+            self::$_port = $infoconnect->port;
+            self::$_base = decoder($infoconnect->base);
+            self::$_user = decoder($infoconnect->user);
+            if (strlen($infoconnect->password) == 0) {
+                self::$_password = $infoconnect->password;
+            } else {
+                self::$_password = decoder($infoconnect->password);
+            }
+        }
+    }
+
 }

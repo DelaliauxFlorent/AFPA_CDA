@@ -2,6 +2,7 @@
 
 mkdir CSS HTML IMG JS PHP SQL
 echo "<?php echo 'Wesh Monde'; ?>" > index.php
+echo "<?php echo 'Créer le config.json'; ?>" > config.json
 
 cd CSS
 echo "<?php echo 'Wesh Sécurité'; ?>" > index.php
@@ -16,7 +17,6 @@ echo "<?php echo 'Wesh Sécurité'; ?>" > index.php
 cd ../PHP
 mkdir CONTROLLER MODEL VIEW
 echo "<?php echo 'Wesh Sécurité'; ?>" > index.php
-echo "<?php echo 'Créer le config.json'; ?>" > config.json
 cd CONTROLLER
 echo "<?php echo 'Wesh Sécurité'; ?>" > index.php
 echo "<?php echo 'Outils'; ?>" > Outils.php
