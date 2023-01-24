@@ -51,11 +51,11 @@ class PersonneManager{
     /**
      * Ajouter une personne
      *
-     * @param [string] $nom
-     * @param [string] $prenom
-     * @param [int] $codePostal
-     * @param [string] $adresse
-     * @param [string] $ville
+     * @param string|null $nom
+     * @param string|null $prenom
+     * @param integer|null $codePostal
+     * @param string $adresse
+     * @param string $ville
      * @return void
      */
     public static function AddPersonne(string $nom = null, string $prenom =null, int $codePostal =null, string $adresse, string $ville)
@@ -68,38 +68,75 @@ class PersonneManager{
         $stmt->bindValue(":codePostal",$codePostal,PDO::PARAM_INT);
         $stmt->bindValue(":adresse",$adresse,PDO::PARAM_STR);
         $stmt->bindValue(":ville",$ville,PDO::PARAM_STR);
-        $stmt->execute();
+        return $stmt->execute();
     }
 
+    /**
+     * Mise à jour d'une personne
+     *
+     * @param integer $id
+     * @param string|null $nom
+     * @param string|null $prenom
+     * @param integer|null $codePostal
+     * @param string|null $adresse
+     * @param string|null $ville
+     * @return void
+     */
     public static function UpdatePersonne(int $id, string $nom = null, string $prenom=null, int $codePostal=null, string $adresse = null, string $ville=null)
     {
         $champs=["nom", "prenom", "codePostal", "adresse", "ville"];
         $params=[$nom, $prenom, $codePostal, $adresse, $ville];
-        $liste=[];
+
+        //Création de la QUERY
         $sql = "UPDATE personnes SET ";
+        // - Compteur de modification
         $modif=0;
         for ($i=0; $i < count($params); $i++) { 
             if($params[$i]!=null){
-                $sql.=$champs[$i]."=:".$champs[$i].",";
+                $sql.=$champs[$i]."=:".$champs[$i].", ";
                 $liste[]=$i;
                 $modif++;
             }
         }
+        // Si au moins 1 modification =>
         if($modif!=0){
-            $sql=substr($sql, 0,-1)." WHERE id = :id";
-            var_dump($sql);
+            // on finalise la QUERY
+            $sql=substr($sql, 0, -2)." WHERE id = :id";
             $stmt = DbConnect::getDb()->prepare($sql);
-            for ($i=0; $i < count($liste); $i++) { 
-                $stmt->bindValue(":".$champ[$liste[$i]], $params[$liste[$i]], )
-            }
+            // On bind tous les paramètres nécessaires
             $stmt->bindValue(":id", $id, PDO::PARAM_INT);
-            //$stmt->bindValue(":nom", $nom, PDO::PARAM_STR);
-            $stmt->bindValue(":prenom", $prenom, PDO::PARAM_STR);
-            //$stmt->bindValue(":codePostal", $codePostal, PDO::PARAM_INT);
-            $stmt->bindValue(":adresse", $adresse, PDO::PARAM_STR);
-            $stmt->bindValue(":ville", $ville, PDO::PARAM_STR);
+            for ($i=0; $i < count($params); $i++) { 
+                if($params[$i]!=null){
+                    $var = ":".$champs[$i];
+                    if($champs[$i]=="codePostal"){
+                        $stmt->bindValue($var, $params[$i], PDO::PARAM_INT);
+                    }else{
+                        $stmt->bindValue($var, $params[$i], PDO::PARAM_STR);
+                    }
+                }
+            }
+            // et on execute la QUERY
             return $stmt->execute();            
         }
+        else{
+            // sinon, on retourne faux pour indiquer une erreur
+            return false;
+        }
+    }
+
+    /**
+     * Suppression d'une personne
+     *
+     * @param integer $id
+     * @return void
+     */
+    public static function DeletePersonne(int $id)
+    {
+        $stmt = DbConnect::getDb()->prepare("
+            DELETE FROM personnes WHERE id=:id
+        ");
+        $stmt->bindValue(":id", $id, PDO::PARAM_INT);        
+        return $stmt->execute();  
     }
 
 }

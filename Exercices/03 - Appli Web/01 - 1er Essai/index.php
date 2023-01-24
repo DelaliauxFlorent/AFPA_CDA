@@ -6,7 +6,6 @@ spl_autoload_register("ChargerClasse");
 //on active la connexion à la base de données
 Parametre::init();
 DbConnect::init();
-var_dump(PersonneManager::UpdatePersonne(4, null, "Christophe", null, "dfhgbjsbjs", "Rio"));
 
 var_dump(PersonneManager::GetAllPersonnes());
 echo "<br/><hr/><br/>";
