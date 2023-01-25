@@ -12,7 +12,9 @@ class PersonneManager{
     {
         $colonnes=["nom", "prenom"];
         $conditions=["id"=>[5,6]];
-        return DAO::select(null, self::TABLE, $conditions, null, null, false, true);
+        $orderby="nom, prenom DESC";
+        $limit="0,5";
+        return DAO::select(null, self::TABLE, null, $orderby, $limit, false, true);
     }
 
     /**

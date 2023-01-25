@@ -124,6 +124,16 @@ class DAO
             $sql = substr($sql, 0, -4);
         }
 
+        // Gestion du ORDER BY
+        if($orderBy!=null){
+            $sql.=" ORDER BY ".$orderBy;
+        }
+
+        // Gestion de la LIMIT
+        if($limit!=null){
+            $sql.=" LIMIT ".$limit;
+        }
+
         // Gestion du débug
         if ($debug) {
             var_dump($sql);
