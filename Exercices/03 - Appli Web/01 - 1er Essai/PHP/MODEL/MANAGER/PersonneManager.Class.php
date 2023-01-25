@@ -1,37 +1,18 @@
 <?php
 class PersonneManager{
-    ////////////////////////////////////
-    // Attributs
 
-    //private $_;
-
-    ////////////////////////////////////
-    #region Accesseurs
-
-    
-
-    #endregion Accesseurs
-    ////////////////////////////////////
+    private const TABLE = "Personnes";
 
     /**
      * Récupérer toutes les personnes
      *
-     * @return void
+     * @return Personnes[]
      */
     public static function GetAllPersonnes()
     {
-        /*
-        $stmt = DbConnect::getDb()->prepare("
-        SELECT * FROM personnes;
-        ");
-        $stmt->execute();
-        $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($result as $personne) {
-            $ListPersonnes[] = new Personnes($personne);
-        }
-        return $ListPersonnes;
-        */
-        return DAO::GetAll("Personnes");
+        $colonnes=["nom", "prenom"];
+        $conditions=["id"=>[5,6]];
+        return DAO::select(null, self::TABLE, $conditions, null, null, false, true);
     }
 
     /**
@@ -40,19 +21,10 @@ class PersonneManager{
      * @param integer $idVoulu
      * @return Personnes
      */
-    public static function GetPersonneById(int $idVoulu)
-    {
-        /*
-        $stmt = DbConnect::getDb()->prepare("
-        SELECT * FROM personnes WHERE id=:idVoulu
-        ");
-        $stmt->bindValue(':idVoulu', $idVoulu, PDO::PARAM_INT);
-        $stmt->execute();
-        $individu=new Personnes($stmt->fetch(PDO::FETCH_ASSOC));
-        return $individu;
-        */
-        return DAO::GetById("Personnes", $idVoulu);
-    }
+    // public static function GetPersonneById(int $idVoulu)
+    // {
+    //     return DAO::GetById(self::TABLE, $idVoulu);
+    // }
 
     /**
      * Ajouter une personne
@@ -62,69 +34,17 @@ class PersonneManager{
      */
     public static function AddPersonne(Personnes $personne)
     {
-        // $stmt = DbConnect::getDb()->prepare("
-        // INSERT INTO personnes VALUES (null, :nom, :prenom, :codePostal, :adresse, :ville)
-        // ");
-        // $stmt->bindValue(":nom",$nom,PDO::PARAM_STR);
-        // $stmt->bindValue(":prenom",$prenom,PDO::PARAM_STR);
-        // $stmt->bindValue(":codePostal",$codePostal,PDO::PARAM_INT);
-        // $stmt->bindValue(":adresse",$adresse,PDO::PARAM_STR);
-        // $stmt->bindValue(":ville",$ville,PDO::PARAM_STR);
-        // return $stmt->execute();
-        DAO::Create($personne);
+        return DAO::Create($personne);
     }
 
     /**
      * Mise à jour d'une personne
      *
-     * @param integer $id
-     * @param string|null $nom
-     * @param string|null $prenom
-     * @param integer|null $codePostal
-     * @param string|null $adresse
-     * @param string|null $ville
+     * @param Personnes $personne
      * @return void
      */
-    public static function UpdatePersonne($personne)
+    public static function UpdatePersonne(Personnes $personne)
     {
-        // $champs=Personnes::getNomsChamps();
-        // $params=[$nom, $prenom, $codePostal, $adresse, $ville];
-
-        // //Création de la QUERY
-        // $sql = "UPDATE personnes SET ";
-        // // - Compteur de modification
-        // $modif=0;
-        // for ($i=0; $i < count($params); $i++) { 
-        //     if($params[$i]!=null){
-        //         $sql.=$champs[$i]."=:".$champs[$i].", ";
-        //         $liste[]=$i;
-        //         $modif++;
-        //     }
-        // }
-        // // Si au moins 1 modification =>
-        // if($modif!=0){
-        //     // on finalise la QUERY
-        //     $sql=substr($sql, 0, -2)." WHERE id = :id";
-        //     $stmt = DbConnect::getDb()->prepare($sql);
-        //     // On bind tous les paramètres nécessaires
-        //     $stmt->bindValue(":id", $id, PDO::PARAM_INT);
-        //     for ($i=0; $i < count($params); $i++) { 
-        //         if($params[$i]!=null){
-        //             $var = ":".$champs[$i];
-        //             if($champs[$i]=="codePostal"){
-        //                 $stmt->bindValue($var, $params[$i], PDO::PARAM_INT);
-        //             }else{
-        //                 $stmt->bindValue($var, $params[$i], PDO::PARAM_STR);
-        //             }
-        //         }
-        //     }
-        //     // et on execute la QUERY
-        //     return $stmt->execute();            
-        // }
-        // else{
-        //     // sinon, on retourne faux pour indiquer une erreur
-        //     return false;
-        // }
         return DAO::Update($personne);
     }
 
@@ -136,11 +56,6 @@ class PersonneManager{
      */
     public static function DeletePersonne(Personnes $personne)
     {
-        // $stmt = DbConnect::getDb()->prepare("
-        //     DELETE FROM personnes WHERE id=:id
-        // ");
-        // $stmt->bindValue(":id", $id, PDO::PARAM_INT);        
-        // return $stmt->execute();  
         return DAO::Delete($personne);
     }
 

@@ -1,5 +1,6 @@
 <?php
-class Personnes{
+class Personnes
+{
     ////////////////////////////////////
     // Attributs
 
@@ -9,8 +10,6 @@ class Personnes{
     private $_codePostal;
     private $_adresse;
     private $_ville;
-
-    private $_nomsChamps = ["id", "nom", "prenom", "codePostal", "adresse", "ville"];
 
     ////////////////////////////////////
     #region Accesseurs
@@ -30,7 +29,7 @@ class Personnes{
         return $this->_nom;
     }
 
-    public function setNom(string $nom=null)
+    public function setNom(string $nom = null)
     {
         $this->_nom = $nom;
     }
@@ -40,7 +39,7 @@ class Personnes{
         return $this->_prenom;
     }
 
-    public function setPrenom(string $prenom=null)
+    public function setPrenom(string $prenom = null)
     {
         $this->_prenom = $prenom;
     }
@@ -75,10 +74,15 @@ class Personnes{
         $this->_ville = $ville;
     }
 
-    public function getNomsChamps()
+    public function getChamps()
     {
-        return $this->_nomsChamps;
+        $array = get_object_vars($this);
+        foreach ($array as $key => $value) {
+            $listeChamps[]=ltrim($key, "_");
+        }
+        return $listeChamps;
     }
+
     #endregion Accesseurs
     ////////////////////////////////////
     // Constructeur
@@ -93,8 +97,7 @@ class Personnes{
 
     public function hydrate($data)
     {
-        foreach ($data as $key => $value)
-        {
+        foreach ($data as $key => $value) {
             $methode = "set" . ucfirst($key); //ucfirst met la 1ere lettre en majuscule
             if (is_callable(([$this, $methode]))) // is_callable verifie que la methode existe
             {
@@ -103,9 +106,6 @@ class Personnes{
         }
     }
 
-    ////////////////////////////////////
-    // Autres méthodes
-
     /**
     * Transforme l'objet en chaine de caractères
     *
@@ -113,35 +113,13 @@ class Personnes{
     */
     public function __toString()
     {
-        return "";
+        $string=get_class($this).":<br />";
+        $liste=$this->getChamps();
+        foreach ($liste as $key=>$value) {
+            $get = "get" . ucfirst($liste[$key]);
+            $get = $this->$get();
+            $string.=" - ".$value." = ".$get.";<br />";
+        }
+        return $string;
     }
-
-    /**
-    * Renvoi vrai si l'objet en paramètre est égal à l'objet appelant
-    *
-    * @param [type] $obj
-    * @return bool
-    */
-    public function equalsTo($obj)
-    {
-        return true;
-    }
-
-    /**
-    * Compare 2 objets
-    * Renvoi 1 si le 1er est >
-    *        0 si ils sont égaux
-    *        -1 si le 1er est <
-    *
-    * @param [type] $obj1
-    * @param [type] $obj2
-    * @return void
-    */
-    public static function compareTo($obj1, $obj2)
-    {
-        return 0;
-    }
-
-    
-
 }
