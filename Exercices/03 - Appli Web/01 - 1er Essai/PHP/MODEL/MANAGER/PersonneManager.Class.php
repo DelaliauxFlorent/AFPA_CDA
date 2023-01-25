@@ -38,7 +38,7 @@ class PersonneManager{
      * Récupérer une personne précise
      *
      * @param integer $idVoulu
-     * @return void
+     * @return Personnes
      */
     public static function GetPersonneById(int $idVoulu)
     {
@@ -85,62 +85,63 @@ class PersonneManager{
      * @param string|null $ville
      * @return void
      */
-    public static function UpdatePersonne(int $id, string $nom = null, string $prenom=null, int $codePostal=null, string $adresse = null, string $ville=null)
+    public static function UpdatePersonne($personne)
     {
-        $champs=Personnes::getNomsChamps();
-        $params=[$nom, $prenom, $codePostal, $adresse, $ville];
+        // $champs=Personnes::getNomsChamps();
+        // $params=[$nom, $prenom, $codePostal, $adresse, $ville];
 
-        //Création de la QUERY
-        $sql = "UPDATE personnes SET ";
-        // - Compteur de modification
-        $modif=0;
-        for ($i=0; $i < count($params); $i++) { 
-            if($params[$i]!=null){
-                $sql.=$champs[$i]."=:".$champs[$i].", ";
-                $liste[]=$i;
-                $modif++;
-            }
-        }
-        // Si au moins 1 modification =>
-        if($modif!=0){
-            // on finalise la QUERY
-            $sql=substr($sql, 0, -2)." WHERE id = :id";
-            $stmt = DbConnect::getDb()->prepare($sql);
-            // On bind tous les paramètres nécessaires
-            $stmt->bindValue(":id", $id, PDO::PARAM_INT);
-            for ($i=0; $i < count($params); $i++) { 
-                if($params[$i]!=null){
-                    $var = ":".$champs[$i];
-                    if($champs[$i]=="codePostal"){
-                        $stmt->bindValue($var, $params[$i], PDO::PARAM_INT);
-                    }else{
-                        $stmt->bindValue($var, $params[$i], PDO::PARAM_STR);
-                    }
-                }
-            }
-            // et on execute la QUERY
-            return $stmt->execute();            
-        }
-        else{
-            // sinon, on retourne faux pour indiquer une erreur
-            return false;
-        }
+        // //Création de la QUERY
+        // $sql = "UPDATE personnes SET ";
+        // // - Compteur de modification
+        // $modif=0;
+        // for ($i=0; $i < count($params); $i++) { 
+        //     if($params[$i]!=null){
+        //         $sql.=$champs[$i]."=:".$champs[$i].", ";
+        //         $liste[]=$i;
+        //         $modif++;
+        //     }
+        // }
+        // // Si au moins 1 modification =>
+        // if($modif!=0){
+        //     // on finalise la QUERY
+        //     $sql=substr($sql, 0, -2)." WHERE id = :id";
+        //     $stmt = DbConnect::getDb()->prepare($sql);
+        //     // On bind tous les paramètres nécessaires
+        //     $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+        //     for ($i=0; $i < count($params); $i++) { 
+        //         if($params[$i]!=null){
+        //             $var = ":".$champs[$i];
+        //             if($champs[$i]=="codePostal"){
+        //                 $stmt->bindValue($var, $params[$i], PDO::PARAM_INT);
+        //             }else{
+        //                 $stmt->bindValue($var, $params[$i], PDO::PARAM_STR);
+        //             }
+        //         }
+        //     }
+        //     // et on execute la QUERY
+        //     return $stmt->execute();            
+        // }
+        // else{
+        //     // sinon, on retourne faux pour indiquer une erreur
+        //     return false;
+        // }
+        return DAO::Update($personne);
     }
 
     /**
      * Suppression d'une personne
      *
-     * @param integer $id
+     * @param Personnes $personne
      * @return void
      */
-    public static function DeletePersonne(int $id)
+    public static function DeletePersonne(Personnes $personne)
     {
         // $stmt = DbConnect::getDb()->prepare("
         //     DELETE FROM personnes WHERE id=:id
         // ");
         // $stmt->bindValue(":id", $id, PDO::PARAM_INT);        
         // return $stmt->execute();  
-        return DAO::Delete("Personnes", $id);
+        return DAO::Delete($personne);
     }
 
 }

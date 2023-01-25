@@ -89,6 +89,59 @@ class DAO{
     }
 
     /**
+     * Mise à jour d'une personne
+     *
+     * @param integer $id
+     * @param string|null $nom
+     * @param string|null $prenom
+     * @param integer|null $codePostal
+     * @param string|null $adresse
+     * @param string|null $ville
+     * @return void
+     */
+    public static function Update($objet)
+    {
+        $champs=Personnes::getNomsChamps();
+        $params=[$nom, $prenom, $codePostal, $adresse, $ville];
+
+        //Création de la QUERY
+        $sql = "UPDATE personnes SET ";
+        // - Compteur de modification
+        $modif=0;
+        for ($i=0; $i < count($params); $i++) { 
+            if($params[$i]!=null){
+                $sql.=$champs[$i]."=:".$champs[$i].", ";
+                $liste[]=$i;
+                $modif++;
+            }
+        }
+        // Si au moins 1 modification =>
+        if($modif!=0){
+            // on finalise la QUERY
+            $sql=substr($sql, 0, -2)." WHERE id = :id";
+            $stmt = DbConnect::getDb()->prepare($sql);
+            // On bind tous les paramètres nécessaires
+            $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+            for ($i=0; $i < count($params); $i++) { 
+                if($params[$i]!=null){
+                    $var = ":".$champs[$i];
+                    if($champs[$i]=="codePostal"){
+                        $stmt->bindValue($var, $params[$i], PDO::PARAM_INT);
+                    }else{
+                        $stmt->bindValue($var, $params[$i], PDO::PARAM_STR);
+                    }
+                }
+            }
+            // et on execute la QUERY
+            return $stmt->execute();            
+        }
+        else{
+            // sinon, on retourne faux pour indiquer une erreur
+            return false;
+        }
+    }
+
+    /**
      * Suppression d'un objet
      *
      * @param string $table
@@ -102,8 +155,9 @@ class DAO{
             DELETE FROM ".$table." WHERE id=:id
         ");
         $champs=$objet->getNomsChamps();
-        $get="get".ucfirst($objet->getNom);
-        $stmt->bindValue(":id", $id, PDO::PARAM_INT);        
+        $get="get".ucfirst($champs[0]);        
+        $get=$objet->$get();
+        $stmt->bindValue(":id", $get, PDO::PARAM_INT);        
         return $stmt->execute();  
     }
 }

@@ -9,9 +9,13 @@ DbConnect::init();
 
 echo "<br/><hr/><br/>";
 $params=["nom"=>"Toto", "prenom"=>"Tutu", "codePostal"=>null, "adresse"=>"sfjhbsb", "ville"=>"jdsfhjsegdjh"];
-$individu= new Personnes($params);
-var_dump(PersonneManager::AddPersonne($individu));
+
+var_dump($individu);
 echo "<br/><hr/><br/>";
+//var_dump(PersonneManager::GetAllPersonnes());
+
+echo "<br/><hr/><br/>";
+
 var_dump(PersonneManager::GetAllPersonnes());
 // echo "<br/><hr/><br/>";
 // var_dump(PersonneManager::GetPersonneById(3));
