@@ -1,5 +1,5 @@
 <?php
-class Personne{
+class Personnes{
     ////////////////////////////////////
     // Attributs
 
@@ -10,6 +10,8 @@ class Personne{
     private $_adresse;
     private $_ville;
 
+    private $_nomsChamps = ["id", "nom", "prenom", "codePostal", "adresse", "ville"];
+
     ////////////////////////////////////
     #region Accesseurs
 
@@ -18,7 +20,7 @@ class Personne{
         return $this->_id;
     }
 
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->_id = $id;
     }
@@ -28,7 +30,7 @@ class Personne{
         return $this->_nom;
     }
 
-    public function setNom($nom)
+    public function setNom(string $nom=null)
     {
         $this->_nom = $nom;
     }
@@ -38,7 +40,7 @@ class Personne{
         return $this->_prenom;
     }
 
-    public function setPrenom($prenom)
+    public function setPrenom(string $prenom=null)
     {
         $this->_prenom = $prenom;
     }
@@ -48,7 +50,7 @@ class Personne{
         return $this->_codePostal;
     }
 
-    public function setCodePostal($codePostal)
+    public function setCodePostal(int $codePostal = null)
     {
         $this->_codePostal = $codePostal;
     }
@@ -58,7 +60,7 @@ class Personne{
         return $this->_adresse;
     }
 
-    public function setAdresse($adresse)
+    public function setAdresse(string $adresse)
     {
         $this->_adresse = $adresse;
     }
@@ -68,11 +70,15 @@ class Personne{
         return $this->_ville;
     }
 
-    public function setVille($ville)
+    public function setVille(string $ville)
     {
         $this->_ville = $ville;
     }
 
+    public function getNomsChamps()
+    {
+        return $this->_nomsChamps;
+    }
     #endregion Accesseurs
     ////////////////////////////////////
     // Constructeur
@@ -137,4 +143,5 @@ class Personne{
     }
 
     
+
 }
