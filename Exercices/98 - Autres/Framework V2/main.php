@@ -19,15 +19,6 @@ $sourceIndex="<?php echo \"<!DOCTYPE html>
 
 </html>\";";
 #endregion Index.php
-#region Config.json
-$sourceConfig='{
-    "host": "localhost",
-    "port": "3306",
-    "base": "database",
-    "user": "root",
-    "password": ""
-}';
-#endregion
 #region DAO.Class.php
 $sourceDAO='
 <?php
@@ -314,48 +305,48 @@ class DbConnect
 $sourceOutils="
 <?php
 /* Autoload permet de charger toutes les classes necessaires */
-function ChargerClasse($classe)
+function ChargerClasse(\$classe)
 {
-    if (file_exists(\"PHP/CONTROLLER/CLASSE/\" . $classe . \".Class.php\")) {
-        require \"PHP/CONTROLLER/CLASSE/\" . $classe . \".Class.php\";
+    if (file_exists(\"PHP/CONTROLLER/CLASSE/\" . \$classe . \".Class.php\")) {
+        require \"PHP/CONTROLLER/CLASSE/\" . \$classe . \".Class.php\";
     }
-    if (file_exists(\"PHP/MODEL/MANAGER/\" . $classe . \".Class.php\")) {
-        require \"PHP/MODEL/MANAGER/\" . $classe . \".Class.php\";
+    if (file_exists(\"PHP/MODEL/MANAGER/\" . \$classe . \".Class.php\")) {
+        require \"PHP/MODEL/MANAGER/\" . \$classe . \".Class.php\";
     }
 }
 
 
-function crypte($mot) //fonction qui crypte le mot de passe
+function crypte(\$mot) //fonction qui crypte le mot de passe
 {
-    return md5(md5($mot) . strlen($mot));
+    return md5(md5(\$mot) . strlen(\$mot));
 }
 // A coder pour décoder les informations base de données dans le json
-function decode($texte)
+function decode(\$texte)
 {
-    return $texte;
+    return \$texte;
 }
 
-function decoder($string)
+function decoder(\$string)
 {
-    $encoded = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-    $decoded = ['p', 'v', 'x', 's', 'z', 'd', 'f', 'g', 'u', 'h', 'j', 'k', 'l', 'b', 'i', 'o', 'm', 'e', 'q', 'r', 'y', 'c', 'n', 'w', 't', 'a', 'P', 'V', 'X', 'S', 'Z', 'D', 'F', 'G', 'U', 'H', 'J', 'K', 'L', 'B', 'I', 'O', 'M', 'E', 'Q', 'R', 'Y', 'C', 'N', 'W', 'T', 'A'];
-    for ($i=0; $i < strlen($string); $i++) {
-        if(in_array($string[$i], $encoded)){
-            $index=array_search($string[$i], $encoded);
-            $string[$i]=$decoded[$index];
+    \$encoded = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+    \$decoded = ['p', 'v', 'x', 's', 'z', 'd', 'f', 'g', 'u', 'h', 'j', 'k', 'l', 'b', 'i', 'o', 'm', 'e', 'q', 'r', 'y', 'c', 'n', 'w', 't', 'a', 'P', 'V', 'X', 'S', 'Z', 'D', 'F', 'G', 'U', 'H', 'J', 'K', 'L', 'B', 'I', 'O', 'M', 'E', 'Q', 'R', 'Y', 'C', 'N', 'W', 'T', 'A'];
+    for (\$i=0; \$i < strlen(\$string); \$i++) {
+        if(in_array(\$string[\$i], \$encoded)){
+            \$index=array_search(\$string[\$i], \$encoded);
+            \$string[\$i]=\$decoded[\$index];
         }
     }
-    return $string;
+    return \$string;
 }
 
 /**
  * Vérifie si la chaîne contient un \";\", indiquant la possibilité de tentative d'injection
  *
- * @param string $string
+ * @param string \$string
  * @return boolean
  */
-function DetectInject($string):bool{
-    if(strpos($string, \";\") !== false){
+function DetectInject(\$string):bool{
+    if(strpos(\$string, \";\") !== false){
         return true;
     }
     return false;
@@ -426,15 +417,32 @@ class Parametre
 ';
 #endregion
 
+/**
+ * Génération de l'arborescence (avec index.php dans chaque dossier pour la sécurité)
+ */
 foreach ($listeDossiers as $dossier) {
     if (!is_dir("{$destination}/{$dossier}")) {
         mkdir("{$destination}/{$dossier}", 0777, true);
         file_put_contents("{$destination}/{$dossier}/index.php", $sourceIndex);
     }
 }
+/**
+ * Création de tous les fichiers devant être présent dans tous les cas
+ */
 file_put_contents("{$destination}/index.php", $sourceIndex);
-file_put_contents("{$destination}/config.json", $sourceConfig);
 file_put_contents("{$destination}/{$listeDossiers[11]}/DAO.Class.php", $sourceDAO);
 file_put_contents("{$destination}/{$listeDossiers[11]}/DbConnect.Class.php", $sourceDbConnect);
 file_put_contents("{$destination}/{$listeDossiers[6]}/Outils.php", $sourceOutils);
 file_put_contents("{$destination}/{$listeDossiers[8]}/Parametre.Class.php", $sourceParametre);
+
+/**
+ * Générer les classes à partir des tables
+ */
+include "./PHP/CONTROLLER/Outils.php";
+spl_autoload_register("ChargerClasse");
+Parametre::init();
+DbConnect::init();
+
+$stmtListeTables=DbConnect::getDb()->prepare("SHOW TABLES;");
+$stmtListeTables->execute();
+$resultListeTables = $stmtListeTables->fetchAll(PDO::FETCH_ASSOC);
