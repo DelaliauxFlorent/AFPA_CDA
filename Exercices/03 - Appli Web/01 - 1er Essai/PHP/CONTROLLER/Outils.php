@@ -34,7 +34,13 @@ function decoder($string)
     return $string;
 }
 
-function DetectInject($string){
+/**
+ * Vérifie si la chaîne contient un ";", indiquant la possibilité de tentative d'injection
+ *
+ * @param string $string
+ * @return boolean
+ */
+function DetectInject($string):bool{
     if(strpos($string, ";") !== false){
         return true;
     }
