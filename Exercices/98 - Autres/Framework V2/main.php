@@ -438,6 +438,7 @@ file_put_contents("{$destination}/{$listeDossiers[8]}/Parametre.Class.php", $sou
 /**
  * Générer les classes à partir des tables
  */
+/*
 include "./PHP/CONTROLLER/Outils.php";
 spl_autoload_register("ChargerClasse");
 Parametre::init();
@@ -446,3 +447,9 @@ DbConnect::init();
 $stmtListeTables=DbConnect::getDb()->prepare("SHOW TABLES;");
 $stmtListeTables->execute();
 $resultListeTables = $stmtListeTables->fetchAll(PDO::FETCH_ASSOC);
+foreach ($resultListeTables as $table) {
+    $tableName=$table["Tables_in_modelevoitures"];
+    var_dump($tableName);
+    CreateClasse($tableName);
+}
+DbConnect::close();*/

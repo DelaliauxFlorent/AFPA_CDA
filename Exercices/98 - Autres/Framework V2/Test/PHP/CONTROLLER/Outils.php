@@ -51,22 +51,79 @@ function DetectInject($string): bool
 
 function CreateClasse($table)
 {
+    $typePossible=["CHAR"=>0,"VARCHAR"=>0,"BINARY"=>0,"VARBINARY"=>0,"TINYBLOB"=>0,"TINYTEXT"=>0,"BLOB"=>0, "TEXT"=>0,"MEDIUMBLOB"=>0, "MEDIUMTEXT"=>0,"LONGBLOB"=>0, "LONGTEXT"=>0, "ENUM"=>0, "SET"=>0,"DATE"=>0,"DATETIME"=>0,"DATE/TIME"=>0,"TIMESTAMP"=>0, "TIME"=>0,"YEAR"=>0,"NCHAR"=>0,"NVARCHAR"=>0,"NTEXT"=>0,"VARBINARY"=>0,"IMAGE"=>0,"DATETIME2"=>0,"SMALLDATETIME"=>0,"DATETIMEOFFSET"=>0,"MEMO"=>0,
+    "BIT"=>1,"TINYINT"=>1,"INT"=>1,"SMALLINT"=>1,"MEDIUMINT"=>1,"BIGINT"=>1,"INTEGER"=>1,"BYTE"=>1,"LONG"=>1,
+    "FLOAT"=>2,"DOUBLE PRECISION"=>2,"DOUBLE"=>2,"DEC"=>2,"DECIMAL"=>2,"NUMERIC"=>2,"SMALLMONEY"=>2,"MONEY"=>2,"REAL"=>2,"SINGLE"=>2,"CURRENCY"=>2,
+    "BOOL"=>3, "BOOLEAN"=>3, "YES/NO"=>3];
+    $typePHP=["string", "int", "float", "bool"];
     $stmtListAttributs = DbConnect::getDb()->prepare("DESCRIBE ".$table);
     $stmtListAttributs->execute();
     $resultListeColonnes = $stmtListAttributs->fetchAll(PDO::FETCH_ASSOC);
-    var_dump($resultListeColonnes);
-    $codeClassse='
-    <?php
-        class {$table}
-        {
-            ////////////////////////////////////
-            // Attributs
+    $codeClasse='
+<?php
+class '.ucfirst($table).'
+{
+    ////////////////////////////////////
+    // Attributs
 
     ';
     foreach ($resultListeColonnes as $colonne) {
-        $codeClassse.='
-        private $_'.$colonne["Field"].';
-        ';
+        $codeClasse.='private $_'.$colonne["Field"].';
+    ';
     }
-    var_dump($codeClassse);
+    $codeClasse.='
+    ////////////////////////////////////
+    #region Accesseurs
+    ';
+    foreach ($resultListeColonnes as $colonne) {
+        foreach ($typePossible as $key => $value) {
+            $typage=strtoupper(explode("(",$colonne["Type"])[0]);
+            if($typage== $key)
+            {
+                $typeAttribut=$typePHP[$value];
+            }
+        }
+        $nullable="";
+        if($colonne["Null"]!="NO"){
+            $nullable=" = null";
+        }
+        
+        $codeClasse.='
+    public function get'.ucfirst($colonne["Field"]).'()
+    {
+        return $this->_'.$colonne["Field"].';
+    }
+
+    public function set'.ucfirst($colonne["Field"]).'('.$typeAttribut.' $'.$colonne["Field"].$nullable.')
+    {
+        $this->_'.$colonne["Field"].' = $'.$colonne["Field"].';
+    }
+    ';
+    }
+    $codeClasse.='
+    #endregion Accesseurs
+    ////////////////////////////////////
+    // Constructeur
+
+    public function __construct(array $options = [])
+    {
+        if (!empty($options)) // empty : renvoi vrai si le tableau est vide
+        {
+            $this->hydrate($options);
+        }
+    }
+
+    public function hydrate($data)
+    {
+        foreach ($data as $key => $value) {
+            $methode = "set" . ucfirst($key); //ucfirst met la 1ere lettre en majuscule
+            if (is_callable(([$this, $methode]))) // is_callable verifie que la methode existe
+            {
+                $this->$methode($value);
+            }
+        }
+    }
+}
+';
+    file_put_contents("PHP/CONTROLLER/CLASSE/".ucfirst($table).".php", $codeClasse);
 }

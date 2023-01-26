@@ -7,9 +7,8 @@ DbConnect::init();
 $stmtListeTables=DbConnect::getDb()->prepare("SHOW TABLES;");
 $stmtListeTables->execute();
 $resultListeTables = $stmtListeTables->fetchAll(PDO::FETCH_ASSOC);
-var_dump($resultListeTables);
+$varTableIn = "Tables_in_".Parametre::getBase();
 foreach ($resultListeTables as $table) {
-    $tableName=$table["Tables_in_modelevoitures"];
-    var_dump($tableName);
+    $tableName=$table[$varTableIn];
     CreateClasse($tableName);
 }
