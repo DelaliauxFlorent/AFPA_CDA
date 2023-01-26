@@ -1,0 +1,36 @@
+﻿<Window x:Class="ShuffleStagiaire.Views.DetailsStagiaires"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ShuffleStagiaire.Views"
+        mc:Ignorable="d"
+        Title="Details des Stagiaires" Height="450" Width="450" Background="#FF7A97FB">
+    <Grid x:Name="gridDetailsStagiaires">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+        <Label x:Name="lblDetailsStagiaires" Content="Titre" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Style="{DynamicResource CenteredLbl}" FontSize="30" FontWeight="Bold"></Label>
+        <Label x:Name="lblIdentifiantStag" Content="Identifiant :" Grid.Row="3" Grid.Column="1" Style="{DynamicResource CenteredLbl}" HorizontalContentAlignment="Right"></Label>
+        <TextBox x:Name="txtbxIdentifiantStag" Grid.Row="3" Grid.Column="3" Style="{DynamicResource CenteredTxtBx}"></TextBox>
+        <Label x:Name="lblNomStag" Content="Nom :" Grid.Row="5" Grid.Column="1" Style="{DynamicResource CenteredLbl}" HorizontalContentAlignment="Right"></Label>
+        <TextBox x:Name="txtbxNomStag" Grid.Row="5" Grid.Column="3" Style="{DynamicResource CenteredTxtBx}"></TextBox>
+        <Button x:Name="btnCancelDetStag" Content="Annuler" Grid.Row="7" Grid.Column="1" Style="{DynamicResource RoundCorner}" Click="btn_Click"></Button>
+        <Button x:Name="btnActionDetStag" Content="Action" Grid.Row="7" Grid.Column="3" Style="{DynamicResource RoundCorner}" Click="btn_Click"></Button>
+    </Grid>
+</Window>
