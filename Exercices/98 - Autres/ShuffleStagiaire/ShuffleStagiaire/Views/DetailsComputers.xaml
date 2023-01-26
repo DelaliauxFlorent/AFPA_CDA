@@ -31,7 +31,11 @@
         </Grid.RowDefinitions>
         <Label x:Name="lblDetailsComputers" Content="Titre" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Style="{DynamicResource CenteredLbl}" FontSize="30" FontWeight="Bold"></Label>
         <Label Content="Position :" Grid.Row="3" Grid.Column="1" Style="{DynamicResource CenteredLbl}" HorizontalContentAlignment="Right"></Label>
-        <TextBox x:Name="txtbxPosition" Grid.Row="3" Grid.Column="3" Style="{DynamicResource CenteredTxtBx}"></TextBox>
+        <Label x:Name="lblPosition" Grid.Row="3" Grid.Column="3" Style="{DynamicResource CenteredLbl}">
+            <Label.Background>
+                <SolidColorBrush Color="White" Opacity="0.5"/>
+            </Label.Background>
+        </Label>
         <Label Content="Patrimoine :" Grid.Row="5" Grid.Column="1" Style="{DynamicResource CenteredLbl}" HorizontalContentAlignment="Right"></Label>
         <TextBox x:Name="txtbxPatrimoine" Grid.Row="5" Grid.Column="3" Style="{DynamicResource CenteredTxtBx}"></TextBox>
         <Label Content="IP :" Grid.Row="7" Grid.Column="1" Style="{DynamicResource CenteredLbl}" HorizontalContentAlignment="Right"></Label>

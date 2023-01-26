@@ -83,9 +83,11 @@
                 </Grid.RowDefinitions>
                 <DataGrid x:Name="dtgrdComputers" Grid.Row="1" Grid.Column="1" IsReadOnly="True" SelectionMode="Single" AlternatingRowBackground="AliceBlue" AutoGenerateColumns="False" FlowDirection="LeftToRight" SelectionChanged="dtgrdComputers_SelectionChanged">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Position" Binding="{Binding Path=Position}" Width="1*"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Place" Binding="{Binding Path=Position}" Width="1*"></DataGridTextColumn>
                         <DataGridTextColumn Header="Patrimoine" Binding="{Binding Path=Patrimoine}" Width="2*"></DataGridTextColumn>
                         <DataGridTextColumn Header="IP" Binding="{Binding Path=IP}" Width="2*"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Stagiaire" Binding="{Binding Path=Stagiaire.Nom}" Width="2*"></DataGridTextColumn>
+                        <DataGridCheckBoxColumn Header="Actif" Binding="{Binding Path=Utilise}" Width="1*"></DataGridCheckBoxColumn>
                     </DataGrid.Columns>
                 </DataGrid>
                 <Grid x:Name="gridBtnsComputers" Grid.Row="3" Grid.Column="1" FlowDirection="LeftToRight">
@@ -96,9 +98,7 @@
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="3*" />
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="btnAddOrdi" Grid.Column="0" Content="Ajouter" Click="btnComp_Click" Style="{DynamicResource RoundCorner}"></Button>
                     <Button x:Name="btnModifOrdi" Grid.Column="2" Content="Modifier" Click="btnComp_Click" Style="{DynamicResource RoundCorner}"></Button>
-                    <Button x:Name="btnSuppOrdi" Grid.Column="4" Content="Supprimer" Click="btnComp_Click" Style="{DynamicResource RoundCorner}"></Button>
                 </Grid>
             </Grid>
         </GroupBox>

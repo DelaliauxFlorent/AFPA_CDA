@@ -23,6 +23,7 @@ namespace ShuffleStagiaire.Data.Models
         /// IP de l'ordinateur
         /// </summary>
         public string IP { get; set; }
+        public bool Utilise { get; set; }
         /// <summary>
         /// Stagiaire assigné à l'ordinateur
         /// </summary>
@@ -32,19 +33,27 @@ namespace ShuffleStagiaire.Data.Models
         /// Constructeur de la classe
         /// </summary>
         /// <param name="position"></param>
-        /// <param name="reference"></param>
+        /// <param name="patrimoine"></param>
         /// <param name="iP"></param>
-        public Computers(int position, int patrimoine, string iP)
+        public Computers(int position, int patrimoine, string iP, bool utilise)
         {
             Position = position;
             Patrimoine = patrimoine;
             IP = iP;
+            Utilise = utilise;
             Stagiaire = new Stagiaires();
         }
 
         public Computers()
         {
-
+            Position = 0;
+            Patrimoine = 999;
+            IP = "10.xxx.xxx.xxx";
+            Utilise = false;
+            Stagiaire = new Stagiaires();
         }
+
     }
 }
+
+

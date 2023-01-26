@@ -67,7 +67,6 @@ namespace ShuffleStagiaire.Views
             btnModifStagiaire.IsEnabled = false;
             btnSuppStagiaire.IsEnabled = false;
             btnModifOrdi.IsEnabled = false;
-            btnSuppOrdi.IsEnabled = false;
         }
 
         private void dtgrdStagiaires_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -75,7 +74,6 @@ namespace ShuffleStagiaire.Views
             btnModifStagiaire.IsEnabled = true;
             btnSuppStagiaire.IsEnabled = true;
             btnModifOrdi.IsEnabled = false;
-            btnSuppOrdi.IsEnabled = false;
         }
 
         private void btnComp_Click(object sender, RoutedEventArgs e)
@@ -100,7 +98,6 @@ namespace ShuffleStagiaire.Views
         private void dtgrdComputers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             btnModifOrdi.IsEnabled = true;
-            btnSuppOrdi.IsEnabled = true;
             btnModifStagiaire.IsEnabled = false;
             btnSuppStagiaire.IsEnabled = false;
         }

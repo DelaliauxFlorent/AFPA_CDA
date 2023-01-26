@@ -26,5 +26,24 @@ namespace ShuffleStagiaire.Data.Services
             string json = JsonConvert.SerializeObject(ListingComp);
             FichiersJsons.UpdateListeFileJSON(json, PathListComp);
         }
+        public static void ModifierOrdi(Computers ordi)
+        {
+            string json = JsonConvert.SerializeObject(ListingComp);
+            FichiersJsons.UpdateListeFileJSON(json, PathListComp);
+        }
+
+        public static void SupprimerOrdi(Computers ordi)
+        {
+            ListingComp.Remove(ordi);
+            string json = JsonConvert.SerializeObject(ListingComp);
+            FichiersJsons.UpdateListeFileJSON(json, PathListComp);
+        }
+
+        public static Computers GetOrdiByStag(Stagiaires stag)
+        {
+            //Plante car 1 ordi de la liste ne possède pas de stagiaire => null execption
+            Computers ordiTemp = ListingComp.FirstOrDefault(x => x.Stagiaire.IdStagiaire == stag.IdStagiaire);
+            return ordiTemp;
+        }
     }
 }
