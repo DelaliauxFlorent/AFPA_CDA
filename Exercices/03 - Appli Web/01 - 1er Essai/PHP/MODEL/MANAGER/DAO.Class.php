@@ -76,9 +76,11 @@ class DAO
      */
     public static function select(?array $nomColonnes = null, string $table, array $conditions = null, string $orderBy = null, string $limit = null, bool $api = false, bool $debug = false)
     {
-        $sql = "SELECT ";
 
-        // Gestion des colonnes
+        $sql = "SELECT ";
+        /**
+         * Gestion des colonnes
+         */
         if ($nomColonnes != null) {
             for ($i = 0; $i < count($nomColonnes); $i++) {
                 $sql .= $nomColonnes[$i] . ", ";
@@ -87,64 +89,102 @@ class DAO
         } else {
             $sql .= "*";
         }
-
-        // Gestion de la table
+        /**
+         * Gestion de la table
+         */
         $sql .= " FROM " . $table;
-
-        // Gestion des conditions
+        /**
+         * Récupération de la liste des colonnes
+         */
+        $tmp = new $table();
+        $champs = $tmp->getChamps();
+        unset($tmp);
+        /**
+         * Gestion des conditions
+         */
         if ($conditions != null) {
             $sql .= " WHERE";
             foreach ($conditions as $key => $value) {
+                /**
+                 * Cas où la condition est: NomColonne IN (X,Y,Z,etc...)
+                 */
                 if (is_array($value)) {
-                    $sql.=" ".$key." IN (";
+                    $sql .= " " . $key . " IN (";
                     foreach ($value as $key2 => $value2) {
-                        $sql .= $value2.", ";
+                        $sql .= $value2 . ", ";
                     }
-                    $sql = substr($sql, 0, -2).") AND";
-                }elseif($key=="fullText"){
-                    $tmp=new $table();
-                    $champs=$tmp->getChamps();
-                    for ($i=1; $i < count($champs); $i++) { 
-                        $sql.=" ".$champs[$i]." LIKE \"%".$value."%\" AND";
+                    $sql = substr($sql, 0, -2) . ") AND";
+                }
+                /**
+                 * Cas où l'on cherche une valeur dans tous les champs possibles
+                 */
+                elseif ($key == "fullText") {
+                    $sql .= "(";
+                    for ($i = 1; $i < count($champs); $i++) {
+                        $sql .= " " . $champs[$i] . " LIKE \"%" . $value . "%\" OR";
                     }
-                }                 
-                else {
-                    if(strpos($value, "%")!==false){
-                        $sql.=" ".$key." LIKE \"".$value."\" AND";
+                    $sql = substr($sql, 0, -3) . ") AND";
+                } else {
+                    /**
+                     * Cas où l'on cherche les entrées contiennent la chaîne de caractères
+                     */
+                    if (strpos($value, "%") !== false) {
+                        $sql .= " " . $key . " LIKE \"" . $value . "\" AND";
                     }
-                    elseif(strpos($value, "->")!==false){
-                        $betweenArray=explode("->", $value);
-                        $sql.=" ".$key." BETWEEN ".$betweenArray[0]." AND ".$betweenArray[1]." AND";
+                    /**
+                     * Cas où l'on cherche une fourchette de valeurs
+                     */
+                    elseif (strpos($value, "->") !== false) {
+                        $betweenArray = explode("->", $value);
+                        $sql .= " " . $key . " BETWEEN " . $betweenArray[0] . " AND " . $betweenArray[1] . " AND";
                     }
-                    else{
-                        $sql.=" ".$key."=".$value." AND";
+                    /**
+                     * Cas générique où l'on veut une valeur bien définie
+                     */
+                    else {
+                        $sql .= " " . $key . "=\"" . $value . "\" AND";
                     }
                 }
             }
             $sql = substr($sql, 0, -4);
         }
-
-        // Gestion du ORDER BY
-        if($orderBy!=null){
-            $sql.=" ORDER BY ".$orderBy;
+        /**
+         * Gestion du ORDER BY
+         */
+        if ($orderBy != null) {
+            $sql .= " ORDER BY " . $orderBy;
         }
-
-        // Gestion de la LIMIT
-        if($limit!=null){
-            $sql.=" LIMIT ".$limit;
+        /**
+         * Gestion de la LIMIT
+         */
+        if ($limit != null) {
+            $sql .= " LIMIT " . $limit;
         }
-
-        // Gestion du débug
+        /**
+         * Gestion du débug
+         */
         if ($debug) {
             var_dump($sql);
         }
-
-        // Exécution de la requête
+        /**
+         * Check anti-injection
+         */
+        if (DetectInject($sql)) {
+            return false;
+        }
+        /**
+         * Exécution de la requête
+         */
         $stmt = DbConnect::getDb()->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // Gestion du retour en fonction si API ou non
+        /**
+         * Gestion du retour en fonction si API ou non    
+         */
+        if (count($result) == 0) {
+            $result[0] = [];
+        }
         if ($api == false) {
             if (count($result) > 1) {
                 foreach ($result as $objet) {

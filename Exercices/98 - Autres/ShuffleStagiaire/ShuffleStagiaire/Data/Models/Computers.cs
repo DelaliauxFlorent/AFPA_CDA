@@ -18,7 +18,7 @@ namespace ShuffleStagiaire.Data.Models
         /// <summary>
         /// Numéro de l'ordinateur
         /// </summary>
-        public int Reference { get; set; }
+        public int Patrimoine { get; set; }
         /// <summary>
         /// IP de l'ordinateur
         /// </summary>
@@ -34,10 +34,10 @@ namespace ShuffleStagiaire.Data.Models
         /// <param name="position"></param>
         /// <param name="reference"></param>
         /// <param name="iP"></param>
-        public Computers(int position, int reference, string iP)
+        public Computers(int position, int patrimoine, string iP)
         {
             Position = position;
-            Reference = reference;
+            Patrimoine = patrimoine;
             IP = iP;
             Stagiaire = new Stagiaires();
         }

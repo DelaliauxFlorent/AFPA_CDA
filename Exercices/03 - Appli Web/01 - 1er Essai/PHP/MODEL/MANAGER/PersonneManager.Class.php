@@ -8,15 +8,18 @@ class PersonneManager{
      *
      * @return Personnes[]
      */
-    public static function GetAllPersonnes()
+    public static function GetAllPersonnesTest()
     {
         $colonnes=["nom", "prenom"];
-        $conditions=["id"=>[5,6]];
+        $conditions=["nom"=>"%e"];
         $orderby="nom, prenom DESC";
-        $limit="0,5";
-        return DAO::select(null, self::TABLE, null, $orderby, $limit, false, true);
+        $limit="0,50";
+        return DAO::select($colonnes, self::TABLE, $conditions,null,null, false, true);
     }
-
+    public static function GetAllPersonnes()
+    {
+        return DAO::select(null, self::TABLE);
+    }
     /**
      * Récupérer une personne précise
      *

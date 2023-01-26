@@ -8,8 +8,8 @@ Parametre::init();
 DbConnect::init();
 
 echo "<br/><hr/><br/>";
-$params=["nom"=>"Toto", "prenom"=>"Tutu", "codePostal"=>null, "adresse"=>"sfjhbsb", "ville"=>"jdsfhjsegdjh"];
-$params2=["id"=>7,"nom"=>"Toto", "prenom"=>"Tutu", "codePostal"=>99099, "adresse"=>"sfjhbsb", "ville"=>"jdsfhjsegdjh"];
+$params = ["nom" => "Toto", "prenom" => "Tutu", "codePostal" => null, "adresse" => "sfjhbsb", "ville" => "jdsfhjsegdjh"];
+$params2 = ["id" => 7, "nom" => "Toto", "prenom" => "Tutu", "codePostal" => 99099, "adresse" => "sfjhbsb", "ville" => "jdsfhjsegdjh"];
 
 //var_dump($individu);
 // echo "<br/><hr/><br/>";
@@ -21,13 +21,17 @@ $params2=["id"=>7,"nom"=>"Toto", "prenom"=>"Tutu", "codePostal"=>99099, "adresse
 
 // //PersonneManager::DeletePersonne(PersonneManager::GetPersonneById(7));
 // echo "<br/><hr/><br/>";
-$liste=PersonneManager::GetAllPersonnes();
-if(is_array($liste)){
-foreach ($liste as $key => $value) {
-    echo $value."<br />";
-}}else{
-    echo $liste;
-}
+var_dump(PersonneManager::GetAllPersonnes());echo "<br/><hr/><br/>";
+$liste = PersonneManager::GetAllPersonnesTest();
+// if (is_array($liste)) {
+//     foreach ($liste as $key => $value) {
+//         var_dump($value);
+//         echo "<br />";
+//     }
+// } else {
+//     var_dump($liste);
+// }
+var_dump($liste);
 // echo "<br/><hr/><br/>";
 // echo PersonneManager::GetPersonneById(3);
 

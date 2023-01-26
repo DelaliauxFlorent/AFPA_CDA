@@ -33,3 +33,10 @@ function decoder($string)
     }
     return $string;
 }
+
+function DetectInject($string){
+    if(strpos($string, ";") !== false){
+        return true;
+    }
+    return false;
+}

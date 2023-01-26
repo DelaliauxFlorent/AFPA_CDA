@@ -39,7 +39,7 @@
                 <DataGrid x:Name="dtgrdStagiaires" Grid.Row="1" Grid.Column="1" AutoGenerateColumns="False" SelectionMode="Single" AlternatingRowBackground="AliceBlue" IsReadOnly="True" SelectionChanged="dtgrdStagiaires_SelectionChanged">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Identifiant" Binding="{Binding Path=Identifiant}" Width="1*" SortDirection="Ascending"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Noms" Binding="{Binding Path=Nom}" Width="1*"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Nom" Binding="{Binding Path=Nom}" Width="1*"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
                 <Grid x:Name="gridBtnsStagiaires" Grid.Row="3" Grid.Column="1">
@@ -84,7 +84,7 @@
                 <DataGrid x:Name="dtgrdComputers" Grid.Row="1" Grid.Column="1" IsReadOnly="True" SelectionMode="Single" AlternatingRowBackground="AliceBlue" AutoGenerateColumns="False" FlowDirection="LeftToRight" SelectionChanged="dtgrdComputers_SelectionChanged">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Position" Binding="{Binding Path=Position}" Width="1*"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Référence" Binding="{Binding Path=Reference}" Width="2*"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Patrimoine" Binding="{Binding Path=Patrimoine}" Width="2*"></DataGridTextColumn>
                         <DataGridTextColumn Header="IP" Binding="{Binding Path=IP}" Width="2*"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
@@ -103,7 +103,7 @@
             </Grid>
         </GroupBox>
 
-        
-        
+
+
     </Grid>
 </Window>

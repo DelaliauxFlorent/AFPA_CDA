@@ -36,7 +36,7 @@ namespace ShuffleStagiaire.Views
         private void RemplirChamps()
         {
             txtbxPosition.Text = _ordi.Position.ToString();
-            txtbxReference.Text = _ordi.Reference.ToString();
+            txtbxPatrimoine.Text = _ordi.Patrimoine.ToString();
             txtbxIP.Text = _ordi.IP;
         }
 
