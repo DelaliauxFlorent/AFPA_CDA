@@ -59,7 +59,13 @@ namespace ShuffleStagiaire.Views
                     StagiairesServices.AjouterStagiaire(_stag);
                     break;
                 case "Modifier":
+                    Computers orditemp = ComputersServices.GetOrdiByStag(_stag);
                     RemplirObjet();
+                    if (orditemp.Position != 0)
+                    {
+                        orditemp.Stagiaire = _stag;
+                        ComputersServices.ModifierOrdi(orditemp);
+                    }
                     StagiairesServices.ModifierStagiaire(_stag);
                     break;
                 case "Supprimer":

@@ -64,7 +64,10 @@ namespace ShuffleStagiaire.Views
                     break;
                 case "Modifier":
                     Computers tempOrdi = ComputersServices.GetOrdiByStag((Stagiaires)cmbxStag.SelectedItem);
-                    tempOrdi.Stagiaire = _stag;
+                    if (tempOrdi.Position != 0)
+                    {
+                        tempOrdi.Stagiaire = _stag;
+                    }
                     RemplirObjet();
                     ComputersServices.ModifierOrdi(_ordi);
                     ComputersServices.ModifierOrdi(tempOrdi);

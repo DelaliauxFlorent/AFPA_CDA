@@ -41,9 +41,11 @@ namespace ShuffleStagiaire.Data.Services
 
         public static Computers GetOrdiByStag(Stagiaires stag)
         {
-            //Plante car 1 ordi de la liste ne possède pas de stagiaire => null execption
-            Computers ordiTemp = ListingComp.FirstOrDefault(x => x.Stagiaire.IdStagiaire == stag.IdStagiaire);
-            return ordiTemp;
+            if (ListingComp.Exists(x => x.Stagiaire.IdStagiaire == stag.IdStagiaire))
+            {
+                return ListingComp.FirstOrDefault(x => x.Stagiaire.IdStagiaire == stag.IdStagiaire);
+            }
+            return new Computers();
         }
     }
 }

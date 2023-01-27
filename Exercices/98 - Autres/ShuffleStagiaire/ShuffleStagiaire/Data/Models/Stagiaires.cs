@@ -42,6 +42,9 @@ namespace ShuffleStagiaire.Data.Models
         /// </summary>
         public Stagiaires()
         {
+            IdStagiaire = 0;
+            Identifiant = "";
+            Nom = "";
         }
     }
 }

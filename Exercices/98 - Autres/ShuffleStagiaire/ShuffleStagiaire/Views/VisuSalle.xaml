@@ -6,7 +6,49 @@
         xmlns:local="clr-namespace:ShuffleStagiaire.Views"
         mc:Ignorable="d"
         Title="Visualisation de la salle" Height="600" Width="800">
-    <Grid>
-        
+    <Window.Background>
+        <ImageBrush ImageSource="{DynamicResource SalleBG}"/>
+    </Window.Background>
+    <Grid x:Name="gridMainSalle">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="8.5*" />
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1.1*" />
+            <RowDefinition Height="0.1*" />
+            <RowDefinition Height="1.1*" />
+            <RowDefinition Height="1.4*" />
+            <RowDefinition Height="1.1*" />
+            <RowDefinition Height="0.1*" />
+            <RowDefinition Height="1.1*" />
+            <RowDefinition Height="3*" />
+        </Grid.RowDefinitions>
+        <Label x:Name="lblPos1" Grid.Row="7" Grid.Column="2" Content ="1" Style="{DynamicResource PositionOrdi}"></Label>
+        <Label x:Name="lblPos2" Grid.Row="7" Grid.Column="4" Content ="2" Style="{DynamicResource PositionOrdi}"></Label>
+        <Label x:Name="lblPos3" Grid.Row="7" Grid.Column="7" Content ="3" Style="{DynamicResource PositionOrdi}"></Label>
+        <Label x:Name="lblPos4" Grid.Row="7" Grid.Column="9" Content ="4" Style="{DynamicResource PositionOrdi}"></Label>
+        <Label x:Name="lblPos5" Grid.Row="5" Grid.Column="1" Content ="5" Style="{DynamicResource PositionOrdi}"></Label>
+        <Label x:Name="lblPos6" Grid.Row="5" Grid.Column="3" Content ="6" Style="{DynamicResource PositionOrdi}"></Label>
+        <Label x:Name="lblPos7" Grid.Row="5" Grid.Column="6" Content ="7" Style="{DynamicResource PositionOrdi}"></Label>
+        <Label x:Name="lblPos8" Grid.Row="5" Grid.Column="8" Content ="8" Style="{DynamicResource PositionOrdi}"></Label>
+        <Label x:Name="lblPos9" Grid.Row="3" Grid.Column="2" Content ="9" Style="{DynamicResource PositionOrdi}"></Label>
+        <Label x:Name="lblPos10" Grid.Row="3" Grid.Column="4" Content ="10" Style="{DynamicResource PositionOrdi}"></Label>
+        <Label x:Name="lblPos11" Grid.Row="3" Grid.Column="7" Content ="11" Style="{DynamicResource PositionOrdi}"></Label>
+        <Label x:Name="lblPos12" Grid.Row="3" Grid.Column="9" Content ="12" Style="{DynamicResource PositionOrdi}"></Label>
+        <Label x:Name="lblPos13" Grid.Row="1" Grid.Column="1" Content ="13" Style="{DynamicResource PositionOrdi}"></Label>
+        <Label x:Name="lblPos14" Grid.Row="1" Grid.Column="3" Content ="14" Style="{DynamicResource PositionOrdi}"></Label>
+        <Label x:Name="lblPos15" Grid.Row="1" Grid.Column="6" Content ="15" Style="{DynamicResource PositionOrdi}"></Label>
+        <Label x:Name="lblPos16" Grid.Row="1" Grid.Column="8" Content ="16" Style="{DynamicResource PositionOrdi}"></Label>
     </Grid>
 </Window>

@@ -81,5 +81,24 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style TargetType="Label" x:Key="PositionOrdi">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontWeight" Value="ExtraBold"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-45"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <BitmapImage x:Key="SalleBG" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource=".\IMG\SalleBG2.png"/>
     </Application.Resources>
 </Application>
