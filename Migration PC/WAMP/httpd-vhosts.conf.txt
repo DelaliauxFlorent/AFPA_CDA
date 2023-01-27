@@ -11,6 +11,7 @@
   </Directory>
 </VirtualHost>
 
+#
 <VirtualHost *:80>
   ServerName Exercices
   DocumentRoot "//59011vmfic02/59011-data/grp-14/59011-14-06/Exercices"

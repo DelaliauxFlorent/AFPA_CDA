@@ -125,5 +125,20 @@ class '.ucfirst($table).'
     }
 }
 ';
-    file_put_contents("PHP/CONTROLLER/CLASSE/".ucfirst($table).".php", $codeClasse);
+    file_put_contents("PHP/CONTROLLER/CLASSE/".ucfirst($table).".Class.php", $codeClasse);
+}
+
+/**
+ * Creation d'une combobox
+ *
+ * @param string $name => nom donné select et utilisé pour les values
+ * @param string $table => nom de la table remplissant le select
+ * @param array $condition => ["Content" => ["nomColonne1", "nomColonne2", etc],"Selected"=> "Value Selected", "Style"=> "liste des classes","Disabled"=>bool]
+ * @return void
+ */
+function CreateComboBox(string $name, string $table, array $condition){
+    $liste=DAO::select()
+    $codeRetour ='
+    foreach (
+    ';
 }

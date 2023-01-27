@@ -1,3 +1,15 @@
 c:\wamp64\bin\mysql\mysql5.7.36\my.ini
 
 c:\wamp64\bin\apache\apache2.4.51\conf\extra\httpd-vhosts.conf
+
+C:\Windows\System32\drivers\etc\hosts
+{
+
+#
+127.0.0.1 localhost
+::1 localhost
+
+127.0.0.1 Exercices
+::1 Exercices
+
+}

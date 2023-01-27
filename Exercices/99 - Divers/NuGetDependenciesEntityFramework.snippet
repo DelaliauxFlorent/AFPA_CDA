@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>NuGet Dependencies EntityFramework</Title>
+			<Author>Florent Delaliaux</Author>
+			<Description>Add all NuGet required for working on DBs (base or API).</Description>
+			<Shortcut>NGDep</Shortcut>
+		</Header>
+		<Snippet>
+
+			<Code Language="CSharp">
+				<![CDATA[
+				<ItemGroup>
+					<PackageReference Include="AutoMapper" Version="12.0.0" />
+					<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+					<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+					<PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="5.0.17" />
+					<PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.17" />
+					<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.17" />
+					<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.17">
+						<PrivateAssets>all</PrivateAssets>
+						<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+					</PackageReference>
+					<PackageReference Include="MySql.EntityFrameworkCore" Version="5.0.17" />
+					<PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+				</ItemGroup>
+				]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>
