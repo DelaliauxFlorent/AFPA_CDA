@@ -137,7 +137,8 @@ class '.ucfirst($table).'
  * @return void
  */
 function CreateComboBox(string $name, string $table, array $condition){
-    $liste=DAO::select()
+    $selectCol=$condition["Content"];
+    $liste=DAO::select();
     $codeRetour ='
     foreach (
     ';
