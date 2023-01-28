@@ -52,7 +52,21 @@ namespace ShuffleStagiaire.Data.Models
             Utilise = false;
             Stagiaire = new Stagiaires();
         }
-
+        public Computers(int position)
+        {
+            Position = position;
+            Patrimoine = 999;
+            IP = "10.xxx.xxx.xxx";
+            Utilise = false;
+            Stagiaire = new Stagiaires();
+        }
+        public string PositionImage
+        {
+            get
+            {
+                return "/ShuffleStagiaire;component/IMG/Ordi" + Position+".png";
+            }
+        }
     }
 }
 

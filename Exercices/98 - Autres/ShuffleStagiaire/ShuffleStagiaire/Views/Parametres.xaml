@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ShuffleStagiaire.Views"
         mc:Ignorable="d"
-        Title="Parametres" Height="600" Width="800" Background="#FF7A97FB">
+        Title="Paramétres" Height="600" Width="800" Background="#FF7A97FB" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid x:Name="paramMaingrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
@@ -15,9 +15,11 @@
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="0.8*" />
             <RowDefinition Height="20*" />
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="0.3*" />
+            <RowDefinition Height="1.3*" />
+            <RowDefinition Height="0.8*" />
         </Grid.RowDefinitions>
         <GroupBox Header="Stagiaires" Grid.Row="1" Grid.Column="1">
             <GroupBox.Background>
@@ -32,13 +34,13 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="0.1*" />
                     <RowDefinition Height="10*" />
-                    <RowDefinition Height="0.5*" />
-                    <RowDefinition Height="2*" />
-                    <RowDefinition Height="0.5*" />
+                    <RowDefinition Height="0.2*" />
+                    <RowDefinition Height="2.5*" />
+                    <RowDefinition Height="0.2*" />
                 </Grid.RowDefinitions>
                 <DataGrid x:Name="dtgrdStagiaires" Grid.Row="1" Grid.Column="1" AutoGenerateColumns="False" SelectionMode="Single" AlternatingRowBackground="AliceBlue" IsReadOnly="True" SelectionChanged="dtgrdStagiaires_SelectionChanged">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Identifiant" Binding="{Binding Path=Identifiant}" Width="1*" SortDirection="Ascending"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Identifiant" Binding="{Binding Path=Identifiant}" Width="1*"></DataGridTextColumn>
                         <DataGridTextColumn Header="Nom" Binding="{Binding Path=Nom}" Width="1*"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
@@ -50,9 +52,15 @@
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="3*" />
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="btnAddStagiaire" Grid.Column="0" Content="Ajouter" Click="btnStag_Click" Style="{DynamicResource RoundCorner}"></Button>
-                    <Button x:Name="btnModifStagiaire" Grid.Column="2" Content="Modifier" Click="btnStag_Click" Style="{DynamicResource RoundCorner}"></Button>
-                    <Button x:Name="btnSuppStagiaire" Grid.Column="4" Content="Supprimer" Click="btnStag_Click" Style="{DynamicResource RoundCorner}"></Button>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="0.5*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Button x:Name="btnAddStagiaire" Grid.Column="0" Grid.Row="0" Content="Ajouter" Click="btnStag_Click" Style="{DynamicResource RoundCorner}" Foreground="lightgreen"></Button>
+                    <Button x:Name="btnModifStagiaire" Grid.Column="2" Grid.Row="0" Content="Modifier" Click="btnStag_Click" Style="{DynamicResource RoundCorner}"></Button>
+                    <Button x:Name="btnSuppStagiaire" Grid.Column="4" Grid.Row="0" Content="Supprimer" Click="btnStag_Click" Style="{DynamicResource RoundCorner}" Foreground="LightPink"></Button>
+                    <Button x:Name="btnRAZStagiaire" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" Content="Tout effacer" Click="btnStag_Click" Style="{DynamicResource RoundCorner}" Foreground="Red"></Button>
                 </Grid>
             </Grid>
         </GroupBox>
@@ -77,18 +85,33 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="0.1*" />
                     <RowDefinition Height="10*" />
-                    <RowDefinition Height="0.5*" />
-                    <RowDefinition Height="2*" />
-                    <RowDefinition Height="0.5*" />
+                    <RowDefinition Height="0.2*" />
+                    <RowDefinition Height="2.5*" />
+                    <RowDefinition Height="0.2*" />
                 </Grid.RowDefinitions>
-                <DataGrid x:Name="dtgrdComputers" Grid.Row="1" Grid.Column="1" IsReadOnly="True" SelectionMode="Single" AlternatingRowBackground="AliceBlue" AutoGenerateColumns="False" FlowDirection="LeftToRight" SelectionChanged="dtgrdComputers_SelectionChanged">
+                <DataGrid x:Name="dtgrdComputers" Grid.Row="1" Grid.Column="1" SelectionMode="Single" AlternatingRowBackground="AliceBlue" AutoGenerateColumns="False" FlowDirection="LeftToRight" SelectionChanged="dtgrdComputers_SelectionChanged" CanUserAddRows="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Place" Binding="{Binding Path=Position}" Width="1*"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Patrimoine" Binding="{Binding Path=Patrimoine}" Width="2*"></DataGridTextColumn>
-                        <DataGridTextColumn Header="IP" Binding="{Binding Path=IP}" Width="2*"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Stagiaire" Binding="{Binding Path=Stagiaire.Nom}" Width="2*"></DataGridTextColumn>
-                        <DataGridCheckBoxColumn Header="Actif" Binding="{Binding Path=Utilise}" Width="1*"></DataGridCheckBoxColumn>
+                        <DataGridTextColumn Header="Place" Binding="{Binding Path=Position}" Width="1*" IsReadOnly="True"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Patrimoine" Binding="{Binding Path=Patrimoine}" Width="2*" IsReadOnly="True"></DataGridTextColumn>
+                        <DataGridTextColumn Header="IP" Binding="{Binding Path=IP}" Width="2*" IsReadOnly="True"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Stagiaire" Binding="{Binding Path=Stagiaire.Nom}" Width="2*" IsReadOnly="True"></DataGridTextColumn>
+                        <DataGridTemplateColumn Header="Actif">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding Path=Utilise, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Click="CheckBox_Click" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="ToolTip">
+                                <Setter.Value>
+                                    <Image Source="{Binding PositionImage}"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGrid.RowStyle>
                 </DataGrid>
                 <Grid x:Name="gridBtnsComputers" Grid.Row="3" Grid.Column="1" FlowDirection="LeftToRight">
                     <Grid.ColumnDefinitions>
@@ -98,12 +121,23 @@
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="3*" />
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="btnModifOrdi" Grid.Column="2" Content="Modifier" Click="btnComp_Click" Style="{DynamicResource RoundCorner}"></Button>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="0.5*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Button x:Name="btnModifOrdi" Grid.Column="2" Grid.Row="0" Content="Modifier" Click="btnComp_Click" Style="{DynamicResource RoundCorner}"></Button>
+                    <Button x:Name="btnRAZOrdi" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="2" Content="Désassigner stagiaires" Click="btnComp_Click" Style="{DynamicResource RoundCorner}" Foreground="Red"></Button>
                 </Grid>
             </Grid>
         </GroupBox>
-
-
-
+        <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Button Content="Retour" Grid.Column="1" Style="{DynamicResource RoundCorner}" Click="Button_Click"></Button>
+        </Grid>
     </Grid>
 </Window>

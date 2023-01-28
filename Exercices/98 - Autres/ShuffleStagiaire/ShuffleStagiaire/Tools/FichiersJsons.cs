@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShuffleStagiaire.Classes
+namespace ShuffleStagiaire.Tools
 {
     static class FichiersJsons
     {
@@ -16,10 +16,17 @@ namespace ShuffleStagiaire.Classes
         /// <returns>Liste sous forme de String</returns>
         public static String LireJSON(String path)
         {
-            using (StreamReader r = new StreamReader(path))
+            if (File.Exists(path))
             {
-                String json = r.ReadToEnd();
-                return json;
+                using (StreamReader r = new StreamReader(path))
+                {
+                    String json = r.ReadToEnd();
+                    return json;
+                }
+            }
+            else
+            {
+                return "[{}]";
             }
         }
 

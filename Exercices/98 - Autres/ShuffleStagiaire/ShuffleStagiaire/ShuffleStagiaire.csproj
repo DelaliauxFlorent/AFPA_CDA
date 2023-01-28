@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>poste de travail 3D.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -61,9 +64,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Data\FichiersJsons.cs" />
+    <Compile Include="Tools\FichiersJsons.cs" />
     <Compile Include="Data\Services\ComputersServices.cs" />
     <Compile Include="Data\Services\StagiairesServices.cs" />
+    <Compile Include="Tools\Outils.cs" />
     <Compile Include="Views\DetailsComputers.xaml.cs">
       <DependentUpon>DetailsComputers.xaml</DependentUpon>
     </Compile>
@@ -126,6 +130,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Memo\ListeOrdinateurs.json" />
+    <None Include="Memo\ListeStagiaires.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -140,6 +146,36 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="IMG\Salle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMG\Ordi1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMG\Ordi10.png" />
+    <Resource Include="IMG\Ordi11.png" />
+    <Resource Include="IMG\Ordi12.png" />
+    <Resource Include="IMG\Ordi13.png" />
+    <Resource Include="IMG\Ordi14.png" />
+    <Resource Include="IMG\Ordi15.png" />
+    <Resource Include="IMG\Ordi16.png" />
+    <Resource Include="IMG\Ordi2.png" />
+    <Resource Include="IMG\Ordi3.png" />
+    <Resource Include="IMG\Ordi4.png" />
+    <Resource Include="IMG\Ordi5.png" />
+    <Resource Include="IMG\Ordi6.png" />
+    <Resource Include="IMG\Ordi7.png" />
+    <Resource Include="IMG\Ordi8.png" />
+    <Resource Include="IMG\Ordi9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMG\poste de travail 3D.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="poste de travail 3D.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Install\Shortcut.js" />
+    <Content Include="Install\UnShortcut.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

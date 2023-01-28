@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ShuffleStagiaire"
-        Title="Shuffle Stagiaire" Height="600" Width="800" Background="#FF7A97FB">
+        Title="Shuffle Stagiaire" Height="600" Width="800" Background="#FF7A97FB" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
     <Grid x:Name="mwMainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
@@ -21,7 +21,7 @@
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Button x:Name="btnParametrage" Content="Paramétrage" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="1" Style="{DynamicResource RoundCorner}" FontSize="20" Click="btn_Click"/>
-        <Button x:Name="btnMelange" Content="Mélange" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="3" Grid.Row="1" Style="{DynamicResource RoundCorner}" FontSize="20"/>
+        <Button x:Name="btnMelange" Content="Mélange" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="3" Grid.Row="1" Style="{DynamicResource RoundCorner}" FontSize="20" Click="btn_Click"/>
         <Button x:Name="btnVisu" Content="Visualisation" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="2" Grid.Row="3" Style="{DynamicResource RoundCorner}" FontSize="20" Click="btn_Click"/>
     </Grid>
 </Window>

@@ -69,8 +69,7 @@ namespace ShuffleStagiaire.Views
                         tempOrdi.Stagiaire = _stag;
                     }
                     RemplirObjet();
-                    ComputersServices.ModifierOrdi(_ordi);
-                    ComputersServices.ModifierOrdi(tempOrdi);
+                    ComputersServices.ModifierOrdi();
                     break;
                 case "Supprimer":
                     // On n'autorise pas les suppressions
@@ -86,6 +85,12 @@ namespace ShuffleStagiaire.Views
             _ordi.Patrimoine = pat;
             _ordi.IP = txtbxIP.Text;
             _ordi.Stagiaire = (Stagiaires)cmbxStag.SelectedItem;
+        }
+
+        private void txtbx_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox txtbox = (TextBox)sender;
+            txtbox.Select(txtbox.Text.Length, 0);
         }
     }
 }

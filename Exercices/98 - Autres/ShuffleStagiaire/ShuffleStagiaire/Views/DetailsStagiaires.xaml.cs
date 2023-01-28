@@ -34,6 +34,7 @@ namespace ShuffleStagiaire.Views
             {
                 DesactiverChamps();
             }
+            txtbxIdentifiantStag.Focus();
         }
 
         private void RemplirChamps()
@@ -54,8 +55,9 @@ namespace ShuffleStagiaire.Views
             switch (cible)
             {
                 case "Ajouter":
-                    _stag.IdStagiaire = StagiairesServices.ListingStagiaires[StagiairesServices.ListingStagiaires.Count-1].IdStagiaire+1;
                     RemplirObjet();
+                    int.TryParse(_stag.Identifiant.Split('-')[2], out int id);
+                    _stag.IdStagiaire = id;
                     StagiairesServices.AjouterStagiaire(_stag);
                     break;
                 case "Modifier":
@@ -64,9 +66,9 @@ namespace ShuffleStagiaire.Views
                     if (orditemp.Position != 0)
                     {
                         orditemp.Stagiaire = _stag;
-                        ComputersServices.ModifierOrdi(orditemp);
+                        ComputersServices.ModifierOrdi();
                     }
-                    StagiairesServices.ModifierStagiaire(_stag);
+                    StagiairesServices.ModifierStagiaire();
                     break;
                 case "Supprimer":
                     StagiairesServices.SupprimerStagiaire(_stag);
@@ -81,6 +83,12 @@ namespace ShuffleStagiaire.Views
         {
             _stag.Identifiant = txtbxIdentifiantStag.Text;
             _stag.Nom = txtbxNomStag.Text;
+        }
+
+        private void txtbx_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox txtbox = (TextBox)sender;
+            txtbox.Select(txtbox.Text.Length, 0);
         }
     }
 }

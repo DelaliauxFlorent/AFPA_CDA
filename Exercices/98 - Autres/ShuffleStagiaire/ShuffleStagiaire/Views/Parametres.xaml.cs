@@ -2,6 +2,7 @@
 using ShuffleStagiaire.Data.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,20 +47,31 @@ namespace ShuffleStagiaire.Views
         private void btnStag_Click(object sender, RoutedEventArgs e)
         {
             string cible = ((Button)sender).Content.ToString();
-            Stagiaires stag;
-            if (dtgrdStagiaires.SelectedItem != null)
+            if (cible != "Tout effacer")
             {
-                stag = (Stagiaires)dtgrdStagiaires.SelectedItem;
+                Stagiaires stag;
+                if (dtgrdStagiaires.SelectedItem != null)
+                {
+                    stag = (Stagiaires)dtgrdStagiaires.SelectedItem;
+                }
+                else
+                {
+                    stag = new Stagiaires();
+                }
+                Window detailStag = new DetailsStagiaires(cible, stag);
+                this.Opacity = 0.7;
+                detailStag.ShowDialog();
+                RemplirGridStag();
+                this.Opacity = 1;
             }
             else
             {
-                stag = new Stagiaires();
+                if(MessageBox.Show("Êtes-vous sûr de vouloir effacer la liste de tous les stagiaires? Vous ne pourrez pas la récupérer.", "Effacement de la liste des stagiaires", MessageBoxButton.OKCancel, MessageBoxImage.Warning, MessageBoxResult.Cancel)==MessageBoxResult.OK)
+                {
+                    StagiairesServices.ReInitStag();
+                    RemplirGridStag();
+                }
             }
-            Window detailStag = new DetailsStagiaires(cible, stag);
-            this.Opacity = 0.7;
-            detailStag.ShowDialog();
-            RemplirGridStag();
-            this.Opacity = 1;
         }
 
         private void DesactiverModSup()
@@ -79,20 +91,31 @@ namespace ShuffleStagiaire.Views
         private void btnComp_Click(object sender, RoutedEventArgs e)
         {
             string cible = ((Button)sender).Content.ToString();
-            Computers ordi;
-            if (dtgrdComputers.SelectedItem != null)
+            if (cible != "Désassigner stagiaires")
             {
-                ordi = (Computers)dtgrdComputers.SelectedItem;
+                Computers ordi;
+                if (dtgrdComputers.SelectedItem != null)
+                {
+                    ordi = (Computers)dtgrdComputers.SelectedItem;
+                }
+                else
+                {
+                    ordi = new Computers();
+                }
+                Window detailsOrdi = new DetailsComputers(cible, ordi);
+                this.Opacity = 0.7;
+                detailsOrdi.ShowDialog();
+                RemplirGridComp();
+                this.Opacity = 1;
             }
             else
             {
-                ordi = new Computers();
+                if (MessageBox.Show("Êtes-vous sûr de vouloir désassigner tous les stagiaires de tous les ordinateurs?", "Désassignement", MessageBoxButton.OKCancel, MessageBoxImage.Warning, MessageBoxResult.Cancel) == MessageBoxResult.OK)
+                {
+                    ComputersServices.ResetSatgiairesComputers();
+                    RemplirGridComp();
+                }
             }
-            Window detailsOrdi = new DetailsComputers(cible, ordi);
-            this.Opacity = 0.7;
-            detailsOrdi.ShowDialog();
-            RemplirGridComp();
-            this.Opacity = 1;
         }
 
         private void dtgrdComputers_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -100,6 +123,16 @@ namespace ShuffleStagiaire.Views
             btnModifOrdi.IsEnabled = true;
             btnModifStagiaire.IsEnabled = false;
             btnSuppStagiaire.IsEnabled = false;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void CheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            ComputersServices.ModifierOrdi();
         }
     }
 }
