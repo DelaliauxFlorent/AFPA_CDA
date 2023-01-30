@@ -74,6 +74,15 @@ class Commandes
     {
         $this->_cde_total = $cde_total;
     }
+
+    public function getChamps()
+    {
+        $array = get_object_vars($this);
+        foreach ($array as $key => $value) {
+            $listeChamps[]=ltrim($key, "_");
+        }
+        return $listeChamps;
+    }
     
     #endregion Accesseurs
     ////////////////////////////////////

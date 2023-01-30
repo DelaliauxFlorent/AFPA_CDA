@@ -51,56 +51,66 @@ function DetectInject($string): bool
 
 function CreateClasse($table)
 {
-    $typePossible=["CHAR"=>0,"VARCHAR"=>0,"BINARY"=>0,"VARBINARY"=>0,"TINYBLOB"=>0,"TINYTEXT"=>0,"BLOB"=>0, "TEXT"=>0,"MEDIUMBLOB"=>0, "MEDIUMTEXT"=>0,"LONGBLOB"=>0, "LONGTEXT"=>0, "ENUM"=>0, "SET"=>0,"DATE"=>0,"DATETIME"=>0,"DATE/TIME"=>0,"TIMESTAMP"=>0, "TIME"=>0,"YEAR"=>0,"NCHAR"=>0,"NVARCHAR"=>0,"NTEXT"=>0,"VARBINARY"=>0,"IMAGE"=>0,"DATETIME2"=>0,"SMALLDATETIME"=>0,"DATETIMEOFFSET"=>0,"MEMO"=>0,
-    "BIT"=>1,"TINYINT"=>1,"INT"=>1,"SMALLINT"=>1,"MEDIUMINT"=>1,"BIGINT"=>1,"INTEGER"=>1,"BYTE"=>1,"LONG"=>1,
-    "FLOAT"=>2,"DOUBLE PRECISION"=>2,"DOUBLE"=>2,"DEC"=>2,"DECIMAL"=>2,"NUMERIC"=>2,"SMALLMONEY"=>2,"MONEY"=>2,"REAL"=>2,"SINGLE"=>2,"CURRENCY"=>2,
-    "BOOL"=>3, "BOOLEAN"=>3, "YES/NO"=>3];
-    $typePHP=["string", "int", "float", "bool"];
-    $stmtListAttributs = DbConnect::getDb()->prepare("DESCRIBE ".$table);
+    $typePossible = [
+        "CHAR" => 0, "VARCHAR" => 0, "BINARY" => 0, "VARBINARY" => 0, "TINYBLOB" => 0, "TINYTEXT" => 0, "BLOB" => 0, "TEXT" => 0, "MEDIUMBLOB" => 0, "MEDIUMTEXT" => 0, "LONGBLOB" => 0, "LONGTEXT" => 0, "ENUM" => 0, "SET" => 0, "DATE" => 0, "DATETIME" => 0, "DATE/TIME" => 0, "TIMESTAMP" => 0, "TIME" => 0, "YEAR" => 0, "NCHAR" => 0, "NVARCHAR" => 0, "NTEXT" => 0, "VARBINARY" => 0, "IMAGE" => 0, "DATETIME2" => 0, "SMALLDATETIME" => 0, "DATETIMEOFFSET" => 0, "MEMO" => 0,
+        "BIT" => 1, "TINYINT" => 1, "INT" => 1, "SMALLINT" => 1, "MEDIUMINT" => 1, "BIGINT" => 1, "INTEGER" => 1, "BYTE" => 1, "LONG" => 1,
+        "FLOAT" => 2, "DOUBLE PRECISION" => 2, "DOUBLE" => 2, "DEC" => 2, "DECIMAL" => 2, "NUMERIC" => 2, "SMALLMONEY" => 2, "MONEY" => 2, "REAL" => 2, "SINGLE" => 2, "CURRENCY" => 2,
+        "BOOL" => 3, "BOOLEAN" => 3, "YES/NO" => 3
+    ];
+    $typePHP = ["string", "int", "float", "bool"];
+    $stmtListAttributs = DbConnect::getDb()->prepare("DESCRIBE " . $table);
     $stmtListAttributs->execute();
     $resultListeColonnes = $stmtListAttributs->fetchAll(PDO::FETCH_ASSOC);
-    $codeClasse='
+    $codeClasse = '
 <?php
-class '.ucfirst($table).'
+class ' . ucfirst($table) . '
 {
     ////////////////////////////////////
     // Attributs
 
     ';
     foreach ($resultListeColonnes as $colonne) {
-        $codeClasse.='private $_'.$colonne["Field"].';
+        $codeClasse .= 'private $_' . $colonne["Field"] . ';
     ';
     }
-    $codeClasse.='
+    $codeClasse .= '
     ////////////////////////////////////
     #region Accesseurs
     ';
     foreach ($resultListeColonnes as $colonne) {
         foreach ($typePossible as $key => $value) {
-            $typage=strtoupper(explode("(",$colonne["Type"])[0]);
-            if($typage== $key)
-            {
-                $typeAttribut=$typePHP[$value];
+            $typage = strtoupper(explode("(", $colonne["Type"])[0]);
+            if ($typage == $key) {
+                $typeAttribut = $typePHP[$value];
             }
         }
-        $nullable="";
-        if($colonne["Null"]!="NO"){
-            $nullable=" = null";
+        $nullable = "";
+        if ($colonne["Null"] != "NO") {
+            $nullable = " = null";
         }
-        
-        $codeClasse.='
-    public function get'.ucfirst($colonne["Field"]).'()
+
+        $codeClasse .= '
+    public function get' . ucfirst($colonne["Field"]) . '()
     {
-        return $this->_'.$colonne["Field"].';
+        return $this->_' . $colonne["Field"] . ';
     }
 
-    public function set'.ucfirst($colonne["Field"]).'('.$typeAttribut.' $'.$colonne["Field"].$nullable.')
+    public function set' . ucfirst($colonne["Field"]) . '(' . $typeAttribut . ' $' . $colonne["Field"] . $nullable . ')
     {
-        $this->_'.$colonne["Field"].' = $'.$colonne["Field"].';
+        $this->_' . $colonne["Field"] . ' = $' . $colonne["Field"] . ';
     }
     ';
     }
-    $codeClasse.='
+    $codeClasse .= '
+    public function getChamps()
+    {
+        $array = get_object_vars($this);
+        foreach ($array as $key => $value) {
+            $listeChamps[]=ltrim($key, "_");
+        }
+        return $listeChamps;
+    }
+
     #endregion Accesseurs
     ////////////////////////////////////
     // Constructeur
@@ -125,7 +135,7 @@ class '.ucfirst($table).'
     }
 }
 ';
-    file_put_contents("PHP/CONTROLLER/CLASSE/".ucfirst($table).".Class.php", $codeClasse);
+    file_put_contents("PHP/CONTROLLER/CLASSE/" . ucfirst($table) . ".Class.php", $codeClasse);
 }
 
 /**
@@ -136,10 +146,35 @@ class '.ucfirst($table).'
  * @param array $condition => ["Content" => ["nomColonne1", "nomColonne2", etc],"Selected"=> "Value Selected", "Style"=> "liste des classes","Disabled"=>bool]
  * @return void
  */
-function CreateComboBox(string $name, string $table, array $condition){
-    $selectCol=$condition["Content"];
-    $liste=DAO::select();
-    $codeRetour ='
-    foreach (
-    ';
+//function CreateComboBox(int $idSelected =null, string $table(table), string $nom(nom et value),string $affiche(content du select),string $mode, string $attributs, array $condition, bool $api){
+function CreateComboBox(string $idSelected = null, string $table, string $name, string $affichage, ?string $attributs = null, ?string $messageSelect = null)
+{
+    $selectCol = [$name, $affichage];
+    $liste = DAO::select($selectCol, $table, null, null, null, false, false);
+
+    echo '<Select id="' . $name . '" name="' . $name . '" ' . $attributs . '>
+    <option value="">' . ($messageSelect != null ? $messageSelect : '--Choisissez une valeur--') . '</option>';
+
+    foreach ($liste as $key => $obj) {
+        $getid = 'get' . ucfirst($name);
+        $echo= '<option value="' . $obj->$getid() . '" ';
+        if ($obj->$getid() == $idSelected) {
+            $echo.= 'selected>';
+        }else{
+
+            $echo.= '>';
+        }
+        $listeAffichage = explode(",", $affichage);
+        $content="";
+        foreach ($listeAffichage as $key => $value) {
+            $getAff = 'get' . ltrim(ucfirst($value));
+            $content.= $obj->$getAff().' ';
+        }
+        $content
+        $echo.= '</option>';
+        var_dump($echo);
+        echo $echo;
+    }
+    echo '
+    </select>';
 }

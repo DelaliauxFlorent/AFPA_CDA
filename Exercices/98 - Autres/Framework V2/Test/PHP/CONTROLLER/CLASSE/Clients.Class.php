@@ -53,6 +53,15 @@ class Clients
         $this->_dateEntreeClient = $dateEntreeClient;
     }
     
+    public function getChamps()
+    {
+        $array = get_object_vars($this);
+        foreach ($array as $key => $value) {
+            $listeChamps[]=ltrim($key, "_");
+        }
+        return $listeChamps;
+    }
+
     #endregion Accesseurs
     ////////////////////////////////////
     // Constructeur

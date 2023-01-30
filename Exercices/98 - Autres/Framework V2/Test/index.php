@@ -15,4 +15,6 @@ foreach ($resultListeTables as $table) {
     }
 }
 
+CreateComboBox("5", "Clients", "idClient", "nomClient, prenomClient", null, "--Veuillez choisir un client--");
+
 DbConnect::close();
