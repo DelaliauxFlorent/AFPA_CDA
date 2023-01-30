@@ -75,9 +75,9 @@ class Commandes
         $this->_cde_total = $cde_total;
     }
 
-    public function getChamps()
+    public static function getChamps()
     {
-        $array = get_object_vars($this);
+        $array = get_class_vars(__CLASS__);
         foreach ($array as $key => $value) {
             $listeChamps[]=ltrim($key, "_");
         }

@@ -1,4 +1,3 @@
-
 <?php
 /* Autoload permet de charger toutes les classes necessaires */
 function ChargerClasse($champs)
@@ -102,9 +101,9 @@ class ' . ucfirst($table) . '
     ';
     }
     $codeClasse .= '
-    public function getChamps()
+    public static function getChamps()
     {
-        $array = get_object_vars($this);
+        $array = get_class_vars(__CLASS__);
         foreach ($array as $key => $value) {
             $listeChamps[]=ltrim($key, "_");
         }
@@ -139,42 +138,70 @@ class ' . ucfirst($table) . '
 }
 
 /**
- * Creation d'une combobox
+ * Génére un tableau pour débug
  *
- * @param string $name => nom donné select et utilisé pour les values
- * @param string $table => nom de la table remplissant le select
- * @param array $condition => ["Content" => ["nomColonne1", "nomColonne2", etc],"Selected"=> "Value Selected", "Style"=> "liste des classes","Disabled"=>bool]
+ * @param array $listeObjets
  * @return void
  */
-//function CreateComboBox(int $idSelected =null, string $table(table), string $nom(nom et value),string $affiche(content du select),string $mode, string $attributs, array $condition, bool $api){
-function CreateComboBox(string $idSelected = null, string $table, string $name, string $affichage, ?string $attributs = null, ?string $messageSelect = null)
+function AfficherTable(array $listeObjets)
 {
-    $selectCol = [$name, $affichage];
-    $liste = DAO::select($selectCol, $table, null, null, null, false, false);
-
-    echo '<Select id="' . $name . '" name="' . $name . '" ' . $attributs . '>
-    <option value="">' . ($messageSelect != null ? $messageSelect : '--Choisissez une valeur--') . '</option>';
-
-    foreach ($liste as $key => $obj) {
-        $getid = 'get' . ucfirst($name);
-        $echo= '<option value="' . $obj->$getid() . '" ';
-        if ($obj->$getid() == $idSelected) {
-            $echo.= 'selected>';
-        }else{
-
-            $echo.= '>';
+    
+    if (count($listeObjets) != 0) {
+        $listeChamps=get_class($listeObjets[0])::getChamps();
+        echo '<table class="tableauDebug"><thead><tr>';
+        foreach ($listeChamps as $value) {
+            echo '<th>'.ltrim(ucfirst($value), "_").'</th>';
         }
-        $listeAffichage = explode(",", $affichage);
-        $content="";
-        foreach ($listeAffichage as $key => $value) {
-            $getAff = 'get' . ltrim(ucfirst($value));
-            $content.= $obj->$getAff().' ';
+        echo '</tr></thead><tbody>';
+        foreach ($listeObjets as $objet) {
+            echo '<tr>';
+            foreach ($listeChamps as $col) {
+                $getvalue="get".$col;
+                echo '<td>'.$objet->$getvalue().'</td>';
+            }
+            echo '</tr>';
         }
-        $content
-        $echo.= '</option>';
-        var_dump($echo);
-        echo $echo;
+        echo '</tbody></table>';
     }
-    echo '
-    </select>';
+}
+
+
+/**
+ * Création d'une ComboBox
+ *
+ * @param string|null $idSelected => la valeur sélectionné par défaut
+ * @param string $table => nom de la table sur laquelle porte la ComboBox
+ * @param array $affichage => Contenu de la balise "option"
+ * @param string|null $attributs => Attributs supplémentaires du Select
+ * @param string|null $messageSelect => Message affiché pour l'option par défaut
+ * @return string
+ */
+function CreateComboBox(string $idSelected = null, string $table, array $affichage, ?string $attributs = null, array $condition =null, string $orderBy =null, ?string $messageSelect = null)
+{
+    $champsID =$table::getChamps()[0];
+    $selectCol = $affichage;
+    array_unshift($selectCol, $champsID);
+    $selected=$idSelected==null?" Selected":"";
+    $liste = DAO::select($selectCol, $table, $condition, $orderBy, null, false, false);
+    $stringReturn= '<select id="' . $champsID . '" name="' . $champsID . '" ' . $attributs . '>';    
+    $stringReturn.= '<option value=""'.$selected.'>' . ($messageSelect != null ? $messageSelect : '--Choisissez une valeur--') . '</option>';
+
+    foreach ($liste as $obj) {
+        $id = getGet($obj, [$champsID]);
+        $selected =($id == $idSelected)?" Selected":"";
+        $content = getGet($obj, $affichage);
+        $stringReturn.= '<option value="' . $id . '" '.$selected.'>' . $content . '</option>';        
+    }
+    $stringReturn.='</select>';
+    return $stringReturn;
+}
+
+function getGet(object $objet, array $listAttributs):string{
+    $chaine="";
+    foreach ($listAttributs as $value) {
+        $methode='get'.ucfirst($value);
+        $chaine.= $objet->$methode().' ';
+    }
+
+    return rtrim($chaine);
 }

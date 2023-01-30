@@ -14,7 +14,28 @@ foreach ($resultListeTables as $table) {
         CreateClasse($tableName);
     }
 }
+echo '<!DOCTYPE html>
+<html lang="en">
 
-CreateComboBox("5", "Clients", "idClient", "nomClient, prenomClient", null, "--Veuillez choisir un client--");
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="./css/styles.css">
+        <link rel="icon" type="image/x-icon" href="./img/favicon.ico">
+        <title></title>
+    </head>
+
+    <body><h1>Test</h1>';
+
+echo '<div class="centered">';
+AfficherTable(DAO::select(null, "Clients", null, null, null, false, false));
+echo '</div>';
+
+echo CreateComboBox(null, "Clients", ["nomClient", "prenomClient"], null,null, null, "--Veuillez choisir un client--");
 
 DbConnect::close();
+echo '<script src="./scripts/scripts.js"></script>
+</body>
+
+</html>';

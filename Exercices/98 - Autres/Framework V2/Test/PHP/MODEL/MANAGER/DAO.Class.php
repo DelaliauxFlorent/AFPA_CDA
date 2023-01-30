@@ -40,6 +40,10 @@ class DAO
 
         $sql = "SELECT ";
         /**
+         * Récupération de la liste des colonnes
+         */
+        $champs = $table::getChamps();
+        /**
          * Gestion des colonnes
          */
         if ($nomColonnes != null) {
@@ -48,18 +52,13 @@ class DAO
             }
             $sql = substr($sql, 0, -2);
         } else {
-            $sql .= "*";
+            $sql .= implode(",");
         }
         /**
          * Gestion de la table
          */
         $sql .= " FROM " . $table;
-        /**
-         * Récupération de la liste des colonnes
-         */
-        $tmp = new $table();
-        $champs = $tmp->getChamps();
-        unset($tmp);
+        
         /**
          * Gestion des conditions
          */
@@ -173,7 +172,7 @@ class DAO
         // On commence la requête
         $sql = "INSERT INTO " . $table . " VALUES (null, ";
         // On récupère la liste des champs de l'objet
-        $champs = $objet->getChamps();
+        $champs = $table::getChamps();
 
         // Pour chaque champs, on rempli la requête en conséquence, avec la préparation des bindings
         for ($i = 1; $i < count($champs); $i++) {
@@ -188,9 +187,7 @@ class DAO
         // On effectue les bindings 
         for ($j = 1; $j < count($champs); $j++) {
             // création dynamique des getAttributs()
-            $get = "get" . ucfirst($champs[$j]);
-            $get = $objet->$get();
-            $stmt->bindValue(":" . $champs[$j], $get);
+            $stmt->bindValue(":" . $champs[$j], getGet($objet, [$champs[$j]]));
         }
         return $stmt->execute();
     }
@@ -204,7 +201,7 @@ class DAO
     public static function Update($objet)
     {
         $table = get_class($objet);
-        $champs = $objet->getChamps();
+        $champs = $table::getChamps();
 
         //Création de la QUERY
         $sql = "UPDATE " . $table . " SET ";
@@ -218,9 +215,7 @@ class DAO
         $stmt = DbConnect::getDb()->prepare($sql);
         // On bind tous les paramètres nécessaires
         for ($i = 0; $i < count($champs); $i++) {
-            $get = "get" . ucfirst($champs[$i]);
-            $get = $objet->$get();
-            $stmt->bindValue(":" . $champs[$i], $get);
+            $stmt->bindValue(":" . $champs[$i], getGet($objet, [$champs[$i]]));
         }
         // et on execute la QUERY
         return $stmt->execute();
@@ -236,12 +231,10 @@ class DAO
     public static function Delete($objet)
     {
         $table = get_class($objet);
-        $champs = $objet->getChamps();
-        $get = "get" . ucfirst($champs[0]);
-        $get = $objet->$get();
+        $champs = $table::getChamps();
         $sql = "DELETE FROM " . $table . " WHERE " . $champs[0] . "=:id;";
         $stmt = DbConnect::getDb()->prepare($sql);
-        $stmt->bindValue(":id", $get, PDO::PARAM_INT);
+        $stmt->bindValue(":id", getGet($objet, [$champs[0]]), PDO::PARAM_INT);
         return $stmt->execute();
     }
 }
