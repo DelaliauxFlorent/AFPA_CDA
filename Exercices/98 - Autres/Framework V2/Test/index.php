@@ -8,6 +8,7 @@ $stmtListeTables = DbConnect::getDb()->prepare("SHOW TABLES;");
 $stmtListeTables->execute();
 $resultListeTables = $stmtListeTables->fetchAll(PDO::FETCH_ASSOC);
 $varTableIn = "Tables_in_" . Parametre::getBase();
+
 foreach ($resultListeTables as $table) {
     $tableName = $table[$varTableIn];
     if (!file_exists("PHP/CONTROLLER/CLASSE/" . ucfirst($tableName) . ".Class.php")) {
@@ -29,10 +30,13 @@ echo '<!DOCTYPE html>
     <body><h1>Test</h1>';
 
 echo '<div class="centered">';
-AfficherTable(DAO::select(null, "Clients", null, null, null, false, false));
+AfficherTable(DAO::select(null, "Eleves", null, null, null, false, false));
 echo '</div>';
 
-echo CreateComboBox(null, "Clients", ["nomClient", "prenomClient"], null,null, null, "--Veuillez choisir un client--");
+echo CreateComboBox(null, "Eleves", ["nom", "prenom"], null,null, null, "--Veuillez choisir un eleve--");
+
+var_dump(FormCreation::ListerFK("eleves"));
+FormCreation::CreateForm("eleves");
 
 DbConnect::close();
 echo '<script src="./scripts/scripts.js"></script>

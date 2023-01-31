@@ -52,7 +52,7 @@ class DAO
             }
             $sql = substr($sql, 0, -2);
         } else {
-            $sql .= implode(",");
+            $sql .= implode(",", $champs);
         }
         /**
          * Gestion de la table

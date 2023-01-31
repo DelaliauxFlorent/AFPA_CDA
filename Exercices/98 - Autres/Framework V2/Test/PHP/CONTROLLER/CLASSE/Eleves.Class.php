@@ -1,47 +1,58 @@
 
 <?php
-class Articles
+class Eleves
 {
     ////////////////////////////////////
     // Attributs
 
-    private $_idArticle;
-    private $_descriptionArticle;
-    private $_prixArticle;
+    private $_idEleve;
+    private $_nom;
+    private $_prenom;
+    private $_idClasse;
     
     ////////////////////////////////////
     #region Accesseurs
     
-    public function getIdArticle()
+    public function getIdEleve()
     {
-        return $this->_idArticle;
-    }
-
-    public function setIdArticle(int $idArticle)
-    {
-        $this->_idArticle = $idArticle;
+        return $this->_idEleve;
     }
     
-    public function getDescriptionArticle()
+    public function setIdEleve(int $idEleve)
     {
-        return $this->_descriptionArticle;
-    }
-
-    public function setDescriptionArticle(string $descriptionArticle = null)
-    {
-        $this->_descriptionArticle = $descriptionArticle;
+        $this->_idEleve = $idEleve;
     }
     
-    public function getPrixArticle()
+    public function getNom()
     {
-        return $this->_prixArticle;
+        return $this->_nom;
     }
-
-    public function setPrixArticle(int $prixArticle = null)
+    
+    public function setNom(string $nom)
     {
-        $this->_prixArticle = $prixArticle;
+        $this->_nom = $nom;
     }
-
+    
+    public function getPrenom()
+    {
+        return $this->_prenom;
+    }
+    
+    public function setPrenom(string $prenom)
+    {
+        $this->_prenom = $prenom;
+    }
+    
+    public function getIdClasse()
+    {
+        return $this->_idClasse;
+    }
+    
+    public function setIdClasse(int $idClasse=null)
+    {
+        $this->_idClasse = $idClasse;
+    }
+    
     public static function getChamps()
     {
         $array = get_class_vars(__CLASS__);
@@ -50,7 +61,7 @@ class Articles
         }
         return $listeChamps;
     }
-    
+
     #endregion Accesseurs
     ////////////////////////////////////
     // Constructeur

@@ -48,7 +48,7 @@ function DetectInject($string): bool
     return false;
 }
 
-function CreateClasse($table)
+function RecupInfos($table)
 {
     $typePossible = [
         "CHAR" => 0, "VARCHAR" => 0, "BINARY" => 0, "VARBINARY" => 0, "TINYBLOB" => 0, "TINYTEXT" => 0, "BLOB" => 0, "TEXT" => 0, "MEDIUMBLOB" => 0, "MEDIUMTEXT" => 0, "LONGBLOB" => 0, "LONGTEXT" => 0, "ENUM" => 0, "SET" => 0, "DATE" => 0, "DATETIME" => 0, "DATE/TIME" => 0, "TIMESTAMP" => 0, "TIME" => 0, "YEAR" => 0, "NCHAR" => 0, "NVARCHAR" => 0, "NTEXT" => 0, "VARBINARY" => 0, "IMAGE" => 0, "DATETIME2" => 0, "SMALLDATETIME" => 0, "DATETIMEOFFSET" => 0, "MEMO" => 0,
@@ -60,6 +60,35 @@ function CreateClasse($table)
     $stmtListAttributs = DbConnect::getDb()->prepare("DESCRIBE " . $table);
     $stmtListAttributs->execute();
     $resultListeColonnes = $stmtListAttributs->fetchAll(PDO::FETCH_ASSOC);
+    
+    foreach ($resultListeColonnes as $colonne) {
+        foreach ($typePossible as $key => $value) {
+            $typage = strtoupper(explode("(", $colonne["Type"])[0]);
+            if ($typage == $key) {
+                $typeAttribut = $typePHP[$value];
+            }
+        }
+        $nullable = ($colonne["Null"] != "NO");
+        
+        switch ($colonne['Key']) {
+            case 'PRI':
+                $cle="Primaire";
+                break;
+            case "MUL":
+                $cle="Etrangere";
+                break;
+            default:
+                $cle=null;
+                break;
+        }
+        $infoTable[$colonne['Field']]=['Type'=>$typeAttribut, 'Null'=>$nullable, 'Cle'=>$cle, 'Defaut'=>$colonne['Default']];
+    }
+    return $infoTable;
+}
+
+function CreateClasse($table)
+{
+    $resultListeColonnes=RecupInfos($table);
     $codeClasse = '
 <?php
 class ' . ucfirst($table) . '
@@ -68,35 +97,26 @@ class ' . ucfirst($table) . '
     // Attributs
 
     ';
-    foreach ($resultListeColonnes as $colonne) {
-        $codeClasse .= 'private $_' . $colonne["Field"] . ';
+    foreach ($resultListeColonnes as $nomColonne=>$infoColonne) {
+        $codeClasse .= 'private $_' . $nomColonne . ';
     ';
     }
     $codeClasse .= '
     ////////////////////////////////////
     #region Accesseurs
     ';
-    foreach ($resultListeColonnes as $colonne) {
-        foreach ($typePossible as $key => $value) {
-            $typage = strtoupper(explode("(", $colonne["Type"])[0]);
-            if ($typage == $key) {
-                $typeAttribut = $typePHP[$value];
-            }
-        }
-        $nullable = "";
-        if ($colonne["Null"] != "NO") {
-            $nullable = " = null";
-        }
-
+    foreach ($resultListeColonnes as $nomColonne=>$infoColonne) {
+        
+    $nullable=($infoColonne['Null'])?"=null":"";
         $codeClasse .= '
-    public function get' . ucfirst($colonne["Field"]) . '()
+    public function get' . ucfirst($nomColonne) . '()
     {
-        return $this->_' . $colonne["Field"] . ';
+        return $this->_' . $nomColonne . ';
     }
-
-    public function set' . ucfirst($colonne["Field"]) . '(' . $typeAttribut . ' $' . $colonne["Field"] . $nullable . ')
+    
+    public function set' . ucfirst($nomColonne) . '(' . $infoColonne['Type'] . ' $' . $nomColonne . $nullable . ')
     {
-        $this->_' . $colonne["Field"] . ' = $' . $colonne["Field"] . ';
+        $this->_' . $nomColonne . ' = $' . $nomColonne . ';
     }
     ';
     }
@@ -134,7 +154,7 @@ class ' . ucfirst($table) . '
     }
 }
 ';
-    file_put_contents("PHP/CONTROLLER/CLASSE/" . ucfirst($table) . ".Class.php", $codeClasse);
+file_put_contents("PHP/CONTROLLER/CLASSE/" . ucfirst($table) . ".Class.php", $codeClasse);
 }
 
 /**
@@ -145,19 +165,19 @@ class ' . ucfirst($table) . '
  */
 function AfficherTable(array $listeObjets)
 {
-    
+
     if (count($listeObjets) != 0) {
-        $listeChamps=get_class($listeObjets[0])::getChamps();
+        $listeChamps = get_class($listeObjets[0])::getChamps();
         echo '<table class="tableauDebug"><thead><tr>';
         foreach ($listeChamps as $value) {
-            echo '<th>'.ltrim(ucfirst($value), "_").'</th>';
+            echo '<th>' . ltrim(ucfirst($value), "_") . '</th>';
         }
         echo '</tr></thead><tbody>';
         foreach ($listeObjets as $objet) {
             echo '<tr>';
             foreach ($listeChamps as $col) {
-                $getvalue="get".$col;
-                echo '<td>'.$objet->$getvalue().'</td>';
+                $getvalue = "get" . $col;
+                echo '<td>' . (($objet->$getvalue() != null) ? $objet->$getvalue() : "NULL") . '</td>';
             }
             echo '</tr>';
         }
@@ -176,31 +196,32 @@ function AfficherTable(array $listeObjets)
  * @param string|null $messageSelect => Message affiché pour l'option par défaut
  * @return string
  */
-function CreateComboBox(string $idSelected = null, string $table, array $affichage, ?string $attributs = null, array $condition =null, string $orderBy =null, ?string $messageSelect = null)
+function CreateComboBox(string $idSelected = null, string $table, array $affichage, ?string $attributs = null, array $condition = null, string $orderBy = null, ?string $messageSelect = null)
 {
-    $champsID =$table::getChamps()[0];
+    $champsID = $table::getChamps()[0];
     $selectCol = $affichage;
     array_unshift($selectCol, $champsID);
-    $selected=$idSelected==null?" Selected":"";
+    $selected = $idSelected == null ? " Selected" : "";
     $liste = DAO::select($selectCol, $table, $condition, $orderBy, null, false, false);
-    $stringReturn= '<select id="' . $champsID . '" name="' . $champsID . '" ' . $attributs . '>';    
-    $stringReturn.= '<option value=""'.$selected.'>' . ($messageSelect != null ? $messageSelect : '--Choisissez une valeur--') . '</option>';
+    $stringReturn = '<select id="' . $champsID . '" name="' . $champsID . '" ' . $attributs . '>';
+    $stringReturn .= '<option value=""' . $selected . '>' . ($messageSelect != null ? $messageSelect : '--Choisissez une valeur--') . '</option>';
 
     foreach ($liste as $obj) {
         $id = getGet($obj, [$champsID]);
-        $selected =($id == $idSelected)?" Selected":"";
+        $selected = ($id == $idSelected) ? " Selected" : "";
         $content = getGet($obj, $affichage);
-        $stringReturn.= '<option value="' . $id . '" '.$selected.'>' . $content . '</option>';        
+        $stringReturn .= '<option value="' . $id . '" ' . $selected . '>' . $content . '</option>';
     }
-    $stringReturn.='</select>';
+    $stringReturn .= '</select>';
     return $stringReturn;
 }
 
-function getGet(object $objet, array $listAttributs):string{
-    $chaine="";
+function getGet(object $objet, array $listAttributs): string
+{
+    $chaine = "";
     foreach ($listAttributs as $value) {
-        $methode='get'.ucfirst($value);
-        $chaine.= $objet->$methode().' ';
+        $methode = 'get' . ucfirst($value);
+        $chaine .= $objet->$methode() . ' ';
     }
 
     return rtrim($chaine);

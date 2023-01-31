@@ -1,56 +1,34 @@
 
 <?php
-class Clients
+class Classes
 {
     ////////////////////////////////////
     // Attributs
 
-    private $_idClient;
-    private $_nomClient;
-    private $_prenomClient;
-    private $_dateEntreeClient;
+    private $_idClasse;
+    private $_libelle;
     
     ////////////////////////////////////
     #region Accesseurs
     
-    public function getIdClient()
+    public function getIdClasse()
     {
-        return $this->_idClient;
-    }
-
-    public function setIdClient(int $idClient)
-    {
-        $this->_idClient = $idClient;
+        return $this->_idClasse;
     }
     
-    public function getNomClient()
+    public function setIdClasse(int $idClasse)
     {
-        return $this->_nomClient;
-    }
-
-    public function setNomClient(string $nomClient = null)
-    {
-        $this->_nomClient = $nomClient;
+        $this->_idClasse = $idClasse;
     }
     
-    public function getPrenomClient()
+    public function getLibelle()
     {
-        return $this->_prenomClient;
-    }
-
-    public function setPrenomClient(string $prenomClient = null)
-    {
-        $this->_prenomClient = $prenomClient;
+        return $this->_libelle;
     }
     
-    public function getDateEntreeClient()
+    public function setLibelle(string $libelle)
     {
-        return $this->_dateEntreeClient;
-    }
-
-    public function setDateEntreeClient(string $dateEntreeClient = null)
-    {
-        $this->_dateEntreeClient = $dateEntreeClient;
+        $this->_libelle = $libelle;
     }
     
     public static function getChamps()
