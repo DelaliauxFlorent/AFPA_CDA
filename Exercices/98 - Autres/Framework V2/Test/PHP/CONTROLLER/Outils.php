@@ -60,7 +60,7 @@ function RecupInfos($table)
     $stmtListAttributs = DbConnect::getDb()->prepare("DESCRIBE " . $table);
     $stmtListAttributs->execute();
     $resultListeColonnes = $stmtListAttributs->fetchAll(PDO::FETCH_ASSOC);
-    
+
     foreach ($resultListeColonnes as $colonne) {
         foreach ($typePossible as $key => $value) {
             $typage = strtoupper(explode("(", $colonne["Type"])[0]);
@@ -69,26 +69,26 @@ function RecupInfos($table)
             }
         }
         $nullable = ($colonne["Null"] != "NO");
-        
+
         switch ($colonne['Key']) {
             case 'PRI':
-                $cle="Primaire";
+                $cle = "Primaire";
                 break;
             case "MUL":
-                $cle="Etrangere";
+                $cle = "Etrangere";
                 break;
             default:
-                $cle=null;
+                $cle = null;
                 break;
         }
-        $infoTable[$colonne['Field']]=['Type'=>$typeAttribut, 'Null'=>$nullable, 'Cle'=>$cle, 'Defaut'=>$colonne['Default']];
+        $infoTable[$colonne['Field']] = ['Type' => $typeAttribut, 'Null' => $nullable, 'Cle' => $cle, 'Defaut' => $colonne['Default']];
     }
     return $infoTable;
 }
 
 function CreateClasse($table)
 {
-    $resultListeColonnes=RecupInfos($table);
+    $resultListeColonnes = RecupInfos($table);
     $codeClasse = '
 <?php
 class ' . ucfirst($table) . '
@@ -97,7 +97,7 @@ class ' . ucfirst($table) . '
     // Attributs
 
     ';
-    foreach ($resultListeColonnes as $nomColonne=>$infoColonne) {
+    foreach ($resultListeColonnes as $nomColonne => $infoColonne) {
         $codeClasse .= 'private $_' . $nomColonne . ';
     ';
     }
@@ -105,9 +105,9 @@ class ' . ucfirst($table) . '
     ////////////////////////////////////
     #region Accesseurs
     ';
-    foreach ($resultListeColonnes as $nomColonne=>$infoColonne) {
-        
-    $nullable=($infoColonne['Null'])?"=null":"";
+    foreach ($resultListeColonnes as $nomColonne => $infoColonne) {
+
+        $nullable = ($infoColonne['Null']) ? "=null" : "";
         $codeClasse .= '
     public function get' . ucfirst($nomColonne) . '()
     {
@@ -154,7 +154,46 @@ class ' . ucfirst($table) . '
     }
 }
 ';
-file_put_contents("PHP/CONTROLLER/CLASSE/" . ucfirst($table) . ".Class.php", $codeClasse);
+    if (!file_exists("PHP/CONTROLLER/CLASSE/" . ucfirst($table) . ".Class.php")) 
+    {
+        file_put_contents("PHP/CONTROLLER/CLASSE/" . ucfirst($table) . ".Class.php", $codeClasse);
+    }
+}
+
+function CreateManager($table)
+{
+    $class = ucfirst($table);
+    $manager = '<?php 
+    class ' . $class . 'Manager{
+        public static function Add(' . $class . ' $obj)
+        {
+            return DAO::Create($obj);
+        }
+        
+        public static function Update(' . $class . ' $obj)
+        {
+            return DAO::Update($obj);
+        }
+        
+        public static function Delete(' . $class . ' $obj)
+        {
+            return DAO::Delete($obj);
+        }
+        
+        public static function FindById($id)
+        {
+            return DAO::Select(' . $class . '::getChamps(), "' . $class . '", ["' . $class::getChamps()[0] . '"=> $id])[0];
+        }
+        
+        public static function GetList(array $nomColonnes = null, array $conditions = null, string $orderBy = null, string $limit = null, bool $api = false, bool $debug =false)
+        {
+            $nomColonnes = ($nomColonnes==null)?' . $class . '::getChamps():$nomColonnes;
+            return DAO::Select($nomColonnes, "' . $class . '", $conditions, $orderBy, $limit, $api, $debug);
+        }
+    }';
+    if (!file_exists("PHP/MODEL/MANAGER/" . $class . "Manager.Class.php")) {
+        file_put_contents("PHP/MODEL/MANAGER/" . $class . "Manager.Class.php", $manager);
+    }
 }
 
 /**
@@ -202,7 +241,7 @@ function CreateComboBox(string $idSelected = null, string $table, array $afficha
     $selectCol = $affichage;
     array_unshift($selectCol, $champsID);
     $selected = $idSelected == null ? " Selected" : "";
-    $liste = DAO::select($selectCol, $table, $condition, $orderBy, null, false, false);
+    $liste = DAO::Select($selectCol, $table, $condition, $orderBy, null, false, false);
     $stringReturn = '<select id="' . $champsID . '" name="' . $champsID . '" ' . $attributs . '>';
     $stringReturn .= '<option value=""' . $selected . '>' . ($messageSelect != null ? $messageSelect : '--Choisissez une valeur--') . '</option>';
 

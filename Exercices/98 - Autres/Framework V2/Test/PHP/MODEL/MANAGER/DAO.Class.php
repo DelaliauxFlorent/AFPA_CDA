@@ -35,7 +35,7 @@ class DAO
      *
      * @return [array ou object] $liste => résultat de la requête revoie false si la requête s'est mal passé sinon renvoie un tableau.
      */
-    public static function select(?array $nomColonnes = null, string $table, array $conditions = null, string $orderBy = null, string $limit = null, bool $api = false, bool $debug = false)
+    public static function Select(?array $nomColonnes = null, string $table, array $conditions = null, string $orderBy = null, string $limit = null, bool $api = false, bool $debug = false)
     {
 
         $sql = "SELECT ";

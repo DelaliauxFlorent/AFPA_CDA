@@ -11,9 +11,8 @@ $varTableIn = "Tables_in_" . Parametre::getBase();
 
 foreach ($resultListeTables as $table) {
     $tableName = $table[$varTableIn];
-    if (!file_exists("PHP/CONTROLLER/CLASSE/" . ucfirst($tableName) . ".Class.php")) {
-        CreateClasse($tableName);
-    }
+    CreateClasse($tableName);
+    CreateManager($tableName);
 }
 echo '<!DOCTYPE html>
 <html lang="en">
@@ -29,14 +28,16 @@ echo '<!DOCTYPE html>
 
     <body><h1>Test</h1>';
 
-echo '<div class="centered">';
-AfficherTable(DAO::select(null, "Eleves", null, null, null, false, false));
-echo '</div>';
+// echo '<div class="centered">';
+// AfficherTable(DAO::Select(null, "Eleves", null, null, null, false, false));
+// echo '</div>';
 
-echo CreateComboBox(null, "Eleves", ["nom", "prenom"], null,null, null, "--Veuillez choisir un eleve--");
+//echo CreateComboBox(null, "Eleves", ["nom", "prenom"], null,null, null, "--Veuillez choisir un eleve--");
 
-var_dump(FormCreation::ListerFK("eleves"));
-FormCreation::CreateForm("eleves", null,"methode='get' action=''", 2);
+//var_dump(FormCreation::ListerFK("eleves"));
+$eleveTest=DAO::Select(null, "eleves", ["idEleve"=>'2'], null, null, false, false);
+
+FormCreation::CreateForm($eleveTest);
 
 DbConnect::close();
 echo '<script src="./scripts/scripts.js"></script>
