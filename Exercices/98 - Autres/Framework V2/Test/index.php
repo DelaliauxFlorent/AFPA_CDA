@@ -36,7 +36,7 @@ echo '</div>';
 echo CreateComboBox(null, "Eleves", ["nom", "prenom"], null,null, null, "--Veuillez choisir un eleve--");
 
 var_dump(FormCreation::ListerFK("eleves"));
-FormCreation::CreateForm("eleves");
+FormCreation::CreateForm("eleves", null,"methode='get' action=''", 2);
 
 DbConnect::close();
 echo '<script src="./scripts/scripts.js"></script>
