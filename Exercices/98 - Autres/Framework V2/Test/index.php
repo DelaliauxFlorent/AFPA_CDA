@@ -15,7 +15,7 @@ foreach ($resultListeTables as $table) {
     CreateManager($tableName);
 }
 echo '<!DOCTYPE html>
-<html lang="en">
+<html>
 
     <head>
         <meta charset="UTF-8">
@@ -36,8 +36,11 @@ echo '<!DOCTYPE html>
 
 //var_dump(FormCreation::ListerFK("eleves"));
 $eleveTest=DAO::Select(null, "eleves", ["idEleve"=>'2'], null, null, false, false);
+$ClassTest=DAO::Select(null, "classes", ["idClasse"=>'2'], null, null, false, false);
 
-FormCreation::CreateForm($eleveTest);
+echo FormCreation::CreateForm($eleveTest);
+echo '<div>&nbsp;</div>';
+echo FormCreation::CreateForm($ClassTest);
 
 DbConnect::close();
 echo '<script src="./scripts/scripts.js"></script>

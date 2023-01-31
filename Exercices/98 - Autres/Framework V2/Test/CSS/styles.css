@@ -1,3 +1,145 @@
+html,
+body,
+form,
+div,
+label,
+input {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+}
+
+label {
+    flex: 2;
+    align-items: center;
+    text-align: center;
+}
+
+body {
+    flex: 0.6;
+    margin: 0;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    background-color: rgb(30, 30, 30);
+    font-size: 1.2em;
+}
+h1 {
+    font-weight: normal;
+    background-color: rgb(60, 60, 60);
+    padding: 1.5vh 2vw;
+    border-radius: 2vw;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+form {
+    flex-direction: column;
+    background-color: rgb(60, 60, 60);
+    padding: 4vh 3vw;
+    border-radius: 2vh;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+    width: 80vw;
+}
+
+form input {
+    background-color: rgb(80, 80, 80);
+    padding: 0.5vh 0.5vw;
+    border: unset;
+    border-left: 4px solid white;
+    color: white;
+    font-size: 1.2em;
+    transition: transform 0.3s, box-shadow 0.3s;
+    outline: none;
+    margin: 0vh 1vw;
+    flex:2;
+    max-height: 2em;
+}
+form input:focus {
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+}
+
+form input[type="submit"] {
+    margin-top: 3vh;
+    padding: 1vh 2vw;
+    color: #666666;
+    border-bottom: 4px solid #666666;
+    border-left: 4px solid #666666;
+    width: 100%;
+    align-self: center;
+}
+
+input[required]+h3::before {
+    content: "*";
+    color: red;
+}
+
+.ligne {
+    padding-bottom: 0.8em;
+    align-items: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type=number]{
+    appearance: textfield;
+}
+fieldset{
+    width: 100%;
+    display: flex
+}
+.message {
+    border-radius: 2vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    text-align: center;
+    padding: 0.5vh;
+    opacity: 0;
+    font-size: 0.6em;
+    transition: opacity 0.3s;
+    position: relative;
+    width: 20em;
+}
+
+.message.visible {
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.gaucheVert{
+    border-left-color: rgb(50,200,50);
+}
+
+.gaucheRouge{
+    border-left-color: rgb(200,50,50);
+}
+/**************************************/
+/**************************************/
+/**************************************/
+/**************************************/
+/**************************************/
+
+.cancel {
+    margin-top: 3vh;
+    padding: 1vh 2vw;
+    border-bottom: 4px solid lightcoral;
+    border-left: 4px solid lightcoral;
+    width: 100%;
+    align-self: center;
+}
+.valid {
+    margin-top: 3vh;
+    padding: 1vh 2vw;
+    border-bottom: 4px solid lightgreen;
+    border-left: 4px solid lightgreen;
+    width: 100%;
+    align-self: center;
+}
+/*
 body{
     background-color: lightgray;
 }
@@ -32,3 +174,42 @@ h1{
     display:flex;
     justify-content: center;
 }
+.extContainer{
+    grid-template-columns:1em auto 1em;
+}
+.intContainer{
+    display:grid;
+    grid-template-columns:1em auto 1em auto 1em;
+    grid-template-rows: auto;
+    grid-template-areas: "side Label Middle Input side";
+    justify-content: center;
+    align-content: space-around; 
+    grid-auto-rows:auto;
+    flex:1;
+    border: 0.1em dotted red;
+}
+
+.borderedZone{
+    border: 0.2em solid black;
+    border-radius: 20px;
+    padding: 1em;
+}
+.Flex{
+    display: flex;
+    flex-wrap: wrap;
+}
+.Flex div{
+    flex-grow: 1;
+} 
+.RLabel{
+    text-align: right;
+    grid-area: Label;
+}
+.LInput{
+    text-align: left;
+    break-after: always;
+    grid-area: Input;
+}
+.Separation{
+   grid-area: Middle;
+}*/

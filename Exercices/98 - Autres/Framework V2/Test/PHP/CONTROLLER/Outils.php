@@ -21,6 +21,12 @@ function decode($texte)
     return $texte;
 }
 
+/**
+ * Fonction de décodage perso
+ *
+ * @param [type] $string
+ * @return void
+ */
 function decoder($string)
 {
     $encoded = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
@@ -48,28 +54,48 @@ function DetectInject($string): bool
     return false;
 }
 
-function RecupInfos($table)
+/**
+ * Récupère, pour chaque colonne de la table, des infos pour la création de la classe
+ *
+ * @param [type] $table
+ * @return array => ['NomColonne']=>[
+ * 'Type'=>Son type en string, 
+ * 'Null'=> bool si null autorisé, 
+ * 'Cle'=>'Primaire'|'Etrangere'|null, 
+ * 'Defaut'=>valeur par défaut si'il y en a une]
+ */
+function RecupInfos($table): array
 {
+    // Array contenant une grande partie des types en SQL associé à une valeur (pour "traduction" vers PHP)
     $typePossible = [
         "CHAR" => 0, "VARCHAR" => 0, "BINARY" => 0, "VARBINARY" => 0, "TINYBLOB" => 0, "TINYTEXT" => 0, "BLOB" => 0, "TEXT" => 0, "MEDIUMBLOB" => 0, "MEDIUMTEXT" => 0, "LONGBLOB" => 0, "LONGTEXT" => 0, "ENUM" => 0, "SET" => 0, "DATE" => 0, "DATETIME" => 0, "DATE/TIME" => 0, "TIMESTAMP" => 0, "TIME" => 0, "YEAR" => 0, "NCHAR" => 0, "NVARCHAR" => 0, "NTEXT" => 0, "VARBINARY" => 0, "IMAGE" => 0, "DATETIME2" => 0, "SMALLDATETIME" => 0, "DATETIMEOFFSET" => 0, "MEMO" => 0,
         "BIT" => 1, "TINYINT" => 1, "INT" => 1, "SMALLINT" => 1, "MEDIUMINT" => 1, "BIGINT" => 1, "INTEGER" => 1, "BYTE" => 1, "LONG" => 1,
         "FLOAT" => 2, "DOUBLE PRECISION" => 2, "DOUBLE" => 2, "DEC" => 2, "DECIMAL" => 2, "NUMERIC" => 2, "SMALLMONEY" => 2, "MONEY" => 2, "REAL" => 2, "SINGLE" => 2, "CURRENCY" => 2,
         "BOOL" => 3, "BOOLEAN" => 3, "YES/NO" => 3
     ];
+    // Types possible pour les attributs en PHP, ordre correspondant aux valeurs du tableau précédent
     $typePHP = ["string", "int", "float", "bool"];
+
+    // Récupération de la description de la table
     $stmtListAttributs = DbConnect::getDb()->prepare("DESCRIBE " . $table);
     $stmtListAttributs->execute();
     $resultListeColonnes = $stmtListAttributs->fetchAll(PDO::FETCH_ASSOC);
 
     foreach ($resultListeColonnes as $colonne) {
+        // Pour chaque colonne:
+
+        // On traduit son typage SQL en typage PHP
         foreach ($typePossible as $key => $value) {
             $typage = strtoupper(explode("(", $colonne["Type"])[0]);
             if ($typage == $key) {
                 $typeAttribut = $typePHP[$value];
             }
         }
+
+        // On détermine si elle accepte les null
         $nullable = ($colonne["Null"] != "NO");
 
+        // On détermine s'il s'agit d'une clès primaire, étrangère ou d'une colonne basique
         switch ($colonne['Key']) {
             case 'PRI':
                 $cle = "Primaire";
@@ -81,13 +107,25 @@ function RecupInfos($table)
                 $cle = null;
                 break;
         }
+
+        // On rassemble toutes les données dans la variable de retour
         $infoTable[$colonne['Field']] = ['Type' => $typeAttribut, 'Null' => $nullable, 'Cle' => $cle, 'Defaut' => $colonne['Default']];
     }
+    // On renvoie le tableau complet
     return $infoTable;
 }
 
-function CreateClasse($table)
+
+/**
+ * Création des fichiers POCOs
+ * (à déplacer dans le générateur une fois terminé)
+ *
+ * @param string $table => Nom de la table telle qu'elle est nommée dans la BDD
+ * @return void
+ */
+function CreateClasse(string $table)
 {
+    // On récupère les infos qui seront nécessaire pour la création du fichier
     $resultListeColonnes = RecupInfos($table);
     $codeClasse = '
 <?php
@@ -97,6 +135,7 @@ class ' . ucfirst($table) . '
     // Attributs
 
     ';
+    // Pour chaque colonne, on crée un attribut de type privé
     foreach ($resultListeColonnes as $nomColonne => $infoColonne) {
         $codeClasse .= 'private $_' . $nomColonne . ';
     ';
@@ -105,6 +144,7 @@ class ' . ucfirst($table) . '
     ////////////////////////////////////
     #region Accesseurs
     ';
+    // Pour chaque attribut, on crée les Getters et les Setters(typé) correspondants
     foreach ($resultListeColonnes as $nomColonne => $infoColonne) {
 
         $nullable = ($infoColonne['Null']) ? "=null" : "";
@@ -120,7 +160,14 @@ class ' . ucfirst($table) . '
     }
     ';
     }
+    // On termine par une fonction static permettant de récupérer facilement la liste de tous les attributs de la classe
+    // Ainsi que le constructeur et l'hydrateur de la classe
     $codeClasse .= '
+    /**
+     * Récupérer la liste des attributs de la classe
+     *
+     * @return  array  liste des champs
+     */
     public static function getChamps()
     {
         $array = get_class_vars(__CLASS__);
@@ -154,13 +201,20 @@ class ' . ucfirst($table) . '
     }
 }
 ';
-    if (!file_exists("PHP/CONTROLLER/CLASSE/" . ucfirst($table) . ".Class.php")) 
-    {
-        file_put_contents("PHP/CONTROLLER/CLASSE/" . ucfirst($table) . ".Class.php", $codeClasse);
+    // On vérifie que le fichier n'éxiste pas déjà et on le crée
+    $fichier = "PHP/CONTROLLER/CLASSE/" . ucfirst($table) . ".Class.php";
+    if (!file_exists($fichier)) {
+        file_put_contents($fichier, $codeClasse);
     }
 }
 
-function CreateManager($table)
+/**
+ * Création des fichiers des Manager des classes
+ *
+ * @param string $table
+ * @return void
+ */
+function CreateManager(string $table)
 {
     $class = ucfirst($table);
     $manager = '<?php 
@@ -191,8 +245,9 @@ function CreateManager($table)
             return DAO::Select($nomColonnes, "' . $class . '", $conditions, $orderBy, $limit, $api, $debug);
         }
     }';
-    if (!file_exists("PHP/MODEL/MANAGER/" . $class . "Manager.Class.php")) {
-        file_put_contents("PHP/MODEL/MANAGER/" . $class . "Manager.Class.php", $manager);
+    $fichier = "PHP/MODEL/MANAGER/" . $class . "Manager.Class.php";
+    if (!file_exists($fichier)) {
+        file_put_contents($fichier, $manager);
     }
 }
 
@@ -232,6 +287,8 @@ function AfficherTable(array $listeObjets)
  * @param string $table => nom de la table sur laquelle porte la ComboBox
  * @param array $affichage => Contenu de la balise "option"
  * @param string|null $attributs => Attributs supplémentaires du Select
+ * @param array|null $condition => conditions pour le DAO::Select
+ * @param string|null $orderBy => orderBy pour le DAO::Select
  * @param string|null $messageSelect => Message affiché pour l'option par défaut
  * @return string
  */
@@ -255,6 +312,13 @@ function CreateComboBox(string $idSelected = null, string $table, array $afficha
     return $stringReturn;
 }
 
+/**
+ * Récupère la concaténation des valeurs des atrributs choisi de l'objet
+ *
+ * @param object $objet => objet dont on veut les attributs concaténé
+ * @param array $listAttributs => liste des attributs que l'on veut qu'ils soient concaténés
+ * @return string
+ */
 function getGet(object $objet, array $listAttributs): string
 {
     $chaine = "";
@@ -262,6 +326,25 @@ function getGet(object $objet, array $listAttributs): string
         $methode = 'get' . ucfirst($value);
         $chaine .= $objet->$methode() . ' ';
     }
-
+    // On retourne la chaîne après avoir retiré l'espace à la fin
     return rtrim($chaine);
+}
+
+/**
+ * Récuperer la liste des clés étrangères associés à la table
+ *
+ * @param string $table => table pour laquelle on veut les clès étrangères
+ * @return array $retour => liste des clès étrangères organisé tel que 'idForeignKey'=>['ForeignTable', 'PrimaryKeyOfForeignTable']
+ */
+function ListerFK(string $table): array
+{
+    $sql = "SELECT `COLUMN_NAME` as attribut, `REFERENCED_TABLE_NAME` as fTable,`REFERENCED_COLUMN_NAME` as fAttribut FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME='" . $table . "' AND `CONSTRAINT_NAME` LIKE 'FK%'";
+    $stmt = DbConnect::getDb()->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $retour = [];
+    foreach ($result as $key => $value) {
+        $retour[$value['attribut']] = ['table' => $value['fTable'], 'colonne' => $value['fAttribut']];
+    }
+    return $retour;
 }
