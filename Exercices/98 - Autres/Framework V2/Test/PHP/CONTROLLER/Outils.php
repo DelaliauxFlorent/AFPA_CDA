@@ -53,7 +53,7 @@ function DetectInject($string): bool
     }
     return false;
 }
-
+//SELECT * FROM `COLUMNS` WHERE `TABLE_NAME` LIKE 'eleves' ORDER BY `TABLE_NAME` ASC 
 /**
  * Récupère, pour chaque colonne de la table, des infos pour la création de la classe
  *
@@ -137,7 +137,7 @@ class ' . ucfirst($table) . '
     ';
     // Pour chaque colonne, on crée un attribut de type privé
     foreach ($resultListeColonnes as $nomColonne => $infoColonne) {
-        $codeClasse .= 'private $_' . $nomColonne . ';
+        $codeClasse .= 'private ?' . $infoColonne['Type'] . '$_' . $nomColonne . ';
     ';
     }
     $codeClasse .= '
@@ -236,7 +236,7 @@ function CreateManager(string $table)
         
         public static function FindById($id)
         {
-            return DAO::Select(' . $class . '::getChamps(), "' . $class . '", ["' . $class::getChamps()[0] . '"=> $id])[0];
+            return DAO::Select(' . $class . '::getChamps(), "' . $class . '", ["' . $class::getChamps()[0] . '"=> $id]);
         }
         
         public static function GetList(array $nomColonnes = null, array $conditions = null, string $orderBy = null, string $limit = null, bool $api = false, bool $debug =false)
@@ -345,6 +345,72 @@ function ListerFK(string $table): array
     $retour = [];
     foreach ($result as $key => $value) {
         $retour[$value['attribut']] = ['table' => $value['fTable'], 'colonne' => $value['fAttribut']];
+    }
+    return $retour;
+}
+
+function TypeToInput(string $type): string
+{
+    switch ($type) {
+        case 'char':
+        case 'varchar':
+        case 'tinytext':
+        case 'char':
+        case 'char':
+        case 'char':
+        case 'char':
+        case 'char':
+            case 'char':
+        case 'string':
+            $iType = "text";
+            break;
+        case 'tinyint':
+        case 'smallint':
+        case 'mediumint':
+        case 'int':
+        case 'bigint':
+        case 'decimal':
+        case 'float':
+        case 'double':
+        case 'real':
+        case "year":
+            $iType = "number";
+            break;
+        case 'bit':
+        case 'boolean':
+            $iType = "radio";
+            break;
+        case 'date':
+            $iType = "date";
+            break;
+        case 'datetime':
+        case 'timestamp':
+            $iType="datetime-local";
+            break;
+        case 'time':
+            $iType="time";
+            break;
+        default:
+            $iType = "textblock";
+            break;
+    }
+    return $iType;
+}
+
+function CreateInput(string $type, string $nom, string $attributs): string
+{
+    if ($type) {
+        switch ($type) {
+            case 'text':
+                $retour = '<label for="' . $nom . '">Entrez la valeur de "' . ucfirst($nom) . '": </label><div class="flexMini"></div>';
+                $retour .= '<input type="' . $type . '" id="' . $nom . '" name="' . $nom . '"' . $attributs . '>';
+                break;
+            case 'number':
+                break;
+            default:
+                # code...
+                break;
+        }
     }
     return $retour;
 }

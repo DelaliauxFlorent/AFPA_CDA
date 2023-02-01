@@ -14,15 +14,19 @@ class FormCreation
         $id = $obj->getChamps()[0];
         // Détermination de la classe de l'objet
         $table = get_class($obj);
-        echo $table;
         // On récupère les infos de la table
         $infosTable = RecupInfos($table);
 
         // On récupère la liste des clès étrangères associées à la table actuelle
         $listeCleSecondaires = ListerFK($table);
 
+        // Récupération de l'ID passé en GET
+        $formulaire='<?php 
+            $id=$_GET["id"];
+            $elt='.$table.'Manager::FindById($id);';
+
         // Début du formulaire
-        $formulaire = '<form methode="get" action="./PHP/CONTROLLER/ACTION/Action' . $table . '.php">';
+        $formulaire .= '<form methode="get" action="./PHP/CONTROLLER/ACTION/Action' . $table . '.php">';
 
         foreach ($infosTable as $colonne => $infoColonne) {
             // Pour chaque colonne de la table/attribut de la classe, on fait une ligne
@@ -66,13 +70,13 @@ class FormCreation
             if ($infosTable[$colonne]['Cle'] == null) {
 
                 if ($infosTable[$colonne]['Type'] != 'bool') {
-                    $formulaire .= '<label for="' . $colonne . '">Entrez la valeur de "' . ucfirst($colonne) . '": </label>';
+                    $formulaire .= '<label for="' . $colonne . '">Entrez la valeur de "' . ucfirst($colonne) . '": </label><div class="flexMini"></div>';
                     $formulaire .= '<input type="' . $type . '" id="' . $colonne . '" name="' . $colonne . '"' . $default . $required . ($type == "number" ? $step : "") . '>';
                 }
             } elseif ($infosTable[$colonne]['Cle'] == "Primaire") {
                 $formulaire .= '<input type=hidden id=' . $colonne . '" name="' . $colonne . '" </imput>';
             } else {
-                $formulaire .= '<label for="' . $colonne . '">Entrez la valeur de "' . ucfirst($colonne) . '": </label>';
+                $formulaire .= '<label for="' . $colonne . '">Entrez la valeur de "' . ucfirst($colonne) . '": </label><div class="flexMini"></div>';
                 $formulaire .= CreateComboBox(getGet($obj, [$colonne]), $listeCleSecondaires[$colonne]['table'], ["libelle"], null, null, null, null);
             }
             /**********************************************
@@ -84,9 +88,9 @@ class FormCreation
             $formulaire.='</div>';
         }
         // On fait une ligne pour les boutons annuler et valider
-        $formulaire.='<div class="ligne">';
-        $formulaire.='<input id="btnCancel" class="cancel" type="button" value="Annuler">';
-        $formulaire.='<input id="btnValid" class="valid" type="button" value="Valider">';
+        $formulaire.='<div class="ligne"><div>&nbsp;</div>';
+        $formulaire.='<input id="btnCancel" class="cancel" type="button" value="Annuler"><div>&nbsp;</div>';
+        $formulaire.='<input id="btnValid" class="valid" type="button" value="Valider"><div>&nbsp;</div>';
         $formulaire.='</div>';
 
         // Et on termine le formulaire

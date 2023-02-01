@@ -42,7 +42,7 @@ form {
     width: 80vw;
 }
 
-form input {
+form input, form select {
     background-color: rgb(80, 80, 80);
     padding: 0.5vh 0.5vw;
     border: unset;
@@ -138,6 +138,14 @@ fieldset{
     border-left: 4px solid lightgreen;
     width: 100%;
     align-self: center;
+}
+
+.flexMini{
+    flex: 0.2;
+}
+
+form label{
+    justify-content: flex-end;
 }
 /*
 body{
