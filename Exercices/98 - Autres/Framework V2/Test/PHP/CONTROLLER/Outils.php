@@ -352,18 +352,6 @@ function ListerFK(string $table): array
 function TypeToInput(string $type): string
 {
     switch ($type) {
-        case 'char':
-        case 'varchar':
-        case 'tinytext':
-        case 'char':
-        case 'char':
-        case 'char':
-        case 'char':
-        case 'char':
-            case 'char':
-        case 'string':
-            $iType = "text";
-            break;
         case 'tinyint':
         case 'smallint':
         case 'mediumint':
@@ -378,20 +366,34 @@ function TypeToInput(string $type): string
             break;
         case 'bit':
         case 'boolean':
-            $iType = "radio";
+            $iType = "checkbox";
             break;
         case 'date':
             $iType = "date";
             break;
         case 'datetime':
         case 'timestamp':
-            $iType="datetime-local";
+            $iType = "datetime-local";
             break;
         case 'time':
-            $iType="time";
+            $iType = "time";
             break;
+        case 'char':
+        case 'varchar':
+        case 'binary':
+        case 'varbinary':
+        case 'enum':
+        case 'set':
+        case 'tinytext':
+        case 'text':
+        case 'mediumtext':
+        case 'longtext':
+        case 'tinyblob':
+        case 'blob':
+        case 'mediumblob':
+        case 'longblob':
         default:
-            $iType = "textblock";
+            $iType = "text";
             break;
     }
     return $iType;
@@ -399,18 +401,21 @@ function TypeToInput(string $type): string
 
 function CreateInput(string $type, string $nom, string $attributs): string
 {
-    if ($type) {
-        switch ($type) {
-            case 'text':
-                $retour = '<label for="' . $nom . '">Entrez la valeur de "' . ucfirst($nom) . '": </label><div class="flexMini"></div>';
-                $retour .= '<input type="' . $type . '" id="' . $nom . '" name="' . $nom . '"' . $attributs . '>';
-                break;
-            case 'number':
-                break;
-            default:
-                # code...
-                break;
-        }
-    }
+    $retour = '<label for="' . $nom . '">Entrez la valeur de "' . ucfirst($nom) . '": </label><div class="flexMini"></div>';
+    $retour .= '<input type="' . $type . '" id="' . $nom . '" name="' . $nom . '"' . $attributs . '>';
+    
+    // if ($type) {
+    //     switch ($type) {
+    //         case 'text':
+    //             $retour = '<label for="' . $nom . '">Entrez la valeur de "' . ucfirst($nom) . '": </label><div class="flexMini"></div>';
+    //             $retour .= '<input type="' . $type . '" id="' . $nom . '" name="' . $nom . '"' . $attributs . '>';
+    //             break;
+    //         case 'number':
+    //             break;
+    //         default:
+    //             # code...
+    //             break;
+    //     }
+    // }
     return $retour;
 }
