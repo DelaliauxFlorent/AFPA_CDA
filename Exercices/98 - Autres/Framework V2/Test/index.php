@@ -38,9 +38,10 @@ echo '<!DOCTYPE html>
 $eleveTest=DAO::Select(null, "eleves", ["idEleve"=>'2'], null, null, false, false);
 $ClassTest=DAO::Select(null, "classes", ["idClasse"=>'2'], null, null, false, false);
 
-echo FormCreation::CreateForm($eleveTest);
+FormCreation::CreateForm("Eleves");
+include "./PHP/VIEW/FORM/FormulaireEleves.php";
 echo '<div>&nbsp;</div>';
-echo FormCreation::CreateForm($ClassTest);
+//echo FormCreation::CreateForm($ClassTest);
 
 DbConnect::close();
 echo '<script src="./scripts/scripts.js"></script>

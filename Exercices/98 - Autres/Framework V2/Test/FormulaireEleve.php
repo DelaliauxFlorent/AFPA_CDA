@@ -40,17 +40,15 @@ foreach ($infosTable as $colonne => $infoColonne) {
     } 
     $required = (!$infosTable[$colonne]['Null']) ? ' required' : '';
     $type=TypeToInput($infosTable[$colonne]['Type']);
-    if ($infosTable[$colonne]['Cle'] == null) {
 
-        if ($infosTable[$colonne]['Type'] != 'bool') {
-            echo '<label for="' . $colonne . '">Entrez la valeur de "' . ucfirst($colonne) . '": </label><div class="flexMini"></div>';
-            echo '<input type="' . $type . '" id="' . $colonne . '" name="' . $colonne . '"' . $default . $required . '>';
-        }
+    if ($infosTable[$colonne]['Cle'] == null) {
+        echo CreateInput($type, $colonne,$default);
     } elseif ($infosTable[$colonne]['Cle'] == "Primaire") {
         echo '<input type=hidden id=' . $colonne . '" name="' . $colonne . '" </imput>';
     } else {
         echo '<label for="' . $colonne . '">Entrez la valeur de "' . ucfirst($colonne) . '": </label><div class="flexMini"></div>';
-        echo CreateComboBox(getGet($elt, [$colonne]), $listeCleSecondaires[$colonne]['table'], ["libelle"], null, null, null, null);
+        echo CreateComboBox(getGet($elt, [$colonne]), $listeCleSecondaires[$colonne]['table'], [ucfirst($listeCleSecondaires[$colonne]['table']::getChamps()[1])], null, null, null, null);
+
     }
     echo '</div>';
 }
