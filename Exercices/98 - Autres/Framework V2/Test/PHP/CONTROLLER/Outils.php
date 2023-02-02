@@ -292,19 +292,19 @@ function CreateManager(string $table)
             $type=TypeToInput($infosTable[$colonne][\'Type\']);
 
             if ($infosTable[$colonne][\'Cle\'] == null) {
-                $form .= CreateInput($type, $colonne, "");
+                // Si la colonne n\'est ni une clé primaire, ni une clé étrangère
+                // on appele la fonction générique
+                $attributs = $default.$required;
+                $form .= CreateInput($type, $colonne, $attributs);
             } elseif ($infosTable[$colonne][\'Cle\'] == "Primaire") {
-                $form .= \'<input type=hidden id=\' . $colonne . \'" name="\' . $colonne . \'" </imput>\';
+                // Si c\'est une clé primaire, on la passe en "hidden"
+                $form .= \'<input type=hidden id=\' . $colonne . \'" name="\' . $colonne . $default . \'" </imput>\';
             } else {
+                // Et si c\'est une clé étrangère, on appele la fonction pour avoir un select
                 $form .= \'<label for="\' . $colonne . \'">Entrez la valeur de "\' . ucfirst($colonne) . \'": </label><div class="flexMini"></div>\';
-                $form .= CreateComboBox(getGet($elt, [$colonne]), $listeCleSecondaires[$colonne][\'table\'], [ucfirst($listeCleSecondaires[$colonne][\'table\']::getChamps()[1])], null, null, null, null);
+                $form .= CreateComboBox(getGet($elt, [$colonne]), $listeCleSecondaires[$colonne][\'table\'], [ucfirst($listeCleSecondaires[$colonne][\'table\']::getChamps()[1])], $attributs, null, null, null);
         
             }
-            /**********************************************
-             * ********************************************
-             * ********************************************
-             * ********************************************
-             */
             // on termine la ligne
             $form .= \'</div>\';
         }
@@ -331,29 +331,46 @@ function CreateManager(string $table)
 /**
  * Génére un tableau pour débug
  *
- * @param array $listeObjets
+ * @param string $table
  * @return void
  */
-function AfficherTable(array $listeObjets)
+function AfficherTable(string $table)
 {
-
+    $manager=$table."Manager";
+    $listeObjets=$manager::GetList(null, null, null, null, false, false);
+    $listeChamps = $table::getChamps();
+    $affichage='<div>';
+    $affichage.='</div>';
     if (count($listeObjets) != 0) {
-        $listeChamps = get_class($listeObjets[0])::getChamps();
         echo '<table class="tableauDebug"><thead><tr>';
-        foreach ($listeChamps as $value) {
-            echo '<th>' . ltrim(ucfirst($value), "_") . '</th>';
+        $affichage.= '<div class="ligne listing">';
+        for ($i=1; $i < count($listeChamps); $i++) { 
+            echo '<th>' . ltrim(ucfirst($listeChamps[$i]), "_") . '</th>';
+            $affichage.='<div class="listeHead">'. ltrim(ucfirst($listeChamps[$i]), "_") . '</div>';
         }
+        $affichage.='<div class="listeHead">Afficher</div>';
+        $affichage.='<div class="listeHead">Modifier</div>';
+        $affichage.='<div class="listeHead">Supprimer</div>';
+        $affichage.='</div>';
         echo '</tr></thead><tbody>';
         foreach ($listeObjets as $objet) {
             echo '<tr>';
-            foreach ($listeChamps as $col) {
-                $getvalue = "get" . $col;
-                echo '<td>' . (($objet->$getvalue() != null) ? $objet->$getvalue() : "NULL") . '</td>';
+            $affichage.='<div class="ligne listing">';
+            for ($i=1; $i < count($listeChamps); $i++) { 
+                $getvalue = "get" . $listeChamps[$i];
+                echo '<td>' . (($objet->$getvalue() != null) ? $objet->$getvalue() : "") . '</td>';
+                $affichage.='<div>'. (($objet->$getvalue() != null) ? $objet->$getvalue() : "") . '</div>';
             }
             echo '</tr>';
+            $affichage.='<div>See</div>';
+            $affichage.='<div>Edit</div>';
+            $affichage.='<div>Delete</div>';
+            $affichage.='</div>';
         }
         echo '</tbody></table>';
     }
+    $affichage.='</div>';
+    echo $affichage;
 }
 
 

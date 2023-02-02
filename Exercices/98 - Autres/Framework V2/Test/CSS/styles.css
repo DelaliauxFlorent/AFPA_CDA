@@ -24,6 +24,7 @@ body {
     background-color: rgb(30, 30, 30);
     font-size: 1.2em;
 }
+
 h1 {
     font-weight: normal;
     background-color: rgb(60, 60, 60);
@@ -42,7 +43,8 @@ form {
     width: 80vw;
 }
 
-form input, form select {
+form input,
+form select {
     background-color: rgb(80, 80, 80);
     padding: 0.5vh 0.5vw;
     border: unset;
@@ -52,9 +54,10 @@ form input, form select {
     transition: transform 0.3s, box-shadow 0.3s;
     outline: none;
     margin: 0vh 1vw;
-    flex:2;
+    flex: 2;
     max-height: 2em;
 }
+
 form input:focus {
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
     transform: scale(1.1);
@@ -82,16 +85,18 @@ input[required]+h3::before {
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
+    -webkit-appearance: none;
 }
 
-input[type=number]{
+input[type=number] {
     appearance: textfield;
 }
-fieldset{
+
+fieldset {
     width: 100%;
     display: flex
 }
+
 .message {
     border-radius: 2vh;
     background-color: rgba(0, 0, 0, 0.5);
@@ -110,13 +115,14 @@ fieldset{
     transition: opacity 0.3s;
 }
 
-.gaucheVert{
-    border-left-color: rgb(50,200,50);
+.gaucheVert {
+    border-left-color: rgb(50, 200, 50);
 }
 
-.gaucheRouge{
-    border-left-color: rgb(200,50,50);
+.gaucheRouge {
+    border-left-color: rgb(200, 50, 50);
 }
+
 /**************************************/
 /**************************************/
 /**************************************/
@@ -131,6 +137,7 @@ fieldset{
     width: 100%;
     align-self: center;
 }
+
 .valid {
     margin-top: 3vh;
     padding: 1vh 2vw;
@@ -140,25 +147,68 @@ fieldset{
     align-self: center;
 }
 
-.flexMini{
+.flexMini {
     flex: 0.2;
 }
 
-form label{
-    justify-content: flex-end;
-}
-/*
-body{
-    background-color: lightgray;
+.centered {
+    text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
-h1{
-    text-align: center;
+form label {
+    justify-content: flex-end;
 }
+
+.buttonDash {
+    display: flex;
+    font: bold 1em Arial;
+    text-decoration: none;
+    background-color: #EEEEEE;
+    color: #333333;
+    padding: auto 1em;
+    border-radius: 2em;
+    border-top: 0.3em solid #CCCCCC;
+    border-right: 0.3em solid #333333;
+    border-bottom: 0.3em solid #333333;
+    border-left: 0.3em solid #CCCCCC;
+    flex:1;
+    min-height: 3em;
+    align-items: center;
+    justify-content: center;
+  }
+  .buttonDash:hover{
+    color:darkgreen;
+    transform: translate(0.1em, 0.1em);    
+    border-right: 0.3em solid darkgreen;
+    border-bottom: 0.3em solid darkgreen;
+  }
+
+  
+.listing{
+    border: 0.1em solid black;
+    border-collapse: collapse;
+    color: black;
+    padding-bottom: 0.5em;
+    background-color: azure;
+
+}
+.listing:nth-child(even){    
+    background-color: lightblue;
+}
+.listeHead{
+    background-color: blanchedalmond;
+    border: 0.1em solid gray;
+    padding:1em 2em 1em 2em;
+}
+
+
 
 .tableauDebug{
     border: 0.1em solid black;
     border-collapse: collapse;
+    color: black;
 }
 .tableauDebug th{
     background-color: blanchedalmond;
@@ -177,11 +227,17 @@ h1{
     padding:1em 2em 1em 2em;
 }
 
-.centered{
-    text-align: center;
-    display:flex;
-    justify-content: center;
+/*
+body{
+    background-color: lightgray;
 }
+
+h1{
+    text-align: center;
+}
+
+
+
 .extContainer{
     grid-template-columns:1em auto 1em;
 }

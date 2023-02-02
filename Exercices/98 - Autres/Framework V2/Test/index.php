@@ -8,25 +8,41 @@ $stmtListeTables = DbConnect::getDb()->prepare("SHOW TABLES;");
 $stmtListeTables->execute();
 $resultListeTables = $stmtListeTables->fetchAll(PDO::FETCH_ASSOC);
 $varTableIn = "Tables_in_" . Parametre::getBase();
-
+$tableExiste;
 foreach ($resultListeTables as $table) {
     $tableName = $table[$varTableIn];
+    $tableExiste[] = $tableName;
     CreateClasse($tableName);
     CreateManager($tableName);
+    CreateForm($tableName);
 }
-echo '<!DOCTYPE html>
-<html>
+include "./PHP/VIEW/GENERAL/head.php";
+include "./PHP/VIEW/GENERAL/header.php";
+include "./PHP/VIEW/GENERAL/nav.php";
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="./css/styles.css">
-        <link rel="icon" type="image/x-icon" href="./img/favicon.ico">
-        <title></title>
-    </head>
+if (isset($_GET["page"])) {
+    switch ($_GET["page"]) {
+        case 'liste':
+            if (isset($_GET["table"]) && (in_array($_GET["table"], $tableExiste))) {
+                $fichier = "PHP/VIEW/LISTE/Liste" . ucfirst($_GET["table"]) . '.php';
+                if (file_exists($fichier)) {
+                    include $fichier;
+                }else{
+                    echo '<div><h2 class=centered">Page inconnue</h2></div><br /><br />';
+                }
+            }
+            break;
 
-    <body><h1>Test</h1>';
+        default:
+            # code...
+            break;
+    }
+} else {
+    echo '<div><h2 class=centered">Page d\'accueil</h2></div><br /><br />';
+    foreach ($resultListeTables as $Listes) {
+        echo '<div class="ligne"><div></div><div class="centered"><a href="?page=liste&table=' . $Listes[$varTableIn] . '" id="btnListe' . $Listes[$varTableIn] . '" class="buttonDash">Liste des ' . $Listes[$varTableIn] . '</a></div><div></div></div>';
+    }
+}
 
 // echo '<div class="centered">';
 // AfficherTable(DAO::Select(null, "Eleves", null, null, null, false, false));
@@ -35,16 +51,11 @@ echo '<!DOCTYPE html>
 //echo CreateComboBox(null, "Eleves", ["nom", "prenom"], null,null, null, "--Veuillez choisir un eleve--");
 
 //var_dump(FormCreation::ListerFK("eleves"));
-$eleveTest=DAO::Select(null, "eleves", ["idEleve"=>'2'], null, null, false, false);
-$ClassTest=DAO::Select(null, "classes", ["idClasse"=>'2'], null, null, false, false);
 
-FormCreation::CreateForm("Eleves");
-include "./PHP/VIEW/FORM/FormulaireEleves.php";
+
+//CreateForm("Eleves");
+//include "./PHP/VIEW/FORM/FormulaireEleves.php";
 echo '<div>&nbsp;</div>';
 //echo FormCreation::CreateForm($ClassTest);
 
 DbConnect::close();
-echo '<script src="./scripts/scripts.js"></script>
-</body>
-
-</html>';

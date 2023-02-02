@@ -1,9 +1,9 @@
 <?php
-            $infosTable = RecupInfos("Eleves");
-            $listeCleSecondaires = ListerFK("Eleves");
+            $infosTable = RecupInfos("Classes");
+            $listeCleSecondaires = ListerFK("Classes");
             $id = (isset($_GET["id"]) ? $_GET["id"] : "");
-            $elt=ElevesManager::FindById($id);
-            $form ='<form methode="get" action="./PHP/CONTROLLER/ACTION/ActionEleves.php">';
+            $elt=ClassesManager::FindById($id);
+            $form ='<form methode="get" action="./PHP/CONTROLLER/ACTION/ActionClasses.php">';
 
         foreach ($infosTable as $colonne => $infoColonne) {
             // Pour chaque colonne de la table/attribut de la classe, on fait une ligne
