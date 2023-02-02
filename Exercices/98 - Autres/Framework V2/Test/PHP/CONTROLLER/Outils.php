@@ -335,16 +335,32 @@ function CreateForm(string $table)
  */
 function AfficherTable(string $table)
 {
+    $numParPage=10;
+    $debutLimite=0;
+    $pageActu=1;
+    if(ISSET($_GET['page'])&& (is_int($_GET['page']))){
+        $pageActu=$_GET['page'];
+        $debutLimite=$pageActu*$numParPage;
+    }
+    $limite=$debutLimite.','.$numParPage;
     $manager = $table . "Manager";
-    $listeObjets = $manager::GetList(null, null, null, null, false, false);
+    $listeObjets = $manager::GetList(null, null, null, $limite, false, false);
+    $totalEntrees = count($manager::GetList(null, null, null, null, false, false));
+    $lastPage=$totalEntrees/$numParPage;
     $listeChamps = $table::getChamps();
     $numLign=0;
     $affichage = '
-    <h2 class="centered">Liste des '.$table.'</h2>
     <div class="ligne">
         <div></div>
-        <div class="centered"><a href="" class="buttonDash">Ajouter</a></div>
+        <div class="centered"><a href=".?afficher=formulaire&table='.$table.'" class="buttonDash">Ajouter</a></div>
         <div></div>
+    </div>
+    <div class="ligne">    
+    <div>'.(($pageActu!=1)?'<a class="buttonDash" href="?afficher=liste&table='.lcfirst($table).'"><<</a>':'').'</div>
+    <div>'.(($pageActu!=1)?'<a class="buttonDash" href="?afficher=liste&table='.lcfirst($table).'&page='.($pageActu-1).'"><</a>':'').'</div>
+    <div>'.($debutLimite+1).' à '.($debutLimite+$numParPage).'/'.$totalEntrees.'</div>
+    <div><a class="buttonDash" href="?afficher=liste&table='.lcfirst($table).'&page='.($pageActu+1).'">></a></div>
+    <div><a class="buttonDash" href="?afficher=liste&table='.lcfirst($table).'&page='.$lastPage.'">>></a></div>
     </div>
     <div class="container">';
     if (count($listeObjets) != 0) {

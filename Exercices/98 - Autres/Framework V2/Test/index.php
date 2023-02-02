@@ -20,14 +20,24 @@ include "./PHP/VIEW/GENERAL/head.php";
 include "./PHP/VIEW/GENERAL/header.php";
 include "./PHP/VIEW/GENERAL/nav.php";
 
-if (isset($_GET["page"])) {
-    switch ($_GET["page"]) {
+if (isset($_GET["afficher"])) {
+    switch ($_GET["afficher"]) {
         case 'liste':
             if (isset($_GET["table"]) && (in_array($_GET["table"], $tableExiste))) {
                 $fichier = "PHP/VIEW/LISTE/Liste" . ucfirst($_GET["table"]) . '.php';
                 if (file_exists($fichier)) {
                     include $fichier;
-                }else{
+                } else {
+                    echo '<div><h2 class=centered">Page inconnue</h2></div><br /><br />';
+                }
+            }
+            break;
+        case 'formulaire':
+            if (isset($_GET["table"]) && (in_array(lcfirst($_GET["table"]), $tableExiste))) {
+                $fichier = "PHP/VIEW/FORM/Formulaire" . ucfirst($_GET["table"]) . '.php';
+                if (file_exists($fichier)) {
+                    include $fichier;
+                } else {
                     echo '<div><h2 class=centered">Page inconnue</h2></div><br /><br />';
                 }
             }
@@ -40,7 +50,7 @@ if (isset($_GET["page"])) {
 } else {
     echo '<div><h2 class=centered">Page d\'accueil</h2></div><br /><br />';
     foreach ($resultListeTables as $Listes) {
-        echo '<div class="ligne"><div></div><div class="centered"><a href="?page=liste&table=' . $Listes[$varTableIn] . '" id="btnListe' . $Listes[$varTableIn] . '" class="buttonDash">Liste des ' . $Listes[$varTableIn] . '</a></div><div></div></div>';
+        echo '<div class="ligne"><div></div><div class="centered"><a href="?afficher=liste&table=' . $Listes[$varTableIn] . '" id="btnListe' . $Listes[$varTableIn] . '" class="buttonDash">Liste des ' . $Listes[$varTableIn] . '</a></div><div></div></div>';
     }
 }
 
