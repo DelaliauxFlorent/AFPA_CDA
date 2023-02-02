@@ -184,27 +184,57 @@ form label {
     border-right: 0.3em solid darkgreen;
     border-bottom: 0.3em solid darkgreen;
   }
+.Retour:hover{    
+    color:red;
+    transform: translate(0.1em, 0.1em);    
+    border-right: 0.3em solid red;
+    border-bottom: 0.3em solid red;
+}
 
+.flex5{
+    flex:5;
+}
   
 .listing{
     border: 0.1em solid black;
     border-collapse: collapse;
     color: black;
-    padding-bottom: 0.5em;
+    padding:1em 0em 1em 0em;
     background-color: azure;
-
 }
+
 .listing:nth-child(even){    
     background-color: lightblue;
 }
+
 .listeHead{
     background-color: blanchedalmond;
     border: 0.1em solid gray;
-    padding:1em 2em 1em 2em;
+    padding:1em 0em 1em 0em;
+    color: black;
+}
+.colHalf{
+    flex:0.25;
 }
 
+.clearPadding{
+    padding: 0em;
+}
 
-
+.container{
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 0.5fr 0.5fr 0.5fr;
+    background-color: azure;
+    color: black;
+    align-items: stretch;
+}
+.container div{
+    padding: 1em 0em;
+    border: 0.1em solid gray;
+}
+.alterLigne{
+    background-color: lightblue;
+}
 .tableauDebug{
     border: 0.1em solid black;
     border-collapse: collapse;

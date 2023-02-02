@@ -127,8 +127,7 @@ function CreateClasse(string $table)
 {
     // On récupère les infos qui seront nécessaire pour la création du fichier
     $resultListeColonnes = RecupInfos($table);
-    $codeClasse = '
-<?php
+    $codeClasse = '<?php
 class ' . ucfirst($table) . '
 {
     ////////////////////////////////////
@@ -252,27 +251,27 @@ function CreateManager(string $table)
 }
 
 /**
-     * Creation d'un formulaire
-     *
-     * @param object $obj => l'objet pour lequel on veut un formulaire
-     * @return void crée un fichier "FormulaireClasse.php" dans "PHP/VIEW/FORM"
-     */
-    function CreateForm(string $table)
-    {
-        
-        // Détermination de la classe de l'objet
-        $classe = ucfirst($table);
+ * Creation d'un formulaire
+ *
+ * @param object $obj => l'objet pour lequel on veut un formulaire
+ * @return void crée un fichier "FormulaireClasse.php" dans "PHP/VIEW/FORM"
+ */
+function CreateForm(string $table)
+{
 
-        // Récupération de l'ID passé en GET
-        $formulaire = '<?php
-            $infosTable = RecupInfos("'.$classe.'");
-            $listeCleSecondaires = ListerFK("'.$classe.'");
+    // Détermination de la classe de l'objet
+    $classe = ucfirst($table);
+
+    // Récupération de l'ID passé en GET
+    $formulaire = '<?php
+            $infosTable = RecupInfos("' . $classe . '");
+            $listeCleSecondaires = ListerFK("' . $classe . '");
             $id = (isset($_GET["id"]) ? $_GET["id"] : "");
             $elt=' . $classe . 'Manager::FindById($id);
             ';
 
-        // Début du formulaire
-        $formulaire .= '$form =\'<form methode="get" action="./PHP/CONTROLLER/ACTION/Action' . $classe . '.php">\';
+    // Début du formulaire
+    $formulaire .= '$form =\'<form methode="get" action="./PHP/CONTROLLER/ACTION/Action' . $classe . '.php">\';
 
         foreach ($infosTable as $colonne => $infoColonne) {
             // Pour chaque colonne de la table/attribut de la classe, on fait une ligne
@@ -318,15 +317,15 @@ function CreateManager(string $table)
         $form .= \'</form>\';
         echo $form;';
 
-        // Pour l'instant on retourne un string 
-        //return $formulaire;
+    // Pour l'instant on retourne un string 
+    //return $formulaire;
 
-        // Mais au final on aura la création du fichier correspondant
-        $fichier="PHP/VIEW/FORM/Formulaire".$classe.'.php';
-        if (!file_exists($fichier)) {
-            file_put_contents($fichier, $formulaire);
-        }
+    // Mais au final on aura la création du fichier correspondant
+    $fichier = "PHP/VIEW/FORM/Formulaire" . $classe . '.php';
+    if (!file_exists($fichier)) {
+        file_put_contents($fichier, $formulaire);
     }
+}
 
 /**
  * Génére un tableau pour débug
@@ -336,40 +335,44 @@ function CreateManager(string $table)
  */
 function AfficherTable(string $table)
 {
-    $manager=$table."Manager";
-    $listeObjets=$manager::GetList(null, null, null, null, false, false);
+    $manager = $table . "Manager";
+    $listeObjets = $manager::GetList(null, null, null, null, false, false);
     $listeChamps = $table::getChamps();
-    $affichage='<div>';
-    $affichage.='</div>';
+    $numLign=0;
+    $affichage = '
+    <h2 class="centered">Liste des '.$table.'</h2>
+    <div class="ligne">
+        <div></div>
+        <div class="centered"><a href="" class="buttonDash">Ajouter</a></div>
+        <div></div>
+    </div>
+    <div class="container">';
     if (count($listeObjets) != 0) {
-        echo '<table class="tableauDebug"><thead><tr>';
-        $affichage.= '<div class="ligne listing">';
-        for ($i=1; $i < count($listeChamps); $i++) { 
-            echo '<th>' . ltrim(ucfirst($listeChamps[$i]), "_") . '</th>';
-            $affichage.='<div class="listeHead">'. ltrim(ucfirst($listeChamps[$i]), "_") . '</div>';
+        //$affichage .= '<div class="ligne clearPadding listing">';
+        for ($i = 1; $i < count($listeChamps); $i++) {
+            $affichage .= '<div class="listeHead">' . ltrim(ucfirst($listeChamps[$i]), "_") . '</div>';
         }
-        $affichage.='<div class="listeHead">Afficher</div>';
-        $affichage.='<div class="listeHead">Modifier</div>';
-        $affichage.='<div class="listeHead">Supprimer</div>';
-        $affichage.='</div>';
-        echo '</tr></thead><tbody>';
+        $affichage .= '<div class="listeHead">Affic.</div>';
+        $affichage .= '<div class="listeHead">Modif.</div>';
+        $affichage .= '<div class="listeHead">Suppr.</div>';
+        //$affichage .= '</div>';
         foreach ($listeObjets as $objet) {
-            echo '<tr>';
-            $affichage.='<div class="ligne listing">';
-            for ($i=1; $i < count($listeChamps); $i++) { 
+            $ligneAlter=($numLign%2==0)?" class='alterLigne'":"";
+            //$affichage .= '<div class="ligne listing">';
+            for ($i = 1; $i < count($listeChamps); $i++) {
                 $getvalue = "get" . $listeChamps[$i];
-                echo '<td>' . (($objet->$getvalue() != null) ? $objet->$getvalue() : "") . '</td>';
-                $affichage.='<div>'. (($objet->$getvalue() != null) ? $objet->$getvalue() : "") . '</div>';
+                $valeurActu = $objet->$getvalue();
+
+                $affichage .= '<div'.$ligneAlter.'>' . (($valeurActu != null) ? $valeurActu : "") . '</div>';
             }
-            echo '</tr>';
-            $affichage.='<div>See</div>';
-            $affichage.='<div>Edit</div>';
-            $affichage.='<div>Delete</div>';
-            $affichage.='</div>';
+            $affichage .= '<div'.$ligneAlter.'><img src="./IMG/afficher.png" alt="Voir"></div>';
+            $affichage .= '<div'.$ligneAlter.'><img src="./IMG/editer.png" alt="Éditer"></div>';
+            $affichage .= '<div'.$ligneAlter.'><img src="./IMG/effacer.png" alt="Éffacer"></div>';
+            //$affichage .= '</div>';
+            $numLign++;
         }
-        echo '</tbody></table>';
     }
-    $affichage.='</div>';
+    $affichage .= '</div></div>';
     echo $affichage;
 }
 
@@ -497,7 +500,7 @@ function CreateInput(string $type, string $nom, string $attributs): string
 {
     $retour = '<label for="' . $nom . '">Entrez la valeur de "' . ucfirst($nom) . '": </label><div class="flexMini"></div>';
     $retour .= '<input type="' . $type . '" id="' . $nom . '" name="' . $nom . '"' . $attributs . '>';
-    
+
     // if ($type) {
     //     switch ($type) {
     //         case 'text':
