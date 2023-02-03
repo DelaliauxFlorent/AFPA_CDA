@@ -356,11 +356,11 @@ function AfficherTable(string $table)
         <div></div>
     </div>
     <div class="ligne">    
-    <div>'.(($pageActu!=1)?'<a class="buttonDash" href="?afficher=liste&table='.lcfirst($table).'"><<</a>':'').'</div>
-    <div>'.(($pageActu!=1)?'<a class="buttonDash" href="?afficher=liste&table='.lcfirst($table).'&page='.($pageActu-1).'"><</a>':'').'</div>
+    <div>'.(($pageActu!=1)?'<a class="buttonDash" href="index.php?afficher=liste&table='.lcfirst($table).'"><<</a>':'').'</div>
+    <div>'.(($pageActu!=1)?'<a class="buttonDash" href="index.php?afficher=liste&table='.lcfirst($table).'&page='.($pageActu-1).'"><</a>':'').'</div>
     <div>'.($debutLimite+1).' à '.($debutLimite+$numParPage).'/'.$totalEntrees.'</div>
-    <div><a class="buttonDash" href="?afficher=liste&table='.lcfirst($table).'&page='.($pageActu+1).'">></a></div>
-    <div><a class="buttonDash" href="?afficher=liste&table='.lcfirst($table).'&page='.$lastPage.'">>></a></div>
+    <div><a class="buttonDash" href="index.php?afficher=liste&table='.lcfirst($table).'&page='.($pageActu+1).'">></a></div>
+    <div><a class="buttonDash" href="index.php?afficher=liste&table='.lcfirst($table).'&page='.$lastPage.'">>></a></div>
     </div>
     <div class="container">';
     if (count($listeObjets) != 0) {
