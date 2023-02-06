@@ -3,14 +3,11 @@
             $listeCleSecondaires = ListerFK("Eleves");
             $id = (isset($_GET["id"]) ? $_GET["id"] : "");
             $elt=ElevesManager::FindById($id);
-            $form ='<div class="container"><form methode="get" action="./PHP/CONTROLLER/ACTION/ActionEleves.php">';
-            $form.='<div class="formContain">';
+            $form ='<form methode="get" action="./PHP/CONTROLLER/ACTION/ActionEleves.php">';
 
         foreach ($infosTable as $colonne => $infoColonne) {
-            $display=($infosTable[$colonne]['Cle'] == "Primaire")?' class="noDisplay"':"";
             // Pour chaque colonne de la table/attribut de la classe, on fait une ligne
-            $form .= '<div'.$display.'></div>';
-            $form .= '<div'.$display.'></div>';
+            $form .= '<div class="ligne">';
 
             // On détermine qu'elle sera la valeur par défaut
             if ($id != null) {
@@ -35,21 +32,19 @@
                 $form .= '<input type=hidden id=' . $colonne . '" name="' . $colonne . $default . '" </imput>';
             } else {
                 // Et si c'est une clé étrangère, on appele la fonction pour avoir un select
-                $form .= '<label for="' . $colonne . '">Entrez la valeur de "' . ucfirst($colonne) . '": </label><div></div>';
+                $form .= '<label for="' . $colonne . '">Entrez la valeur de "' . ucfirst($colonne) . '": </label><div class="flexMini"></div>';
                 $form .= CreateComboBox(getGet($elt, [$colonne]), $listeCleSecondaires[$colonne]['table'], [ucfirst($listeCleSecondaires[$colonne]['table']::getChamps()[1])], $attributs, null, null, null);
         
             }
-            $form .= '<div'.$display.'></div>';
-            $form .= '<div'.$display.'></div>';
-            $form.='<div class="ligneSepar"></div>';
-
+            // on termine la ligne
+            $form .= '</div>';
         }
         // On fait une ligne pour les boutons annuler et valider
-        $form .= '<div></div>';
-        $form .= '<div></div>';
+        $form .= '<div class="ligne"><div>&nbsp;</div>';
         $form .= '<input id="btnCancel" class="cancel" type="button" value="Annuler"><div>&nbsp;</div>';
-        $form .= '<input class="valid" type="submit" value="Valider"><div></div>';
+        $form .= '<input id="btnValid" class="valid" type="button" value="Valider"><div>&nbsp;</div>';
+        $form .= '</div>';
 
         // Et on termine le formulaire
-        $form .= '</div></form></div>';
+        $form .= '</form>';
         echo $form;

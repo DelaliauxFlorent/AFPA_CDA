@@ -9,31 +9,39 @@ $stmtListeTables->execute();
 $resultListeTables = $stmtListeTables->fetchAll(PDO::FETCH_ASSOC);
 $varTableIn = "Tables_in_" . Parametre::getBase();
 foreach ($resultListeTables as $table) {
-    $tableName = $table[$varTableIn];
-    CreateClasse($tableName);
-    CreateManager($tableName);
-    CreateForm($tableName);
+    if ($table[$varTableIn] != 'routes') {
+        $tableName = $table[$varTableIn];
+        CreateClasse($tableName);
+        CreateManager($tableName);
+        CreateList($tableName);
+        CreateForm($tableName);
+    }
 }
+session_start();
+$_SESSION['Role']=0;
 
 $ListeRoutes = GetRoutes();
-var_dump($ListeRoutes);
 
 include "./PHP/VIEW/GENERAL/head.php";
 include "./PHP/VIEW/GENERAL/header.php";
 include "./PHP/VIEW/GENERAL/nav.php";
 
 if (isset($_GET["afficher"])) {
-
-    $fichier = $ListeRoutes[$_GET["table"]];
-    if (file_exists($fichier)) {
-        include $fichier;
-    } else {
-        echo '<div><h2 class=centered">Page inconnue</h2></div><br /><br />';
+    if (array_key_exists($_GET["afficher"], $ListeRoutes) && (ISSET($_SESSION['Role'])&&)) {
+        $fichier = $ListeRoutes[$_GET["afficher"]]['chemin'];
+        if (file_exists($fichier)) {
+            include $fichier;
+        }
+    }
+    else{
+        header('Location:.');
     }
 } else {
     echo '<div><h2 class=centered">Page d\'accueil</h2></div><br /><br />';
     foreach ($resultListeTables as $Listes) {
-        echo '<div class="ligne"><div></div><div class="centered"><a href="?afficher=liste&table=' . $Listes[$varTableIn] . '" id="btnListe' . $Listes[$varTableIn] . '" class="buttonDash">Liste des ' . $Listes[$varTableIn] . '</a></div><div></div></div>';
+        if ($Listes[$varTableIn] != 'routes') {
+            echo '<div class="ligne"><div></div><div class="centered"><a href="?afficher=Liste' . ucfirst($Listes[$varTableIn]) . '" id="btnListe' . $Listes[$varTableIn] . '" class="buttonDash">Liste des ' . $Listes[$varTableIn] . '</a></div><div></div></div>';
+        }
     }
 }
 

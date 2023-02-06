@@ -230,10 +230,12 @@ form label {
 }
 .liste3attribut{
     grid-template-columns: 2fr 2fr 2fr 0.5fr 0.5fr 0.5fr;
+    border-radius: 0em;
 }
 
 .liste1attribut{
     grid-template-columns: 2fr 0.5fr 0.5fr 0.5fr;
+    border-radius: 0em;
 }
 
 .formContain{    
