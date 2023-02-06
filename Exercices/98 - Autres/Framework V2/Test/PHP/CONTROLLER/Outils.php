@@ -335,55 +335,55 @@ function CreateForm(string $table)
  */
 function AfficherTable(string $table)
 {
-    $numParPage=10;
-    $debutLimite=0;
-    $pageActu=1;
-    if(ISSET($_GET['page'])&& (is_int($_GET['page']))){
-        $pageActu=$_GET['page'];
-        $debutLimite=$pageActu*$numParPage;
+    $numParPage = 10;
+    $debutLimite = 0;
+    $pageActu = 1;
+    if (isset($_GET['page']) && (is_numeric($_GET['page']))) {
+        $pageActu = intval($_GET['page']);
+        $debutLimite = $pageActu * $numParPage;
     }
-    $limite=$debutLimite.','.$numParPage;
+    $limite = $debutLimite . ',' . $numParPage;
     $manager = $table . "Manager";
     $listeObjets = $manager::GetList(null, null, null, $limite, false, false);
     $totalEntrees = count($manager::GetList(null, null, null, null, false, false));
-    $lastPage=$totalEntrees/$numParPage;
+    $lastPage = ($totalEntrees / $numParPage) - 1;
     $listeChamps = $table::getChamps();
-    $numLign=0;
+    $numLign = 0;
     $affichage = '
     <div class="ligne">
         <div></div>
-        <div class="centered"><a href=".?afficher=formulaire&table='.$table.'" class="buttonDash">Ajouter</a></div>
+        <div class="centered"><a href=".?afficher=formulaire&table=' . $table . '" class="buttonDash">Ajouter</a></div>
         <div></div>
     </div>
     <div class="ligne">    
-    <div>'.(($pageActu!=1)?'<a class="buttonDash" href="index.php?afficher=liste&table='.lcfirst($table).'"><<</a>':'').'</div>
-    <div>'.(($pageActu!=1)?'<a class="buttonDash" href="index.php?afficher=liste&table='.lcfirst($table).'&page='.($pageActu-1).'"><</a>':'').'</div>
-    <div>'.($debutLimite+1).' à '.($debutLimite+$numParPage).'/'.$totalEntrees.'</div>
-    <div><a class="buttonDash" href="index.php?afficher=liste&table='.lcfirst($table).'&page='.($pageActu+1).'">></a></div>
-    <div><a class="buttonDash" href="index.php?afficher=liste&table='.lcfirst($table).'&page='.$lastPage.'">>></a></div>
+    <div>' . (($pageActu != 1) ? '<a class="buttonDash" href="index.php?afficher=liste&table=' . lcfirst($table) . '"><<</a>' : '') . '</div>
+    <div>' . (($pageActu != 1) ? '<a class="buttonDash" href="index.php?afficher=liste&table=' . lcfirst($table) . '&page=' . ($pageActu - 1) . '"><</a>' : '') . '</div>
+    <div>' . ($debutLimite + 1) . ' à ' . ($debutLimite + $numParPage) . '/' . $totalEntrees . '</div>
+    <div>' . (($pageActu != $lastPage) ? '<a class="buttonDash" href="index.php?afficher=liste&table=' . lcfirst($table) . '&page=' . ($pageActu + 1) . '">></a>' : '') . '</div>
+    <div>' . (($pageActu != $lastPage) ? '<a class="buttonDash" href="index.php?afficher=liste&table=' . lcfirst($table) . '&page=' . $lastPage . '">>></a>' : '') . '</div>
     </div>
-    <div class="container">';
+    <div class="container liste' . (count($listeChamps) - 1) . 'attribut">';
     if (count($listeObjets) != 0) {
         //$affichage .= '<div class="ligne clearPadding listing">';
         for ($i = 1; $i < count($listeChamps); $i++) {
-            $affichage .= '<div class="listeHead">' . ltrim(ucfirst($listeChamps[$i]), "_") . '</div>';
+            $affichage .= '<div class="liste listeHead">' . ltrim(ucfirst($listeChamps[$i]), "_") . '</div>';
         }
         $affichage .= '<div class="listeHead">Affic.</div>';
         $affichage .= '<div class="listeHead">Modif.</div>';
         $affichage .= '<div class="listeHead">Suppr.</div>';
         //$affichage .= '</div>';
         foreach ($listeObjets as $objet) {
-            $ligneAlter=($numLign%2==0)?" class='alterLigne'":"";
+            $ligneAlter = ($numLign % 2 == 0) ? " class='alterLigne'" : "";
             //$affichage .= '<div class="ligne listing">';
             for ($i = 1; $i < count($listeChamps); $i++) {
                 $getvalue = "get" . $listeChamps[$i];
                 $valeurActu = $objet->$getvalue();
 
-                $affichage .= '<div'.$ligneAlter.'>' . (($valeurActu != null) ? $valeurActu : "") . '</div>';
+                $affichage .= '<div' . $ligneAlter . '>' . (($valeurActu != null) ? $valeurActu : "") . '</div>';
             }
-            $affichage .= '<div'.$ligneAlter.'><img src="./IMG/afficher.png" alt="Voir"></div>';
-            $affichage .= '<div'.$ligneAlter.'><img src="./IMG/editer.png" alt="Éditer"></div>';
-            $affichage .= '<div'.$ligneAlter.'><img src="./IMG/effacer.png" alt="Éffacer"></div>';
+            $affichage .= '<div' . $ligneAlter . '><img src="./IMG/afficher.png" alt="Voir"></div>';
+            $affichage .= '<div' . $ligneAlter . '><img src="./IMG/editer.png" alt="Éditer"></div>';
+            $affichage .= '<div' . $ligneAlter . '><img src="./IMG/effacer.png" alt="Éffacer"></div>';
             //$affichage .= '</div>';
             $numLign++;
         }
@@ -531,4 +531,23 @@ function CreateInput(string $type, string $nom, string $attributs): string
     //     }
     // }
     return $retour;
+}
+
+function GetRoutes()
+{
+    $stmt = DbConnect::getDb()->prepare("SELECT nomPage, chemin, roleMini, titre, api FROM routes;");
+    $stmt->execute();
+    $result= $stmt->fetchAll(PDO::FETCH_ASSOC);
+    foreach($result as $resultat){
+        $retour[$resultat['nomPage']]=$resultat;
+    }
+    return $retour;
+}
+
+function AjouterRoute(string $table, string $chemin){
+    $stmt = DbConnect::getDb()->prepare("INSERT INTO routes VALUES (null, :nom, :chemin, 0, :titre, 0);");
+    $stmt->bindValue(':nom', $table, PDO::PARAM_STR);
+    $stmt->bindValue(':chemin', $chemin, PDO::PARAM_STR);
+    $stmt->bindValue(':titre', $table, PDO::PARAM_STR);
+    $stmt->execute();
 }

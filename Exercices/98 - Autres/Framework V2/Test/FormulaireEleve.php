@@ -1,22 +1,4 @@
 <?php
-include "./PHP/CONTROLLER/Outils.php";
-spl_autoload_register("ChargerClasse");
-Parametre::init();
-DbConnect::init();
-
-echo '<!DOCTYPE html>
-<html>
-
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="./CSS/styles.css">
-        <link rel="icon" type="image/x-icon" href="./IMG/favicon.ico">
-        <title></title>
-    </head>
-
-    <body><h1>Test</h1>';
 
 $table = "Eleves";
 $infosTable = RecupInfos($table);
@@ -57,13 +39,8 @@ echo '
         <div>&nbsp;</div>
         <input id="btnCancel" class="cancel" type="button" value="Annuler">
         <div>&nbsp;</div>
-        <input id="btnValid" class="valid" type="button" value="Valider">
+        <input type="submit" value="Valider" />
+        
         <div>&nbsp;</div>
     </div>
 </form>';
-
-
-echo '<script src="./scripts/scripts.js"></script>
-</body>
-
-</html>';

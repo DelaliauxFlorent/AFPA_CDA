@@ -38,7 +38,7 @@ form {
     flex-direction: column;
     background-color: rgb(60, 60, 60);
     padding: 4vh 3vw;
-    border-radius: 2vh;
+    /* border-radius: 2vh; */
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
     width: 80vw;
 }
@@ -58,10 +58,10 @@ form select {
     max-height: 2em;
 }
 
-form input:focus {
+/* form input:focus {
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
     transform: scale(1.1);
-}
+} */
 
 form input[type="submit"] {
     margin-top: 3vh;
@@ -223,15 +223,40 @@ form label {
 
 .container{
     display: grid;
-    grid-template-columns: 2fr 2fr 2fr 0.5fr 0.5fr 0.5fr;
     background-color: azure;
     color: black;
     align-items: stretch;
+    border-radius: 2em;
 }
-.container div{
+.liste3attribut{
+    grid-template-columns: 2fr 2fr 2fr 0.5fr 0.5fr 0.5fr;
+}
+
+.liste1attribut{
+    grid-template-columns: 2fr 0.5fr 0.5fr 0.5fr;
+}
+
+.formContain{    
+    border-radius: 2em;
+    display:grid;
+    color: white;
+    grid-template-columns: 0.5fr 0.5fr 2fr 0.5fr 2fr 0.5fr 0.5fr;
+}
+
+.container div.liste{
     padding: 1em 0em;
     border: 0.1em solid gray;
 }
+
+.noDisplay{
+    display: none;
+}
+
+.ligneSepar{
+    min-height: 1em;
+    grid-column:1 / span 7;
+}
+
 .alterLigne{
     background-color: lightblue;
 }

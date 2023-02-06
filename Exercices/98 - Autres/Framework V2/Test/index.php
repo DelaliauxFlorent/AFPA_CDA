@@ -8,44 +8,27 @@ $stmtListeTables = DbConnect::getDb()->prepare("SHOW TABLES;");
 $stmtListeTables->execute();
 $resultListeTables = $stmtListeTables->fetchAll(PDO::FETCH_ASSOC);
 $varTableIn = "Tables_in_" . Parametre::getBase();
-$tableExiste;
 foreach ($resultListeTables as $table) {
     $tableName = $table[$varTableIn];
-    $tableExiste[] = $tableName;
     CreateClasse($tableName);
     CreateManager($tableName);
     CreateForm($tableName);
 }
+
+$ListeRoutes = GetRoutes();
+var_dump($ListeRoutes);
+
 include "./PHP/VIEW/GENERAL/head.php";
 include "./PHP/VIEW/GENERAL/header.php";
 include "./PHP/VIEW/GENERAL/nav.php";
 
 if (isset($_GET["afficher"])) {
-    switch ($_GET["afficher"]) {
-        case 'liste':
-            if (isset($_GET["table"]) && (in_array($_GET["table"], $tableExiste))) {
-                $fichier = "PHP/VIEW/LISTE/Liste" . ucfirst($_GET["table"]) . '.php';
-                if (file_exists($fichier)) {
-                    include $fichier;
-                } else {
-                    echo '<div><h2 class=centered">Page inconnue</h2></div><br /><br />';
-                }
-            }
-            break;
-        case 'formulaire':
-            if (isset($_GET["table"]) && (in_array(lcfirst($_GET["table"]), $tableExiste))) {
-                $fichier = "PHP/VIEW/FORM/Formulaire" . ucfirst($_GET["table"]) . '.php';
-                if (file_exists($fichier)) {
-                    include $fichier;
-                } else {
-                    echo '<div><h2 class=centered">Page inconnue</h2></div><br /><br />';
-                }
-            }
-            break;
 
-        default:
-            # code...
-            break;
+    $fichier = $ListeRoutes[$_GET["table"]];
+    if (file_exists($fichier)) {
+        include $fichier;
+    } else {
+        echo '<div><h2 class=centered">Page inconnue</h2></div><br /><br />';
     }
 } else {
     echo '<div><h2 class=centered">Page d\'accueil</h2></div><br /><br />';
