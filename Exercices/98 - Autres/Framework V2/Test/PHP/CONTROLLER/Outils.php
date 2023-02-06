@@ -136,7 +136,7 @@ class ' . ucfirst($table) . '
     ';
     // Pour chaque colonne, on crée un attribut de type privé
     foreach ($resultListeColonnes as $nomColonne => $infoColonne) {
-        $codeClasse .= 'private ?' . $infoColonne['Type'] . '$_' . $nomColonne . ';
+        $codeClasse .= 'private ?' . $infoColonne['Type'] . ' $_' . $nomColonne . ';
     ';
     }
     $codeClasse .= '
@@ -268,14 +268,17 @@ function CreateForm(string $table)
             $listeCleSecondaires = ListerFK("' . $classe . '");
             $id = (isset($_GET["id"]) ? $_GET["id"] : "");
             $elt=' . $classe . 'Manager::FindById($id);
+            $disabled=((isset($_GET["Mode"]))&&($_GET["Mode"]=="Visu"||$_GET["Mode"]=="Supprimer"))?" disabled ":"";
             ';
 
     // Début du formulaire
-    $formulaire .= '$form =\'<form methode="get" action="./PHP/CONTROLLER/ACTION/Action' . $classe . '.php">\';
-
+    $formulaire .= '$form =\'<form method="POST" action=".?afficher=Action' . $classe . '.php" class="formContainer">\';
+    $form .=\'<input type="hidden" id="Mode" name="Mode" value=\'.$_GET["Mode"].\'></input>\';
         foreach ($infosTable as $colonne => $infoColonne) {
+            $display=($infosTable[$colonne][\'Cle\'] == "Primaire")?\' class="noDisplay" \':\'\';
+
             // Pour chaque colonne de la table/attribut de la classe, on fait une ligne
-            $form .= \'<div class="ligne">\';
+            //$form .= \'<div\'.$display.\'></div><div\'.$display.\'></div>\';
 
             // On détermine qu\'elle sera la valeur par défaut
             if ($id != null) {
@@ -293,25 +296,32 @@ function CreateForm(string $table)
             if ($infosTable[$colonne][\'Cle\'] == null) {
                 // Si la colonne n\'est ni une clé primaire, ni une clé étrangère
                 // on appele la fonction générique
-                $attributs = $default.$required;
+                $attributs = $default.$required.$disabled;
                 $form .= CreateInput($type, $colonne, $attributs);
             } elseif ($infosTable[$colonne][\'Cle\'] == "Primaire") {
                 // Si c\'est une clé primaire, on la passe en "hidden"
-                $form .= \'<input type=hidden id=\' . $colonne . \'" name="\' . $colonne . $default . \'" </imput>\';
+                $form .= \'<input type=hidden id="\' . $colonne . \'" name="\' . $colonne .\'" \'. ($id!=null? $default:\' value=0 \') . \'"></input>\';
             } else {
                 // Et si c\'est une clé étrangère, on appele la fonction pour avoir un select
                 $form .= \'<label for="\' . $colonne . \'">Entrez la valeur de "\' . ucfirst($colonne) . \'": </label><div class="flexMini"></div>\';
-                $form .= CreateComboBox(getGet($elt, [$colonne]), $listeCleSecondaires[$colonne][\'table\'], [ucfirst($listeCleSecondaires[$colonne][\'table\']::getChamps()[1])], $attributs, null, null, null);
+                $form .= CreateComboBox(($id!=null?getGet($elt, [$colonne]):null), $listeCleSecondaires[$colonne][\'table\'], [ucfirst($listeCleSecondaires[$colonne][\'table\']::getChamps()[1])], $attributs, null, null, null);
         
             }
             // on termine la ligne
-            $form .= \'</div>\';
+            $form .= \'<div\'.$display.\'></div><div\'.$display.\'></div>\';
+            $form .= \'<div class="ligneSepar"></div>\';
         }
         // On fait une ligne pour les boutons annuler et valider
-        $form .= \'<div class="ligne"><div>&nbsp;</div>\';
-        $form .= \'<input id="btnCancel" class="cancel" type="button" value="Annuler"><div>&nbsp;</div>\';
-        $form .= \'<input id="btnValid" class="valid" type="button" value="Valider"><div>&nbsp;</div>\';
-        $form .= \'</div>\';
+        
+        $form .= \'<div>&nbsp;</div>\';
+        $form .= \'<div>&nbsp;</div>\';
+        $form .= \'<a href=".?afficher=Liste'.$classe.'"><input id="btnCancel" class="cancel" type="button" value="Annuler"/></a>\';
+        if((!isset($_GET["Mode"]))||($_GET["Mode"]!="Visu")){
+        $form.=\'<div>&nbsp;</div>\';
+        $form .= \'<input id="btnValid" class="valid" type="submit" value="Valider">\';
+    }
+        $form.=\'<div>&nbsp;</div>\';
+        $form.=\'<div>&nbsp;</div>\';
 
         // Et on termine le formulaire
         $form .= \'</form>\';
@@ -343,14 +353,21 @@ function CreateList(string $table)
     $pageActu = 1;
     if (isset($_GET[\'page\']) && (is_numeric($_GET[\'page\']))) {
         $pageActu = intval($_GET[\'page\']);
-        $debutLimite = $pageActu * $numParPage;
+        $debutLimite = ($pageActu-1) * $numParPage;
     }
     $limite = $debutLimite . \',\' . $numParPage;
-    $pagePath="Liste'.ucfirst($table).'";
-    $listeObjets = '.$manager.'::GetList(null, null, null, $limite, false, false);
-    $totalEntrees = count('.$manager.'::GetList(null, null, null, null, false, false));
-    $lastPage = ($totalEntrees / $numParPage) - 1;
-    $listeChamps = '.ucfirst($table).'::getChamps();
+    $pagePath="Liste' . ucfirst($table) . '";
+    $listeObjets = ' . $manager . '::GetList(null, null, null, $limite, false, false);
+    $nbObjets=((' . $manager . '::GetList(null, null, null, $limite, false, false)!=false)?count($listeObjets):0);
+
+    $totalEntrees=((' . $manager . '::GetList(null, null, null, null, false, false)!=false)?count(' . $manager . '::GetList(null, null, null, null, false, false)):0);
+
+    if ($totalEntrees < $numParPage) {
+        $lastPage = 1;
+    } else {
+        $lastPage = $totalEntrees / $numParPage;
+    }
+    $listeChamps = ' . ucfirst($table) . '::getChamps();
     $numLign = 0;';
 
     //En-tête
@@ -359,19 +376,19 @@ function CreateList(string $table)
     echo \'
     <div class="ligne">
         <div></div>
-        <div class="centered"><a href=".?afficher=Form' . ucfirst($table) . '" class="buttonDash">Ajouter</a></div>
+        <div class="centered"><a href=".?afficher=Form' . ucfirst($table) . '&Mode=Ajouter" class="buttonDash">Ajouter</a></div>
         <div></div>
     </div>
     <div class="ligne">    
         <div>\' . (($pageActu != 1) ? \'<a class="buttonDash" href="index.php?afficher=\' . $pagePath . \'"><<</a>\' : \'\') . \'</div>
         <div>\' . (($pageActu != 1) ? \'<a class="buttonDash" href="index.php?afficher=\' . $pagePath . \'&page=\' . ($pageActu - 1) . \'"><</a>\' : \'\') . \'</div>
-        <div>\' . ($debutLimite + 1) . \' à \' . ($debutLimite + $numParPage) . \'/\' . $totalEntrees . \'</div>
+        <div>\' . ($debutLimite + 1) . \' à \' .((($debutLimite + $numParPage)>$totalEntrees)?$totalEntrees:($debutLimite + $numParPage)) . \'/\' . $totalEntrees . \'</div>
         <div>\' . (($pageActu != $lastPage) ? \'<a class="buttonDash" href="index.php?afficher=\' . $pagePath . \'&page=\' . ($pageActu + 1) . \'">></a>\' : \'\') . \'</div>
         <div>\' . (($pageActu != $lastPage) ? \'<a class="buttonDash" href="index.php?afficher=\' . $pagePath . \'&page=\' . $lastPage . \'">>></a>\' : \'\') . \'</div>
     </div>';
     $affichage .= '
     <div class="container liste\' . (count($listeChamps) - 1) . \'attribut">\';
-    if (count($listeObjets) != 0) {
+    if ($nbObjets != 0) {
         
         for ($i = 1; $i < count($listeChamps); $i++) {
             echo \'<div class="liste listeHead">\' . ltrim(ucfirst($listeChamps[$i]), "_") . \'</div>\';
@@ -381,15 +398,17 @@ function CreateList(string $table)
         echo \'<div class="listeHead">Suppr.</div>\';
         foreach ($listeObjets as $objet) {
             $ligneAlter = ($numLign % 2 == 0) ? " class=\'alterLigne\'" : "";
+            $getid="get".$listeChamps[0];
+            $id=$objet->$getid();
             for ($i = 1; $i < count($listeChamps); $i++) {
                 $getvalue = "get" . $listeChamps[$i];
                 $valeurActu = $objet->$getvalue();
 
                 echo \'<div\' . $ligneAlter . \'>\' . (($valeurActu != null) ? $valeurActu : "") . \'</div>\';
             }
-            echo \'<div\' . $ligneAlter . \'><img src="./IMG/afficher.png" alt="Voir"></div>\';
-            echo \'<div\' . $ligneAlter . \'><img src="./IMG/editer.png" alt="Éditer"></div>\';
-            echo \'<div\' . $ligneAlter . \'><img src="./IMG/effacer.png" alt="Éffacer"></div>\';
+            echo \'<div\' . $ligneAlter . \'><a href=".?afficher=Form' . ucfirst($table) . '&Mode=Visu&id=\'.$id.\'"><img src="./IMG/afficher.png" alt="Voir"></a></div>\';
+            echo \'<div\' . $ligneAlter . \'><a href=".?afficher=Form' . ucfirst($table) . '&Mode=Modifier&id=\'.$id.\'"><img src="./IMG/editer.png" alt="Éditer"></a></div>\';
+            echo \'<div\' . $ligneAlter . \'><a href=".?afficher=Form' . ucfirst($table) . '&Mode=Supprimer&id=\'.$id.\'"><img src="./IMG/effacer.png" alt="Éffacer"></a></div>\';
             $numLign++;
         }
     }
@@ -522,7 +541,7 @@ function TypeToInput(string $type): string
 
 function CreateInput(string $type, string $nom, string $attributs): string
 {
-    $retour = '<label for="' . $nom . '">Entrez la valeur de "' . ucfirst($nom) . '": </label><div class="flexMini"></div>';
+    $retour = '<label for="' . $nom . '">Entrez la valeur de "' . ucfirst($nom) . '": </label><div></div>';
     $retour .= '<input type="' . $type . '" id="' . $nom . '" name="' . $nom . '"' . $attributs . '>';
 
     // if ($type) {
@@ -545,17 +564,23 @@ function GetRoutes()
 {
     $stmt = DbConnect::getDb()->prepare("SELECT nomPage, chemin, roleMini, titre, api FROM routes;");
     $stmt->execute();
-    $result= $stmt->fetchAll(PDO::FETCH_ASSOC);
-    foreach($result as $resultat){
-        $retour[$resultat['nomPage']]=$resultat;
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($result as $resultat) {
+        $retour[$resultat['nomPage']] = $resultat;
     }
     return $retour;
 }
 
-function AjouterRoute(string $table, string $chemin){
-    $stmt = DbConnect::getDb()->prepare("INSERT INTO routes VALUES (null, :nom, :chemin, 0, :titre, 0);");
-    $stmt->bindValue(':nom', $table, PDO::PARAM_STR);
-    $stmt->bindValue(':chemin', $chemin, PDO::PARAM_STR);
-    $stmt->bindValue(':titre', $table, PDO::PARAM_STR);
-    $stmt->execute();
+function AjouterRouteGENERATEUR(string $table, string $chemin)
+{
+    try {
+        $sql=DbConnect::getDb()->prepare("SELECT chemin FROM routes");
+        $sql->execute();
+        $stmt = DbConnect::getDb()->prepare("INSERT INTO routes VALUES (null, :nom, :chemin, 0, :titre, 0);");
+        $stmt->bindValue(':nom', $table, PDO::PARAM_STR);
+        $stmt->bindValue(':chemin', $chemin, PDO::PARAM_STR);
+        $stmt->bindValue(':titre', $table, PDO::PARAM_STR);
+        $stmt->execute();
+    } catch (Exception $e) {
+    }
 }

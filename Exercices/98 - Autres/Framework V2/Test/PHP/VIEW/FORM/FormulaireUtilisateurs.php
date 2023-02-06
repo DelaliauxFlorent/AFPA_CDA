@@ -1,10 +1,10 @@
 <?php
-            $infosTable = RecupInfos("Eleves");
-            $listeCleSecondaires = ListerFK("Eleves");
+            $infosTable = RecupInfos("Utilisateurs");
+            $listeCleSecondaires = ListerFK("Utilisateurs");
             $id = (isset($_GET["id"]) ? $_GET["id"] : "");
-            $elt=ElevesManager::FindById($id);
+            $elt=UtilisateursManager::FindById($id);
             $disabled=((isset($_GET["Mode"]))&&($_GET["Mode"]=="Visu"||$_GET["Mode"]=="Supprimer"))?" disabled ":"";
-            $form ='<form method="post" action="?afficher=ActionEleves.php">';
+            $form ='<form method="post" action="?afficher=ActionUtilisateurs.php">';
     $form .='<input type="hidden" id="Mode" name="Mode" value='.$_GET["Mode"].'></input>';
         foreach ($infosTable as $colonne => $infoColonne) {
             // Pour chaque colonne de la table/attribut de la classe, on fait une ligne
@@ -43,7 +43,7 @@
         // On fait une ligne pour les boutons annuler et valider
         $form .= '<div class="ligne">';
         $form .= '<div>&nbsp;</div>';
-        $form .= '<a href=".?afficher=ListeEleves"><input id="btnCancel" class="cancel" type="button" value="Annuler"/></a>';
+        $form .= '<a href=".?afficher=ListeUtilisateurs"><input id="btnCancel" class="cancel" type="button" value="Annuler"/></a>';
         if((!isset($_GET["Mode"]))||($_GET["Mode"]!="Visu")){
         $form.='<div>&nbsp;</div>';
         $form .= '<input id="btnValid" class="valid" type="submit" value="Valider">';

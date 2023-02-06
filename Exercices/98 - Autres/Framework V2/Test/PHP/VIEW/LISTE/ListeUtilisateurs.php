@@ -7,23 +7,23 @@
         $debutLimite = ($pageActu-1) * $numParPage;
     }
     $limite = $debutLimite . ',' . $numParPage;
-    $pagePath="ListeEleves";
-    $listeObjets = ElevesManager::GetList(null, null, null, $limite, false, false);
-    $nbObjets=((ElevesManager::GetList(null, null, null, $limite, false, false)!=false)?count($listeObjets):0);
+    $pagePath="ListeUtilisateurs";
+    $listeObjets = UtilisateursManager::GetList(null, null, null, $limite, false, false);
+    $nbObjets=((UtilisateursManager::GetList(null, null, null, $limite, false, false)!=false)?count($listeObjets):0);
 
-    $totalEntrees=((ElevesManager::GetList(null, null, null, null, false, false)!=false)?count(ElevesManager::GetList(null, null, null, null, false, false)):0);
+    $totalEntrees=((UtilisateursManager::GetList(null, null, null, null, false, false)!=false)?count(UtilisateursManager::GetList(null, null, null, null, false, false)):0);
 
     if ($totalEntrees < $numParPage) {
         $lastPage = 1;
     } else {
         $lastPage = $totalEntrees / $numParPage;
     }
-    $listeChamps = Eleves::getChamps();
+    $listeChamps = Utilisateurs::getChamps();
     $numLign = 0;
     echo '
     <div class="ligne">
         <div></div>
-        <div class="centered"><a href=".?afficher=FormEleves&Mode=Ajouter" class="buttonDash">Ajouter</a></div>
+        <div class="centered"><a href=".?afficher=FormUtilisateurs&Mode=Ajouter" class="buttonDash">Ajouter</a></div>
         <div></div>
     </div>
     <div class="ligne">    
@@ -52,9 +52,9 @@
 
                 echo '<div' . $ligneAlter . '>' . (($valeurActu != null) ? $valeurActu : "") . '</div>';
             }
-            echo '<div' . $ligneAlter . '><a href=".?afficher=FormEleves&Mode=Visu&id='.$id.'"><img src="./IMG/afficher.png" alt="Voir"></a></div>';
-            echo '<div' . $ligneAlter . '><a href=".?afficher=FormEleves&Mode=Modifier&id='.$id.'"><img src="./IMG/editer.png" alt="Éditer"></a></div>';
-            echo '<div' . $ligneAlter . '><a href=".?afficher=FormEleves&Mode=Supprimer&id='.$id.'"><img src="./IMG/effacer.png" alt="Éffacer"></a></div>';
+            echo '<div' . $ligneAlter . '><a href=".?afficher=FormUtilisateurs&Mode=Visu&id='.$id.'"><img src="./IMG/afficher.png" alt="Voir"></a></div>';
+            echo '<div' . $ligneAlter . '><a href=".?afficher=FormUtilisateurs&Mode=Modifier&id='.$id.'"><img src="./IMG/editer.png" alt="Éditer"></a></div>';
+            echo '<div' . $ligneAlter . '><a href=".?afficher=FormUtilisateurs&Mode=Supprimer&id='.$id.'"><img src="./IMG/effacer.png" alt="Éffacer"></a></div>';
             $numLign++;
         }
     }
