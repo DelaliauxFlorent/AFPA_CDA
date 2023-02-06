@@ -35,7 +35,7 @@ if (isset($_GET["afficher"])) {
         }
     }
     else{
-        header('Location:.');
+        //header('Location:.');
     }
 } else {
     echo '<div><h2 class=centered">Page d\'accueil</h2></div><br /><br />';

@@ -272,7 +272,7 @@ function CreateForm(string $table)
             ';
 
     // Début du formulaire
-    $formulaire .= '$form =\'<form method="POST" action=".?afficher=Action' . $classe . '.php" class="formContainer">\';
+    $formulaire .= '$form =\'<form method="POST" action=".?afficher=Action' . $classe . '" class="formContain">\';
     $form .=\'<input type="hidden" id="Mode" name="Mode" value=\'.$_GET["Mode"].\'></input>\';
         foreach ($infosTable as $colonne => $infoColonne) {
             $display=($infosTable[$colonne][\'Cle\'] == "Primaire")?\' class="noDisplay" \':\'\';

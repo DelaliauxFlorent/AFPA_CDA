@@ -4,13 +4,13 @@
             $id = (isset($_GET["id"]) ? $_GET["id"] : "");
             $elt=RoutesManager::FindById($id);
             $disabled=((isset($_GET["Mode"]))&&($_GET["Mode"]=="Visu"||$_GET["Mode"]=="Supprimer"))?" disabled ":"";
-            $form ='<form method="POST" action=".?afficher=ActionRoutes.php" class="formContainer">';
+            $form ='<form method="POST" action=".?afficher=ActionRoutes" class="formContain">';
     $form .='<input type="hidden" id="Mode" name="Mode" value='.$_GET["Mode"].'></input>';
         foreach ($infosTable as $colonne => $infoColonne) {
             $display=($infosTable[$colonne]['Cle'] == "Primaire")?' class="noDisplay" ':'';
 
             // Pour chaque colonne de la table/attribut de la classe, on fait une ligne
-            //$form .= '<div'.$display.'></div><div'.$display.'></div>';
+            $form .= '<div'.$display.'></div><div'.$display.'></div>';
 
             // On détermine qu'elle sera la valeur par défaut
             if ($id != null) {
