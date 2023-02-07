@@ -4,7 +4,7 @@ if (isset($_GET['Mode'])) {
         case 'Connect':
             $visiteur = UtilisateursManager::FindByPseudo($_POST['pseudoUtilisateur']);
             if ($visiteur != null) {
-                if ($visiteur->getPassword() == md5($_POST['password'])) {
+                if ($visiteur->getPassword() == crypte($_POST['password'])) {
                     $_SESSION['Utilisateur'] = $visiteur;
                     header("Location:.");
                 } else {
