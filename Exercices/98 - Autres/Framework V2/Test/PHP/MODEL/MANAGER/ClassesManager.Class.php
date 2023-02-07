@@ -17,7 +17,7 @@
         
         public static function FindById($id)
         {
-            return DAO::Select(Classes::getChamps(), "Classes", ["idClasse"=> $id])[0];
+            return DAO::Select(Classes::getChamps(), "Classes", ["idClasse"=> $id]);
         }
         
         public static function GetList(array $nomColonnes = null, array $conditions = null, string $orderBy = null, string $limit = null, bool $api = false, bool $debug =false)

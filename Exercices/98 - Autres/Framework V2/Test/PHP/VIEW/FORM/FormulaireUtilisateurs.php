@@ -1,60 +1,70 @@
 <?php
-            $infosTable = RecupInfos("Utilisateurs");
-            $listeCleSecondaires = ListerFK("Utilisateurs");
-            $id = (isset($_GET["id"]) ? $_GET["id"] : "");
-            $elt=UtilisateursManager::FindById($id);
-            $disabled=((isset($_GET["Mode"]))&&($_GET["Mode"]=="Visu"||$_GET["Mode"]=="Supprimer"))?" disabled ":"";
-            $form ='<form method="POST" action=".?afficher=ActionUtilisateurs" class="formContain">';
-    $form .='<input type="hidden" id="Mode" name="Mode" value='.$_GET["Mode"].'></input>';
-        foreach ($infosTable as $colonne => $infoColonne) {
-            $display=($infosTable[$colonne]['Cle'] == "Primaire")?' class="noDisplay" ':'';
+            echo '<form method="POST" action=".?afficher=ActionUtilisateurs" class="formContain">
+        <input type="hidden" id="Mode" name="Mode" value='.$_GET["Mode"].'></input>';
 
-            // Pour chaque colonne de la table/attribut de la classe, on fait une ligne
-            $form .= '<div'.$display.'></div><div'.$display.'></div>';
+            //Champ idUtilisateur
+            echo '            
+            <div class="noDisplay" ></div>
+            <div class="noDisplay" ></div>
+            <input type=hidden id="idUtilisateur" name="idUtilisateur"  value="""></input>
+            <div class="noDisplay" ></div>
+            <div class="noDisplay" ></div>
+            
+            <div class="ligneSepar"></div>
+            ';
 
-            // On détermine qu'elle sera la valeur par défaut
-            if ($id != null) {
-                $default = ' value="' . getGet($elt[0], [$colonne]) . '"';
-            } else {
-                $default = ' value="' . $infosTable[$colonne]['Defaut'] . '"';
-            }
+            //Champ nomUtilisateur
+            echo '            
+            <div></div>
+            <div></div>
+            <label for="nomUtilisateur">Entrez la valeur de "NomUtilisateur": </label><div></div><input type="text" id="nomUtilisateur" name="nomUtilisateur" value="" required >
+            <div></div>
+            <div></div>
+            
+            <div class="ligneSepar"></div>
+            ';
 
-            // On détermine si l'input sera "required"
-            $required = (!$infosTable[$colonne]['Null']) ? ' required' : '';
+            //Champ pseudoUtilisateur
+            echo '            
+            <div></div>
+            <div></div>
+            <label for="pseudoUtilisateur">Entrez la valeur de "PseudoUtilisateur": </label><div></div><input type="text" id="pseudoUtilisateur" name="pseudoUtilisateur" value="" required >
+            <div></div>
+            <div></div>
+            
+            <div class="ligneSepar"></div>
+            ';
 
-            // On détermine le type d'input à utiliser (et le step dans le cas des numbers)
-            $type=TypeToInput($infosTable[$colonne]['Type']);
+            //Champ password
+            echo '<input type="hidden" id="password" name="password" value="">';
 
-            if ($infosTable[$colonne]['Cle'] == null) {
-                // Si la colonne n'est ni une clé primaire, ni une clé étrangère
-                // on appele la fonction générique
-                $attributs = $default.$required.$disabled;
-                $form .= CreateInput($type, $colonne, $attributs);
-            } elseif ($infosTable[$colonne]['Cle'] == "Primaire") {
-                // Si c'est une clé primaire, on la passe en "hidden"
-                $form .= '<input type=hidden id="' . $colonne . '" name="' . $colonne .'" '. ($id!=null? $default:' value=0 ') . '"></input>';
-            } else {
-                // Et si c'est une clé étrangère, on appele la fonction pour avoir un select
-                $form .= '<label for="' . $colonne . '">Entrez la valeur de "' . ucfirst($colonne) . '": </label><div class="flexMini"></div>';
-                $form .= CreateComboBox(($id!=null?getGet($elt[0], [$colonne]):null), $listeCleSecondaires[$colonne]['table'], [ucfirst($listeCleSecondaires[$colonne]['table']::getChamps()[1])], $attributs, null, null, null);
+            //Champ mail
+            echo '            
+            <div></div>
+            <div></div>
+            <label for="mail">Entrez la valeur de "Mail": </label><div></div><input type="text" id="mail" name="mail" value="" required >
+            <div></div>
+            <div></div>
+            
+            <div class="ligneSepar"></div>
+            ';
+
+            //Champ role
+            echo '            
+            <div></div>
+            <div></div>
+            <label for="role">Entrez la valeur de "Role": </label><div></div><input type="number" id="role" name="role" value="0" required >
+            <div></div>
+            <div></div>
+            
+            <div class="ligneSepar"></div>
+            ';
         
-            }
-            // on termine la ligne
-            $form .= '<div'.$display.'></div><div'.$display.'></div>';
-            $form .= '<div class="ligneSepar"></div>';
-        }
-        // On fait une ligne pour les boutons annuler et valider
-        
-        $form .= '<div>&nbsp;</div>';
-        $form .= '<div>&nbsp;</div>';
-        $form .= '<a href=".?afficher=ListeUtilisateurs"><input id="btnCancel" class="cancel" type="button" value="Annuler"/></a>';
-        if((!isset($_GET["Mode"]))||($_GET["Mode"]!="Visu")){
-        $form.='<div>&nbsp;</div>';
-        $form .= '<input id="btnValid" class="valid" type="submit" value="Valider">';
-    }
-        $form.='<div>&nbsp;</div>';
-        $form.='<div>&nbsp;</div>';
-
-        // Et on termine le formulaire
-        $form .= '</form>';
-        echo $form;
+        // Boutons
+        echo '        
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+            <a href=".?afficher=ListeUtilisateurs"><input id="btnCancel" class="cancel" type="button" value="Annuler"/></a>
+        <div>&nbsp;</div>
+            <input id="btnValid" class="valid" type="submit" value="Valider"><div>&nbsp;</div>
+        <div>&nbsp;</div></form>';

@@ -4,76 +4,80 @@ class Utilisateurs
     ////////////////////////////////////
     // Attributs
 
-    private ?int$_idUtilisateur;
-    private ?string$_nomUtilisateur;
-    private ?string$_pseudoUtilisateur;
-    private ?string$_password;
-    private ?string$_mail;
-    private ?int$_role;
-    
+    private ?int $_idUtilisateur;
+    private ?string $_nomUtilisateur;
+    private ?string $_pseudoUtilisateur;
+    private ?string $_password;
+    private ?string $_mail;
+    private ?int $_role;
+
     ////////////////////////////////////
     #region Accesseurs
-    
+
     public function getIdUtilisateur()
     {
         return $this->_idUtilisateur;
     }
-    
-    public function setIdUtilisateur(int $idUtilisateur)
+
+    public function setIdUtilisateur($idUtilisateur)
     {
-        $this->_idUtilisateur = $idUtilisateur;
+        if ($idUtilisateur == "") {
+            $this->_idUtilisateur = null;
+        } else {
+            $this->_idUtilisateur = (int)$idUtilisateur;
+        }
     }
-    
+
     public function getNomUtilisateur()
     {
         return $this->_nomUtilisateur;
     }
-    
+
     public function setNomUtilisateur(string $nomUtilisateur)
     {
         $this->_nomUtilisateur = $nomUtilisateur;
     }
-    
+
     public function getPseudoUtilisateur()
     {
         return $this->_pseudoUtilisateur;
     }
-    
+
     public function setPseudoUtilisateur(string $pseudoUtilisateur)
     {
         $this->_pseudoUtilisateur = $pseudoUtilisateur;
     }
-    
+
     public function getPassword()
     {
         return $this->_password;
     }
-    
+
     public function setPassword(string $password)
     {
         $this->_password = $password;
     }
-    
+
     public function getMail()
     {
         return $this->_mail;
     }
-    
+
     public function setMail(string $mail)
     {
         $this->_mail = $mail;
     }
-    
+
     public function getRole()
     {
         return $this->_role;
     }
-    
+
     public function setRole(int $role)
     {
         $this->_role = $role;
     }
-    
+
     /**
      * Récupérer la liste des attributs de la classe
      *
@@ -83,7 +87,7 @@ class Utilisateurs
     {
         $array = get_class_vars(__CLASS__);
         foreach ($array as $key => $value) {
-            $listeChamps[]=ltrim($key, "_");
+            $listeChamps[] = ltrim($key, "_");
         }
         return $listeChamps;
     }

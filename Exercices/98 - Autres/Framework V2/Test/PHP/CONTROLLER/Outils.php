@@ -146,16 +146,21 @@ class ' . ucfirst($table) . '
     // Pour chaque attribut, on crée les Getters et les Setters(typé) correspondants
     foreach ($resultListeColonnes as $nomColonne => $infoColonne) {
 
-        $nullable = ($infoColonne['Null']) ? "=null" : "";
+        $nullable = ($infoColonne['Null']) ? "null" : "";
         $codeClasse .= '
     public function get' . ucfirst($nomColonne) . '()
     {
         return $this->_' . $nomColonne . ';
     }
     
-    public function set' . ucfirst($nomColonne) . '(' . $infoColonne['Type'] . ' $' . $nomColonne . $nullable . ')
+    public function set' . ucfirst($nomColonne) . '($' . $nomColonne .  ')
     {
-        $this->_' . $nomColonne . ' = $' . $nomColonne . ';
+        if($' . $nomColonne .  '==""){
+            $this->_' . $nomColonne . ' ='.$nullable.';
+        }
+        else{
+            $this->_' . $nomColonne . ' = ('.$infoColonne['Type'].')$' . $nomColonne . ';
+        }
     }
     ';
     }
@@ -261,71 +266,87 @@ function CreateForm(string $table)
 
     // Détermination de la classe de l'objet
     $classe = ucfirst($table);
-
+    $infosTable = RecupInfos($classe);
+    $listeCleSecondaires = ListerFK($classe);
+    $id = (isset($_GET["id"]) ? $_GET["id"] : "0");
+    $manager=$classe.'Manager';
+    $elt=$manager::FindById($id);
+    $disabled=((isset($_GET["Mode"]))&&($_GET["Mode"]=="Visu"||$_GET["Mode"]=="Supprimer"))?" disabled ":"";
+    
     // Récupération de l'ID passé en GET
     $formulaire = '<?php
-            $infosTable = RecupInfos("' . $classe . '");
-            $listeCleSecondaires = ListerFK("' . $classe . '");
-            $id = (isset($_GET["id"]) ? $_GET["id"] : "");
-            $elt=' . $classe . 'Manager::FindById($id);
-            $disabled=((isset($_GET["Mode"]))&&($_GET["Mode"]=="Visu"||$_GET["Mode"]=="Supprimer"))?" disabled ":"";
             ';
 
     // Début du formulaire
-    $formulaire .= '$form =\'<form method="POST" action=".?afficher=Action' . $classe . '" class="formContain">\';
-    $form .=\'<input type="hidden" id="Mode" name="Mode" value=\'.$_GET["Mode"].\'></input>\';
+    $formulaire .= 'echo \'<form method="POST" action=".?afficher=Action' . $classe . '" class="formContain">
+        <input type="hidden" id="Mode" name="Mode" value=\'.$_GET["Mode"].\'></input>\';';
         foreach ($infosTable as $colonne => $infoColonne) {
-            $display=($infosTable[$colonne][\'Cle\'] == "Primaire")?\' class="noDisplay" \':\'\';
+            $display=($infosTable[$colonne]['Cle'] == "Primaire")?' class="noDisplay" ':'';
 
             // Pour chaque colonne de la table/attribut de la classe, on fait une ligne
-            $form .= \'<div\'.$display.\'></div><div\'.$display.\'></div>\';
+            $formulaire .= '
+
+            //Champ '.$colonne.'
+            echo \'            
+            <div'.$display.'></div>
+            <div'.$display.'></div>
+            ';
 
             // On détermine qu\'elle sera la valeur par défaut
-            if ($id != null) {
-                $default = \' value="\' . getGet($elt[0], [$colonne]) . \'"\';
+            if ($id != null && $elt!=false) {
+                $default = ' value="' . getGet($elt[0], [$colonne]) . '"';
             } else {
-                $default = \' value="\' . $infosTable[$colonne][\'Defaut\'] . \'"\';
+                $default = ' value="' . $infosTable[$colonne]['Defaut'] . '"';
             }
 
             // On détermine si l\'input sera "required"
-            $required = (!$infosTable[$colonne][\'Null\']) ? \' required\' : \'\';
+            $required = (!$infosTable[$colonne]['Null']) ? ' required ' : '';
 
             // On détermine le type d\'input à utiliser (et le step dans le cas des numbers)
-            $type=TypeToInput($infosTable[$colonne][\'Type\']);
-
-            if ($infosTable[$colonne][\'Cle\'] == null) {
+            $type=TypeToInput($infosTable[$colonne]['Type']);
+            $attributs = $default.$required.$disabled;
+            if ($infosTable[$colonne]['Cle'] == null) {
                 // Si la colonne n\'est ni une clé primaire, ni une clé étrangère
                 // on appele la fonction générique
-                $attributs = $default.$required.$disabled;
-                $form .= CreateInput($type, $colonne, $attributs);
-            } elseif ($infosTable[$colonne][\'Cle\'] == "Primaire") {
+                
+                $formulaire .= CreateInput($type, $colonne, $attributs);
+            } elseif ($infosTable[$colonne]['Cle'] == "Primaire") {
                 // Si c\'est une clé primaire, on la passe en "hidden"
-                $form .= \'<input type=hidden id="\' . $colonne . \'" name="\' . $colonne .\'" \'. ($id!=null? $default:\' value=0 \') . \'"></input>\';
+                $formulaire .= '<input type=hidden id="' . $colonne . '" name="' . $colonne .'" '. ($id!=null? $default:' value=0 ') . '"></input>';
             } else {
                 // Et si c\'est une clé étrangère, on appele la fonction pour avoir un select
-                $form .= \'<label for="\' . $colonne . \'">Entrez la valeur de "\' . ucfirst($colonne) . \'": </label><div class="flexMini"></div>\';
-                $form .= CreateComboBox(($id!=null?getGet($elt[0], [$colonne]):null), $listeCleSecondaires[$colonne][\'table\'], [ucfirst($listeCleSecondaires[$colonne][\'table\']::getChamps()[1])], $attributs, null, null, null);
+                $formulaire .= '<label for="' . $colonne . '">Entrez la valeur de "' . ucfirst($colonne) . '": </label><div></div>';
+                $formulaire .= CreateComboBox(($id!=null&&$elt!=false?getGet($elt[0], [$colonne]):null), $listeCleSecondaires[$colonne]['table'], [ucfirst($listeCleSecondaires[$colonne]['table']::getChamps()[1])], $attributs, null, null, null);
         
             }
             // on termine la ligne
-            $form .= \'<div\'.$display.\'></div><div\'.$display.\'></div>\';
-            $form .= \'<div class="ligneSepar"></div>\';
+            $formulaire .= '
+            <div'.$display.'></div>
+            <div'.$display.'></div>
+            ';
+            $formulaire .= '
+            <div class="ligneSepar"></div>
+            \';';
         }
         // On fait une ligne pour les boutons annuler et valider
         
-        $form .= \'<div>&nbsp;</div>\';
-        $form .= \'<div>&nbsp;</div>\';
-        $form .= \'<a href=".?afficher=Liste'.$classe.'"><input id="btnCancel" class="cancel" type="button" value="Annuler"/></a>\';
+        $formulaire .= '
+        
+        // Boutons
+        echo \'        
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+            <a href=".?afficher=Liste'.$classe.'"><input id="btnCancel" class="cancel" type="button" value="Annuler"/></a>
+        ';
         if((!isset($_GET["Mode"]))||($_GET["Mode"]!="Visu")){
-        $form.=\'<div>&nbsp;</div>\';
-        $form .= \'<input id="btnValid" class="valid" type="submit" value="Valider">\';
+        $formulaire.='<div>&nbsp;</div>
+            <input id="btnValid" class="valid" type="submit" value="Valider">';
     }
-        $form.=\'<div>&nbsp;</div>\';
-        $form.=\'<div>&nbsp;</div>\';
+        $formulaire.='<div>&nbsp;</div>
+        <div>&nbsp;</div>';
 
         // Et on termine le formulaire
-        $form .= \'</form>\';
-        echo $form;';
+        $formulaire .= '</form>\';';
 
     // Pour l'instant on retourne un string 
     //return $formulaire;
@@ -579,20 +600,6 @@ function CreateInput(string $type, string $nom, string $attributs): string
 {
     $retour = '<label for="' . $nom . '">Entrez la valeur de "' . ucfirst($nom) . '": </label><div></div>';
     $retour .= '<input type="' . $type . '" id="' . $nom . '" name="' . $nom . '"' . $attributs . '>';
-
-    // if ($type) {
-    //     switch ($type) {
-    //         case 'text':
-    //             $retour = '<label for="' . $nom . '">Entrez la valeur de "' . ucfirst($nom) . '": </label><div class="flexMini"></div>';
-    //             $retour .= '<input type="' . $type . '" id="' . $nom . '" name="' . $nom . '"' . $attributs . '>';
-    //             break;
-    //         case 'number':
-    //             break;
-    //         default:
-    //             # code...
-    //             break;
-    //     }
-    // }
     return $retour;
 }
 
