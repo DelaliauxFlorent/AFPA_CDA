@@ -15,7 +15,7 @@ foreach ($resultListeTables as $table) {
         CreateManager($tableName);
         CreateList($tableName);
         CreateForm($tableName);
-
+        CreateAction($tableName);
     
 }
 session_start();

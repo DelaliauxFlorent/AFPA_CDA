@@ -146,13 +146,13 @@ class DAO
             return false;
         }
         if ($api == false) {
-            if (count($result) > 1) {
+            // if (count($result) > 1) {
                 foreach ($result as $objet) {
                     $ListObjets[] = new $table($objet);
                 }
-            } else {
-                $ListObjets = new $table($result[0]);
-            }
+            // } else {
+            //     $ListObjets = new $table($result[0]);
+            // }
         } else {
             $ListObjets = $result;
         }
@@ -183,7 +183,7 @@ class DAO
 
         // On prépare la requête
         $stmt = DbConnect::getDb()->prepare($sql);
-        
+
         // On effectue les bindings 
         for ($j = 1; $j < count($champs); $j++) {
             // création dynamique des getAttributs()

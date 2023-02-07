@@ -50,7 +50,7 @@
                 $getvalue = "get" . $listeChamps[$i];
                 $valeurActu = $objet->$getvalue();
 
-                echo '<div' . $ligneAlter . '>' . (($valeurActu != null) ? $valeurActu : "") . '</div>';
+                echo '<div' . $ligneAlter . '>' . (($valeurActu !== null) ? $valeurActu : "") . '</div>';
             }
             echo '<div' . $ligneAlter . '><a href=".?afficher=FormRoutes&Mode=Visu&id='.$id.'"><img src="./IMG/afficher.png" alt="Voir"></a></div>';
             echo '<div' . $ligneAlter . '><a href=".?afficher=FormRoutes&Mode=Modifier&id='.$id.'"><img src="./IMG/editer.png" alt="Éditer"></a></div>';

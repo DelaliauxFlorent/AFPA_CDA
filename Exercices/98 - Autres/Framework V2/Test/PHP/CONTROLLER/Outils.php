@@ -278,11 +278,11 @@ function CreateForm(string $table)
             $display=($infosTable[$colonne][\'Cle\'] == "Primaire")?\' class="noDisplay" \':\'\';
 
             // Pour chaque colonne de la table/attribut de la classe, on fait une ligne
-            //$form .= \'<div\'.$display.\'></div><div\'.$display.\'></div>\';
+            $form .= \'<div\'.$display.\'></div><div\'.$display.\'></div>\';
 
             // On détermine qu\'elle sera la valeur par défaut
             if ($id != null) {
-                $default = \' value="\' . getGet($elt, [$colonne]) . \'"\';
+                $default = \' value="\' . getGet($elt[0], [$colonne]) . \'"\';
             } else {
                 $default = \' value="\' . $infosTable[$colonne][\'Defaut\'] . \'"\';
             }
@@ -304,7 +304,7 @@ function CreateForm(string $table)
             } else {
                 // Et si c\'est une clé étrangère, on appele la fonction pour avoir un select
                 $form .= \'<label for="\' . $colonne . \'">Entrez la valeur de "\' . ucfirst($colonne) . \'": </label><div class="flexMini"></div>\';
-                $form .= CreateComboBox(($id!=null?getGet($elt, [$colonne]):null), $listeCleSecondaires[$colonne][\'table\'], [ucfirst($listeCleSecondaires[$colonne][\'table\']::getChamps()[1])], $attributs, null, null, null);
+                $form .= CreateComboBox(($id!=null?getGet($elt[0], [$colonne]):null), $listeCleSecondaires[$colonne][\'table\'], [ucfirst($listeCleSecondaires[$colonne][\'table\']::getChamps()[1])], $attributs, null, null, null);
         
             }
             // on termine la ligne
@@ -404,20 +404,56 @@ function CreateList(string $table)
                 $getvalue = "get" . $listeChamps[$i];
                 $valeurActu = $objet->$getvalue();
 
-                echo \'<div\' . $ligneAlter . \'>\' . (($valeurActu != null) ? $valeurActu : "") . \'</div>\';
+                echo \'<div\' . $ligneAlter . \'>\' . (($valeurActu !== null) ? $valeurActu : "") . \'</div>\';
             }
             echo \'<div\' . $ligneAlter . \'><a href=".?afficher=Form' . ucfirst($table) . '&Mode=Visu&id=\'.$id.\'"><img src="./IMG/afficher.png" alt="Voir"></a></div>\';
             echo \'<div\' . $ligneAlter . \'><a href=".?afficher=Form' . ucfirst($table) . '&Mode=Modifier&id=\'.$id.\'"><img src="./IMG/editer.png" alt="Éditer"></a></div>\';
             echo \'<div\' . $ligneAlter . \'><a href=".?afficher=Form' . ucfirst($table) . '&Mode=Supprimer&id=\'.$id.\'"><img src="./IMG/effacer.png" alt="Éffacer"></a></div>\';
             $numLign++;
         }
-    }
+    }getGet
     echo \'</div></div>\';';
     $fichier = "PHP/VIEW/LISTE/Liste" . ucfirst($table) . '.php';
     if (!file_exists($fichier)) {
         file_put_contents($fichier, $affichage);
     }
 }
+
+function CreateAction(string $table){
+    $table=ucfirst($table);
+    $id=$table::getChamps()[0];
+    $act='<?php
+
+    if (isset($_POST["Mode"])) {
+        switch ($_POST["Mode"]) {
+            case "Ajouter":
+                $new'.$table.' = new '.$table.'($_POST);
+                '.$table.'Manager::Add($new'.$table.');
+                break;
+            case "Modifier":
+                if ((isset($_POST[\''.$id.'\'])) && (is_numeric($_POST[\''.$id.'\']))) {
+                    $mod'.$table.' = new '.$table.'($_POST);
+                    '.$table.'Manager::Update($mod'.$table.');
+                }
+                break;
+            case "Supprimer":
+                if ((isset($_POST[\''.$id.'\'])) && (is_numeric($_POST[\''.$id.'\']))) {
+                    $del'.$table.' = new '.$table.'($_POST);
+                    '.$table.'Manager::Delete($del'.$table.');
+                }
+                break;
+            default:
+                # code...
+                break;
+        }
+        header("Location:?afficher=Liste'.$table.'");
+    }';
+    $fichier = "PHP/CONTROLLER/ACTION/Action" . $table . '.php';
+    if (!file_exists($fichier)) {
+        file_put_contents($fichier, $act);
+    }
+}
+
 
 
 /**
