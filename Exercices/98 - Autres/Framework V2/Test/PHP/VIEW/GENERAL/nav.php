@@ -6,5 +6,5 @@ if ((isset($_GET['afficher'])) && (strpos($_GET['afficher'], "Liste") !== false)
     echo '<div></div>';
 }
 echo '<div class="flex5"></div>';
-echo '<a href="">Connexion</a>';
+echo '<a href=".?afficher=FormConnect">Connexion</a>';
 echo '</div>';

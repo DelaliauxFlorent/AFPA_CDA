@@ -270,7 +270,8 @@ function CreateForm(string $table)
     $listeCleSecondaires = ListerFK($classe);
     $id = (isset($_GET["id"]) ? $_GET["id"] : "0");
     $manager=$classe.'Manager';
-    $elt=$manager::FindById($id);
+    $elt=($id==""||$id==0)?new $classe():$manager::FindById($id);
+    $new=($id==""||$id==0)?1:0;
     $disabled=((isset($_GET["Mode"]))&&($_GET["Mode"]=="Visu"||$_GET["Mode"]=="Supprimer"))?" disabled ":"";
     
     // Récupération de l'ID passé en GET
@@ -293,8 +294,8 @@ function CreateForm(string $table)
             ';
 
             // On détermine qu\'elle sera la valeur par défaut
-            if ($id != null && $elt!=false) {
-                $default = ' value="' . getGet($elt[0], [$colonne]) . '"';
+            if ($id != null && $new!=1) {
+                $default = ' value="' . getGet($elt, [$colonne]) . '"';
             } else {
                 $default = ' value="' . $infosTable[$colonne]['Defaut'] . '"';
             }
@@ -316,7 +317,7 @@ function CreateForm(string $table)
             } else {
                 // Et si c\'est une clé étrangère, on appele la fonction pour avoir un select
                 $formulaire .= '<label for="' . $colonne . '">Entrez la valeur de "' . ucfirst($colonne) . '": </label><div></div>';
-                $formulaire .= CreateComboBox(($id!=null&&$elt!=false?getGet($elt[0], [$colonne]):null), $listeCleSecondaires[$colonne]['table'], [ucfirst($listeCleSecondaires[$colonne]['table']::getChamps()[1])], $attributs, null, null, null);
+                $formulaire .= CreateComboBox(($id!=null&&$new!=1?getGet($elt, [$colonne]):null), $listeCleSecondaires[$colonne]['table'], [ucfirst($listeCleSecondaires[$colonne]['table']::getChamps()[1])], $attributs, null, null, null);
         
             }
             // on termine la ligne
