@@ -1,6 +1,6 @@
 <?php
 echo '
-<form method="POST" action=".?afficher=ActionConnect" class="formContain">
+<form method="POST" action=".?afficher=ActionConnect&Mode=Connect" class="formContain">
     <div></div>
     <div></div>
     '.CreateInput("text", "pseudoUtilisateur", "required").'

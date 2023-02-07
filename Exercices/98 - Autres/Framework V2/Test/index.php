@@ -19,16 +19,16 @@ foreach ($resultListeTables as $table) {
     
 }
 session_start();
-$_SESSION['Role']=3;
 
 $ListeRoutes = GetRoutes();
 
 include "./PHP/VIEW/GENERAL/head.php";
 include "./PHP/VIEW/GENERAL/header.php";
 include "./PHP/VIEW/GENERAL/nav.php";
-
+//var_dump($_SESSION);
+$role=(ISSET($_SESSION['Utilisateur'])?$_SESSION['Utilisateur']->getRole():0);
 if (isset($_GET["afficher"])) {
-    if (array_key_exists($_GET["afficher"], $ListeRoutes) && (ISSET($_SESSION['Role'])&&$_SESSION['Role']>=$ListeRoutes[$_GET["afficher"]]['roleMini'])) {
+    if (array_key_exists($_GET["afficher"], $ListeRoutes) && ($role>=$ListeRoutes[$_GET["afficher"]]['roleMini'])) {
         $fichier = $ListeRoutes[$_GET["afficher"]]['chemin'];
         if (file_exists($fichier)) {
             include $fichier;
@@ -41,7 +41,7 @@ if (isset($_GET["afficher"])) {
     echo '<div><h2 class=centered">Page d\'accueil</h2></div><br /><br />';
     foreach ($resultListeTables as $Listes) {
         // var_dump($ListeRoutes,$Listes[$varTableIn]);
-        if($_SESSION['Role']>=$ListeRoutes["Liste".ucfirst($Listes[$varTableIn])]['roleMini']){
+        if($role>=$ListeRoutes["Liste".ucfirst($Listes[$varTableIn])]['roleMini']){
         // if ($Listes[$varTableIn] != 'routes') {
             echo '<div class="ligne"><div></div><div class="centered"><a href="?afficher=Liste' . ucfirst($Listes[$varTableIn]) . '" id="btnListe' . $Listes[$varTableIn] . '" class="buttonDash">Liste des ' . $Listes[$varTableIn] . '</a></div><div></div></div>';
         }
