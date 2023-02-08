@@ -27,4 +27,5 @@ class DbConnect
     public static function close(){
         self::$db=null;
     }
+
 }

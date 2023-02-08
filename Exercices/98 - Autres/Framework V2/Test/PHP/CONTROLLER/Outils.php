@@ -156,10 +156,10 @@ class ' . ucfirst($table) . '
     public function set' . ucfirst($nomColonne) . '($' . $nomColonne .  ')
     {
         if($' . $nomColonne .  '==""){
-            $this->_' . $nomColonne . ' ='.$nullable.';
+            $this->_' . $nomColonne . ' =' . $nullable . ';
         }
         else{
-            $this->_' . $nomColonne . ' = ('.$infoColonne['Type'].')$' . $nomColonne . ';
+            $this->_' . $nomColonne . ' = (' . $infoColonne['Type'] . ')$' . $nomColonne . ';
         }
     }
     ';
@@ -269,11 +269,11 @@ function CreateForm(string $table)
     $infosTable = RecupInfos($classe);
     $listeCleSecondaires = ListerFK($classe);
     $id = (isset($_GET["id"]) ? $_GET["id"] : "0");
-    $manager=$classe.'Manager';
-    $elt=($id==""||$id==0)?new $classe():$manager::FindById($id);
-    $new=($id==""||$id==0)?1:0;
-    $disabled=((isset($_GET["Mode"]))&&($_GET["Mode"]=="Visu"||$_GET["Mode"]=="Supprimer"))?" disabled ":"";
-    
+    $manager = $classe . 'Manager';
+    $elt = ($id == "" || $id == 0) ? new $classe() : $manager::FindById($id);
+    $new = ($id == "" || $id == 0) ? 1 : 0;
+    $disabled = ((isset($_GET["Mode"])) && ($_GET["Mode"] == "Visu" || $_GET["Mode"] == "Supprimer")) ? " disabled " : "";
+
     // Récupération de l'ID passé en GET
     $formulaire = '<?php
             ';
@@ -281,79 +281,84 @@ function CreateForm(string $table)
     // Début du formulaire
     $formulaire .= 'echo \'<form method="POST" action=".?afficher=Action' . $classe . '" class="formContain">
         <input type="hidden" id="Mode" name="Mode" value=\'.$_GET["Mode"].\'></input>\';';
-        foreach ($infosTable as $colonne => $infoColonne) {
-            $display=($infosTable[$colonne]['Cle'] == "Primaire")?' class="noDisplay" ':'';
+    foreach ($infosTable as $colonne => $infoColonne) {
+        $display = ($infosTable[$colonne]['Cle'] == "Primaire") ? ' class="noDisplay" ' : '';
 
-            // Pour chaque colonne de la table/attribut de la classe, on fait une ligne
-            $formulaire .= '
+        // Pour chaque colonne de la table/attribut de la classe, on fait une ligne
+        $formulaire .= '
 
-            //Champ '.$colonne.'
+            //Champ ' . $colonne . '
             echo \'            
-            <div'.$display.'></div>
-            <div'.$display.'></div>
+            <div' . $display . '></div>
+            <div' . $display . '></div>
             ';
 
-            // On détermine qu\'elle sera la valeur par défaut
-            if ($id != null && $new!=1) {
-                $default = ' value="' . getGet($elt, [$colonne]) . '"';
-            } else {
-                $default = ' value="' . $infosTable[$colonne]['Defaut'] . '"';
-            }
+        // On détermine qu\'elle sera la valeur par défaut
+        if ($id != null && $new != 1) {
+            $default = ' value="' . getGet($elt, [$colonne]) . '"';
+        } else {
+            $default = ' value="' . $infosTable[$colonne]['Defaut'] . '"';
+        }
 
-            // On détermine si l\'input sera "required"
-            $required = (!$infosTable[$colonne]['Null']) ? ' required ' : '';
+        // On détermine si l\'input sera "required"
+        $required = (!$infosTable[$colonne]['Null']) ? ' required ' : '';
 
-            // On détermine le type d\'input à utiliser (et le step dans le cas des numbers)
-            $type=TypeToInput($infosTable[$colonne]['Type']);
-            $attributs = $default.$required.$disabled;
-            if ($infosTable[$colonne]['Cle'] == null) {
-                // Si la colonne n\'est ni une clé primaire, ni une clé étrangère
-                // on appele la fonction générique
-                
-                $formulaire .= CreateInput($type, $colonne, $attributs);
-            } elseif ($infosTable[$colonne]['Cle'] == "Primaire") {
-                // Si c\'est une clé primaire, on la passe en "hidden"
-                $formulaire .= '<input type=hidden id="' . $colonne . '" name="' . $colonne .'" '. ($id!=null? $default:' value=0 ') . '"></input>';
-            } else {
-                // Et si c\'est une clé étrangère, on appele la fonction pour avoir un select
-                $formulaire .= '<label for="' . $colonne . '">Entrez la valeur de "' . ucfirst($colonne) . '": </label><div></div>';
-                $formulaire .= CreateComboBox(($id!=null&&$new!=1?getGet($elt, [$colonne]):null), $listeCleSecondaires[$colonne]['table'], [ucfirst($listeCleSecondaires[$colonne]['table']::getChamps()[1])], $attributs, null, null, null);
-        
-            }
-            // on termine la ligne
-            $formulaire .= '
-            <div'.$display.'></div>
-            <div'.$display.'></div>
+        // On détermine le type d\'input à utiliser (et le step dans le cas des numbers)
+        $type = TypeToInput($infosTable[$colonne]['Type']);
+        $attributs = $default . $required . $disabled;
+        if ($infosTable[$colonne]['Cle'] == null) {
+            // Si la colonne n\'est ni une clé primaire, ni une clé étrangère
+            // on appele la fonction générique
+
+            $formulaire .= CreateInput($type, $colonne, $attributs);
+        } elseif ($infosTable[$colonne]['Cle'] == "Primaire") {
+            // Si c\'est une clé primaire, on la passe en "hidden"
+            $formulaire .= '<input type=hidden id="' . $colonne . '" name="' . $colonne . '" ' . ($id != null ? $default : ' value=0 ') . '"></input>';
+        } else {
+            // Et si c\'est une clé étrangère, on appele la fonction pour avoir un select
+            $formulaire .= '<label for="' . $colonne . '">Entrez la valeur de "' . ucfirst($colonne) . '": </label><div></div>';
+            $formulaire .= CreateComboBox(($id != null && $new != 1 ? getGet($elt, [$colonne]) : null), $listeCleSecondaires[$colonne]['table'], [ucfirst($listeCleSecondaires[$colonne]['table']::getChamps()[1])], $attributs, null, null, null);
+        }
+        // on termine la ligne
+        $formulaire .= '
+            <div' . $display . '></div>
+            <div' . $display . '></div>
             ';
-            $formulaire .= '
+        $formulaire .= '
             <div class="ligneSepar"></div>
             \';';
-        }
-        // On fait une ligne pour les boutons annuler et valider
-        
-        $formulaire .= '
+    }
+    // On fait une ligne pour les boutons annuler et valider
+
+    $formulaire .= '
         
         // Boutons
         echo \'        
         <div>&nbsp;</div>
         <div>&nbsp;</div>
-            <a href=".?afficher=Liste'.$classe.'"><input id="btnCancel" class="cancel" type="button" value="Annuler"/></a>
+            <a href=".?afficher=Liste' . $classe . '"><input id="btnCancel" class="cancel" type="button" value="Annuler"/></a>
         ';
-        if((!isset($_GET["Mode"]))||($_GET["Mode"]!="Visu")){
-        $formulaire.='<div>&nbsp;</div>
+    if ((!isset($_GET["Mode"])) || ($_GET["Mode"] != "Visu")) {
+        $formulaire .= '<div>&nbsp;</div>
             <input id="btnValid" class="valid" type="submit" value="Valider">';
     }
-        $formulaire.='<div>&nbsp;</div>
+    $formulaire .= '<div>&nbsp;</div>
         <div>&nbsp;</div>';
 
-        // Et on termine le formulaire
-        $formulaire .= '</form>\';';
+    // Et on termine le formulaire
+    $formulaire .= '</form>\';';
 
     // Pour l'instant on retourne un string 
     //return $formulaire;
 
     // Mais au final on aura la création du fichier correspondant
     $fichier = "PHP/VIEW/FORM/Formulaire" . $classe . '.php';
+    $routeExiste=RoutesManager::GetList(["chemin"], ["chemin"=>$fichier], null, null, false,false);
+    if($routeExiste==false){
+        $nomPage="Formulaire".$table;
+        $newRoute=new Routes(["idRoute"=>0, "nomPage"=>$nomPage,"chemin"=>$fichier, "roleMini"=>0, "titre"=>$nomPage, "api"=>0]);
+        RoutesManager::Add($newRoute);
+    }
     if (!file_exists($fichier)) {
         file_put_contents($fichier, $formulaire);
     }
@@ -436,46 +441,102 @@ function CreateList(string $table)
     }getGet
     echo \'</div></div>\';';
     $fichier = "PHP/VIEW/LISTE/Liste" . ucfirst($table) . '.php';
+    
+    $routeExiste=RoutesManager::GetList(["chemin"], ["chemin"=>$fichier], null, null, false,false);
+    if($routeExiste==false){
+        $nomPage="Liste".$table;
+        $newRoute=new Routes(["idRoute"=>0, "nomPage"=>$nomPage,"chemin"=>$fichier, "roleMini"=>0, "titre"=>$nomPage, "api"=>0]);
+        RoutesManager::Add($newRoute);
+    }
     if (!file_exists($fichier)) {
         file_put_contents($fichier, $affichage);
     }
 }
 
-function CreateAction(string $table){
-    $table=ucfirst($table);
-    $id=$table::getChamps()[0];
-    $act='<?php
+function CreateAction(string $table)
+{
+    $table = ucfirst($table);
+    $id = $table::getChamps()[0];
+    $act = '<?php
 
     if (isset($_POST["Mode"])) {
         switch ($_POST["Mode"]) {
             case "Ajouter":
-                $new'.$table.' = new '.$table.'($_POST);
-                '.$table.'Manager::Add($new'.$table.');
+                $new' . $table . ' = new ' . $table . '($_POST);
+                ' . $table . 'Manager::Add($new' . $table . ');
                 break;
             case "Modifier":
-                if ((isset($_POST[\''.$id.'\'])) && (is_numeric($_POST[\''.$id.'\']))) {
-                    $mod'.$table.' = new '.$table.'($_POST);
-                    '.$table.'Manager::Update($mod'.$table.');
+                if ((isset($_POST[\'' . $id . '\'])) && (is_numeric($_POST[\'' . $id . '\']))) {
+                    $mod' . $table . ' = new ' . $table . '($_POST);
+                    ' . $table . 'Manager::Update($mod' . $table . ');
                 }
                 break;
             case "Supprimer":
-                if ((isset($_POST[\''.$id.'\'])) && (is_numeric($_POST[\''.$id.'\']))) {
-                    $del'.$table.' = new '.$table.'($_POST);
-                    '.$table.'Manager::Delete($del'.$table.');
+                if ((isset($_POST[\'' . $id . '\'])) && (is_numeric($_POST[\'' . $id . '\']))) {
+                    $del' . $table . ' = new ' . $table . '($_POST);
+                    ' . $table . 'Manager::Delete($del' . $table . ');
                 }
                 break;
             default:
                 # code...
                 break;
         }
-        header("Location:?afficher=Liste'.$table.'");
+        header("Location:?afficher=Liste' . $table . '");
     }';
     $fichier = "PHP/CONTROLLER/ACTION/Action" . $table . '.php';
+    $routeExiste=RoutesManager::GetList(["chemin"], ["chemin"=>$fichier], null, null, false,false);
+    if($routeExiste==false){
+        $nomPage="Action".$table;
+        $newRoute=new Routes(["idRoute"=>0, "nomPage"=>$nomPage,"chemin"=>$fichier, "roleMini"=>0, "titre"=>$nomPage, "api"=>0]);
+        RoutesManager::Add($newRoute);
+    }
+    
     if (!file_exists($fichier)) {
         file_put_contents($fichier, $act);
     }
 }
 
+function CheckRoutesTable()
+{
+    $stmt = DbConnect::getDb()->prepare("SELECT 1 FROM information_schema.tables WHERE table_schema = database() AND table_name = :table");
+    $stmt->bindValue(":table", "routes");
+    $stmt->execute();
+    return (bool)$stmt->fetchColumn();
+}
+
+function CreateRoutesTable()
+{
+    $sql = "CREATE TABLE IF NOT EXISTS `routes` (
+        `idRoute` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        `nomPage` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+        `chemin` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+        `roleMini` int(11) NOT NULL,
+        `titre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+        `api` tinyint(1) DEFAULT '0',
+        UNIQUE KEY `chemin` (`chemin`)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
+    $stmt = DbConnect::getDb()->prepare($sql);
+    $stmt->execute();
+}
+
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
 
 
 /**
@@ -618,7 +679,7 @@ function GetRoutes()
 function AjouterRouteGENERATEUR(string $table, string $chemin)
 {
     try {
-        $sql=DbConnect::getDb()->prepare("SELECT chemin FROM routes");
+        $sql = DbConnect::getDb()->prepare("SELECT chemin FROM routes");
         $sql->execute();
         $stmt = DbConnect::getDb()->prepare("INSERT INTO routes VALUES (null, :nom, :chemin, 0, :titre, 0);");
         $stmt->bindValue(':nom', $table, PDO::PARAM_STR);
