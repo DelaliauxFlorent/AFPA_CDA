@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33027.164
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exo_Multicouche", "Exo_Multicouche\Exo_Multicouche.csproj", "{3687A9FD-2EA8-4703-862D-861CE6FFF213}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3687A9FD-2EA8-4703-862D-861CE6FFF213}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3687A9FD-2EA8-4703-862D-861CE6FFF213}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3687A9FD-2EA8-4703-862D-861CE6FFF213}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3687A9FD-2EA8-4703-862D-861CE6FFF213}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2F8B3A39-9F84-44B1-A05F-B5D4B46ADEEB}
+	EndGlobalSection
+EndGlobal

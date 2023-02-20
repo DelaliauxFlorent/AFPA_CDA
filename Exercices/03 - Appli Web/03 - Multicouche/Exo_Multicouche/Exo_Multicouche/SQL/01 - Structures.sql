@@ -1,0 +1,33 @@
+DROP DATABASE IF EXISTS exo_MC;
+CREATE DATABASE exo_MC DEFAULT CHARACTER SET utf8;
+USE exo_MC;
+
+--
+-- Table CodesValides
+--
+DROP TABLE IF EXISTS CodesValides;
+CREATE TABLE CodesValides(
+   idCodeValide INT AUTO_INCREMENT PRIMARY KEY,
+   codeValide VARCHAR(50)  NOT NULL UNIQUE,
+   utilise BOOLEAN NOT NULL
+) ENGINE=InnoDB;
+
+--
+-- Table Votes
+--
+DROP TABLE IF EXISTS Votes;
+CREATE TABLE Votes(
+   idVote INT AUTO_INCREMENT PRIMARY KEY,
+   choixVote VARCHAR(50) ,
+   idCodeValide INT NOT NULL
+) ENGINE=InnoDB;
+
+--
+-- Table Syntheses
+--
+DROP TABLE IF EXISTS Syntheses;
+CREATE TABLE Syntheses(
+   idSynthese INT AUTO_INCREMENT PRIMARY KEY,
+   reponse VARCHAR(50)  NOT NULL,
+   nombre INT NOT NULL
+) ENGINE=InnoDB;

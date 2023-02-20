@@ -122,7 +122,8 @@
         /// <summary>
         /// Constructeur
         /// </summary>
-        /// <param name="_context"></param>
+        /// <param name="service"></param>
+        /// <param name="mapper"></param>
         public $TableName$Controller($TableName$Services service, IMapper mapper)
         {
             _service = service;
@@ -170,7 +171,7 @@
             //on ajoute l'objet à la base de données
             _service.Add$ClassName$(objetPasse);
             //on retourne le chemin de FinById avec l'objet créé
-            return CreatedAtRoute(nameof(Get$ClassName$ById), new { Id = $ClassName$.Id$ClassName$}, $ClassName$);
+            return CreatedAtRoute(nameof(Get$ClassName$ById), new { Id = objetPasse.Id$ClassName$}, objetPasse);
         }
 
         /// <summary>
@@ -201,7 +202,7 @@
         /// <returns>Retourne l'ActionResult indiquant si la modification partielle s'est bien passée ou non.</returns>
         //PATCH api/$TableName$/{id}
         [HttpPatch("{id}")]
-        public ActionResult Partial$ClassName$Update(int id, JsonPatchDocument<Product> patchDoc)
+        public ActionResult Partial$ClassName$Update(int id, JsonPatchDocument<$ClassName$> patchDoc)
         {
             var objFromRepo = _service.Get$ClassName$ById(id);
             if (objFromRepo == null)
@@ -246,12 +247,12 @@
         <Literal>
           <ID>TableName</ID>
           <ToolTip>Name of the table in the DB.</ToolTip>
-          <Default>[Table]</Default>
+          <Default>Table</Default>
         </Literal>
         <Literal>
           <ID>ClassName</ID>
           <ToolTip>Name of the class (Model/POCO).</ToolTip>
-          <Default>[Class]</Default>
+          <Default>Class</Default>
         </Literal>
         <Literal>
           <ID>Context</ID>
@@ -261,7 +262,7 @@
         <Literal>
           <ID>DTO</ID>
           <ToolTip>DTO used.</ToolTip>
-          <Default>[DTO]</Default>
+          <Default>DTO</Default>
         </Literal>
       </Declarations>
     </Snippet>
