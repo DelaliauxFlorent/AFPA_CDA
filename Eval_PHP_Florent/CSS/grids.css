@@ -1,0 +1,46 @@
+.listArticles{
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: 0.5fr repeat(3, 1fr) 0.5fr;
+	column-gap: 1em;
+	row-gap: 1em;
+}
+.article{
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(3, 1fr);
+	row-gap: 0.5em;
+	border: 0.5em solid lightgray;
+	padding: 1em;
+	height: auto;
+}
+.btnAjout{
+	grid-row: span 3;
+	grid-column: span 4;
+}
+.grid-columns-span-3{
+	grid-column: span 3;
+}
+.grid-columns-span-2{
+	grid-column: span 2;
+}
+
+.data{
+	font-weight: bold;
+}
+
+
+.GridForm {
+	display : grid;
+	grid-template-columns: 1fr 4fr;
+	grid-gap: 0.5rem
+}
+
+.GridForm div,button,a {
+	justify-content: center;
+	align-items: center;
+}
+
+.gridForm-col-span {
+	grid-column: 1/5 ;
+}

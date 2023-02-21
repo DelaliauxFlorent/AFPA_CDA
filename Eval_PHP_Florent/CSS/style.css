@@ -1,0 +1,221 @@
+header {
+    height: 10vh;
+    flex: none;
+    background-color: var(--color5);
+    color: var(--color1);
+    padding: 0.6rem 0;
+    text-transform: uppercase;
+}
+*{
+    scroll-behavior: smooth;
+}
+h1 {
+    font-size: 2rem;
+}
+
+.checkbox {
+    opacity: 0;
+    position: absolute;
+  }
+
+  .label {
+    width: 50px;
+    height: 26px;
+    background-color: var(--color1);
+    display: flex;
+    border-radius:50px;
+    align-items: center;
+    justify-content: space-between;
+    /* padding: 5px; */
+    position: relative;
+    transform: scale(1.5);
+    cursor: pointer;
+  }
+
+  .ball {
+    width: 20px;
+    height: 20px;
+    background-color: var(--color5);
+    position: absolute;
+    /* top: 2px; */
+    left: 4px;
+    border-radius: 50%;
+    transition: transform 0.2s linear;
+  }
+ 
+  .left-auto {
+    margin-left: auto;
+  }
+  
+.titre,
+.titreListe,
+.labelListe {
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+.titreListe , .titre, .titreForm{
+    font-family: 'Comfortaa', cursive;
+    font-size: 1.4rem;
+
+    text-transform: uppercase;
+}
+.caseListe a, .caseForm button {
+    max-width: fit-content;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+.caseListe a i, .caseForm button i {
+    cursor: pointer;
+    font-size: 2.5rem;
+}
+
+:focus-visible {
+    outline: none;
+}
+.caseListe button, .caseForm button {
+    border: 0;
+    padding: 0.5rem;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+input::placeholder {
+    padding-left: 0.5rem;
+}
+
+body {
+    background-color: var(--color4);
+    font-family: 'Roboto', sans-serif;
+    transition: color 0.3s;
+    transition: background 0.3s;
+}
+
+
+i {
+    font-size: 1.4rem;
+}
+input,
+select {
+    font-size: 1.2rem;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+header .titre {
+    font-size: 2rem;
+
+}
+.logo img{
+    height: 7.5rem;
+}
+
+header img {
+    margin-right: auto;
+}
+
+main {
+    padding-bottom: 10vh;
+}
+
+.labelListe {
+    grid-gap: 0.2rem;
+}
+
+.labelListe .left {
+    justify-content: unset;
+}
+
+.titreForm {
+    padding: 3rem;
+}
+
+/******/
+footer #backToTop {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    transform: translateY(-100%);
+    right: 1rem;
+    cursor: pointer;
+    color: var(--color5);
+}
+.cote {
+	flex:0.1;
+}
+.left {
+    justify-content: left !important;
+}
+
+.estompe {
+    opacity: 0.3;
+}
+
+.aideMdp {
+    flex-direction: column;
+    z-index: 2;
+    font-size: 0.8rem;
+    display: none;
+    white-space: nowrap;
+    border-radius: 2vh;
+    background-color: white;
+    padding: 1vh;
+}
+
+.fa-green {
+    color: var(--inputCorrect);
+}
+
+.fa-red {
+    color: var(--inputIncorrect);
+}
+
+.removeShadow {
+    box-shadow: unset;
+}
+
+
+/****** Footer en bas de page ******/
+
+body{
+    position: relative;
+    min-height: calc(100vh - 7vh);
+    padding-bottom: 7vh;
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    right:0;
+    left:0;
+    height: 7vh;
+
+    background-color: var(--color5);
+    color: var(--color1);
+    font-size: 1rem;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.resetPassword {
+    transform: scale(60%);
+}
+
+body.dark .resetPassword {
+    filter: invert(100%) sepia(1%) saturate(3368%) hue-rotate(304deg) brightness(135%) contrast(87%);
+}
+
+.bgc .resetPassword {
+    filter: invert(100%) sepia(1%) saturate(3368%) hue-rotate(304deg) brightness(135%) contrast(87%);
+}
