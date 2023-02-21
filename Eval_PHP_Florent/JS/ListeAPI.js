@@ -25,7 +25,7 @@ function listing() {
                     grid.innerHTML = grid.innerHTML.replaceAll("ValeurLibelle", element.libelleArticle);
                     grid.innerHTML = grid.innerHTML.replaceAll("ValeurRef", element.refArticle);
                     grid.innerHTML = grid.innerHTML.replaceAll("ValeurPrix", element.prix + "€");
-
+                    console.log()
                     requ2.onreadystatechange = function (event) {
                         if (this.readyState === XMLHttpRequest.DONE) {
                             if (this.status === 200) {

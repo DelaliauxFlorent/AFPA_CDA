@@ -2,7 +2,7 @@
     class ArticlesManager{
         public static function Add(Articles $obj)
         {
-            return DAO::Create($obj);
+            return DAO::Add($obj);
         }
         
         public static function Update(Articles $obj)

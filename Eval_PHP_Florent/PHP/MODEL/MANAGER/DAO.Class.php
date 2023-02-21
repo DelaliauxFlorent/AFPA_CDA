@@ -7,7 +7,7 @@ class DAO
 	{
 		$db = DbConnect::getDb();
 		$class = get_class($obj);
-		$colonnes = $class::getAttributes();
+		$colonnes = $class::getChamps();
 		$requ = "INSERT INTO " . $class . "(";
 		$values = "";
 		$bindValue = [];
@@ -37,7 +37,7 @@ class DAO
 	{
 		$db = DbConnect::getDb();
 		$class = get_class($obj);
-		$colonnes = $class::getAttributes();
+		$colonnes = $class::getChamps();
 		$requ = "UPDATE " . $class . " SET ";
 
 		for ($i = 1; $i < count($colonnes); $i++) {
@@ -59,7 +59,7 @@ class DAO
 	{
 		$db = DbConnect::getDb();
 		$class = get_class($obj);
-		$colonnes = $class::getAttributes();
+		$colonnes = $class::getChamps();
 		$methode = "get" . ucfirst($colonnes[0]);
 		return $db->query("DELETE FROM " . $class . " WHERE " . $colonnes[0] . " = " . $obj->$methode());
 	}
@@ -78,7 +78,7 @@ class DAO
 	 */
 	public static function count(?array $nomColonnes = null, string $table, ?array $conditions = null, string $orderBy = null, string $limit = null, bool $api = false, bool $debug = false)
 	{
-		$nomColonnes = ($nomColonnes == null) ? $table::getAttributes() : $nomColonnes;
+		$nomColonnes = ($nomColonnes == null) ? $table::getChamps() : $nomColonnes;
 		$liste = self::select($nomColonnes,  $table,  $conditions,  $orderBy,  $limit,  $api,  $debug);
 		if ($liste != false)
 		return count($liste);
@@ -121,7 +121,7 @@ class DAO
 	public static function select(?array $nomColonnes=null, string $table, array $conditions = null, string $orderBy = null, string $limit = null, bool $api = false, bool $debug = false)
 	{
 		$db = DbConnect::getDb();
-		$nomColonnes = ($nomColonnes == null) ? $table::getAttributes() : $nomColonnes;
+		$nomColonnes = ($nomColonnes == null) ? $table::getChamps() : $nomColonnes;
 		$string = json_encode($nomColonnes) . $table . json_encode($conditions) . $orderBy . $limit . $api . $debug;
 		if (strpos((string) $string, ";")) {
 			return false;
@@ -203,7 +203,7 @@ class DAO
 				}
 			} elseif($valeur!="") {
 				$rechercheFullTexte="";
-				$colonnes  = $table::getAttributes();
+				$colonnes  = $table::getChamps();
 				foreach ($colonnes as $col) {
 					if(strtolower(substr($col,0,4))!="date")
 					$rechercheFullTexte .= $col .' like "%'.$valeur.'%" OR ';

@@ -48,7 +48,7 @@ class Articles
         return $this->_prix;
     }
     
-    public function setPrix(int $prix=null)
+    public function setPrix(float $prix)
     {
         $this->_prix = $prix;
     }
