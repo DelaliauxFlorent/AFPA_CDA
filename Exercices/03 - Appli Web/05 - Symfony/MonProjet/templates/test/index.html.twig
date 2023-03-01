@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<table class="table table-light table-hover">
+		<thead>
+			<tr>
+				<th>Id du produit</th>
+				<th>Nom</th>
+				<th>Fournisseur</th>
+				<th>Id de la Catégorie</th>
+				<th>Quantité par unité</th>
+				<th>Prix Unitaire</th>
+				<th>Unitées en stock</th>
+				<th>Unités en commande</th>
+				<th>Niveau d'alerte</th>
+				<th>Arrété</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for elm in obj %}
+				<tr>
+					<td>{{ elm.id }}</td>
+					<td>{{ elm.name }}</td>
+					<td>{{ elm.suppliers.name }}</td>
+					<td>{{ elm.categoryId }}</td>
+					<td>{{ elm.quantityPerUnit }}</td>
+					<td>{{ elm.prixUnitaire }}</td>
+					<td>{{ elm.qteStock }}</td>
+					<td>{{ elm.qteCommande }}</td>
+					<td>{{ elm.nivRestock }}</td>
+					<td>{% if elm.arrete==1 %}Oui{% else %}Non{% endif %}</td>
+				</tr>
+			{% endfor %}
+
+		</tbody>
+	</table>
+
+{% endblock %}
