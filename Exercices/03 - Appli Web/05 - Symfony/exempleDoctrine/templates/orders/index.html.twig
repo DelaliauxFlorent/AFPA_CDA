@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Orders index{% endblock %}
+
+{% block body %}
+    <h1>Orders index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>EmployeeID</th>
+                <th>OrderDate</th>
+                <th>RequiredDate</th>
+                <th>ShippedDate</th>
+                <th>ShipVia</th>
+                <th>Freight</th>
+                <th>ShipName</th>
+                <th>ShipAddress</th>
+                <th>ShipCity</th>
+                <th>ShipRegion</th>
+                <th>ShipPostalCode</th>
+                <th>ShipCountry</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.EmployeeID }}</td>
+                <td>{{ order.OrderDate ? order.OrderDate|date('Y-m-d') : '' }}</td>
+                <td>{{ order.RequiredDate ? order.RequiredDate|date('Y-m-d') : '' }}</td>
+                <td>{{ order.ShippedDate ? order.ShippedDate|date('Y-m-d') : '' }}</td>
+                <td>{{ order.ShipVia }}</td>
+                <td>{{ order.Freight }}</td>
+                <td>{{ order.ShipName }}</td>
+                <td>{{ order.ShipAddress }}</td>
+                <td>{{ order.ShipCity }}</td>
+                <td>{{ order.ShipRegion }}</td>
+                <td>{{ order.ShipPostalCode }}</td>
+                <td>{{ order.ShipCountry }}</td>
+                <td>
+                    <a href="{{ path('app_orders_show', {'id': order.id}) }}">show</a>
+                    <a href="{{ path('app_orders_edit', {'id': order.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="14">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_orders_new') }}">Create new</a>
+{% endblock %}

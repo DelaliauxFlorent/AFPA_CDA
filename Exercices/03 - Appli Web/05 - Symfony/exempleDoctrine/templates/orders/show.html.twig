@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commandes{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">Commandes</h1>
+<div class="container">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ order.id }}</td>
+            </tr>
+            <tr>
+                <th>EmployeeID</th>
+                <td>{{ order.EmployeeID }}</td>
+            </tr>
+            <tr>
+                <th>Date de commande</th>
+                <td>{{ order.OrderDate ? order.OrderDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date d'arrivée requise</th>
+                <td>{{ order.RequiredDate ? order.RequiredDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date d'envois</th>
+                <td>{{ order.ShippedDate ? order.ShippedDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Envois Par</th>
+                <td>{{ order.ShipVia }}</td>
+            </tr>
+            <tr>
+                <th>Poids</th>
+                <td>{{ order.Freight }}</td>
+            </tr>
+            <tr>
+                <th>Nom du destinataire</th>
+                <td>{{ order.ShipName }}</td>
+            </tr>
+            <tr>
+                <th>Adresse du destinataire</th>
+                <td>{{ order.ShipAddress }}</td>
+            </tr>
+            <tr>
+                <th>Ville du destinataire</th>
+                <td>{{ order.ShipCity }}</td>
+            </tr>
+            <tr>
+                <th>Région du destinataire</th>
+                <td>{{ order.ShipRegion }}</td>
+            </tr>
+            <tr>
+                <th>Code Postal du destinataire</th>
+                <td>{{ order.ShipPostalCode }}</td>
+            </tr>
+            <tr>
+                <th>Pays du destinataire</th>
+                <td>{{ order.ShipCountry }}</td>
+            </tr>
+            <tr>
+                <th>Contenu de la commande</th>
+                <td>{% for item in Liste %}
+                    {{ item }} {{subTotal[loop.index0] }}<br/>
+                {% endfor %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_orders_index') }}">back to list</a>
+
+    <a href="{{ path('app_orders_edit', {'id': order.id}) }}">edit</a>
+    {{ include('orders/_delete_form.html.twig') }}
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+<div class="container">
+{{ form_start(form, {'attr':{'class':'row g-3 align-items-end', 'novalidate': 'novalidate'}}) }}
+{# {{ form_widget(form) }} #}
+
+<div class="col-md-12 lh-lg">&nbsp;</div>
+<div class="col-md-6">
+	{{ form_row(form.ProductName, {'label_attr':{'class':'col-md-6'}}) }}
+</div>
+<div class="col-md-6">
+	{{ form_row(form.Supplier, {'label_attr':{'class':'col-md-6'}}) }}
+</div>
+<div class="col-md-4">
+	{{ form_row(form.CategoryID, {'label_attr':{'class':'col-sm-3'}})}}
+</div>
+<div class="col-md-4">
+	{{ form_row(form.QuantityPerUnit, {'label_attr':{'class':'col-sm-3'}})}}
+</div>
+<div class="col-md-4">
+	{{ form_row(form.UnitPrice, {'label_attr':{'class':'col-sm-3'}})}}
+</div>
+<div class="col-md-4">
+	{{ form_row(form.UnitsInStock, {'label_attr':{'class':'col-sm-3'}})}}
+</div>
+<div class="col-md-4">
+	{{ form_row(form.UnitsOnOrder, {'label_attr':{'class':'col-sm-3'}})}}
+</div>
+<div class="col-md-4">
+	{{ form_row(form.ReorderLevel, {'label_attr':{'class':'col-sm-3'}})}}
+</div>
+<div class="col-md-6 offset-md-3">
+	{{ form_row(form.Discontinued)}}
+</div>
+<div class="container row g-2 offset-md-2">
+	<div class="col-md-4 align-content-end">
+		<a class="btn btn-secondary w-75" href="{{ path('app_products_index') }}">Retour à la liste</a>
+	</div>
+	<div class="col-md-4">
+		<button class="btn btn-primary w-75">{{ button_label|default('Ajouter') }}</button>
+	</div>
+</div>
+<div class="col-md-12 lh-lg">&nbsp;</div>
+
+{{ form_end(form) }}
+</div>
